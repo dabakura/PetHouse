@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5B62196C-E8FF-4524-B50E-FC4C65358DA1}</ProjectGuid>
+    <ProjectGuid>{10320AF0-F010-4AD2-A860-4CBC0C37B595}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PetHouse.API.Tests</RootNamespace>
@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PetHouse.API\PetHouse.API.csproj">
-      <Project>{8B25A14B-28C4-4822-B2D3-FCA490E93B7E}</Project>
+      <Project>{6F0EB5DC-CF65-4E08-8F20-E51A7ECCFB10}</Project>
       <Name>PetHouse.API</Name>
     </ProjectReference>
   </ItemGroup>
