@@ -14,5 +14,10 @@ namespace PetHouse.API
         {
             ConfigureAuth(app);
         }
+
+        //public void ConfigurationServices(IServiceCollection services)
+        //{
+
+        //}
     }
 }
