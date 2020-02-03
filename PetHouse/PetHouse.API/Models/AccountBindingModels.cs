@@ -1,10 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
 namespace PetHouse.API.Models
 {
     // Modelos usados como parámetros para las acciones de AccountController.
+    public class CreateRoleBindingModel
+    {
+        [Required]
+        [StringLength(256, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 2)]
+        [Display(Name = "Rol")]
+        public string Name { get; set; }
+    }
+
+    public class UsersInRoleModel
+    {
+        public string Id { get; set; }
+        public List<string> EnrolledUsers { get; set; }
+        public List<string> RemovedUsers { get; set; }
+    }
 
     public class AddExternalLoginBindingModel
     {
