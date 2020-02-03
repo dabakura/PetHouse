@@ -1,21 +1,26 @@
-namespace PetHouse.BLL
+using PetHouse.BLL.Models;
+using PetHouse.DAL;
+namespace PetHouse.BLL.Mappers
 {
-    using PetHouse.DAL;
 
     public class RolesMapper
     {
-        public RolesMapper()
+        public static Rol Map(AspNetRolesEntity rol)
         {
-            
+            return new Rol
+            {
+                Id = rol.Id,
+                Name = rol.Name
+            };
         }
 
-        public RolesMapper(AspNetRolesEntity rol)
+        public static AspNetRolesEntity Map(Rol rol)
         {
-            Id = rol.Id;
-            Name = rol.Name;
+            return new AspNetRolesEntity
+            {
+                Id = rol.Id,
+                Name = rol.Name
+            };
         }
-
-        public string Id { get; set; }
-        public string Name { get; set; }
     }
 }

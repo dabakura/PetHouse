@@ -6,16 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using PetHouse.BLL.Models;
+using PetHouse.BLL.Mappers;
 
 namespace PetHouse.BLL
 {
-    public class ClsInstitucion : DBContext, ICrud<InstitucionMapper>
+    public class ClsInstitucion : DBContext, ICrud<Institucion>
     {
         private static ClsInstitucion _instance;
 
         public static ClsInstitucion Instance => _instance ?? (_instance = new ClsInstitucion());
 
-        public async Task<IEnumerable<InstitucionMapper>> GetAllAsync()
+        public async Task<IEnumerable<Institucion>> GetAllAsync()
         {
             var instituciones = await DB.Instituciones
                 .Include(i => i.Domicilio)
@@ -25,7 +27,7 @@ namespace PetHouse.BLL
                 .Where(institucion => institucion.Estado.Value)
                 .ToListAsync();
             var ListInstituciones = from insti in instituciones
-                                    select new InstitucionMapper(insti);
+                                    select InstitucionMapper.Map(insti);
             return ListInstituciones;
         }
     }

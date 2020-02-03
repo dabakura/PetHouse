@@ -1,13 +1,25 @@
-namespace PetHouse.BLL
+using PetHouse.BLL.Models;
+using PetHouse.DAL;
+namespace PetHouse.BLL.Mappers
 {
-    using PetHouse.DAL;
-    public partial class DistritoMapper
+    public class DistritoMapper
     {
-        public DistritoMapper() { }
-        public DistritoMapper(DistritoEntity distrito)
+        public static Distrito Map(DistritoEntity distrito)
         {
-            Nombre = distrito.Nombre;
+            return new Distrito
+            {
+                Id = distrito.Id,
+                Nombre = distrito.Nombre
+            };
         }
-        public string Nombre { get; set; }
+
+        public static DistritoEntity Map(Distrito distrito)
+        {
+            return new DistritoEntity
+            {
+                Id = distrito.Id,
+                Nombre = distrito.Nombre
+            };
+        }
     }
 }

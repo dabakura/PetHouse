@@ -1,13 +1,25 @@
-namespace PetHouse.BLL
+using PetHouse.BLL.Models;
+using PetHouse.DAL;
+namespace PetHouse.BLL.Mappers
 {
-    using PetHouse.DAL;
-    public partial class CantonMapper
+    public class CantonMapper
     {
-        public CantonMapper() { }
-        public CantonMapper(CantonEntity canton)
+        public static Canton Map(CantonEntity canton)
         {
-            Nombre = canton.Nombre;
+            return new Canton
+            {
+                Id = canton.Id,
+                Nombre = canton.Nombre
+            };
         }
-        public string Nombre { get; set; }
+
+        public static CantonEntity Map(Canton canton)
+        {
+            return new CantonEntity
+            {
+                Id = canton.Id,
+                Nombre = canton.Nombre
+            };
+        }
     }
 }

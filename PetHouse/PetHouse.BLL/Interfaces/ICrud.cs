@@ -8,6 +8,6 @@ namespace PetHouse.BLL.Interfaces
 {
     public interface ICrud<T> where T : class
     {
-        Task<IEnumerable<InstitucionMapper>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync();
     }
 }

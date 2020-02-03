@@ -1,28 +1,38 @@
+using PetHouse.BLL.Models;
 using PetHouse.DAL;
-
-namespace PetHouse.BLL
+namespace PetHouse.BLL.Mappers
 {
     public class InstitucionMapper
     {
-        public InstitucionMapper(InstitucionEntity institucion)
+        public static Institucion Map(InstitucionEntity institucion)
         {
-            Id = institucion.Id;
-            Ced_Juridica = institucion.Ced_Juridica;
-            Nombre = institucion.Nombre;
-            Telefono = institucion.Telefono;
-            Fax = institucion.Fax;
-            Pag_Web = institucion.Pag_Web;
-            Correo = institucion.Correo;
-            Domicilio = new DomicilioMapper(institucion.Domicilio);
+            return new Institucion
+            {
+                Id = institucion.Id,
+                Ced_Juridica = institucion.Ced_Juridica,
+                Nombre = institucion.Nombre,
+                Telefono = institucion.Telefono,
+                Fax = institucion.Fax,
+                Pag_Web = institucion.Pag_Web,
+                Correo = institucion.Correo,
+                Domicilio = DomicilioMapper.Map(institucion.Domicilio)
+            };
         }
 
-        public int Id { get; set; }
-        public string Ced_Juridica { get; set; }
-        public string Nombre { get; set; }
-        public int Telefono { get; set; }
-        public string Fax { get; set; }
-        public string Pag_Web { get; set; }
-        public string Correo { get; set; }
-        public  DomicilioMapper Domicilio { get; set; }
+        public static InstitucionEntity Map(Institucion institucion)
+        {
+            return new InstitucionEntity
+            {
+                Id = institucion.Id,
+                Ced_Juridica = institucion.Ced_Juridica,
+                Nombre = institucion.Nombre,
+                Telefono = institucion.Telefono,
+                Fax = institucion.Fax,
+                Pag_Web = institucion.Pag_Web,
+                Correo = institucion.Correo,
+                Domicilio = DomicilioMapper.Map(institucion.Domicilio),
+                DireccionId = institucion.Domicilio.Id
+            };
+        }
     }
 }

@@ -1,24 +1,34 @@
 ﻿using PetHouse.DAL;
-
-namespace PetHouse.BLL
+using PetHouse.BLL.Models;
+namespace PetHouse.BLL.Mappers
 {
     public class DomicilioMapper
     {
-        public DomicilioMapper() { }
-        public DomicilioMapper(DomicilioEntity domicilio)
+        public static Domicilio Map(DomicilioEntity domicilio)
         {
-            Direccion = domicilio.Direccion;
-            Canton = new CantonMapper(domicilio.Canton);
-            Distrito = new DistritoMapper(domicilio.Distrito);
-            Provincia = new ProvinciaMapper(domicilio.Provincia);
+            return new Domicilio
+            {
+                Id = domicilio.Id,
+                Direccion = domicilio.Direccion,
+                Canton = CantonMapper.Map(domicilio.Canton),
+                Distrito = DistritoMapper.Map(domicilio.Distrito),
+                Provincia = ProvinciaMapper.Map(domicilio.Provincia)
+            };
         }
 
-        public string Direccion { get; set; }
-
-        public virtual CantonMapper Canton { get; set; }
-
-        public virtual DistritoMapper Distrito { get; set; }
-
-        public virtual ProvinciaMapper Provincia { get; set; }
+        public static DomicilioEntity Map(Domicilio domicilio)
+        {
+            return new DomicilioEntity
+            {
+                Id = domicilio.Id,
+                Direccion = domicilio.Direccion,
+                Canton = CantonMapper.Map(domicilio.Canton),
+                Distrito = DistritoMapper.Map(domicilio.Distrito),
+                Provincia = ProvinciaMapper.Map(domicilio.Provincia),
+                ProvinciaId = domicilio.Provincia.Id,
+                CantonId = domicilio.Canton.Id,
+                DistritoId = domicilio.Distrito.Id
+            };
+        }
     }
 }

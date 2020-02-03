@@ -1,13 +1,25 @@
-namespace PetHouse.BLL
+using PetHouse.BLL.Models;
+using PetHouse.DAL;
+namespace PetHouse.BLL.Mappers
 {
-    using PetHouse.DAL;
-    public partial class ProvinciaMapper
+    public class ProvinciaMapper
     {
-        public ProvinciaMapper() { }
-        public ProvinciaMapper(ProvinciaEntity provincia)
+        public static Provincia Map(ProvinciaEntity provincia)
         {
-            Nombre = provincia.Nombre;
+            return new Provincia
+            {
+                Id = provincia.Id,
+                Nombre = provincia.Nombre
+            };
         }
-        public string Nombre { get; set; }
+
+        public static ProvinciaEntity Map(Provincia provincia)
+        {
+            return new ProvinciaEntity
+            {
+                Id = provincia.Id,
+                Nombre = provincia.Nombre
+            };
+        }
     }
 }

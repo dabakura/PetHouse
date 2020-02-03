@@ -51,6 +51,12 @@
     <Compile Include="Mappers\InstitucionMapper.cs" />
     <Compile Include="Mappers\ProvinciaMapper.cs" />
     <Compile Include="Mappers\RolesMapper.cs" />
+    <Compile Include="Models\Canton.cs" />
+    <Compile Include="Models\Distrito.cs" />
+    <Compile Include="Models\Domicilio.cs" />
+    <Compile Include="Models\Institucion.cs" />
+    <Compile Include="Models\Provincia.cs" />
+    <Compile Include="Models\Rol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserMantenimiento.cs" />
   </ItemGroup>
