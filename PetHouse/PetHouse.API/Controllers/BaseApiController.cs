@@ -15,20 +15,16 @@ namespace PetHouse.API.Controllers
 
         public BaseApiController()
         {
+            _AppUserManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            _AppRoleManager = Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
         }
 
-        public BaseApiController(ApplicationUserManager userManager,
-            ApplicationRoleManager roleManager)
-        {
-            UserManager = userManager;
-            RoleManager = roleManager;
-        }
 
         public ApplicationUserManager UserManager
         {
             get
             {
-                return _AppUserManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _AppUserManager;
             }
             private set
             {
@@ -40,7 +36,7 @@ namespace PetHouse.API.Controllers
         {
             get
             {
-                return _AppRoleManager ?? Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+                return _AppRoleManager;
             }
             private set
             {

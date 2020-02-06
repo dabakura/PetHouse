@@ -19,7 +19,7 @@ namespace PetHouse.API.Controllers
 
         public ModelFactory ModelFactory { get => _modelFactory; set => _modelFactory = value; }
 
-        RolController()
+        public RolController()
         {
             _modelFactory = new ModelFactory();
         }

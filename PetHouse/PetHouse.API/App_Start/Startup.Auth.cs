@@ -46,7 +46,6 @@ namespace PetHouse.API
 
             // Permitir que la aplicación use tokens portadores para autenticar usuarios
             app.UseOAuthBearerTokens(OAuthOptions);
-
             // Quitar los comentarios de las siguientes líneas para habilitar el inicio de sesión con proveedores de inicio de sesión de terceros
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",

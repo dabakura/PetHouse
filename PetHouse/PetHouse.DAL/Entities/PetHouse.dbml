@@ -1,0 +1,945 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PetHouse" Class="PetHouseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=PetHouse;User ID=PetHouseAdmin;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="PetHouse.DAL.Properties.Settings" SettingsPropertyName="PetHouseConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Adopcion" Member="Adopcion">
+    <Type Name="Adopcion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InstituionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AdoptanteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Adopcion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Adopcion_Mascota" Member="Mascota" ThisKey="Id" OtherKey="AdopcionId" Type="Mascota" />
+      <Association Name="Adoptante_Adopcion" Member="Adoptante" ThisKey="AdoptanteId" OtherKey="Identificacion" Type="Adoptante" IsForeignKey="true" />
+      <Association Name="Institucion_Adopcion" Member="Institucion" ThisKey="InstituionId" OtherKey="Id" Type="Institucion" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vacuna" Member="Vacuna">
+    <Type Name="Vacuna">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Vacuna_Carnet" Member="Carnet" ThisKey="Id" OtherKey="VacunaId" Type="Carnet" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Adoptante" Member="Adoptante">
+    <Type Name="Adoptante">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Identificacion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Primer_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Segundo_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DomicilioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Adoptante_Adopcion" Member="Adopcion" ThisKey="Identificacion" OtherKey="AdoptanteId" Type="Adopcion" />
+      <Association Name="Domicilio_Adoptante" Member="Domicilio" ThisKey="DomicilioId" OtherKey="Id" Type="Domicilio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetRoles" Member="AspNetRoles">
+    <Type Name="AspNetRoles">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Association Name="AspNetRoles_AspNetUserRoles" Member="AspNetUserRoles" ThisKey="Id" OtherKey="RoleId" Type="AspNetUserRoles" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetUserRoles" Member="AspNetUserRoles">
+    <Type Name="AspNetUserRoles">
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="AspNetRoles_AspNetUserRoles" Member="AspNetRoles" ThisKey="RoleId" OtherKey="Id" Type="AspNetRoles" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="AspNetUsers_AspNetUserRoles" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetUsers" Member="AspNetUsers">
+    <Type Name="AspNetUsers">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="EmailConfirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SecurityStamp" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumberConfirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TwoFactorEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LockoutEndDateUtc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LockoutEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AccessFailedCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Association Name="AspNetUsers_AspNetUserRoles" Member="AspNetUserRoles" ThisKey="Id" OtherKey="UserId" Type="AspNetUserRoles" />
+      <Association Name="AspNetUsers_Empleado" Member="Empleado" ThisKey="Id" OtherKey="UserId" Type="Empleado" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Canton" Member="Canton">
+    <Type Name="Canton">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProvinciaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Canton_Distrito" Member="Distrito" ThisKey="Id" OtherKey="CantonId" Type="Distrito" />
+      <Association Name="Canton_Domicilio" Member="Domicilio" ThisKey="Id" OtherKey="CantonId" Type="Domicilio" />
+      <Association Name="Provincia_Canton" Member="Provincia" ThisKey="ProvinciaId" OtherKey="Id" Type="Provincia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Carnet" Member="Carnet">
+    <Type Name="Carnet">
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VacunaId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fecha_Vacunacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Vacuna_Carnet" Member="Vacuna" ThisKey="VacunaId" OtherKey="Id" Type="Vacuna" IsForeignKey="true" />
+      <Association Name="Expediente_Carnet" Member="Expediente" ThisKey="ExpedienteId" OtherKey="Id" Type="Expediente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Distrito" Member="Distrito">
+    <Type Name="Distrito">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CantonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Canton_Distrito" Member="Canton" ThisKey="CantonId" OtherKey="Id" Type="Canton" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Domicilio" Member="Domicilio">
+    <Type Name="Domicilio">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProvinciaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CantonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DistritoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Domicilio_Adoptante" Member="Adoptante" ThisKey="Id" OtherKey="DomicilioId" Type="Adoptante" />
+      <Association Name="Domicilio_Empleado" Member="Empleado" ThisKey="Id" OtherKey="DomicilioId" Type="Empleado" />
+      <Association Name="Domicilio_Institucion" Member="Institucion" ThisKey="Id" OtherKey="DireccionId" Type="Institucion" />
+      <Association Name="Canton_Domicilio" Member="Canton" ThisKey="CantonId" OtherKey="Id" Type="Canton" IsForeignKey="true" />
+      <Association Name="Provincia_Domicilio" Member="Provincia" ThisKey="ProvinciaId" OtherKey="Id" Type="Provincia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Empleado" Member="Empleado">
+    <Type Name="Empleado">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Identificacion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Primer_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Segundo_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DomicilioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PuestoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstitucionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Empleado_Procedimiento" Member="Procedimiento" ThisKey="Identificacion" OtherKey="EmpleadoId" Type="Procedimiento" />
+      <Association Name="Empleado_Tratamiento" Member="Tratamiento" ThisKey="Identificacion" OtherKey="EmpleadoId" Type="Tratamiento" />
+      <Association Name="AspNetUsers_Empleado" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="Domicilio_Empleado" Member="Domicilio" ThisKey="DomicilioId" OtherKey="Id" Type="Domicilio" IsForeignKey="true" />
+      <Association Name="Institucion_Empleado" Member="Institucion" ThisKey="InstitucionId" OtherKey="Id" Type="Institucion" IsForeignKey="true" />
+      <Association Name="Puesto_Empleado" Member="Puesto" ThisKey="PuestoID" OtherKey="Id" Type="Puesto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Expediente" Member="Expediente">
+    <Type Name="Expediente">
+      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Expediente_Carnet" Member="Carnet" ThisKey="Id" OtherKey="ExpedienteId" Type="Carnet" />
+      <Association Name="Expediente_Mascota" Member="Mascota" ThisKey="Id" OtherKey="ExpedienteId" Type="Mascota" />
+      <Association Name="Expediente_Procedimiento" Member="Procedimiento" ThisKey="Id" OtherKey="ExpedienteId" Type="Procedimiento" />
+      <Association Name="Expediente_Tratamiento" Member="Tratamiento" ThisKey="Id" OtherKey="ExpedienteId" Type="Tratamiento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Institucion" Member="Institucion">
+    <Type Name="Institucion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Ced_Juridica" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Pag_Web" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DireccionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Institucion_Adopcion" Member="Adopcion" ThisKey="Id" OtherKey="InstituionId" Type="Adopcion" />
+      <Association Name="Institucion_Empleado" Member="Empleado" ThisKey="Id" OtherKey="InstitucionId" Type="Empleado" />
+      <Association Name="Domicilio_Institucion" Member="Domicilio" ThisKey="DireccionId" OtherKey="Id" Type="Domicilio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mascota" Member="Mascota">
+    <Type Name="Mascota">
+      <Column Name="Identificacion" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Genero" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Raza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Edad_Registrada" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AdopcionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Adopcion_Mascota" Member="Adopcion" ThisKey="AdopcionId" OtherKey="Id" Type="Adopcion" IsForeignKey="true" />
+      <Association Name="Expediente_Mascota" Member="Expediente" ThisKey="ExpedienteId" OtherKey="Id" Type="Expediente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Medicamento" Member="Medicamento">
+    <Type Name="Medicamento">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Medicamento_TratamientoMedicamento" Member="TratamientoMedicamento" ThisKey="Id" OtherKey="MedicamentoId" Type="TratamientoMedicamento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Procedimiento" Member="Procedimiento">
+    <Type Name="Procedimiento">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpleadoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre_Procedimiento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Empleado_Procedimiento" Member="Empleado" ThisKey="EmpleadoId" OtherKey="Identificacion" Type="Empleado" IsForeignKey="true" />
+      <Association Name="Expediente_Procedimiento" Member="Expediente" ThisKey="ExpedienteId" OtherKey="Id" Type="Expediente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Provincia" Member="Provincia">
+    <Type Name="Provincia">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Provincia_Canton" Member="Canton" ThisKey="Id" OtherKey="ProvinciaId" Type="Canton" />
+      <Association Name="Provincia_Domicilio" Member="Domicilio" ThisKey="Id" OtherKey="ProvinciaId" Type="Domicilio" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Puesto" Member="Puesto">
+    <Type Name="Puesto">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Puesto_Empleado" Member="Empleado" ThisKey="Id" OtherKey="PuestoID" Type="Empleado" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tratamiento" Member="Tratamiento">
+    <Type Name="Tratamiento">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpleadoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Tratamiento_TratamientoMedicamento" Member="TratamientoMedicamento" ThisKey="Id" OtherKey="TratamientoId" Type="TratamientoMedicamento" />
+      <Association Name="Empleado_Tratamiento" Member="Empleado" ThisKey="EmpleadoId" OtherKey="Identificacion" Type="Empleado" IsForeignKey="true" />
+      <Association Name="Expediente_Tratamiento" Member="Expediente" ThisKey="ExpedienteId" OtherKey="Id" Type="Expediente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TratamientoMedicamento" Member="TratamientoMedicamento">
+    <Type Name="TratamientoMedicamento">
+      <Column Name="TratamientoId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MedicamentoId" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Medicamento_TratamientoMedicamento" Member="Medicamento" ThisKey="MedicamentoId" OtherKey="Id" Type="Medicamento" IsForeignKey="true" />
+      <Association Name="Tratamiento_TratamientoMedicamento" Member="Tratamiento" ThisKey="TratamientoId" OtherKey="Id" Type="Tratamiento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.ActualizarAdopcion" Method="ActualizarAdopcion">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituionId" Parameter="instituionId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AdoptanteId" Parameter="adoptanteId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fecha_Adopcion" Parameter="fecha_Adopcion" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertarVacuna" Method="InsertarVacuna">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="Text" />
+    <ElementType Name="InsertarVacunaResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ActualizarAdoptante" Method="ActualizarAdoptante">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Primer_Apellido" Parameter="primer_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Segundo_Apellido" Parameter="segundo_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fecha_Nacimiento" Parameter="fecha_Nacimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="DomicilioId" Parameter="domicilioId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarCanton" Method="ActualizarCanton">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ProvinciaId" Parameter="provinciaId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarDistrito" Method="ActualizarDistrito">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantonId" Parameter="cantonId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarDomicilio" Method="ActualizarDomicilio">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ProvinciaId" Parameter="provinciaId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantonId" Parameter="cantonId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DistritoId" Parameter="distritoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(200)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarEmpleado" Method="ActualizarEmpleado">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Primer_Apellido" Parameter="primer_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Segundo_Apellido" Parameter="segundo_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fecha_Nacimiento" Parameter="fecha_Nacimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="DomicilioId" Parameter="domicilioId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PuestoID" Parameter="puestoID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstitucionId" Parameter="institucionId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="NVarChar(128)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarExpediente" Method="ActualizarExpediente">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="Text" />
+    <Parameter Name="Castracion" Parameter="castracion" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarInstitucion" Method="ActualizarInstitucion">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ced_Juridica" Parameter="ced_Juridica" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fax" Parameter="fax" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Pag_Web" Parameter="pag_Web" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="DireccionId" Parameter="direccionId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarMascota" Method="ActualizarMascota">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Genero" Parameter="genero" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Raza" Parameter="raza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fecha_Ingreso" Parameter="fecha_Ingreso" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Edad_Registrada" Parameter="edad_Registrada" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AdopcionId" Parameter="adopcionId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fecha_Fallecimiento" Parameter="fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarMedicamento" Method="ActualizarMedicamento">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="Text" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarProcedimiento" Method="ActualizarProcedimiento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="EmpleadoId" Parameter="empleadoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre_Procedimiento" Parameter="nombre_Procedimiento" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="Text" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarProvincia" Method="ActualizarProvincia">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarPuesto" Method="ActualizarPuesto">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarRol" Method="ActualizarRol">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="NVarChar(128)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(256)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarTratamiento" Method="ActualizarTratamiento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="EmpleadoId" Parameter="empleadoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="Text" />
+    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarVacuna" Method="ActualizarVacuna">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="Text" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BuscarAdopcion" Method="BuscarAdopcion">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarAdopcionResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AdoptanteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Adopcion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarAdoptante" Method="BuscarAdoptante">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarAdoptanteResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Identificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Primer_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Segundo_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DomicilioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarCanton" Method="BuscarCanton">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarCantonResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinciaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarCarnet" Method="BuscarCarnet">
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="BuscarCarnetResult">
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="VacunaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Vacunacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarDistrito" Method="BuscarDistrito">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarDistritoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CantonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarDomicilio" Method="BuscarDomicilio">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarDomicilioResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinciaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CantonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DistritoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarEmpleado" Method="BuscarEmpleado">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarEmpleadoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Identificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Primer_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Segundo_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DomicilioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PuestoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstitucionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarExpediente" Method="BuscarExpediente">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="BuscarExpedienteResult">
+      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarInstitucion" Method="BuscarInstitucion">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarInstitucionResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ced_Juridica" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Pag_Web" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DireccionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarMascota" Method="BuscarMascota">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="BuscarMascotaResult">
+      <Column Name="Identificacion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Genero" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Raza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Edad_Registrada" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AdopcionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarMedicamento" Method="BuscarMedicamento">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="BuscarMedicamentoResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarProcedimiento" Method="BuscarProcedimiento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarProcedimientoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpleadoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre_Procedimiento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarProvincia" Method="BuscarProvincia">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarProvinciaResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarPuesto" Method="BuscarPuesto">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarPuestoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarRol" Method="BuscarRol">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="NVarChar(128)" />
+    <ElementType Name="BuscarRolResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarTratamiento" Method="BuscarTratamiento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarTratamientoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpleadoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarTratamientoMedicamento" Method="BuscarTratamientoMedicamento">
+    <Parameter Name="TratamientoId" Parameter="tratamientoId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarTratamientoMedicamentoResult">
+      <Column Name="TratamientoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MedicamentoId" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarVacuna" Method="BuscarVacuna">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarVacunaResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarAdopcion" Method="ConsultarAdopcion">
+    <ElementType Name="ConsultarAdopcionResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AdoptanteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Adopcion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarAdoptante" Method="ConsultarAdoptante">
+    <ElementType Name="ConsultarAdoptanteResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Identificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Primer_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Segundo_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DomicilioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarCanton" Method="ConsultarCanton">
+    <ElementType Name="ConsultarCantonResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinciaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarCarnet" Method="ConsultarCarnet">
+    <ElementType Name="ConsultarCarnetResult">
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="VacunaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Vacunacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarDistrito" Method="ConsultarDistrito">
+    <ElementType Name="ConsultarDistritoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CantonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarDomicilio" Method="ConsultarDomicilio">
+    <ElementType Name="ConsultarDomicilioResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinciaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CantonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DistritoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarEmpleado" Method="ConsultarEmpleado">
+    <ElementType Name="ConsultarEmpleadoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Identificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Primer_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Segundo_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DomicilioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PuestoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstitucionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarExpediente" Method="ConsultarExpediente">
+    <ElementType Name="ConsultarExpedienteResult">
+      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarInstitucion" Method="ConsultarInstitucion">
+    <ElementType Name="ConsultarInstitucionResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ced_Juridica" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Pag_Web" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DireccionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarMascota" Method="ConsultarMascota">
+    <ElementType Name="ConsultarMascotaResult">
+      <Column Name="Identificacion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Genero" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Raza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Edad_Registrada" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AdopcionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarMedicamento" Method="ConsultarMedicamento">
+    <ElementType Name="ConsultarMedicamentoResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarProcedimiento" Method="ConsultarProcedimiento">
+    <ElementType Name="ConsultarProcedimientoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpleadoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre_Procedimiento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarProvincia" Method="ConsultarProvincia">
+    <ElementType Name="ConsultarProvinciaResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarPuesto" Method="ConsultarPuesto">
+    <ElementType Name="ConsultarPuestoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarRol" Method="ConsultarRol">
+    <ElementType Name="ConsultarRolResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarTratamiento" Method="ConsultarTratamiento">
+    <ElementType Name="ConsultarTratamientoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpleadoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarTratamientoMedicamento" Method="ConsultarTratamientoMedicamento">
+    <ElementType Name="ConsultarTratamientoMedicamentoResult">
+      <Column Name="TratamientoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MedicamentoId" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarUser" Method="ConsultarUser">
+    <ElementType Name="ConsultarUserResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="EmailConfirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SecurityStamp" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumberConfirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TwoFactorEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LockoutEndDateUtc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LockoutEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AccessFailedCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarVacuna" Method="ConsultarVacuna">
+    <ElementType Name="ConsultarVacunaResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EliminarAdopcion" Method="EliminarAdopcion">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarAdoptante" Method="EliminarAdoptante">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarCarnet" Method="EliminarCarnet">
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarDomicilio" Method="EliminarDomicilio">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarEmpleado" Method="EliminarEmpleado">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarExpediente" Method="EliminarExpediente">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarInstitucion" Method="EliminarInstitucion">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarMascota" Method="EliminarMascota">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarMedicamento" Method="EliminarMedicamento">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarProcedimiento" Method="EliminarProcedimiento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarPuesto" Method="EliminarPuesto">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarTratamiento" Method="EliminarTratamiento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarVacuna" Method="EliminarVacuna">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertarAdopcion" Method="InsertarAdopcion">
+    <Parameter Name="InstituionId" Parameter="instituionId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AdoptanteId" Parameter="adoptanteId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fecha_Adopcion" Parameter="fecha_Adopcion" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="InsertarAdopcionResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarAdoptante" Method="InsertarAdoptante">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Primer_Apellido" Parameter="primer_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Segundo_Apellido" Parameter="segundo_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fecha_Nacimiento" Parameter="fecha_Nacimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="DomicilioId" Parameter="domicilioId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="InsertarAdoptanteResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarCanton" Method="InsertarCanton">
+    <Parameter Name="ProvinciaId" Parameter="provinciaId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="InsertarCantonResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarCarnet" Method="InsertarCarnet">
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="VacunaId" Parameter="vacunaId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fecha_Vacunacion" Parameter="fecha_Vacunacion" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertarDistrito" Method="InsertarDistrito">
+    <Parameter Name="CantonId" Parameter="cantonId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="InsertarDistritoResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarDomicilio" Method="InsertarDomicilio">
+    <Parameter Name="ProvinciaId" Parameter="provinciaId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantonId" Parameter="cantonId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DistritoId" Parameter="distritoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(200)" />
+    <ElementType Name="InsertarDomicilioResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarEmpleado" Method="InsertarEmpleado">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Primer_Apellido" Parameter="primer_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Segundo_Apellido" Parameter="segundo_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fecha_Nacimiento" Parameter="fecha_Nacimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="DomicilioId" Parameter="domicilioId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PuestoID" Parameter="puestoID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstitucionId" Parameter="institucionId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="NVarChar(128)" />
+    <ElementType Name="InsertarEmpleadoResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarExpediente" Method="InsertarExpediente">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="Text" />
+    <Parameter Name="Castracion" Parameter="castracion" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="InsertarExpedienteResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarInstitucion" Method="InsertarInstitucion">
+    <Parameter Name="Ced_Juridica" Parameter="ced_Juridica" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fax" Parameter="fax" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Pag_Web" Parameter="pag_Web" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="DireccionId" Parameter="direccionId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="InsertarInstitucionResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarMascota" Method="InsertarMascota">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Genero" Parameter="genero" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Raza" Parameter="raza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fecha_Ingreso" Parameter="fecha_Ingreso" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Edad_Registrada" Parameter="edad_Registrada" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AdopcionId" Parameter="adopcionId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fecha_Fallecimiento" Parameter="fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="InsertarMascotaResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarMedicamento" Method="InsertarMedicamento">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="Text" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="InsertarMedicamentoResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarProcedimiento" Method="InsertarProcedimiento">
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="EmpleadoId" Parameter="empleadoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre_Procedimiento" Parameter="nombre_Procedimiento" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="Text" />
+    <ElementType Name="InsertarProcedimientoResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarProvincia" Method="InsertarProvincia">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="InsertarProvinciaResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarPuesto" Method="InsertarPuesto">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(300)" />
+    <ElementType Name="InsertarPuestoResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarRol" Method="InsertarRol">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(256)" />
+    <ElementType Name="InsertarRolResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarTratamiento" Method="InsertarTratamiento">
+    <Parameter Name="ExpedienteId" Parameter="expedienteId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="EmpleadoId" Parameter="empleadoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="Text" />
+    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="InsertarTratamientoResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertarTratamientoMedicamento" Method="InsertarTratamientoMedicamento">
+    <Parameter Name="TratamientoId" Parameter="tratamientoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MedicamentoId" Parameter="medicamentoId" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

@@ -31,15 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -58,7 +53,6 @@
     <Compile Include="Entities\AspNetUsersEntity.cs" />
     <Compile Include="Entities\CantonEntity.cs" />
     <Compile Include="Entities\CarnetEntity.cs" />
-    <Compile Include="C__MigrationHistory.cs" />
     <Compile Include="Entities\DistritoEntity.cs" />
     <Compile Include="Entities\DomicilioEntity.cs" />
     <Compile Include="Entities\EmpleadoEntity.cs" />
@@ -66,17 +60,40 @@
     <Compile Include="Entities\InstitucionEntity.cs" />
     <Compile Include="Entities\MascotaEntity.cs" />
     <Compile Include="Entities\MedicamentoEntity.cs" />
-    <Compile Include="PetHouseModel.cs" />
+    <Compile Include="Entities\PetHouse.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PetHouse.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\ProcedimientoEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\ProvinciaEntity.cs" />
     <Compile Include="Entities\PuestoEntity.cs" />
     <Compile Include="Entities\TratamientoEntity.cs" />
     <Compile Include="Entities\VacunaEntity.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="app.config" />
+    <None Include="Entities\PetHouse.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>PetHouse.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\PetHouse.dbml.layout">
+      <DependentUpon>PetHouse.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

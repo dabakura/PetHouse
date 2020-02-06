@@ -1,30 +1,22 @@
-﻿using PetHouse.BLL.Interfaces;
+﻿using PetHouse.BLL.Services;
 using PetHouse.BLL.Mappers;
-using PetHouse.BLL.Models;
+using PetHouse.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
 
 namespace PetHouse.BLL.Repositorios
 {
-    public class InstitucionRepositorio : DBContext, IIntitucion
+    public class InstitucionRepositorio : DBContext, IIntitucionService
     {
-        public async Task<IEnumerable<Institucion>> GetAllAsync()
+        public IEnumerable<Institucion> GetAll()
         {
             try
             {
-                var InstitucionesEntities = await DB.Instituciones
-                .Include(i => i.Domicilio)
-                .Include(i => i.Domicilio.Canton)
-                .Include(i => i.Domicilio.Provincia)
-                .Include(i => i.Domicilio.Distrito)
-                .Where(InstitucionEntity => InstitucionEntity.Estado.Value)
-                .ToListAsync();
-                var Instituciones = from insti in InstitucionesEntities
-                                    select InstitucionMapper.Map(insti);
+                var InstitucionesResult = DB.ConsultarInstitucion().ToList();
+                var Instituciones = mapper.Map<IEnumerable<ConsultarInstitucionResult>, IEnumerable<Institucion>>(InstitucionesResult);
                 return Instituciones;
             }
             catch (Exception ex)

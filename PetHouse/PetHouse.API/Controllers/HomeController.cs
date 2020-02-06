@@ -1,4 +1,6 @@
 ﻿using PetHouse.BLL;
+using PetHouse.BLL.Services;
+using PetHouse.BLL.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,11 @@ namespace PetHouse.API.Controllers
 {
     public class HomeController : Controller
     {
+        private IRoleService RolesRepositorio;
+        public HomeController()
+        {
+            this.RolesRepositorio = new AspNetRolesRepositorio();
+        }
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
@@ -17,12 +24,9 @@ namespace PetHouse.API.Controllers
             return View();
         }
 
-        public async Task<ActionResult> Roles()
+        public ActionResult Roles()
         {
-            UserMantenimiento userMantenimiento = new UserMantenimiento();
-            //var roles = userMantenimiento.Method().Select(rol => new { rol.Id, rol.Name }).ToList();
-            //var result = ClsInstitucion.Instance.GetAll();
-            var result = await userMantenimiento.MethodAsync();
+            var result = RolesRepositorio.GetAll();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
