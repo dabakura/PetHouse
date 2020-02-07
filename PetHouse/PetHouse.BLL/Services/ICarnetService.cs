@@ -12,6 +12,7 @@ namespace PetHouse.BLL.Services
         IEnumerable<Carnet> GetAll();
         IEnumerable<Carnet> Get(string id);
         bool Insert(Carnet entity);
-        bool Delete(string idExpediente, int idVacuna);
+        bool Delete(string idExpediente);
+        bool DeleteVacuna(string idExpediente, int idVacuna);
     }
 }

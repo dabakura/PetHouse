@@ -11,6 +11,19 @@ namespace PetHouse.BLL.Repositorios
 {
     public class TratamientoMedicamentoRepositorio : DBContext, ITratamientoMedicamentoService
     {
+        public bool Delete(int idTratamiento, string idMedicamento)
+        {
+            try
+            {
+                DB.EliminarTratamientoMedicamento(idTratamiento, idMedicamento);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public TratamientoMedicamento Get(string id)
         {
             try
@@ -42,7 +55,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                var id = DB.InsertarTratamientoMedicamento(entity.TratamientoId, entity.MedicamentoId);
+                DB.InsertarTratamientoMedicamento(entity.TratamientoId, entity.MedicamentoId);
                 return true;
             }
             catch (Exception ex)

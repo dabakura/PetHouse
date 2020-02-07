@@ -11,11 +11,24 @@ namespace PetHouse.BLL.Repositorios
 {
     public class CarnetRepositorio : DBContext, ICarnetService
     {
-        public bool Delete(string idExpediente, int idVacuna)
+        public bool Delete(string idExpediente)
         {
             try
             {
                 DB.EliminarCarnet(idExpediente);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DeleteVacuna(string idExpediente, int idVacuna)
+        {
+            try
+            {
+                DB.EliminarVacunaCarnet(idExpediente,idVacuna);
                 return true;
             }
             catch (Exception ex)

@@ -54,12 +54,6 @@ namespace PetHouse.DAL.Entities
     partial void InsertCarnet(Carnet instance);
     partial void UpdateCarnet(Carnet instance);
     partial void DeleteCarnet(Carnet instance);
-    partial void InsertDistrito(Distrito instance);
-    partial void UpdateDistrito(Distrito instance);
-    partial void DeleteDistrito(Distrito instance);
-    partial void InsertDomicilio(Domicilio instance);
-    partial void UpdateDomicilio(Domicilio instance);
-    partial void DeleteDomicilio(Domicilio instance);
     partial void InsertEmpleado(Empleado instance);
     partial void UpdateEmpleado(Empleado instance);
     partial void DeleteEmpleado(Empleado instance);
@@ -90,6 +84,12 @@ namespace PetHouse.DAL.Entities
     partial void InsertTratamientoMedicamento(TratamientoMedicamento instance);
     partial void UpdateTratamientoMedicamento(TratamientoMedicamento instance);
     partial void DeleteTratamientoMedicamento(TratamientoMedicamento instance);
+    partial void InsertDistrito(Distrito instance);
+    partial void UpdateDistrito(Distrito instance);
+    partial void DeleteDistrito(Distrito instance);
+    partial void InsertDomicilio(Domicilio instance);
+    partial void UpdateDomicilio(Domicilio instance);
+    partial void DeleteDomicilio(Domicilio instance);
     #endregion
 		
 		public PetHouseDataContext() : 
@@ -186,22 +186,6 @@ namespace PetHouse.DAL.Entities
 			}
 		}
 		
-		public System.Data.Linq.Table<Distrito> Distrito
-		{
-			get
-			{
-				return this.GetTable<Distrito>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Domicilio> Domicilio
-		{
-			get
-			{
-				return this.GetTable<Domicilio>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Empleado> Empleado
 		{
 			get
@@ -279,6 +263,22 @@ namespace PetHouse.DAL.Entities
 			get
 			{
 				return this.GetTable<TratamientoMedicamento>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Distrito> Distrito
+		{
+			get
+			{
+				return this.GetTable<Distrito>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Domicilio> Domicilio
+		{
+			get
+			{
+				return this.GetTable<Domicilio>();
 			}
 		}
 		
@@ -674,13 +674,6 @@ namespace PetHouse.DAL.Entities
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCarnet")]
-		public int EliminarCarnet([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarDomicilio")]
 		public int EliminarDomicilio([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
 		{
@@ -758,13 +751,6 @@ namespace PetHouse.DAL.Entities
 			return ((ISingleResult<InsertarAdopcionResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarAdoptante")]
-		public ISingleResult<InsertarAdoptanteResult> InsertarAdoptante([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Primer_Apellido", DbType="VarChar(50)")] string primer_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Segundo_Apellido", DbType="VarChar(50)")] string segundo_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="Int")] System.Nullable<int> telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomicilioId", DbType="Int")] System.Nullable<int> domicilioId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, primer_Apellido, segundo_Apellido, fecha_Nacimiento, telefono, correo, domicilioId);
-			return ((ISingleResult<InsertarAdoptanteResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarCanton")]
 		public ISingleResult<InsertarCantonResult> InsertarCanton([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProvinciaId", DbType="Int")] System.Nullable<int> provinciaId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre)
 		{
@@ -793,39 +779,11 @@ namespace PetHouse.DAL.Entities
 			return ((ISingleResult<InsertarDomicilioResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarEmpleado")]
-		public ISingleResult<InsertarEmpleadoResult> InsertarEmpleado([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Primer_Apellido", DbType="VarChar(50)")] string primer_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Segundo_Apellido", DbType="VarChar(50)")] string segundo_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="Int")] System.Nullable<int> telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomicilioId", DbType="Int")] System.Nullable<int> domicilioId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PuestoID", DbType="Int")] System.Nullable<int> puestoID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstitucionId", DbType="Int")] System.Nullable<int> institucionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="NVarChar(128)")] string userId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, primer_Apellido, segundo_Apellido, fecha_Nacimiento, telefono, correo, domicilioId, puestoID, institucionId, userId);
-			return ((ISingleResult<InsertarEmpleadoResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarExpediente")]
-		public ISingleResult<InsertarExpedienteResult> InsertarExpediente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="VarChar(100)")] string id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Observaciones", DbType="Text")] string observaciones, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Castracion", DbType="Bit")] System.Nullable<bool> castracion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, observaciones, castracion);
-			return ((ISingleResult<InsertarExpedienteResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarInstitucion")]
 		public ISingleResult<InsertarInstitucionResult> InsertarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ced_Juridica", DbType="VarChar(25)")] string ced_Juridica, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="Int")] System.Nullable<int> telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fax", DbType="VarChar(50)")] string fax, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pag_Web", DbType="VarChar(100)")] string pag_Web, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DireccionId", DbType="Int")] System.Nullable<int> direccionId)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ced_Juridica, nombre, telefono, fax, pag_Web, correo, direccionId);
 			return ((ISingleResult<InsertarInstitucionResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarMascota")]
-		public ISingleResult<InsertarMascotaResult> InsertarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Genero", DbType="VarChar(50)")] string genero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Ingreso", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Ingreso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Edad_Registrada", DbType="Int")] System.Nullable<int> edad_Registrada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdopcionId", DbType="Int")] System.Nullable<int> adopcionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Fallecimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Fallecimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, tipo, genero, raza, fecha_Ingreso, edad_Registrada, adopcionId, fecha_Fallecimiento, expedienteId);
-			return ((ISingleResult<InsertarMascotaResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarMedicamento")]
-		public ISingleResult<InsertarMedicamentoResult> InsertarMedicamento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="NVarChar(100)")] string id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="Text")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, nombre, descripcion, tipo);
-			return ((ISingleResult<InsertarMedicamentoResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarProcedimiento")]
@@ -868,6 +826,62 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tratamientoId, medicamentoId);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCarnet")]
+		public int EliminarCarnet([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarVacunaCarnet")]
+		public int EliminarVacunaCarnet([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="VacunaId", DbType="Int")] System.Nullable<int> vacunaId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId, vacunaId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarTratamientoMedicamento")]
+		public int EliminarTratamientoMedicamento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TratamientoId", DbType="Int")] System.Nullable<int> tratamientoId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MedicamentoId", DbType="NVarChar(100)")] string medicamentoId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tratamientoId, medicamentoId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarAdoptante")]
+		public ISingleResult<InsertarAdoptanteResult> InsertarAdoptante([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Primer_Apellido", DbType="VarChar(50)")] string primer_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Segundo_Apellido", DbType="VarChar(50)")] string segundo_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="Int")] System.Nullable<int> telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomicilioId", DbType="Int")] System.Nullable<int> domicilioId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, primer_Apellido, segundo_Apellido, fecha_Nacimiento, telefono, correo, domicilioId);
+			return ((ISingleResult<InsertarAdoptanteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarEmpleado")]
+		public ISingleResult<InsertarEmpleadoResult> InsertarEmpleado([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Primer_Apellido", DbType="VarChar(50)")] string primer_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Segundo_Apellido", DbType="VarChar(50)")] string segundo_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="Int")] System.Nullable<int> telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomicilioId", DbType="Int")] System.Nullable<int> domicilioId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PuestoID", DbType="Int")] System.Nullable<int> puestoID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstitucionId", DbType="Int")] System.Nullable<int> institucionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="NVarChar(128)")] string userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, primer_Apellido, segundo_Apellido, fecha_Nacimiento, telefono, correo, domicilioId, puestoID, institucionId, userId);
+			return ((ISingleResult<InsertarEmpleadoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarExpediente")]
+		public ISingleResult<InsertarExpedienteResult> InsertarExpediente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="VarChar(100)")] string id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Observaciones", DbType="Text")] string observaciones, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Castracion", DbType="Bit")] System.Nullable<bool> castracion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, observaciones, castracion);
+			return ((ISingleResult<InsertarExpedienteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarMascota")]
+		public ISingleResult<InsertarMascotaResult> InsertarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Genero", DbType="VarChar(50)")] string genero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Ingreso", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Ingreso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Edad_Registrada", DbType="Int")] System.Nullable<int> edad_Registrada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdopcionId", DbType="Int")] System.Nullable<int> adopcionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Fallecimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Fallecimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, tipo, genero, raza, fecha_Ingreso, edad_Registrada, adopcionId, fecha_Fallecimiento, expedienteId);
+			return ((ISingleResult<InsertarMascotaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarMedicamento")]
+		public ISingleResult<InsertarMedicamentoResult> InsertarMedicamento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="NVarChar(100)")] string id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="Text")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, nombre, descripcion, tipo);
+			return ((ISingleResult<InsertarMedicamentoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2735,505 +2749,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Distrito")]
-	public partial class Distrito : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CantonId;
-		
-		private string _Nombre;
-		
-		private EntityRef<Canton> _Canton;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCantonIdChanging(int value);
-    partial void OnCantonIdChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    #endregion
-		
-		public Distrito()
-		{
-			this._Canton = default(EntityRef<Canton>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
-		public int CantonId
-		{
-			get
-			{
-				return this._CantonId;
-			}
-			set
-			{
-				if ((this._CantonId != value))
-				{
-					if (this._Canton.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCantonIdChanging(value);
-					this.SendPropertyChanging();
-					this._CantonId = value;
-					this.SendPropertyChanged("CantonId");
-					this.OnCantonIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Canton_Distrito", Storage="_Canton", ThisKey="CantonId", OtherKey="Id", IsForeignKey=true)]
-		public Canton Canton
-		{
-			get
-			{
-				return this._Canton.Entity;
-			}
-			set
-			{
-				Canton previousValue = this._Canton.Entity;
-				if (((previousValue != value) 
-							|| (this._Canton.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Canton.Entity = null;
-						previousValue.Distrito.Remove(this);
-					}
-					this._Canton.Entity = value;
-					if ((value != null))
-					{
-						value.Distrito.Add(this);
-						this._CantonId = value.Id;
-					}
-					else
-					{
-						this._CantonId = default(int);
-					}
-					this.SendPropertyChanged("Canton");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Domicilio")]
-	public partial class Domicilio : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _ProvinciaId;
-		
-		private int _CantonId;
-		
-		private int _DistritoId;
-		
-		private string _Direccion;
-		
-		private System.Nullable<bool> _Activo;
-		
-		private EntitySet<Adoptante> _Adoptante;
-		
-		private EntitySet<Empleado> _Empleado;
-		
-		private EntitySet<Institucion> _Institucion;
-		
-		private EntityRef<Canton> _Canton;
-		
-		private EntityRef<Provincia> _Provincia;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnProvinciaIdChanging(int value);
-    partial void OnProvinciaIdChanged();
-    partial void OnCantonIdChanging(int value);
-    partial void OnCantonIdChanged();
-    partial void OnDistritoIdChanging(int value);
-    partial void OnDistritoIdChanged();
-    partial void OnDireccionChanging(string value);
-    partial void OnDireccionChanged();
-    partial void OnActivoChanging(System.Nullable<bool> value);
-    partial void OnActivoChanged();
-    #endregion
-		
-		public Domicilio()
-		{
-			this._Adoptante = new EntitySet<Adoptante>(new Action<Adoptante>(this.attach_Adoptante), new Action<Adoptante>(this.detach_Adoptante));
-			this._Empleado = new EntitySet<Empleado>(new Action<Empleado>(this.attach_Empleado), new Action<Empleado>(this.detach_Empleado));
-			this._Institucion = new EntitySet<Institucion>(new Action<Institucion>(this.attach_Institucion), new Action<Institucion>(this.detach_Institucion));
-			this._Canton = default(EntityRef<Canton>);
-			this._Provincia = default(EntityRef<Provincia>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
-		public int ProvinciaId
-		{
-			get
-			{
-				return this._ProvinciaId;
-			}
-			set
-			{
-				if ((this._ProvinciaId != value))
-				{
-					if (this._Provincia.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProvinciaIdChanging(value);
-					this.SendPropertyChanging();
-					this._ProvinciaId = value;
-					this.SendPropertyChanged("ProvinciaId");
-					this.OnProvinciaIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
-		public int CantonId
-		{
-			get
-			{
-				return this._CantonId;
-			}
-			set
-			{
-				if ((this._CantonId != value))
-				{
-					if (this._Canton.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCantonIdChanging(value);
-					this.SendPropertyChanging();
-					this._CantonId = value;
-					this.SendPropertyChanged("CantonId");
-					this.OnCantonIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoId", DbType="Int NOT NULL")]
-		public int DistritoId
-		{
-			get
-			{
-				return this._DistritoId;
-			}
-			set
-			{
-				if ((this._DistritoId != value))
-				{
-					this.OnDistritoIdChanging(value);
-					this.SendPropertyChanging();
-					this._DistritoId = value;
-					this.SendPropertyChanged("DistritoId");
-					this.OnDistritoIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string Direccion
-		{
-			get
-			{
-				return this._Direccion;
-			}
-			set
-			{
-				if ((this._Direccion != value))
-				{
-					this.OnDireccionChanging(value);
-					this.SendPropertyChanging();
-					this._Direccion = value;
-					this.SendPropertyChanged("Direccion");
-					this.OnDireccionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
-		public System.Nullable<bool> Activo
-		{
-			get
-			{
-				return this._Activo;
-			}
-			set
-			{
-				if ((this._Activo != value))
-				{
-					this.OnActivoChanging(value);
-					this.SendPropertyChanging();
-					this._Activo = value;
-					this.SendPropertyChanged("Activo");
-					this.OnActivoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domicilio_Adoptante", Storage="_Adoptante", ThisKey="Id", OtherKey="DomicilioId")]
-		public EntitySet<Adoptante> Adoptante
-		{
-			get
-			{
-				return this._Adoptante;
-			}
-			set
-			{
-				this._Adoptante.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domicilio_Empleado", Storage="_Empleado", ThisKey="Id", OtherKey="DomicilioId")]
-		public EntitySet<Empleado> Empleado
-		{
-			get
-			{
-				return this._Empleado;
-			}
-			set
-			{
-				this._Empleado.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domicilio_Institucion", Storage="_Institucion", ThisKey="Id", OtherKey="DireccionId")]
-		public EntitySet<Institucion> Institucion
-		{
-			get
-			{
-				return this._Institucion;
-			}
-			set
-			{
-				this._Institucion.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Canton_Domicilio", Storage="_Canton", ThisKey="CantonId", OtherKey="Id", IsForeignKey=true)]
-		public Canton Canton
-		{
-			get
-			{
-				return this._Canton.Entity;
-			}
-			set
-			{
-				Canton previousValue = this._Canton.Entity;
-				if (((previousValue != value) 
-							|| (this._Canton.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Canton.Entity = null;
-						previousValue.Domicilio.Remove(this);
-					}
-					this._Canton.Entity = value;
-					if ((value != null))
-					{
-						value.Domicilio.Add(this);
-						this._CantonId = value.Id;
-					}
-					else
-					{
-						this._CantonId = default(int);
-					}
-					this.SendPropertyChanged("Canton");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Provincia_Domicilio", Storage="_Provincia", ThisKey="ProvinciaId", OtherKey="Id", IsForeignKey=true)]
-		public Provincia Provincia
-		{
-			get
-			{
-				return this._Provincia.Entity;
-			}
-			set
-			{
-				Provincia previousValue = this._Provincia.Entity;
-				if (((previousValue != value) 
-							|| (this._Provincia.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Provincia.Entity = null;
-						previousValue.Domicilio.Remove(this);
-					}
-					this._Provincia.Entity = value;
-					if ((value != null))
-					{
-						value.Domicilio.Add(this);
-						this._ProvinciaId = value.Id;
-					}
-					else
-					{
-						this._ProvinciaId = default(int);
-					}
-					this.SendPropertyChanged("Provincia");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Adoptante(Adoptante entity)
-		{
-			this.SendPropertyChanging();
-			entity.Domicilio = this;
-		}
-		
-		private void detach_Adoptante(Adoptante entity)
-		{
-			this.SendPropertyChanging();
-			entity.Domicilio = null;
-		}
-		
-		private void attach_Empleado(Empleado entity)
-		{
-			this.SendPropertyChanging();
-			entity.Domicilio = this;
-		}
-		
-		private void detach_Empleado(Empleado entity)
-		{
-			this.SendPropertyChanging();
-			entity.Domicilio = null;
-		}
-		
-		private void attach_Institucion(Institucion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Domicilio = this;
-		}
-		
-		private void detach_Institucion(Institucion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Domicilio = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Empleado")]
 	public partial class Empleado : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3272,11 +2787,11 @@ namespace PetHouse.DAL.Entities
 		
 		private EntityRef<AspNetUsers> _AspNetUsers;
 		
-		private EntityRef<Domicilio> _Domicilio;
-		
 		private EntityRef<Institucion> _Institucion;
 		
 		private EntityRef<Puesto> _Puesto;
+		
+		private EntityRef<Domicilio> _Domicilio;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -3315,9 +2830,9 @@ namespace PetHouse.DAL.Entities
 			this._Procedimiento = new EntitySet<Procedimiento>(new Action<Procedimiento>(this.attach_Procedimiento), new Action<Procedimiento>(this.detach_Procedimiento));
 			this._Tratamiento = new EntitySet<Tratamiento>(new Action<Tratamiento>(this.attach_Tratamiento), new Action<Tratamiento>(this.detach_Tratamiento));
 			this._AspNetUsers = default(EntityRef<AspNetUsers>);
-			this._Domicilio = default(EntityRef<Domicilio>);
 			this._Institucion = default(EntityRef<Institucion>);
 			this._Puesto = default(EntityRef<Puesto>);
+			this._Domicilio = default(EntityRef<Domicilio>);
 			OnCreated();
 		}
 		
@@ -3657,40 +3172,6 @@ namespace PetHouse.DAL.Entities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domicilio_Empleado", Storage="_Domicilio", ThisKey="DomicilioId", OtherKey="Id", IsForeignKey=true)]
-		public Domicilio Domicilio
-		{
-			get
-			{
-				return this._Domicilio.Entity;
-			}
-			set
-			{
-				Domicilio previousValue = this._Domicilio.Entity;
-				if (((previousValue != value) 
-							|| (this._Domicilio.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Domicilio.Entity = null;
-						previousValue.Empleado.Remove(this);
-					}
-					this._Domicilio.Entity = value;
-					if ((value != null))
-					{
-						value.Empleado.Add(this);
-						this._DomicilioId = value.Id;
-					}
-					else
-					{
-						this._DomicilioId = default(int);
-					}
-					this.SendPropertyChanged("Domicilio");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institucion_Empleado", Storage="_Institucion", ThisKey="InstitucionId", OtherKey="Id", IsForeignKey=true)]
 		public Institucion Institucion
 		{
@@ -3755,6 +3236,40 @@ namespace PetHouse.DAL.Entities
 						this._PuestoID = default(int);
 					}
 					this.SendPropertyChanged("Puesto");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domicilio_Empleado", Storage="_Domicilio", ThisKey="DomicilioId", OtherKey="Id", IsForeignKey=true)]
+		public Domicilio Domicilio
+		{
+			get
+			{
+				return this._Domicilio.Entity;
+			}
+			set
+			{
+				Domicilio previousValue = this._Domicilio.Entity;
+				if (((previousValue != value) 
+							|| (this._Domicilio.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Domicilio.Entity = null;
+						previousValue.Empleado.Remove(this);
+					}
+					this._Domicilio.Entity = value;
+					if ((value != null))
+					{
+						value.Empleado.Add(this);
+						this._DomicilioId = value.Id;
+					}
+					else
+					{
+						this._DomicilioId = default(int);
+					}
+					this.SendPropertyChanged("Domicilio");
 				}
 			}
 		}
@@ -5996,6 +5511,574 @@ namespace PetHouse.DAL.Entities
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Distrito")]
+	public partial class Distrito : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CantonId;
+		
+		private string _Nombre;
+		
+		private EntitySet<Domicilio> _Domicilio;
+		
+		private EntityRef<Canton> _Canton;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCantonIdChanging(int value);
+    partial void OnCantonIdChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    #endregion
+		
+		public Distrito()
+		{
+			this._Domicilio = new EntitySet<Domicilio>(new Action<Domicilio>(this.attach_Domicilio), new Action<Domicilio>(this.detach_Domicilio));
+			this._Canton = default(EntityRef<Canton>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
+		public int CantonId
+		{
+			get
+			{
+				return this._CantonId;
+			}
+			set
+			{
+				if ((this._CantonId != value))
+				{
+					if (this._Canton.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCantonIdChanging(value);
+					this.SendPropertyChanging();
+					this._CantonId = value;
+					this.SendPropertyChanged("CantonId");
+					this.OnCantonIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Distrito_Domicilio", Storage="_Domicilio", ThisKey="Id", OtherKey="DistritoId")]
+		public EntitySet<Domicilio> Domicilio
+		{
+			get
+			{
+				return this._Domicilio;
+			}
+			set
+			{
+				this._Domicilio.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Canton_Distrito", Storage="_Canton", ThisKey="CantonId", OtherKey="Id", IsForeignKey=true)]
+		public Canton Canton
+		{
+			get
+			{
+				return this._Canton.Entity;
+			}
+			set
+			{
+				Canton previousValue = this._Canton.Entity;
+				if (((previousValue != value) 
+							|| (this._Canton.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Canton.Entity = null;
+						previousValue.Distrito.Remove(this);
+					}
+					this._Canton.Entity = value;
+					if ((value != null))
+					{
+						value.Distrito.Add(this);
+						this._CantonId = value.Id;
+					}
+					else
+					{
+						this._CantonId = default(int);
+					}
+					this.SendPropertyChanged("Canton");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Domicilio(Domicilio entity)
+		{
+			this.SendPropertyChanging();
+			entity.Distrito = this;
+		}
+		
+		private void detach_Domicilio(Domicilio entity)
+		{
+			this.SendPropertyChanging();
+			entity.Distrito = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Domicilio")]
+	public partial class Domicilio : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ProvinciaId;
+		
+		private int _CantonId;
+		
+		private int _DistritoId;
+		
+		private string _Direccion;
+		
+		private System.Nullable<bool> _Activo;
+		
+		private EntitySet<Adoptante> _Adoptante;
+		
+		private EntitySet<Empleado> _Empleado;
+		
+		private EntitySet<Institucion> _Institucion;
+		
+		private EntityRef<Canton> _Canton;
+		
+		private EntityRef<Distrito> _Distrito;
+		
+		private EntityRef<Provincia> _Provincia;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProvinciaIdChanging(int value);
+    partial void OnProvinciaIdChanged();
+    partial void OnCantonIdChanging(int value);
+    partial void OnCantonIdChanged();
+    partial void OnDistritoIdChanging(int value);
+    partial void OnDistritoIdChanged();
+    partial void OnDireccionChanging(string value);
+    partial void OnDireccionChanged();
+    partial void OnActivoChanging(System.Nullable<bool> value);
+    partial void OnActivoChanged();
+    #endregion
+		
+		public Domicilio()
+		{
+			this._Adoptante = new EntitySet<Adoptante>(new Action<Adoptante>(this.attach_Adoptante), new Action<Adoptante>(this.detach_Adoptante));
+			this._Empleado = new EntitySet<Empleado>(new Action<Empleado>(this.attach_Empleado), new Action<Empleado>(this.detach_Empleado));
+			this._Institucion = new EntitySet<Institucion>(new Action<Institucion>(this.attach_Institucion), new Action<Institucion>(this.detach_Institucion));
+			this._Canton = default(EntityRef<Canton>);
+			this._Distrito = default(EntityRef<Distrito>);
+			this._Provincia = default(EntityRef<Provincia>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
+		public int ProvinciaId
+		{
+			get
+			{
+				return this._ProvinciaId;
+			}
+			set
+			{
+				if ((this._ProvinciaId != value))
+				{
+					if (this._Provincia.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProvinciaIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProvinciaId = value;
+					this.SendPropertyChanged("ProvinciaId");
+					this.OnProvinciaIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
+		public int CantonId
+		{
+			get
+			{
+				return this._CantonId;
+			}
+			set
+			{
+				if ((this._CantonId != value))
+				{
+					if (this._Canton.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCantonIdChanging(value);
+					this.SendPropertyChanging();
+					this._CantonId = value;
+					this.SendPropertyChanged("CantonId");
+					this.OnCantonIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoId", DbType="Int NOT NULL")]
+		public int DistritoId
+		{
+			get
+			{
+				return this._DistritoId;
+			}
+			set
+			{
+				if ((this._DistritoId != value))
+				{
+					if (this._Distrito.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDistritoIdChanging(value);
+					this.SendPropertyChanging();
+					this._DistritoId = value;
+					this.SendPropertyChanged("DistritoId");
+					this.OnDistritoIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				if ((this._Direccion != value))
+				{
+					this.OnDireccionChanging(value);
+					this.SendPropertyChanging();
+					this._Direccion = value;
+					this.SendPropertyChanged("Direccion");
+					this.OnDireccionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
+		public System.Nullable<bool> Activo
+		{
+			get
+			{
+				return this._Activo;
+			}
+			set
+			{
+				if ((this._Activo != value))
+				{
+					this.OnActivoChanging(value);
+					this.SendPropertyChanging();
+					this._Activo = value;
+					this.SendPropertyChanged("Activo");
+					this.OnActivoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domicilio_Adoptante", Storage="_Adoptante", ThisKey="Id", OtherKey="DomicilioId")]
+		public EntitySet<Adoptante> Adoptante
+		{
+			get
+			{
+				return this._Adoptante;
+			}
+			set
+			{
+				this._Adoptante.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domicilio_Empleado", Storage="_Empleado", ThisKey="Id", OtherKey="DomicilioId")]
+		public EntitySet<Empleado> Empleado
+		{
+			get
+			{
+				return this._Empleado;
+			}
+			set
+			{
+				this._Empleado.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domicilio_Institucion", Storage="_Institucion", ThisKey="Id", OtherKey="DireccionId")]
+		public EntitySet<Institucion> Institucion
+		{
+			get
+			{
+				return this._Institucion;
+			}
+			set
+			{
+				this._Institucion.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Canton_Domicilio", Storage="_Canton", ThisKey="CantonId", OtherKey="Id", IsForeignKey=true)]
+		public Canton Canton
+		{
+			get
+			{
+				return this._Canton.Entity;
+			}
+			set
+			{
+				Canton previousValue = this._Canton.Entity;
+				if (((previousValue != value) 
+							|| (this._Canton.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Canton.Entity = null;
+						previousValue.Domicilio.Remove(this);
+					}
+					this._Canton.Entity = value;
+					if ((value != null))
+					{
+						value.Domicilio.Add(this);
+						this._CantonId = value.Id;
+					}
+					else
+					{
+						this._CantonId = default(int);
+					}
+					this.SendPropertyChanged("Canton");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Distrito_Domicilio", Storage="_Distrito", ThisKey="DistritoId", OtherKey="Id", IsForeignKey=true)]
+		public Distrito Distrito
+		{
+			get
+			{
+				return this._Distrito.Entity;
+			}
+			set
+			{
+				Distrito previousValue = this._Distrito.Entity;
+				if (((previousValue != value) 
+							|| (this._Distrito.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Distrito.Entity = null;
+						previousValue.Domicilio.Remove(this);
+					}
+					this._Distrito.Entity = value;
+					if ((value != null))
+					{
+						value.Domicilio.Add(this);
+						this._DistritoId = value.Id;
+					}
+					else
+					{
+						this._DistritoId = default(int);
+					}
+					this.SendPropertyChanged("Distrito");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Provincia_Domicilio", Storage="_Provincia", ThisKey="ProvinciaId", OtherKey="Id", IsForeignKey=true)]
+		public Provincia Provincia
+		{
+			get
+			{
+				return this._Provincia.Entity;
+			}
+			set
+			{
+				Provincia previousValue = this._Provincia.Entity;
+				if (((previousValue != value) 
+							|| (this._Provincia.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Provincia.Entity = null;
+						previousValue.Domicilio.Remove(this);
+					}
+					this._Provincia.Entity = value;
+					if ((value != null))
+					{
+						value.Domicilio.Add(this);
+						this._ProvinciaId = value.Id;
+					}
+					else
+					{
+						this._ProvinciaId = default(int);
+					}
+					this.SendPropertyChanged("Provincia");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Adoptante(Adoptante entity)
+		{
+			this.SendPropertyChanging();
+			entity.Domicilio = this;
+		}
+		
+		private void detach_Adoptante(Adoptante entity)
+		{
+			this.SendPropertyChanging();
+			entity.Domicilio = null;
+		}
+		
+		private void attach_Empleado(Empleado entity)
+		{
+			this.SendPropertyChanging();
+			entity.Domicilio = this;
+		}
+		
+		private void detach_Empleado(Empleado entity)
+		{
+			this.SendPropertyChanging();
+			entity.Domicilio = null;
+		}
+		
+		private void attach_Institucion(Institucion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Domicilio = this;
+		}
+		
+		private void detach_Institucion(Institucion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Domicilio = null;
 		}
 	}
 	
@@ -9893,32 +9976,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class InsertarAdoptanteResult
-	{
-		
-		private System.Nullable<int> _Column1;
-		
-		public InsertarAdoptanteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
-		public System.Nullable<int> Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class InsertarCantonResult
 	{
 		
@@ -9997,58 +10054,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class InsertarEmpleadoResult
-	{
-		
-		private System.Nullable<int> _Column1;
-		
-		public InsertarEmpleadoResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
-		public System.Nullable<int> Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
-	public partial class InsertarExpedienteResult
-	{
-		
-		private string _Column1;
-		
-		public InsertarExpedienteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="VarChar(100)")]
-		public string Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class InsertarInstitucionResult
 	{
 		
@@ -10060,58 +10065,6 @@ namespace PetHouse.DAL.Entities
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
 		public System.Nullable<int> Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
-	public partial class InsertarMascotaResult
-	{
-		
-		private string _Column1;
-		
-		public InsertarMascotaResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="VarChar(100)")]
-		public string Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
-	public partial class InsertarMedicamentoResult
-	{
-		
-		private string _Column1;
-		
-		public InsertarMedicamentoResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(100)")]
-		public string Column1
 		{
 			get
 			{
@@ -10242,6 +10195,136 @@ namespace PetHouse.DAL.Entities
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
 		public System.Nullable<int> Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarAdoptanteResult
+	{
+		
+		private System.Nullable<int> _Column1;
+		
+		public InsertarAdoptanteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
+		public System.Nullable<int> Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarEmpleadoResult
+	{
+		
+		private System.Nullable<int> _Column1;
+		
+		public InsertarEmpleadoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
+		public System.Nullable<int> Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarExpedienteResult
+	{
+		
+		private string _Column1;
+		
+		public InsertarExpedienteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="VarChar(100)")]
+		public string Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarMascotaResult
+	{
+		
+		private string _Column1;
+		
+		public InsertarMascotaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="VarChar(100)")]
+		public string Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarMedicamentoResult
+	{
+		
+		private string _Column1;
+		
+		public InsertarMedicamentoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(100)")]
+		public string Column1
 		{
 			get
 			{

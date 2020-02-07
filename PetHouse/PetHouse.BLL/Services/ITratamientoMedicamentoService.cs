@@ -12,5 +12,8 @@ namespace PetHouse.BLL.Services
         IEnumerable<TratamientoMedicamento> GetAll();
         TratamientoMedicamento Get(string id);
         bool Insert(TratamientoMedicamento entity);
+
+        bool Delete(int idTratamiento, string idMedicamento);
+
     }
 }
