@@ -47,15 +47,47 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext.cs" />
-    <Compile Include="ClsInstitucion.cs" />
+    <Compile Include="Repositorios\AdopcionRepositorio.cs" />
+    <Compile Include="Repositorios\AdoptanteRepositorio.cs" />
+    <Compile Include="Repositorios\AspNetUsersRepositorio.cs" />
+    <Compile Include="Repositorios\CantonRepositorio.cs" />
+    <Compile Include="Repositorios\CarnetRepositorio.cs" />
+    <Compile Include="Repositorios\DistritoRepositorio.cs" />
+    <Compile Include="Repositorios\DomicilioRepositorio.cs" />
+    <Compile Include="Repositorios\EmpleadoRepositorio.cs" />
+    <Compile Include="Repositorios\ExpedienteRepositorio.cs" />
+    <Compile Include="Repositorios\MascotaRepositorio.cs" />
+    <Compile Include="Repositorios\MedicamentoRepositorio.cs" />
+    <Compile Include="Repositorios\ProcedimientoRepositorio.cs" />
+    <Compile Include="Repositorios\ProvinciaRepositorio.cs" />
+    <Compile Include="Repositorios\TratamientoRepositorio.cs" />
+    <Compile Include="Repositorios\TratamientoMedicamentoRepositorio.cs" />
+    <Compile Include="Repositorios\VacunaRepositorio.cs" />
+    <Compile Include="Repositorios\PuestoRepositorio.cs" />
     <Compile Include="Services\ICrud.cs" />
+    <Compile Include="Services\IAdopcionService.cs" />
+    <Compile Include="Services\IAdoptanteService.cs" />
+    <Compile Include="Services\IAspNetUsersService.cs" />
+    <Compile Include="Services\ICantonService.cs" />
+    <Compile Include="Services\ICarnetService.cs" />
+    <Compile Include="Services\IDistritoService.cs" />
+    <Compile Include="Services\IDomicilioService.cs" />
+    <Compile Include="Services\IEmpleadoService.cs" />
+    <Compile Include="Services\IExpedienteService.cs" />
+    <Compile Include="Services\IMascotaService.cs" />
+    <Compile Include="Services\IMedicamentoService.cs" />
+    <Compile Include="Services\IProcedimientoService.cs" />
+    <Compile Include="Services\IProvinciaService.cs" />
+    <Compile Include="Services\IPuestoService.cs" />
+    <Compile Include="Services\ITratamientoService.cs" />
+    <Compile Include="Services\ITratamientoMedicamentoService.cs" />
+    <Compile Include="Services\IVacunaService.cs" />
     <Compile Include="Services\IRoleService.cs" />
     <Compile Include="Services\IIntitucionService.cs" />
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\AspNetRolesRepositorio.cs" />
     <Compile Include="Repositorios\InstitucionRepositorio.cs" />
-    <Compile Include="UserMantenimiento.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetHouse.DAL\PetHouse.DAL.csproj">

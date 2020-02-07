@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Repositorios
 {
-    public class InstitucionRepositorio : DBContext, IIntitucionService
+    public class ProcedimientoRepositorio : DBContext, IProcedimientoService
     {
         public bool Delete(string id)
         {
             try
             {
-                DB.EliminarInstitucion(Convert.ToInt32(id));
+                DB.EliminarProcedimiento(Convert.ToInt32(id));
                 return true;
             }
             catch (Exception ex)
@@ -24,12 +24,12 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public Institucion Get(string id)
+        public Procedimiento Get(string id)
         {
             try
             {
-                var InstitucionResult = DB.BuscarInstitucion(Convert.ToInt32(id)).SingleOrDefault();
-                return mapper.Map<Institucion>(InstitucionResult);
+                var ProcedimientoResult = DB.BuscarProcedimiento(Convert.ToInt32(id)).SingleOrDefault();
+                return mapper.Map<Procedimiento>(ProcedimientoResult);
             }
             catch (Exception ex)
             {
@@ -37,13 +37,13 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public IEnumerable<Institucion> GetAll()
+        public IEnumerable<Procedimiento> GetAll()
         {
             try
             {
-                var InstitucionesResult = DB.ConsultarInstitucion().ToList();
-                var Instituciones = mapper.Map<IEnumerable<ConsultarInstitucionResult>, IEnumerable<Institucion>>(InstitucionesResult);
-                return Instituciones;
+                var ProcedimientosResult = DB.ConsultarProcedimiento().ToList();
+                var Procedimientos = mapper.Map<IEnumerable<ConsultarProcedimientoResult>, IEnumerable<Procedimiento>>(ProcedimientosResult);
+                return Procedimientos;
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public int Insert(Institucion entity)
+        public int Insert(Procedimiento entity)
         {
             try
             {
-                var id = DB.InsertarInstitucion(entity.Ced_Juridica, entity.Nombre, entity.Telefono, entity.Fax, entity.Pag_Web, entity.Correo, entity.DireccionId).SingleOrDefault().Column1;
+                var id = DB.InsertarProcedimiento(entity.ExpedienteId, entity.EmpleadoId, entity.Nombre_Procedimiento, entity.Descripcion).SingleOrDefault().Column1;
                 return id.Value;
             }
             catch (Exception ex)
@@ -64,11 +64,11 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public bool Update(Institucion entity)
+        public bool Update(Procedimiento entity)
         {
             try
             {
-                DB.ActualizarInstitucion(entity.Id, entity.Ced_Juridica, entity.Nombre, entity.Telefono, entity.Fax, entity.Pag_Web, entity.Correo, entity.DireccionId);
+                DB.ActualizarProcedimiento(entity.Id, entity.ExpedienteId, entity.EmpleadoId, entity.Nombre_Procedimiento, entity.Descripcion);
                 return true;
             }
             catch (Exception ex)

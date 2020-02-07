@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Repositorios
 {
-    public class InstitucionRepositorio : DBContext, IIntitucionService
+    public class AdoptanteRepositorio : DBContext, IAdoptanteService
     {
         public bool Delete(string id)
         {
             try
             {
-                DB.EliminarInstitucion(Convert.ToInt32(id));
+                DB.EliminarAdoptante(Convert.ToInt32(id));
                 return true;
             }
             catch (Exception ex)
@@ -24,12 +24,12 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public Institucion Get(string id)
+        public Adoptante Get(string id)
         {
             try
             {
-                var InstitucionResult = DB.BuscarInstitucion(Convert.ToInt32(id)).SingleOrDefault();
-                return mapper.Map<Institucion>(InstitucionResult);
+                var adoptanteResult = DB.BuscarAdoptante(Convert.ToInt32(id)).SingleOrDefault();
+                return mapper.Map<Adoptante>(adoptanteResult);
             }
             catch (Exception ex)
             {
@@ -37,13 +37,13 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public IEnumerable<Institucion> GetAll()
+        public IEnumerable<Adoptante> GetAll()
         {
             try
             {
-                var InstitucionesResult = DB.ConsultarInstitucion().ToList();
-                var Instituciones = mapper.Map<IEnumerable<ConsultarInstitucionResult>, IEnumerable<Institucion>>(InstitucionesResult);
-                return Instituciones;
+                var AdoptantesResult = DB.ConsultarAdoptante().ToList();
+                var Adoptantes = mapper.Map<IEnumerable<ConsultarAdoptanteResult>, IEnumerable<Adoptante>>(AdoptantesResult);
+                return Adoptantes;
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public int Insert(Institucion entity)
+        public int Insert(Adoptante entity)
         {
             try
             {
-                var id = DB.InsertarInstitucion(entity.Ced_Juridica, entity.Nombre, entity.Telefono, entity.Fax, entity.Pag_Web, entity.Correo, entity.DireccionId).SingleOrDefault().Column1;
+                var id = DB.InsertarAdoptante(entity.Identificacion, entity.Nombre, entity.Primer_Apellido, entity.Segundo_Apellido, entity.Fecha_Nacimiento, entity.Telefono, entity.Correo, entity.DomicilioId).SingleOrDefault().Column1;
                 return id.Value;
             }
             catch (Exception ex)
@@ -64,11 +64,11 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public bool Update(Institucion entity)
+        public bool Update(Adoptante entity)
         {
             try
             {
-                DB.ActualizarInstitucion(entity.Id, entity.Ced_Juridica, entity.Nombre, entity.Telefono, entity.Fax, entity.Pag_Web, entity.Correo, entity.DireccionId);
+                DB.ActualizarAdoptante(entity.Identificacion, entity.Nombre, entity.Primer_Apellido, entity.Segundo_Apellido, entity.Fecha_Nacimiento, entity.Telefono, entity.Correo, entity.DomicilioId);
                 return true;
             }
             catch (Exception ex)

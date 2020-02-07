@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Services
 {
-    public interface IRoleService
+    public interface IVacunaService : ICrud<Vacuna>
     {
-        IEnumerable<AspNetRoles> GetAll();
-        AspNetRoles Get(string id);
-        bool Update(AspNetRoles entity);
     }
 }

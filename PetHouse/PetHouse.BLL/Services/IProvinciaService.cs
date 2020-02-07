@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Services
 {
-    public interface IRoleService
+    public interface IProvinciaService
     {
-        IEnumerable<AspNetRoles> GetAll();
-        AspNetRoles Get(string id);
-        bool Update(AspNetRoles entity);
+        IEnumerable<Provincia> GetAll();
+        Provincia Get(string id);
+        int Insert(Provincia entity);
+        bool Update(Provincia entity);
     }
 }

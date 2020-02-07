@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Services
 {
-    public interface IRoleService
+    public interface ICantonService
     {
-        IEnumerable<AspNetRoles> GetAll();
-        AspNetRoles Get(string id);
-        bool Update(AspNetRoles entity);
+        IEnumerable<Canton> GetAll();
+        Canton Get(string id);
+        int Insert(Canton entity);
+        bool Update(Canton entity);
     }
 }

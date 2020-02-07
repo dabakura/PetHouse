@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Repositorios
 {
-    public class InstitucionRepositorio : DBContext, IIntitucionService
+    public class VacunaRepositorio : DBContext, IVacunaService
     {
         public bool Delete(string id)
         {
             try
             {
-                DB.EliminarInstitucion(Convert.ToInt32(id));
+                DB.EliminarVacuna(Convert.ToInt32(id));
                 return true;
             }
             catch (Exception ex)
@@ -24,12 +24,12 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public Institucion Get(string id)
+        public Vacuna Get(string id)
         {
             try
             {
-                var InstitucionResult = DB.BuscarInstitucion(Convert.ToInt32(id)).SingleOrDefault();
-                return mapper.Map<Institucion>(InstitucionResult);
+                var VacunaResult = DB.BuscarVacuna(Convert.ToInt32(id)).SingleOrDefault();
+                return mapper.Map<Vacuna>(VacunaResult);
             }
             catch (Exception ex)
             {
@@ -37,13 +37,13 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public IEnumerable<Institucion> GetAll()
+        public IEnumerable<Vacuna> GetAll()
         {
             try
             {
-                var InstitucionesResult = DB.ConsultarInstitucion().ToList();
-                var Instituciones = mapper.Map<IEnumerable<ConsultarInstitucionResult>, IEnumerable<Institucion>>(InstitucionesResult);
-                return Instituciones;
+                var VacunasResult = DB.ConsultarVacuna().ToList();
+                var Vacunas = mapper.Map<IEnumerable<ConsultarVacunaResult>, IEnumerable<Vacuna>>(VacunasResult);
+                return Vacunas;
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public int Insert(Institucion entity)
+        public int Insert(Vacuna entity)
         {
             try
             {
-                var id = DB.InsertarInstitucion(entity.Ced_Juridica, entity.Nombre, entity.Telefono, entity.Fax, entity.Pag_Web, entity.Correo, entity.DireccionId).SingleOrDefault().Column1;
+                var id = DB.InsertarVacuna(entity.Nombre, entity.Descripcion).SingleOrDefault().Column1;
                 return id.Value;
             }
             catch (Exception ex)
@@ -64,11 +64,11 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public bool Update(Institucion entity)
+        public bool Update(Vacuna entity)
         {
             try
             {
-                DB.ActualizarInstitucion(entity.Id, entity.Ced_Juridica, entity.Nombre, entity.Telefono, entity.Fax, entity.Pag_Web, entity.Correo, entity.DireccionId);
+                DB.ActualizarVacuna(entity.Id, entity.Nombre, entity.Descripcion);
                 return true;
             }
             catch (Exception ex)
