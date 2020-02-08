@@ -45,32 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\AdopcionEntity.cs" />
-    <Compile Include="Entities\AdoptanteEntity.cs" />
-    <Compile Include="Entities\AspNetRolesEntity.cs" />
-    <Compile Include="Entities\AspNetUserClaimsEntity.cs" />
-    <Compile Include="Entities\AspNetUserLoginsEntity.cs" />
-    <Compile Include="Entities\AspNetUsersEntity.cs" />
-    <Compile Include="Entities\CantonEntity.cs" />
-    <Compile Include="Entities\CarnetEntity.cs" />
-    <Compile Include="Entities\DistritoEntity.cs" />
-    <Compile Include="Entities\DomicilioEntity.cs" />
-    <Compile Include="Entities\EmpleadoEntity.cs" />
-    <Compile Include="Entities\ExpedienteEntity.cs" />
-    <Compile Include="Entities\InstitucionEntity.cs" />
-    <Compile Include="Entities\MascotaEntity.cs" />
-    <Compile Include="Entities\MedicamentoEntity.cs" />
     <Compile Include="Entities\PetHouse.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PetHouse.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Entities\ProcedimientoEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\ProvinciaEntity.cs" />
-    <Compile Include="Entities\PuestoEntity.cs" />
-    <Compile Include="Entities\TratamientoEntity.cs" />
-    <Compile Include="Entities\VacunaEntity.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

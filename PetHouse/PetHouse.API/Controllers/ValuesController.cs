@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace PetHouse.API.Controllers
 {
-    [Authorize]
+    
     public class ValuesController : BaseApiController
     {
         // GET api/values
