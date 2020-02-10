@@ -236,10 +236,25 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdopcionController.cs" />
+    <Compile Include="Controllers\AdoptanteController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\CantonController.cs" />
+    <Compile Include="Controllers\CarnetController.cs" />
+    <Compile Include="Controllers\DistritoController.cs" />
+    <Compile Include="Controllers\DomicilioController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstitucionController.cs" />
+    <Compile Include="Controllers\MascotaController.cs" />
+    <Compile Include="Controllers\MedicamentoController.cs" />
+    <Compile Include="Controllers\ProcedimientoController.cs" />
     <Compile Include="Controllers\ProvinciaController.cs" />
+    <Compile Include="Controllers\PuestoController.cs" />
     <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\TratamientoController.cs" />
+    <Compile Include="Controllers\TratamientoMedicamentoController.cs" />
+    <Compile Include="Controllers\VacunaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -27,7 +27,7 @@ namespace PetHouse.API.Controllers
             try
             {
                 var provincias = ProvinciaServicio.GetAll();
-                return Ok(provincias);
+                return Ok(ModelFactory.Create(provincias));
             }
             catch
             {

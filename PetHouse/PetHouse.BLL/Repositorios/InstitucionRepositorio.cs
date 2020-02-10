@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Repositorios
 {
-    public class InstitucionRepositorio : DBContext, IIntitucionService
+    public class InstitucionRepositorio : DBContext, IInstitucionService
     {
         public bool Delete(string id)
         {

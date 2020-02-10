@@ -1,5 +1,4 @@
-﻿using Microsoft.Owin.Logging;
-using PetHouse.API.Models;
+﻿using PetHouse.API.Models;
 using PetHouse.BLL.Repositorios;
 using PetHouse.BLL.Services;
 using PetHouse.DAL.Entities;
@@ -12,22 +11,23 @@ using System.Web.Http;
 
 namespace PetHouse.API.Controllers
 {
-    public class AdopcionController : BaseApiController
+    [RoutePrefix("api/Puesto")]
+    public class PuestoController : ApiController
     {
-        public IAdopcionService AdopcionServicio { get; }
+        public IPuestoService PuestoServicio { get; }
 
-        public AdopcionController()
+        public PuestoController()
         {
-            AdopcionServicio = new AdopcionRepositorio();
+            PuestoServicio = new PuestoRepositorio();
         }
 
-        // GET: api/Adopcion
+        // GET: api/Puesto
         public IHttpActionResult Get()
         {
             try
             {
-                var adopciones = AdopcionServicio.GetAll();
-                return Ok(ModelFactory.Create(adopciones));
+                var puestos = PuestoServicio.GetAll();
+                return Ok(ModelFactory.Create(puestos));
             }
             catch
             {
@@ -35,14 +35,14 @@ namespace PetHouse.API.Controllers
             }
         }
 
-        // GET: api/Adopcion/5
+        // GET: api/Puesto/5
         public IHttpActionResult Get(string id)
         {
             try
             {
-                var adopcion = AdopcionServicio.Get(id);
+                var puesto = PuestoServicio.Get(id);
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create(adopcion,uri));
+                return Ok(ModelFactory.Create(puesto, uri));
             }
             catch
             {
@@ -50,14 +50,14 @@ namespace PetHouse.API.Controllers
             }
         }
 
-        // POST: api/Adopcion
-        public IHttpActionResult Post([FromBody]Adopcion adopcion)
+        // POST: api/Puesto
+        public IHttpActionResult Post([FromBody]Puesto puesto)
         {
             try
             {
-                adopcion.Id = AdopcionServicio.Insert(adopcion);
-                Uri uri = new Uri(Url.Request.RequestUri + "/" + adopcion.Id);
-                return Created(uri, ModelFactory.Create(adopcion, uri));
+                puesto.Id = PuestoServicio.Insert(puesto);
+                Uri uri = new Uri(Url.Request.RequestUri + "/" +puesto.Id);
+                return Created(uri, ModelFactory.Create(puesto, uri));
             }
             catch
             {
@@ -65,13 +65,13 @@ namespace PetHouse.API.Controllers
             }
         }
 
-        // PUT: api/Adopcion/5
-        public IHttpActionResult Put(string id, [FromBody]Adopcion adopcion)
+        // PUT: api/Puesto/5
+        public IHttpActionResult Put(string id, [FromBody]Puesto puesto)
         {
             try
             {
-                adopcion.Id = Convert.ToInt32(id);
-                AdopcionServicio.Update(adopcion);
+                puesto.Id = Convert.ToInt32(id);
+                PuestoServicio.Update(puesto);
                 return Ok();
             }
             catch
@@ -79,13 +79,13 @@ namespace PetHouse.API.Controllers
                 return BadRequest();
             }
         }
-
-        // DELETE: api/Adopcion/5
+		
+		// DELETE: api/Puesto/5
         public IHttpActionResult Delete(string id)
         {
             try
             {
-                AdopcionServicio.Delete(id);
+                PuestoServicio.Delete(id);
                 return Ok();
             }
             catch

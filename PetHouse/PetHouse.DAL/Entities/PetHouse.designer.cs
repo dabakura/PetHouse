@@ -408,46 +408,11 @@ namespace PetHouse.DAL.Entities
 			return ((ISingleResult<BuscarAdopcionResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarAdoptante")]
-		public ISingleResult<BuscarAdoptanteResult> BuscarAdoptante([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
-			return ((ISingleResult<BuscarAdoptanteResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarCanton")]
-		public ISingleResult<BuscarCantonResult> BuscarCanton([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((ISingleResult<BuscarCantonResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarCarnet")]
 		public ISingleResult<BuscarCarnetResult> BuscarCarnet([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId);
 			return ((ISingleResult<BuscarCarnetResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarDistrito")]
-		public ISingleResult<BuscarDistritoResult> BuscarDistrito([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((ISingleResult<BuscarDistritoResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarDomicilio")]
-		public ISingleResult<BuscarDomicilioResult> BuscarDomicilio([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((ISingleResult<BuscarDomicilioResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarEmpleado")]
-		public ISingleResult<BuscarEmpleadoResult> BuscarEmpleado([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
-			return ((ISingleResult<BuscarEmpleadoResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarExpediente")]
@@ -483,13 +448,6 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
 			return ((ISingleResult<BuscarProcedimientoResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarProvincia")]
-		public ISingleResult<BuscarProvinciaResult> BuscarProvincia([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((ISingleResult<BuscarProvinciaResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarPuesto")]
@@ -534,46 +492,11 @@ namespace PetHouse.DAL.Entities
 			return ((ISingleResult<ConsultarAdopcionResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarAdoptante")]
-		public ISingleResult<ConsultarAdoptanteResult> ConsultarAdoptante()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarAdoptanteResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCanton")]
-		public ISingleResult<ConsultarCantonResult> ConsultarCanton()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarCantonResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCarnet")]
 		public ISingleResult<ConsultarCarnetResult> ConsultarCarnet()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ConsultarCarnetResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarDistrito")]
-		public ISingleResult<ConsultarDistritoResult> ConsultarDistrito()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarDistritoResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarDomicilio")]
-		public ISingleResult<ConsultarDomicilioResult> ConsultarDomicilio()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarDomicilioResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarEmpleado")]
-		public ISingleResult<ConsultarEmpleadoResult> ConsultarEmpleado()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarEmpleadoResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarExpediente")]
@@ -609,13 +532,6 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ConsultarProcedimientoResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarProvincia")]
-		public ISingleResult<ConsultarProvinciaResult> ConsultarProvincia()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarProvinciaResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarPuesto")]
@@ -882,6 +798,90 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, nombre, descripcion, tipo);
 			return ((ISingleResult<InsertarMedicamentoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarAdoptante")]
+		public ISingleResult<BuscarAdoptanteResult> BuscarAdoptante([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
+			return ((ISingleResult<BuscarAdoptanteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarCanton")]
+		public ISingleResult<BuscarCantonResult> BuscarCanton([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<BuscarCantonResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarDistrito")]
+		public ISingleResult<BuscarDistritoResult> BuscarDistrito([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<BuscarDistritoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarDomicilio")]
+		public ISingleResult<BuscarDomicilioResult> BuscarDomicilio([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<BuscarDomicilioResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarEmpleado")]
+		public ISingleResult<BuscarEmpleadoResult> BuscarEmpleado([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
+			return ((ISingleResult<BuscarEmpleadoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarProvincia")]
+		public ISingleResult<BuscarProvinciaResult> BuscarProvincia([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<BuscarProvinciaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarAdoptante")]
+		public ISingleResult<ConsultarAdoptanteResult> ConsultarAdoptante()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarAdoptanteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCanton")]
+		public ISingleResult<ConsultarCantonResult> ConsultarCanton()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarCantonResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarDistrito")]
+		public ISingleResult<ConsultarDistritoResult> ConsultarDistrito()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarDistritoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarDomicilio")]
+		public ISingleResult<ConsultarDomicilioResult> ConsultarDomicilio()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarDomicilioResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarEmpleado")]
+		public ISingleResult<ConsultarEmpleadoResult> ConsultarEmpleado()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarEmpleadoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarProvincia")]
+		public ISingleResult<ConsultarProvinciaResult> ConsultarProvincia()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarProvinciaResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -6206,256 +6206,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class BuscarAdoptanteResult
-	{
-		
-		private int _Id;
-		
-		private int _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Primer_Apellido;
-		
-		private string _Segundo_Apellido;
-		
-		private System.DateTime _Fecha_Nacimiento;
-		
-		private int _Telefono;
-		
-		private string _Correo;
-		
-		private int _DomicilioId;
-		
-		private System.Nullable<bool> _Activo;
-		
-		public BuscarAdoptanteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="Int NOT NULL")]
-		public int Identificacion
-		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this._Identificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Primer_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Primer_Apellido
-		{
-			get
-			{
-				return this._Primer_Apellido;
-			}
-			set
-			{
-				if ((this._Primer_Apellido != value))
-				{
-					this._Primer_Apellido = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Segundo_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Segundo_Apellido
-		{
-			get
-			{
-				return this._Segundo_Apellido;
-			}
-			set
-			{
-				if ((this._Segundo_Apellido != value))
-				{
-					this._Segundo_Apellido = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Nacimiento
-		{
-			get
-			{
-				return this._Fecha_Nacimiento;
-			}
-			set
-			{
-				if ((this._Fecha_Nacimiento != value))
-				{
-					this._Fecha_Nacimiento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="Int NOT NULL")]
-		public int Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this._Correo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioId", DbType="Int NOT NULL")]
-		public int DomicilioId
-		{
-			get
-			{
-				return this._DomicilioId;
-			}
-			set
-			{
-				if ((this._DomicilioId != value))
-				{
-					this._DomicilioId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
-		public System.Nullable<bool> Activo
-		{
-			get
-			{
-				return this._Activo;
-			}
-			set
-			{
-				if ((this._Activo != value))
-				{
-					this._Activo = value;
-				}
-			}
-		}
-	}
-	
-	public partial class BuscarCantonResult
-	{
-		
-		private int _Id;
-		
-		private int _ProvinciaId;
-		
-		private string _Nombre;
-		
-		public BuscarCantonResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
-		public int ProvinciaId
-		{
-			get
-			{
-				return this._ProvinciaId;
-			}
-			set
-			{
-				if ((this._ProvinciaId != value))
-				{
-					this._ProvinciaId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-	}
-	
 	public partial class BuscarCarnetResult
 	{
 		
@@ -6515,426 +6265,6 @@ namespace PetHouse.DAL.Entities
 				if ((this._Fecha_Vacunacion != value))
 				{
 					this._Fecha_Vacunacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
-		public System.Nullable<bool> Activo
-		{
-			get
-			{
-				return this._Activo;
-			}
-			set
-			{
-				if ((this._Activo != value))
-				{
-					this._Activo = value;
-				}
-			}
-		}
-	}
-	
-	public partial class BuscarDistritoResult
-	{
-		
-		private int _Id;
-		
-		private int _CantonId;
-		
-		private string _Nombre;
-		
-		public BuscarDistritoResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
-		public int CantonId
-		{
-			get
-			{
-				return this._CantonId;
-			}
-			set
-			{
-				if ((this._CantonId != value))
-				{
-					this._CantonId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-	}
-	
-	public partial class BuscarDomicilioResult
-	{
-		
-		private int _Id;
-		
-		private int _ProvinciaId;
-		
-		private int _CantonId;
-		
-		private int _DistritoId;
-		
-		private string _Direccion;
-		
-		private System.Nullable<bool> _Activo;
-		
-		public BuscarDomicilioResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
-		public int ProvinciaId
-		{
-			get
-			{
-				return this._ProvinciaId;
-			}
-			set
-			{
-				if ((this._ProvinciaId != value))
-				{
-					this._ProvinciaId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
-		public int CantonId
-		{
-			get
-			{
-				return this._CantonId;
-			}
-			set
-			{
-				if ((this._CantonId != value))
-				{
-					this._CantonId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoId", DbType="Int NOT NULL")]
-		public int DistritoId
-		{
-			get
-			{
-				return this._DistritoId;
-			}
-			set
-			{
-				if ((this._DistritoId != value))
-				{
-					this._DistritoId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string Direccion
-		{
-			get
-			{
-				return this._Direccion;
-			}
-			set
-			{
-				if ((this._Direccion != value))
-				{
-					this._Direccion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
-		public System.Nullable<bool> Activo
-		{
-			get
-			{
-				return this._Activo;
-			}
-			set
-			{
-				if ((this._Activo != value))
-				{
-					this._Activo = value;
-				}
-			}
-		}
-	}
-	
-	public partial class BuscarEmpleadoResult
-	{
-		
-		private int _Id;
-		
-		private int _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Primer_Apellido;
-		
-		private string _Segundo_Apellido;
-		
-		private System.DateTime _Fecha_Nacimiento;
-		
-		private int _Telefono;
-		
-		private string _Correo;
-		
-		private int _DomicilioId;
-		
-		private int _PuestoID;
-		
-		private int _InstitucionId;
-		
-		private string _UserId;
-		
-		private System.Nullable<bool> _Activo;
-		
-		public BuscarEmpleadoResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="Int NOT NULL")]
-		public int Identificacion
-		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this._Identificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Primer_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Primer_Apellido
-		{
-			get
-			{
-				return this._Primer_Apellido;
-			}
-			set
-			{
-				if ((this._Primer_Apellido != value))
-				{
-					this._Primer_Apellido = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Segundo_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Segundo_Apellido
-		{
-			get
-			{
-				return this._Segundo_Apellido;
-			}
-			set
-			{
-				if ((this._Segundo_Apellido != value))
-				{
-					this._Segundo_Apellido = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Nacimiento
-		{
-			get
-			{
-				return this._Fecha_Nacimiento;
-			}
-			set
-			{
-				if ((this._Fecha_Nacimiento != value))
-				{
-					this._Fecha_Nacimiento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="Int NOT NULL")]
-		public int Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this._Correo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioId", DbType="Int NOT NULL")]
-		public int DomicilioId
-		{
-			get
-			{
-				return this._DomicilioId;
-			}
-			set
-			{
-				if ((this._DomicilioId != value))
-				{
-					this._DomicilioId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PuestoID", DbType="Int NOT NULL")]
-		public int PuestoID
-		{
-			get
-			{
-				return this._PuestoID;
-			}
-			set
-			{
-				if ((this._PuestoID != value))
-				{
-					this._PuestoID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstitucionId", DbType="Int NOT NULL")]
-		public int InstitucionId
-		{
-			get
-			{
-				return this._InstitucionId;
-			}
-			set
-			{
-				if ((this._InstitucionId != value))
-				{
-					this._InstitucionId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128)")]
-		public string UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this._UserId = value;
 				}
 			}
 		}
@@ -7626,50 +6956,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class BuscarProvinciaResult
-	{
-		
-		private int _Id;
-		
-		private string _Nombre;
-		
-		public BuscarProvinciaResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-	}
-	
 	public partial class BuscarPuestoResult
 	{
 		
@@ -8114,238 +7400,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class ConsultarAdoptanteResult
-	{
-		
-		private int _Id;
-		
-		private int _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Primer_Apellido;
-		
-		private string _Segundo_Apellido;
-		
-		private System.DateTime _Fecha_Nacimiento;
-		
-		private int _Telefono;
-		
-		private string _Correo;
-		
-		private int _DomicilioId;
-		
-		public ConsultarAdoptanteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="Int NOT NULL")]
-		public int Identificacion
-		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this._Identificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Primer_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Primer_Apellido
-		{
-			get
-			{
-				return this._Primer_Apellido;
-			}
-			set
-			{
-				if ((this._Primer_Apellido != value))
-				{
-					this._Primer_Apellido = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Segundo_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Segundo_Apellido
-		{
-			get
-			{
-				return this._Segundo_Apellido;
-			}
-			set
-			{
-				if ((this._Segundo_Apellido != value))
-				{
-					this._Segundo_Apellido = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Nacimiento
-		{
-			get
-			{
-				return this._Fecha_Nacimiento;
-			}
-			set
-			{
-				if ((this._Fecha_Nacimiento != value))
-				{
-					this._Fecha_Nacimiento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="Int NOT NULL")]
-		public int Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this._Correo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioId", DbType="Int NOT NULL")]
-		public int DomicilioId
-		{
-			get
-			{
-				return this._DomicilioId;
-			}
-			set
-			{
-				if ((this._DomicilioId != value))
-				{
-					this._DomicilioId = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ConsultarCantonResult
-	{
-		
-		private int _Id;
-		
-		private int _ProvinciaId;
-		
-		private string _Nombre;
-		
-		public ConsultarCantonResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
-		public int ProvinciaId
-		{
-			get
-			{
-				return this._ProvinciaId;
-			}
-			set
-			{
-				if ((this._ProvinciaId != value))
-				{
-					this._ProvinciaId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-	}
-	
 	public partial class ConsultarCarnetResult
 	{
 		
@@ -8403,390 +7457,6 @@ namespace PetHouse.DAL.Entities
 				if ((this._Fecha_Vacunacion != value))
 				{
 					this._Fecha_Vacunacion = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ConsultarDistritoResult
-	{
-		
-		private int _Id;
-		
-		private int _CantonId;
-		
-		private string _Nombre;
-		
-		public ConsultarDistritoResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
-		public int CantonId
-		{
-			get
-			{
-				return this._CantonId;
-			}
-			set
-			{
-				if ((this._CantonId != value))
-				{
-					this._CantonId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ConsultarDomicilioResult
-	{
-		
-		private int _Id;
-		
-		private int _ProvinciaId;
-		
-		private int _CantonId;
-		
-		private int _DistritoId;
-		
-		private string _Direccion;
-		
-		public ConsultarDomicilioResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
-		public int ProvinciaId
-		{
-			get
-			{
-				return this._ProvinciaId;
-			}
-			set
-			{
-				if ((this._ProvinciaId != value))
-				{
-					this._ProvinciaId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
-		public int CantonId
-		{
-			get
-			{
-				return this._CantonId;
-			}
-			set
-			{
-				if ((this._CantonId != value))
-				{
-					this._CantonId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoId", DbType="Int NOT NULL")]
-		public int DistritoId
-		{
-			get
-			{
-				return this._DistritoId;
-			}
-			set
-			{
-				if ((this._DistritoId != value))
-				{
-					this._DistritoId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string Direccion
-		{
-			get
-			{
-				return this._Direccion;
-			}
-			set
-			{
-				if ((this._Direccion != value))
-				{
-					this._Direccion = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ConsultarEmpleadoResult
-	{
-		
-		private int _Id;
-		
-		private int _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Primer_Apellido;
-		
-		private string _Segundo_Apellido;
-		
-		private System.DateTime _Fecha_Nacimiento;
-		
-		private int _Telefono;
-		
-		private string _Correo;
-		
-		private int _DomicilioId;
-		
-		private int _PuestoID;
-		
-		private int _InstitucionId;
-		
-		private string _UserId;
-		
-		public ConsultarEmpleadoResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="Int NOT NULL")]
-		public int Identificacion
-		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this._Identificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Primer_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Primer_Apellido
-		{
-			get
-			{
-				return this._Primer_Apellido;
-			}
-			set
-			{
-				if ((this._Primer_Apellido != value))
-				{
-					this._Primer_Apellido = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Segundo_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Segundo_Apellido
-		{
-			get
-			{
-				return this._Segundo_Apellido;
-			}
-			set
-			{
-				if ((this._Segundo_Apellido != value))
-				{
-					this._Segundo_Apellido = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Nacimiento
-		{
-			get
-			{
-				return this._Fecha_Nacimiento;
-			}
-			set
-			{
-				if ((this._Fecha_Nacimiento != value))
-				{
-					this._Fecha_Nacimiento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="Int NOT NULL")]
-		public int Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this._Correo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioId", DbType="Int NOT NULL")]
-		public int DomicilioId
-		{
-			get
-			{
-				return this._DomicilioId;
-			}
-			set
-			{
-				if ((this._DomicilioId != value))
-				{
-					this._DomicilioId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PuestoID", DbType="Int NOT NULL")]
-		public int PuestoID
-		{
-			get
-			{
-				return this._PuestoID;
-			}
-			set
-			{
-				if ((this._PuestoID != value))
-				{
-					this._PuestoID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstitucionId", DbType="Int NOT NULL")]
-		public int InstitucionId
-		{
-			get
-			{
-				return this._InstitucionId;
-			}
-			set
-			{
-				if ((this._InstitucionId != value))
-				{
-					this._InstitucionId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128)")]
-		public string UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this._UserId = value;
 				}
 			}
 		}
@@ -9367,50 +8037,6 @@ namespace PetHouse.DAL.Entities
 				if ((this._Descripcion != value))
 				{
 					this._Descripcion = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ConsultarProvinciaResult
-	{
-		
-		private int _Id;
-		
-		private string _Nombre;
-		
-		public ConsultarProvinciaResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
 				}
 			}
 		}
@@ -10335,6 +8961,1848 @@ namespace PetHouse.DAL.Entities
 				if ((this._Column1 != value))
 				{
 					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarAdoptanteResult
+	{
+		
+		private int _Identificacion;
+		
+		private string _Nombre;
+		
+		private string _Primer_Apellido;
+		
+		private string _Segundo_Apellido;
+		
+		private System.DateTime _Fecha_Nacimiento;
+		
+		private int _Telefono;
+		
+		private string _Correo;
+		
+		private int _DomicilioId;
+		
+		private int _DistritoId;
+		
+		private int _CantonId;
+		
+		private int _ProvinciaId;
+		
+		private string _Direccion;
+		
+		private string _DistritoName;
+		
+		private string _CantonName;
+		
+		private string _ProvinciaName;
+		
+		public BuscarAdoptanteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="Int NOT NULL")]
+		public int Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Primer_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Primer_Apellido
+		{
+			get
+			{
+				return this._Primer_Apellido;
+			}
+			set
+			{
+				if ((this._Primer_Apellido != value))
+				{
+					this._Primer_Apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Segundo_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Segundo_Apellido
+		{
+			get
+			{
+				return this._Segundo_Apellido;
+			}
+			set
+			{
+				if ((this._Segundo_Apellido != value))
+				{
+					this._Segundo_Apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Nacimiento
+		{
+			get
+			{
+				return this._Fecha_Nacimiento;
+			}
+			set
+			{
+				if ((this._Fecha_Nacimiento != value))
+				{
+					this._Fecha_Nacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="Int NOT NULL")]
+		public int Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioId", DbType="Int NOT NULL")]
+		public int DomicilioId
+		{
+			get
+			{
+				return this._DomicilioId;
+			}
+			set
+			{
+				if ((this._DomicilioId != value))
+				{
+					this._DomicilioId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoId", DbType="Int NOT NULL")]
+		public int DistritoId
+		{
+			get
+			{
+				return this._DistritoId;
+			}
+			set
+			{
+				if ((this._DistritoId != value))
+				{
+					this._DistritoId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
+		public int CantonId
+		{
+			get
+			{
+				return this._CantonId;
+			}
+			set
+			{
+				if ((this._CantonId != value))
+				{
+					this._CantonId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
+		public int ProvinciaId
+		{
+			get
+			{
+				return this._ProvinciaId;
+			}
+			set
+			{
+				if ((this._ProvinciaId != value))
+				{
+					this._ProvinciaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				if ((this._Direccion != value))
+				{
+					this._Direccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string DistritoName
+		{
+			get
+			{
+				return this._DistritoName;
+			}
+			set
+			{
+				if ((this._DistritoName != value))
+				{
+					this._DistritoName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CantonName
+		{
+			get
+			{
+				return this._CantonName;
+			}
+			set
+			{
+				if ((this._CantonName != value))
+				{
+					this._CantonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ProvinciaName
+		{
+			get
+			{
+				return this._ProvinciaName;
+			}
+			set
+			{
+				if ((this._ProvinciaName != value))
+				{
+					this._ProvinciaName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarCantonResult
+	{
+		
+		private int _Id;
+		
+		private int _ProvinciaId;
+		
+		private string _Nombre;
+		
+		private string _ProvinciaName;
+		
+		public BuscarCantonResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
+		public int ProvinciaId
+		{
+			get
+			{
+				return this._ProvinciaId;
+			}
+			set
+			{
+				if ((this._ProvinciaId != value))
+				{
+					this._ProvinciaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ProvinciaName
+		{
+			get
+			{
+				return this._ProvinciaName;
+			}
+			set
+			{
+				if ((this._ProvinciaName != value))
+				{
+					this._ProvinciaName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarDistritoResult
+	{
+		
+		private int _Id;
+		
+		private int _CantonId;
+		
+		private string _Nombre;
+		
+		private int _CantonProvinciaId;
+		
+		private string _CantonName;
+		
+		private string _ProvinciaName;
+		
+		public BuscarDistritoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
+		public int CantonId
+		{
+			get
+			{
+				return this._CantonId;
+			}
+			set
+			{
+				if ((this._CantonId != value))
+				{
+					this._CantonId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonProvinciaId", DbType="Int NOT NULL")]
+		public int CantonProvinciaId
+		{
+			get
+			{
+				return this._CantonProvinciaId;
+			}
+			set
+			{
+				if ((this._CantonProvinciaId != value))
+				{
+					this._CantonProvinciaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CantonName
+		{
+			get
+			{
+				return this._CantonName;
+			}
+			set
+			{
+				if ((this._CantonName != value))
+				{
+					this._CantonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ProvinciaName
+		{
+			get
+			{
+				return this._ProvinciaName;
+			}
+			set
+			{
+				if ((this._ProvinciaName != value))
+				{
+					this._ProvinciaName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarDomicilioResult
+	{
+		
+		private int _Id;
+		
+		private int _ProvinciaId;
+		
+		private int _DistritoId;
+		
+		private int _CantonId;
+		
+		private string _Direccion;
+		
+		private string _DistritoName;
+		
+		private string _CantonName;
+		
+		private string _ProvinciaName;
+		
+		public BuscarDomicilioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
+		public int ProvinciaId
+		{
+			get
+			{
+				return this._ProvinciaId;
+			}
+			set
+			{
+				if ((this._ProvinciaId != value))
+				{
+					this._ProvinciaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoId", DbType="Int NOT NULL")]
+		public int DistritoId
+		{
+			get
+			{
+				return this._DistritoId;
+			}
+			set
+			{
+				if ((this._DistritoId != value))
+				{
+					this._DistritoId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
+		public int CantonId
+		{
+			get
+			{
+				return this._CantonId;
+			}
+			set
+			{
+				if ((this._CantonId != value))
+				{
+					this._CantonId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				if ((this._Direccion != value))
+				{
+					this._Direccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string DistritoName
+		{
+			get
+			{
+				return this._DistritoName;
+			}
+			set
+			{
+				if ((this._DistritoName != value))
+				{
+					this._DistritoName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CantonName
+		{
+			get
+			{
+				return this._CantonName;
+			}
+			set
+			{
+				if ((this._CantonName != value))
+				{
+					this._CantonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ProvinciaName
+		{
+			get
+			{
+				return this._ProvinciaName;
+			}
+			set
+			{
+				if ((this._ProvinciaName != value))
+				{
+					this._ProvinciaName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarEmpleadoResult
+	{
+		
+		private int _Id;
+		
+		private int _Identificacion;
+		
+		private string _Nombre;
+		
+		private string _Primer_Apellido;
+		
+		private string _Segundo_Apellido;
+		
+		private System.DateTime _Fecha_Nacimiento;
+		
+		private int _Telefono;
+		
+		private string _Correo;
+		
+		private int _PuestoID;
+		
+		private int _DomicilioId;
+		
+		private int _InstitucionId;
+		
+		private string _UserId;
+		
+		private string _Direccion;
+		
+		private int _DistritoId;
+		
+		private int _CantonId;
+		
+		private int _ProvinciaId;
+		
+		private string _DistritoName;
+		
+		private string _CantonName;
+		
+		private string _ProvinciaName;
+		
+		private string _PuestoName;
+		
+		private string _PuestoDescripcion;
+		
+		public BuscarEmpleadoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="Int NOT NULL")]
+		public int Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Primer_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Primer_Apellido
+		{
+			get
+			{
+				return this._Primer_Apellido;
+			}
+			set
+			{
+				if ((this._Primer_Apellido != value))
+				{
+					this._Primer_Apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Segundo_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Segundo_Apellido
+		{
+			get
+			{
+				return this._Segundo_Apellido;
+			}
+			set
+			{
+				if ((this._Segundo_Apellido != value))
+				{
+					this._Segundo_Apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Nacimiento
+		{
+			get
+			{
+				return this._Fecha_Nacimiento;
+			}
+			set
+			{
+				if ((this._Fecha_Nacimiento != value))
+				{
+					this._Fecha_Nacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="Int NOT NULL")]
+		public int Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PuestoID", DbType="Int NOT NULL")]
+		public int PuestoID
+		{
+			get
+			{
+				return this._PuestoID;
+			}
+			set
+			{
+				if ((this._PuestoID != value))
+				{
+					this._PuestoID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioId", DbType="Int NOT NULL")]
+		public int DomicilioId
+		{
+			get
+			{
+				return this._DomicilioId;
+			}
+			set
+			{
+				if ((this._DomicilioId != value))
+				{
+					this._DomicilioId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstitucionId", DbType="Int NOT NULL")]
+		public int InstitucionId
+		{
+			get
+			{
+				return this._InstitucionId;
+			}
+			set
+			{
+				if ((this._InstitucionId != value))
+				{
+					this._InstitucionId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128)")]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				if ((this._Direccion != value))
+				{
+					this._Direccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoId", DbType="Int NOT NULL")]
+		public int DistritoId
+		{
+			get
+			{
+				return this._DistritoId;
+			}
+			set
+			{
+				if ((this._DistritoId != value))
+				{
+					this._DistritoId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
+		public int CantonId
+		{
+			get
+			{
+				return this._CantonId;
+			}
+			set
+			{
+				if ((this._CantonId != value))
+				{
+					this._CantonId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
+		public int ProvinciaId
+		{
+			get
+			{
+				return this._ProvinciaId;
+			}
+			set
+			{
+				if ((this._ProvinciaId != value))
+				{
+					this._ProvinciaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string DistritoName
+		{
+			get
+			{
+				return this._DistritoName;
+			}
+			set
+			{
+				if ((this._DistritoName != value))
+				{
+					this._DistritoName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CantonName
+		{
+			get
+			{
+				return this._CantonName;
+			}
+			set
+			{
+				if ((this._CantonName != value))
+				{
+					this._CantonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ProvinciaName
+		{
+			get
+			{
+				return this._ProvinciaName;
+			}
+			set
+			{
+				if ((this._ProvinciaName != value))
+				{
+					this._ProvinciaName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PuestoName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string PuestoName
+		{
+			get
+			{
+				return this._PuestoName;
+			}
+			set
+			{
+				if ((this._PuestoName != value))
+				{
+					this._PuestoName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PuestoDescripcion", DbType="VarChar(300)")]
+		public string PuestoDescripcion
+		{
+			get
+			{
+				return this._PuestoDescripcion;
+			}
+			set
+			{
+				if ((this._PuestoDescripcion != value))
+				{
+					this._PuestoDescripcion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarProvinciaResult
+	{
+		
+		private int _Id;
+		
+		private string _Nombre;
+		
+		public BuscarProvinciaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarAdoptanteResult
+	{
+		
+		private int _Id;
+		
+		private int _Identificacion;
+		
+		private string _Nombre;
+		
+		private string _Primer_Apellido;
+		
+		private string _Segundo_Apellido;
+		
+		private System.DateTime _Fecha_Nacimiento;
+		
+		private int _Telefono;
+		
+		private string _Correo;
+		
+		private int _DomicilioId;
+		
+		public ConsultarAdoptanteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="Int NOT NULL")]
+		public int Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Primer_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Primer_Apellido
+		{
+			get
+			{
+				return this._Primer_Apellido;
+			}
+			set
+			{
+				if ((this._Primer_Apellido != value))
+				{
+					this._Primer_Apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Segundo_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Segundo_Apellido
+		{
+			get
+			{
+				return this._Segundo_Apellido;
+			}
+			set
+			{
+				if ((this._Segundo_Apellido != value))
+				{
+					this._Segundo_Apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Nacimiento
+		{
+			get
+			{
+				return this._Fecha_Nacimiento;
+			}
+			set
+			{
+				if ((this._Fecha_Nacimiento != value))
+				{
+					this._Fecha_Nacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="Int NOT NULL")]
+		public int Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioId", DbType="Int NOT NULL")]
+		public int DomicilioId
+		{
+			get
+			{
+				return this._DomicilioId;
+			}
+			set
+			{
+				if ((this._DomicilioId != value))
+				{
+					this._DomicilioId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarCantonResult
+	{
+		
+		private int _Id;
+		
+		private int _ProvinciaId;
+		
+		private string _Nombre;
+		
+		private string _ProvinciaName;
+		
+		public ConsultarCantonResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
+		public int ProvinciaId
+		{
+			get
+			{
+				return this._ProvinciaId;
+			}
+			set
+			{
+				if ((this._ProvinciaId != value))
+				{
+					this._ProvinciaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ProvinciaName
+		{
+			get
+			{
+				return this._ProvinciaName;
+			}
+			set
+			{
+				if ((this._ProvinciaName != value))
+				{
+					this._ProvinciaName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarDistritoResult
+	{
+		
+		private int _Id;
+		
+		private int _CantonId;
+		
+		private string _Nombre;
+		
+		private int _CantonProvinciaId;
+		
+		private string _CantonName;
+		
+		private string _ProvinciaName;
+		
+		public ConsultarDistritoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
+		public int CantonId
+		{
+			get
+			{
+				return this._CantonId;
+			}
+			set
+			{
+				if ((this._CantonId != value))
+				{
+					this._CantonId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonProvinciaId", DbType="Int NOT NULL")]
+		public int CantonProvinciaId
+		{
+			get
+			{
+				return this._CantonProvinciaId;
+			}
+			set
+			{
+				if ((this._CantonProvinciaId != value))
+				{
+					this._CantonProvinciaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CantonName
+		{
+			get
+			{
+				return this._CantonName;
+			}
+			set
+			{
+				if ((this._CantonName != value))
+				{
+					this._CantonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ProvinciaName
+		{
+			get
+			{
+				return this._ProvinciaName;
+			}
+			set
+			{
+				if ((this._ProvinciaName != value))
+				{
+					this._ProvinciaName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarDomicilioResult
+	{
+		
+		private int _Id;
+		
+		private int _ProvinciaId;
+		
+		private int _DistritoId;
+		
+		private int _CantonId;
+		
+		private string _Direccion;
+		
+		private string _DistritoName;
+		
+		private string _CantonName;
+		
+		private string _ProvinciaName;
+		
+		public ConsultarDomicilioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaId", DbType="Int NOT NULL")]
+		public int ProvinciaId
+		{
+			get
+			{
+				return this._ProvinciaId;
+			}
+			set
+			{
+				if ((this._ProvinciaId != value))
+				{
+					this._ProvinciaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoId", DbType="Int NOT NULL")]
+		public int DistritoId
+		{
+			get
+			{
+				return this._DistritoId;
+			}
+			set
+			{
+				if ((this._DistritoId != value))
+				{
+					this._DistritoId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonId", DbType="Int NOT NULL")]
+		public int CantonId
+		{
+			get
+			{
+				return this._CantonId;
+			}
+			set
+			{
+				if ((this._CantonId != value))
+				{
+					this._CantonId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				if ((this._Direccion != value))
+				{
+					this._Direccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DistritoName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string DistritoName
+		{
+			get
+			{
+				return this._DistritoName;
+			}
+			set
+			{
+				if ((this._DistritoName != value))
+				{
+					this._DistritoName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantonName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CantonName
+		{
+			get
+			{
+				return this._CantonName;
+			}
+			set
+			{
+				if ((this._CantonName != value))
+				{
+					this._CantonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ProvinciaName
+		{
+			get
+			{
+				return this._ProvinciaName;
+			}
+			set
+			{
+				if ((this._ProvinciaName != value))
+				{
+					this._ProvinciaName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarEmpleadoResult
+	{
+		
+		private int _Id;
+		
+		private int _Identificacion;
+		
+		private string _Nombre;
+		
+		private string _Primer_Apellido;
+		
+		private string _Segundo_Apellido;
+		
+		private System.DateTime _Fecha_Nacimiento;
+		
+		private int _Telefono;
+		
+		private string _Correo;
+		
+		private int _DomicilioId;
+		
+		private int _PuestoID;
+		
+		private int _InstitucionId;
+		
+		private string _UserId;
+		
+		public ConsultarEmpleadoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="Int NOT NULL")]
+		public int Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Primer_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Primer_Apellido
+		{
+			get
+			{
+				return this._Primer_Apellido;
+			}
+			set
+			{
+				if ((this._Primer_Apellido != value))
+				{
+					this._Primer_Apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Segundo_Apellido", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Segundo_Apellido
+		{
+			get
+			{
+				return this._Segundo_Apellido;
+			}
+			set
+			{
+				if ((this._Segundo_Apellido != value))
+				{
+					this._Segundo_Apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Nacimiento
+		{
+			get
+			{
+				return this._Fecha_Nacimiento;
+			}
+			set
+			{
+				if ((this._Fecha_Nacimiento != value))
+				{
+					this._Fecha_Nacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="Int NOT NULL")]
+		public int Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioId", DbType="Int NOT NULL")]
+		public int DomicilioId
+		{
+			get
+			{
+				return this._DomicilioId;
+			}
+			set
+			{
+				if ((this._DomicilioId != value))
+				{
+					this._DomicilioId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PuestoID", DbType="Int NOT NULL")]
+		public int PuestoID
+		{
+			get
+			{
+				return this._PuestoID;
+			}
+			set
+			{
+				if ((this._PuestoID != value))
+				{
+					this._PuestoID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstitucionId", DbType="Int NOT NULL")]
+		public int InstitucionId
+		{
+			get
+			{
+				return this._InstitucionId;
+			}
+			set
+			{
+				if ((this._InstitucionId != value))
+				{
+					this._InstitucionId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128)")]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarProvinciaResult
+	{
+		
+		private int _Id;
+		
+		private string _Nombre;
+		
+		public ConsultarProvinciaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
 				}
 			}
 		}

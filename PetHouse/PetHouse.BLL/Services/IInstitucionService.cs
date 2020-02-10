@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Services
 {
-    public interface IIntitucionService : ICrud<Institucion>
+    public interface IInstitucionService : ICrud<Institucion>
     {
     }
 }
