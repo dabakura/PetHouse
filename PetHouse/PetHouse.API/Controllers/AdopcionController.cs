@@ -27,7 +27,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var adopciones = AdopcionServicio.GetAll();
-                return Ok(ModelFactory.Create(adopciones));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<AdopcionModel, Adopcion>(adopciones, uri));
             }
             catch
             {
@@ -42,7 +43,7 @@ namespace PetHouse.API.Controllers
             {
                 var adopcion = AdopcionServicio.Get(id);
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create(adopcion,uri));
+                return Ok(ModelFactory.Create<AdopcionModel, Adopcion>(adopcion,uri));
             }
             catch
             {
@@ -57,7 +58,7 @@ namespace PetHouse.API.Controllers
             {
                 adopcion.Id = AdopcionServicio.Insert(adopcion);
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + adopcion.Id);
-                return Created(uri, ModelFactory.Create(adopcion, uri));
+                return Created(uri, ModelFactory.Create<AdopcionModel, Adopcion>(adopcion, uri));
             }
             catch
             {

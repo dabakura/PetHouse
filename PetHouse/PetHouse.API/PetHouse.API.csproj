@@ -255,7 +255,6 @@
     <Compile Include="Controllers\TratamientoController.cs" />
     <Compile Include="Controllers\TratamientoMedicamentoController.cs" />
     <Compile Include="Controllers\VacunaController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

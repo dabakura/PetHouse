@@ -15,14 +15,6 @@ namespace PetHouse.API.Controllers
     [RoutePrefix("api/rol")]
     public class RolController : BaseApiController
     {
-        private ModelFactory _modelFactory;
-
-        public ModelFactory ModelFactory { get => _modelFactory; set => _modelFactory = value; }
-
-        public RolController()
-        {
-            _modelFactory = new ModelFactory();
-        }
 
         [Route("{id:guid}", Name = "GetRoleById")]
         public async Task<IHttpActionResult> GetRole(string Id)
@@ -31,8 +23,8 @@ namespace PetHouse.API.Controllers
 
             if (role != null)
             {
-                Uri locationHeader = new Uri(Url.Link("GetRoleById", new { id = role.Id }));
-                return Ok(ModelFactory.Create(role, locationHeader));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<AspNetRolesModel, IdentityRole>(role, uri));
             }
 
             return NotFound();
@@ -64,9 +56,9 @@ namespace PetHouse.API.Controllers
                 return GetErrorResult(result);
             }
 
-            Uri locationHeader = new Uri(Url.Link("GetRoleById", new { id = role.Id }));
-            var rolereturnmodel = ModelFactory.Create(role, locationHeader);
-            return Created(locationHeader, rolereturnmodel);
+            Uri uri = Url.Request.RequestUri;
+            var rolereturnmodel = ModelFactory.Create<AspNetRolesModel, IdentityRole>(role, uri);
+            return Created(uri, rolereturnmodel);
 
         }
 

@@ -27,7 +27,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var tratamientoMedicamentos = TratamientoMedicamentoServicio.GetAll();
-                return Ok(ModelFactory.Create(tratamientoMedicamentos));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<TratamientoMedicamentoModel, TratamientoMedicamento>(tratamientoMedicamentos, uri));
             }
             catch
             {
@@ -42,7 +43,7 @@ namespace PetHouse.API.Controllers
             {
                 var tratamientoMedicamento = TratamientoMedicamentoServicio.Get(id);
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create(tratamientoMedicamento, uri));
+                return Ok(ModelFactory.Create<TratamientoMedicamentoModel, TratamientoMedicamento>(tratamientoMedicamento, uri));
             }
             catch
             {

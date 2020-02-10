@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity.EntityFramework;
 using PetHouse.API.Models;
 using PetHouse.DAL.Entities;
 using System;
@@ -16,6 +17,7 @@ namespace PetHouse.API.App_Start
                 cfg.CreateMap<Adopcion, AdopcionModel>();
                 cfg.CreateMap<Adoptante, AdoptanteModel>();
                 cfg.CreateMap<AspNetRoles, AspNetRolesModel>();
+                cfg.CreateMap<IdentityRole, AspNetRolesModel>();
                 cfg.CreateMap<AspNetUsers, AspNetUsersModel>();
                 cfg.CreateMap<Canton, CantonModel>();
                 cfg.CreateMap<Carnet, CarnetModel>();

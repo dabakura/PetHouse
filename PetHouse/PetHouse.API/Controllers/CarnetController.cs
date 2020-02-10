@@ -27,7 +27,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var carnets = CarnetServicio.GetAll();
-                return Ok(ModelFactory.Create(carnets));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<CarnetModel,Carnet>(carnets, uri));
             }
             catch
             {
@@ -41,7 +42,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var carnets = CarnetServicio.Get(id);
-                return Ok(carnets);
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<CarnetModel, Carnet>(carnets, uri));
             }
             catch
             {
@@ -55,8 +57,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 CarnetServicio.Insert(carnet);
-                Uri uri = new Uri(Url.Request.RequestUri + "/" +carnet.ExpedienteId);
-                return Created(uri, ModelFactory.Create(carnet, uri));
+                Uri uri = new Uri(Url.Request.RequestUri + "/" + carnet.ExpedienteId);
+                return Created(uri, ModelFactory.Create<CarnetModel, Carnet>(carnet, uri));
             }
             catch
             {

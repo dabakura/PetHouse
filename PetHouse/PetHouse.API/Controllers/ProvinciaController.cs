@@ -27,7 +27,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var provincias = ProvinciaServicio.GetAll();
-                return Ok(ModelFactory.Create(provincias));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<ProvinciaModel, Provincia>(provincias, uri));
             }
             catch
             {
@@ -42,7 +43,7 @@ namespace PetHouse.API.Controllers
             {
                 var provincia = ProvinciaServicio.Get(id);
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create(provincia, uri));
+                return Ok(ModelFactory.Create<ProvinciaModel, Provincia>(provincia, uri));
             }
             catch
             {
@@ -56,8 +57,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 provincia.Id = ProvinciaServicio.Insert(provincia);
-                Uri uri = new Uri(Url.Request.RequestUri + "/" +provincia.Id);
-                return Created(uri, ModelFactory.Create(provincia, uri));
+                Uri uri = new Uri(Url.Request.RequestUri + "/" + provincia.Id);
+                return Created(uri, ModelFactory.Create<ProvinciaModel, Provincia>(provincia, uri));
             }
             catch
             {

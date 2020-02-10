@@ -27,7 +27,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var expedientes = ExpedienteServicio.GetAll();
-                return Ok(ModelFactory.Create(expedientes));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<ExpedienteModel,Expediente>(expedientes, uri));
             }
             catch
             {
@@ -41,8 +42,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var expediente = ExpedienteServicio.Get(id);
-                Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create(expediente, uri));
+                Uri uri = new Uri(Url.Request.RequestUri + "/" + expediente.Id);
+                return Ok(ModelFactory.Create<ExpedienteModel, Expediente>(expediente, uri));
             }
             catch
             {
@@ -56,8 +57,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 expediente.Id = ExpedienteServicio.Insert(expediente);
-                Uri uri = new Uri(Url.Request.RequestUri + "/" +expediente.Id);
-                return Created(uri, ModelFactory.Create(expediente, uri));
+                Uri uri = Url.Request.RequestUri;
+                return Created(uri, ModelFactory.Create<ExpedienteModel, Expediente>(expediente, uri));
             }
             catch
             {

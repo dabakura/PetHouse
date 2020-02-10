@@ -27,7 +27,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var cantones = CantonServicio.GetAll();
-                return Ok(ModelFactory.Create(cantones));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<CantonModel,Canton>(cantones, uri));
             }
             catch
             {
@@ -42,7 +43,7 @@ namespace PetHouse.API.Controllers
             {
                 var canton = CantonServicio.Get(id);
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create(canton, uri));
+                return Ok(ModelFactory.Create<CantonModel, Canton>(canton, uri));
             }
             catch
             {
@@ -56,8 +57,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 canton.Id = CantonServicio.Insert(canton);
-                Uri uri = new Uri(Url.Request.RequestUri + "/" +canton.Id);
-                return Created(uri, ModelFactory.Create(canton, uri));
+                Uri uri = new Uri(Url.Request.RequestUri + "/" + canton.Id);
+                return Created(uri, ModelFactory.Create<CantonModel, Canton>(canton, uri));
             }
             catch
             {

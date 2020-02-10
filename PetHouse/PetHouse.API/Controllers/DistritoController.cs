@@ -27,7 +27,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var distritos = DistritoServicio.GetAll();
-                return Ok(ModelFactory.Create(distritos));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<DistritoModel,Distrito>(distritos, uri));
             }
             catch
             {
@@ -42,7 +43,7 @@ namespace PetHouse.API.Controllers
             {
                 var distrito = DistritoServicio.Get(id);
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create(distrito, uri));
+                return Ok(ModelFactory.Create<DistritoModel, Distrito>(distrito, uri));
             }
             catch
             {
@@ -56,8 +57,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 distrito.Id = DistritoServicio.Insert(distrito);
-                Uri uri = new Uri(Url.Request.RequestUri + "/" +distrito.Id);
-                return Created(uri, ModelFactory.Create(distrito, uri));
+                Uri uri = new Uri(Url.Request.RequestUri + "/" + distrito.Id);
+                return Created(uri, ModelFactory.Create<DistritoModel, Distrito>(distrito, uri));
             }
             catch
             {

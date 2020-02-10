@@ -27,7 +27,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 var instituciones = InstitucionServicio.GetAll();
-                return Ok(ModelFactory.Create(instituciones));
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<InstitucionModel,Institucion>(instituciones, uri));
             }
             catch
             {
@@ -42,7 +43,7 @@ namespace PetHouse.API.Controllers
             {
                 var institucion = InstitucionServicio.Get(id);
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create(institucion, uri));
+                return Ok(ModelFactory.Create<InstitucionModel, Institucion>(institucion, uri));
             }
             catch
             {
@@ -56,8 +57,8 @@ namespace PetHouse.API.Controllers
             try
             {
                 institucion.Id = InstitucionServicio.Insert(institucion);
-                Uri uri = new Uri(Url.Request.RequestUri + "/" +institucion.Id);
-                return Created(uri, ModelFactory.Create(institucion, uri));
+                Uri uri = new Uri(Url.Request.RequestUri + "/" + institucion.Id);
+                return Created(uri, ModelFactory.Create<InstitucionModel, Institucion>(institucion, uri));
             }
             catch
             {
