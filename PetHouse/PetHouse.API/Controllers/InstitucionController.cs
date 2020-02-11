@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<InstitucionModel,Institucion>(instituciones, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<InstitucionController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<InstitucionModel, Institucion>(institucion, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<InstitucionController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + institucion.Id);
                 return Created(uri, ModelFactory.Create<InstitucionModel, Institucion>(institucion, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<InstitucionController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 InstitucionServicio.Update(institucion);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<InstitucionController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -89,8 +93,9 @@ namespace PetHouse.API.Controllers
                 InstitucionServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<InstitucionController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

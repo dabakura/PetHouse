@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Owin;
+using Microsoft.Owin.Logging;
 using Owin;
+using PetHouse.API.Controllers;
+using PetHouse.API.Models;
 
 [assembly: OwinStartup(typeof(PetHouse.API.Startup))]
 

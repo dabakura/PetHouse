@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<ProcedimientoModel, Procedimiento>(procedimientos, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<ProcedimientoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<ProcedimientoModel, Procedimiento>(procedimiento, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<ProcedimientoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + procedimiento.Id);
                 return Created(uri, ModelFactory.Create<ProcedimientoModel, Procedimiento>(procedimiento, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<ProcedimientoController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 ProcedimientoServicio.Update(procedimiento);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<ProcedimientoController>("Put Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -89,8 +93,9 @@ namespace PetHouse.API.Controllers
                 ProcedimientoServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<ProcedimientoController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

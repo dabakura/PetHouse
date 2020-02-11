@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<CantonModel,Canton>(cantones, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<CantonController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<CantonModel, Canton>(canton, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<CantonController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + canton.Id);
                 return Created(uri, ModelFactory.Create<CantonModel, Canton>(canton, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<CantonController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 CantonServicio.Update(canton);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<CantonController>("Put Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

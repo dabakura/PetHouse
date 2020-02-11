@@ -1,5 +1,4 @@
-﻿using log4net;
-using PetHouse.API.Models;
+﻿using PetHouse.API.Models;
 using PetHouse.BLL.Repositorios;
 using PetHouse.BLL.Services;
 using PetHouse.DAL.Entities;
@@ -17,6 +16,7 @@ namespace PetHouse.API.Controllers
     {
         public IDomicilioService DomicilioServicio { get; }
 
+
         public DomicilioController()
         {
             DomicilioServicio = new DomicilioRepositorio();
@@ -31,8 +31,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<DomicilioModel,Domicilio>(domicilios, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DomicilioController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -46,8 +47,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<DomicilioModel, Domicilio>(domicilio, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DomicilioController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -61,8 +63,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + domicilio.Id);
                 return Created(uri, ModelFactory.Create<DomicilioModel, Domicilio>(domicilio, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DomicilioController>("POST Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -76,8 +79,9 @@ namespace PetHouse.API.Controllers
                 DomicilioServicio.Update(domicilio);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DomicilioController>("PUT Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -90,8 +94,9 @@ namespace PetHouse.API.Controllers
                 DomicilioServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DomicilioController>("DELETE Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

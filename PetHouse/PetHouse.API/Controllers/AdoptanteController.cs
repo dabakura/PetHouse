@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<AdoptanteModel, Adoptante>(adoptantes, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<AdoptanteController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<AdoptanteModel, Adoptante>(adoptante, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<AdoptanteController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + adoptante.Id);
                 return Created(uri, ModelFactory.Create<AdoptanteModel, Adoptante>(adoptante, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<AdoptanteController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 AdoptanteServicio.Update(adoptante);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<AdoptanteController>("Put Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -89,8 +93,9 @@ namespace PetHouse.API.Controllers
                 AdoptanteServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<AdoptanteController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<PuestoModel, Puesto>(puestos, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<PuestoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<PuestoModel, Puesto>(puesto, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<PuestoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + puesto.Id);
                 return Created(uri, ModelFactory.Create<PuestoModel, Puesto>(puesto, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<PuestoController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 PuestoServicio.Update(puesto);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<PuestoController>("Put Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -89,8 +93,9 @@ namespace PetHouse.API.Controllers
                 PuestoServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<PuestoController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

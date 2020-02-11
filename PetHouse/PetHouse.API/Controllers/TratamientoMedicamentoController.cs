@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<TratamientoMedicamentoModel, TratamientoMedicamento>(tratamientoMedicamentos, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<TratamientoMedicamentoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<TratamientoMedicamentoModel, TratamientoMedicamento>(tratamientoMedicamento, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<TratamientoMedicamentoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

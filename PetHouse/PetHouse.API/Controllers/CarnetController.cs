@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<CarnetModel,Carnet>(carnets, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<CarnetController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<CarnetModel, Carnet>(carnets, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<CarnetController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + carnet.ExpedienteId);
                 return Created(uri, ModelFactory.Create<CarnetModel, Carnet>(carnet, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<CarnetController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -74,8 +77,9 @@ namespace PetHouse.API.Controllers
                 CarnetServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<CarnetController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

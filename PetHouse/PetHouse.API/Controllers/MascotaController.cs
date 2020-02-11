@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<MascotaModel, Mascota>(mascotas, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MascotaController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<MascotaModel, Mascota>(mascota, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MascotaController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + mascota.Identificacion);
                 return Created(uri, ModelFactory.Create<MascotaModel, Mascota>(mascota, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MascotaController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 MascotaServicio.Update(mascota);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MascotaController>("Put Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -89,8 +93,9 @@ namespace PetHouse.API.Controllers
                 MascotaServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MascotaController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

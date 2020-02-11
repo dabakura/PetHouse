@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<MedicamentoModel, Medicamento>(medicamentos, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MedicamentoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<MedicamentoModel, Medicamento>(medicamento, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MedicamentoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + medicamento.Id);
                 return Created(uri, ModelFactory.Create<MedicamentoModel, Medicamento>(medicamento, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MedicamentoController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 MedicamentoServicio.Update(medicamento);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MedicamentoController>("Put Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -89,8 +93,9 @@ namespace PetHouse.API.Controllers
                 MedicamentoServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<MedicamentoController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

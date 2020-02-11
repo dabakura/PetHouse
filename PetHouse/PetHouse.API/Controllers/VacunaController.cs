@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<VacunaModel, Vacuna>(vacunas, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<VacunaController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<VacunaModel, Vacuna>(vacuna, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<VacunaController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + vacuna.Id);
                 return Created(uri, ModelFactory.Create<VacunaModel, Vacuna>(vacuna, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<VacunaController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 VacunaServicio.Update(vacuna);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<VacunaController>("Put Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -89,8 +93,9 @@ namespace PetHouse.API.Controllers
                 VacunaServicio.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<VacunaController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }

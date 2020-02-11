@@ -30,8 +30,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<DistritoModel,Distrito>(distritos, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DistritoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return NotFound();
             }
         }
@@ -45,8 +46,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = Url.Request.RequestUri;
                 return Ok(ModelFactory.Create<DistritoModel, Distrito>(distrito, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DistritoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -60,8 +62,9 @@ namespace PetHouse.API.Controllers
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + distrito.Id);
                 return Created(uri, ModelFactory.Create<DistritoModel, Distrito>(distrito, uri));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DistritoController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
@@ -75,8 +78,9 @@ namespace PetHouse.API.Controllers
                 DistritoServicio.Update(distrito);
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error<DistritoController>("Put Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
         }
