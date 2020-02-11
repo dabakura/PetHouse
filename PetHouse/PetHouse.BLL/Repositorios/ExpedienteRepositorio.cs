@@ -55,7 +55,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                var id = DB.InsertarExpediente(entity.Id, entity.Observaciones, entity.Castracion).SingleOrDefault().Column1;
+                var id = DB.InsertarExpediente(entity.Id, entity.Observaciones, entity.Edad, entity.Peso, entity.Castracion, entity.Fecha_Ingreso, entity.Fecha_Fallecimiento).SingleOrDefault().Column1;
                 return id;
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                DB.ActualizarExpediente(entity.Id, entity.Observaciones, entity.Castracion);
+                DB.ActualizarExpediente(entity.Id, entity.Observaciones, entity.Edad, entity.Peso, entity.Castracion, entity.Fecha_Ingreso, entity.Fecha_Fallecimiento);
                 return true;
             }
             catch (Exception ex)

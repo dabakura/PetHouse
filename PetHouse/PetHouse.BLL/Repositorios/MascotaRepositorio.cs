@@ -55,7 +55,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                var id = DB.InsertarMascota(entity.Identificacion, entity.Nombre, entity.Tipo,entity.Genero, entity.Raza, entity.Fecha_Ingreso,entity.Edad_Registrada, entity.AdopcionId, entity.Fecha_Fallecimiento, entity.ExpedienteId).SingleOrDefault().Column1;
+                var id = DB.InsertarMascota(entity.Identificacion, entity.Nombre, entity.Tipo,entity.Genero, entity.Raza, entity.Fecha_Nacimiento, entity.AdopcionId, entity.ExpedienteId).SingleOrDefault().Column1;
                 return id;
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                DB.ActualizarMascota(entity.Identificacion, entity.Nombre, entity.Tipo, entity.Genero, entity.Raza, entity.Fecha_Ingreso, entity.Edad_Registrada, entity.AdopcionId, entity.Fecha_Fallecimiento, entity.ExpedienteId);
+                DB.ActualizarMascota(entity.Identificacion, entity.Nombre, entity.Tipo, entity.Genero, entity.Raza, entity.Fecha_Nacimiento, entity.AdopcionId, entity.ExpedienteId);
                 return true;
             }
             catch (Exception ex)

@@ -89,10 +89,8 @@ namespace PetHouse.API.Models
         public string Tipo { get; set; }
         public string Genero { get; set; }
         public string Raza { get; set; }
-        public DateTime Fecha_Ingreso { get; set; }
-        public int Edad_Registrada { get; set; }
+        public DateTime Fecha_Nacimiento { get; set; }
         public int? AdopcionId { get; set; }
-        public DateTime? Fecha_Fallecimiento { get; set; }
         public string ExpedienteId { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Mascota/" + Identificacion;
     }
@@ -113,7 +111,11 @@ namespace PetHouse.API.Models
     {
         public string Id { get; set; }
         public string Observaciones { get; set; }
+        public int Peso { get; set; }
+        public int Edad { get; set; }
         public bool Castracion { get; set; }
+        public DateTime Fecha_Ingreso { get; set; }
+        public DateTime Fecha_Fallecimiento { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Expediente/" + Id;
     }
     public class EmpleadoModel
