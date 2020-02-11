@@ -1,4 +1,5 @@
-﻿using PetHouse.API.Models;
+﻿using log4net;
+using PetHouse.API.Models;
 using PetHouse.BLL.Repositorios;
 using PetHouse.BLL.Services;
 using PetHouse.DAL.Entities;
