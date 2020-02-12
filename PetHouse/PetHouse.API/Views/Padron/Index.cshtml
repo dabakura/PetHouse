@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Padron Electoral";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="container">
+
+        @*Menu de ingreso de Direcciones*@
+
+        <br />
+        <div class="card">
+            <div class="card-body">
+                <form action="/Padron/uploadingRegiones" method="post" enctype="multipart/form-data">
+                    <h5 class="card-title">Ingreso de (Provincia, Cantón, Distrito)</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Seleccione el archivo a subir</h6>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="file" class="form-control-file form-control col-12" id="exampleFormControlFile1" accept="text/plain" name="file" required>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-success float-right mr-3" value="Subir" />
+                </form>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        @*Menu de ingreso de Personas*@
+
+        <div class="card">
+            <div class="card-body">
+                <form action="/Padron/uploadingPadron" method="post" enctype="multipart/form-data">
+                    <h5 class="card-title">Ingreso de Padrón Electoral</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Seleccione el archivo a subir</h6>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="file" class="form-control-file form-control col-12" id="exampleFormControlFile2" accept="text/plain" name="file" required>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-success float-right mr-3" value="Subir" />
+                </form>
+            </div>
+        </div>
+    </div>

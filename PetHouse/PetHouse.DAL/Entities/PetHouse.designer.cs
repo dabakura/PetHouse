@@ -883,6 +883,20 @@ namespace PetHouse.DAL.Entities
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, observaciones, edad, peso, castracion, fecha_Ingreso, fecha_Fallecimiento);
 			return ((ISingleResult<InsertarExpedienteResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarActualizarRegiones")]
+		public int InsertarActualizarRegiones([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProvinciaId", DbType="Int")] System.Nullable<int> provinciaId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CantonId", DbType="Int")] System.Nullable<int> cantonId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DistritoId", DbType="Int")] System.Nullable<int> distritoId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="VarChar(50)")] string provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="VarChar(50)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="VarChar(50)")] string distrito)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), provinciaId, cantonId, distritoId, provincia, canton, distrito);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarActualizarPadron")]
+		public int InsertarActualizarPadron([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProvinciaId", DbType="Int")] System.Nullable<int> provinciaId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CantonId", DbType="Int")] System.Nullable<int> cantonId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DistritoId", DbType="Int")] System.Nullable<int> distritoId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="Int")] System.Nullable<int> cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Sexo", DbType="Int")] System.Nullable<int> sexo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Primer_Apellido", DbType="VarChar(50)")] string primer_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Segundo_Apellido", DbType="VarChar(50)")] string segundo_Apellido)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), provinciaId, cantonId, distritoId, cedula, sexo, nombre, primer_Apellido, segundo_Apellido);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Adopcion")]

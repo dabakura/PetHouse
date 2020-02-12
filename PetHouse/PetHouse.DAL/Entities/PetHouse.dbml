@@ -990,4 +990,24 @@
       <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.InsertarActualizarRegiones" Method="InsertarActualizarRegiones">
+    <Parameter Name="ProvinciaId" Parameter="provinciaId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantonId" Parameter="cantonId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DistritoId" Parameter="distritoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Provincia" Parameter="provincia" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Canton" Parameter="canton" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Distrito" Parameter="distrito" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertarActualizarPadron" Method="InsertarActualizarPadron">
+    <Parameter Name="ProvinciaId" Parameter="provinciaId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantonId" Parameter="cantonId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DistritoId" Parameter="distritoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cedula" Parameter="cedula" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Sexo" Parameter="sexo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Primer_Apellido" Parameter="primer_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Segundo_Apellido" Parameter="segundo_Apellido" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>
