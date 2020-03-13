@@ -22,6 +22,9 @@ namespace PetHouse.API
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/padron").Include(
+                        "~/Scripts/padron.js"));
         }
     }
 }

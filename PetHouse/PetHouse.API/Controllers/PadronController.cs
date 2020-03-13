@@ -6,15 +6,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace PetHouse.API.Controllers
 {
     public class PadronController : Controller
     {
-        private delegate void del_ActualizarProceso(string pNota, int pAvanceTotal, int pAvanceReal);
         public IPadronService PadronServicio { get; }
 
         public PadronController()
@@ -24,64 +25,63 @@ namespace PetHouse.API.Controllers
         // GET: Padron
         public ActionResult Index()
         {
-            return View(new { Error = "", Complete = false });
+            return View();
         }
 
         // POST: Padron/Create
         [HttpPost]
         public async Task<ActionResult> UploadingRegiones(HttpPostedFileBase file)
         {
-            if (file == null || file.ContentLength <= 0)
-                return View("Index", new { Error = "No file", Complete = false });
-            if (!await bgwCargaRegiones_DoWork(file))
-                return View("Index", new { Error = "Se ha prodicido un error", Complete = false });
-            return View("Index", new { Error = "", Complete = true });
+            try
+            {
+                if (file == null || file.ContentLength <= 0)
+                    return View("Index", new { Error = "No file", Complete = false });
+                DataPadron dataPadron = await CargarData(file);
+                HostingEnvironment.QueueBackgroundWorkItem(token => CargarArchivoRegiones(dataPadron, token));
+            }
+            catch (Exception ex)
+            {
+                return View("Index", new { Error = ex.Message, Complete = false });
+            }
+            return RedirectToAction("Index");
         }
 
         // POST: Padron/Create
         [HttpPost]
-        public async Task<ActionResult> uploadingPadron(HttpPostedFileBase file)
+        public async Task<ActionResult> UploadingPadron(HttpPostedFileBase file)
         {
-            if (file == null || file.ContentLength <= 0)
-                return View("Index", new { Error = "No file", Complete = false });
-            if (!await bgwCargaPersonas_DoWork(file))
-                return View("Index", new { Error = "Se ha prodicido un error", Complete = false });
-            return View("Index", new { Error = "", Complete = true });
+            try
+            {
+                if (file == null || file.ContentLength <= 0)
+                    return View("Index", new { Error = "No file", Complete = false });
+                DataPadron dataPadron = await CargarData(file);
+                HostingEnvironment.QueueBackgroundWorkItem(token => CargarArchivoPersonas(dataPadron, token));
+            }
+            catch (Exception ex)
+            {
+                return View("Index", new { Error = ex.Message, Complete = false });
+            }
+            return RedirectToAction("Index");
         }
 
-        private async Task<bool> bgwCargaPersonas_DoWork(HttpPostedFileBase file)
+        [HttpGet]
+        public JsonResult IndicatorPadron()
         {
-            try
-            {
-                await CargarArchivoPersonas(file);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return Json(IndicatorState.IndicatorPersonas, JsonRequestBehavior.AllowGet);
         }
 
-        private async Task<bool> bgwCargaRegiones_DoWork(HttpPostedFileBase file)
+        [HttpGet]
+        public JsonResult IndicatorRegion()
         {
-            try
-            {
-                await CargarArchivoRegiones(file);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return Json(IndicatorState.IndicatorRegion, JsonRequestBehavior.AllowGet);
         }
-        private Task CargarArchivoPersonas(HttpPostedFileBase file)
+
+        private Task CargarArchivoPersonas(DataPadron dataPadron, CancellationToken token)
         {
             try
             {
-                DataPadron dataPadron = CargarData(file);
-                del_ActualizarProceso proceso = new del_ActualizarProceso(ActualizarProcesoPersonas);
-                foreach (string linea in dataPadron.Lineas)
-                {
+                dataPadron.Lineas.ForEach(linea => {
+                    if (token.IsCancellationRequested) return;
                     dataPadron.PFila += 1;
                     //Partimos la linea con el caracter "," indicado
                     dataPadron.Campos = linea.Split(",".ToCharArray());
@@ -93,24 +93,23 @@ namespace PetHouse.API.Controllers
                             dataPadron.Campos[5].Trim(), dataPadron.Campos[6].Trim(), 
                             dataPadron.Campos[7].Trim(), Convert.ToInt32(dataPadron.Campos[2].Trim()), 
                             idprovincia, idcanton, iddistrito);
-                    proceso.Invoke("Fila-" + dataPadron.PFila, dataPadron.PCantidadTotal, dataPadron.PFila);
-                }
+                    ActualizarProcesoPersonas(dataPadron);
+                });
+                IndicatorState.IndicatorPersonas = new Indicator();
                 return Task.CompletedTask;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return Task.FromException(ex);
             }
         }
 
-        private Task CargarArchivoRegiones(HttpPostedFileBase file)
+        private Task CargarArchivoRegiones(DataPadron dataPadron, CancellationToken token)
         {
             try
             {
-                DataPadron dataPadron = CargarData(file);
-                //Leemos Todas las lineas del fichero
-                del_ActualizarProceso proceso = new del_ActualizarProceso(ActualizarProcesoRegiones);
                 dataPadron.Lineas.ForEach(linea => {
+                    if (token.IsCancellationRequested) return;
                     dataPadron.PFila += 1;
                     //Partimos la linea con el caracter "," indicado
                     dataPadron.Campos = linea.Split(",".ToCharArray());
@@ -119,17 +118,18 @@ namespace PetHouse.API.Controllers
                     int iddistrito = Convert.ToInt32(dataPadron.Campos[0].Trim());
                     if (idprovincia > 0 && idprovincia < 8)
                         PadronServicio.InsertRegion(idprovincia, idcanton, iddistrito, dataPadron.Campos[1].Trim(), dataPadron.Campos[2].Trim(), dataPadron.Campos[3].Trim());
-                    proceso.Invoke("Fila-" + dataPadron.PFila, dataPadron.PCantidadTotal, dataPadron.PFila);
+                    ActualizarProcesoRegiones(dataPadron);
                 });
+                IndicatorState.IndicatorRegion = new Indicator();
                 return Task.CompletedTask;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return Task.FromException(ex);
             }
         }
 
-        private DataPadron CargarData(HttpPostedFileBase file)
+        private Task<DataPadron> CargarData(HttpPostedFileBase file)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace PetHouse.API.Controllers
                         dataPadron.Lineas.Add(reader.ReadLine());
                 }
                 dataPadron.PCantidadTotal = dataPadron.Lineas.Count();
-                return dataPadron;
+                return Task.FromResult(dataPadron);
             }
             catch (Exception)
             {
@@ -149,14 +149,18 @@ namespace PetHouse.API.Controllers
             }
         }
 
-        private void ActualizarProcesoPersonas(string pNota, int pAvanceTotal, int pAvanceReal)
+        private void ActualizarProcesoPersonas(DataPadron dataPadron)
         {
-            
+            IndicatorState.IndicatorPersonas.PAvanceReal = dataPadron.PFila;
+            IndicatorState.IndicatorPersonas.PAvanceTotal = dataPadron.PCantidadTotal;
+            IndicatorState.IndicatorPersonas.PNota = "Fila-" + dataPadron.PFila;
         }
 
-        private void ActualizarProcesoRegiones(string pNota, int pAvanceTotal, int pAvanceReal)
+        private void ActualizarProcesoRegiones(DataPadron dataPadron)
         {
-
+            IndicatorState.IndicatorRegion.PAvanceReal = dataPadron.PFila;
+            IndicatorState.IndicatorRegion.PAvanceTotal = dataPadron.PCantidadTotal;
+            IndicatorState.IndicatorRegion.PNota = "Fila-" + dataPadron.PFila;
         }
     }
 }
