@@ -31,7 +31,7 @@ namespace PetHouse.API
             // y una cookie para almacenar temporalmente información sobre un usuario que inicia sesión con un proveedor de inicio de sesión de terceros
             app.UseCookieAuthentication(new CookieAuthenticationOptions());
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-           
+            
             // Configure la aplicación para el flujo basado en OAuth
             PublicClientId = "self";
             OAuthOptions = new OAuthAuthorizationServerOptions

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHouse.API", "PetHouse.AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHouse.API.Tests", "DistributedServices\PetHouse.API.Tests\PetHouse.API.Tests.csproj", "{10320AF0-F010-4AD2-A860-4CBC0C37B595}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHouse.MVC", "PetHouse.MVC\PetHouse.MVC.csproj", "{1220E34D-FA38-4ACD-AB22-242193D2165D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{10320AF0-F010-4AD2-A860-4CBC0C37B595}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10320AF0-F010-4AD2-A860-4CBC0C37B595}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10320AF0-F010-4AD2-A860-4CBC0C37B595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1220E34D-FA38-4ACD-AB22-242193D2165D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1220E34D-FA38-4ACD-AB22-242193D2165D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1220E34D-FA38-4ACD-AB22-242193D2165D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1220E34D-FA38-4ACD-AB22-242193D2165D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{276F6680-163E-4A76-9BEE-4F2FC157606C} = {7CFE2B14-67CA-4E72-96BE-D75378AAF83A}
 		{6F0EB5DC-CF65-4E08-8F20-E51A7ECCFB10} = {EEC5D8B1-E482-474C-8813-D266B7B6745A}
 		{10320AF0-F010-4AD2-A860-4CBC0C37B595} = {EEC5D8B1-E482-474C-8813-D266B7B6745A}
+		{1220E34D-FA38-4ACD-AB22-242193D2165D} = {96718C86-BF18-422F-A3EA-A29F93A8E023}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D639FB27-20B9-4A8C-8FE9-9617581AECB6}
