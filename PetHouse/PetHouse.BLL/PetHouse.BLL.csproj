@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext.cs" />
+    <Compile Include="Repositorios\BitacoraRepositorio.cs" />
     <Compile Include="Repositorios\AdopcionRepositorio.cs" />
     <Compile Include="Repositorios\AdoptanteRepositorio.cs" />
     <Compile Include="Repositorios\AspNetUsersRepositorio.cs" />
@@ -59,12 +60,14 @@
     <Compile Include="Repositorios\ExpedienteRepositorio.cs" />
     <Compile Include="Repositorios\MascotaRepositorio.cs" />
     <Compile Include="Repositorios\MedicamentoRepositorio.cs" />
+    <Compile Include="Repositorios\PersonaRepositorio.cs" />
     <Compile Include="Repositorios\ProcedimientoRepositorio.cs" />
     <Compile Include="Repositorios\ProvinciaRepositorio.cs" />
     <Compile Include="Repositorios\TratamientoRepositorio.cs" />
     <Compile Include="Repositorios\TratamientoMedicamentoRepositorio.cs" />
     <Compile Include="Repositorios\VacunaRepositorio.cs" />
     <Compile Include="Repositorios\PuestoRepositorio.cs" />
+    <Compile Include="Services\IBitacoraService.cs" />
     <Compile Include="Services\ICrud.cs" />
     <Compile Include="Services\IAdopcionService.cs" />
     <Compile Include="Services\IAdoptanteService.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="Services\IMascotaService.cs" />
     <Compile Include="Services\IMedicamentoService.cs" />
     <Compile Include="Services\IPadronService.cs" />
+    <Compile Include="Services\IPersonaService.cs" />
     <Compile Include="Services\IProcedimientoService.cs" />
     <Compile Include="Services\IProvinciaService.cs" />
     <Compile Include="Services\IPuestoService.cs" />

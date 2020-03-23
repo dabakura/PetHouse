@@ -253,6 +253,7 @@
     <Compile Include="Controllers\AdopcionController.cs" />
     <Compile Include="Controllers\AdoptanteController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\CantonController.cs" />
     <Compile Include="Controllers\CarnetController.cs" />
     <Compile Include="Controllers\DistritoController.cs" />
@@ -264,6 +265,7 @@
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\MedicamentoController.cs" />
     <Compile Include="Controllers\PadronController.cs" />
+    <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\ProcedimientoController.cs" />
     <Compile Include="Controllers\ProvinciaController.cs" />
     <Compile Include="Controllers\PuestoController.cs" />

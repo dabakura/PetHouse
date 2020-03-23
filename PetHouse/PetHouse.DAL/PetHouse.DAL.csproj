@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Persona.cs" />
     <Compile Include="Entities\PetHouse.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

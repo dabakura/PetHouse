@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PetHouse.API.Models;
 using PetHouse.MVC.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PetHouse.MVC.Controllers
@@ -36,7 +31,7 @@ namespace PetHouse.MVC.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            ViewData["Error"] = "Sus credenciales son incorrectos";
+            ViewData["Error"] = await ErrorAsync("Account", "LoginAsync", "Sus credenciales son incorrectos", 401);
             Session.Add("Token", null);
             return View("Login", user);
         }
@@ -67,7 +62,11 @@ namespace PetHouse.MVC.Controllers
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Login");
             }
-            ViewData["Error"] = "Verifique los datos Ingresados. - Las contraseñas deben tener mayusculas minisculas un caracter y numeros.";
+            ViewData["Error"] = await ErrorAsync(
+                "Account", 
+                "RegisterAsync", 
+                "Verifique los datos Ingresados. - Las contraseñas deben tener mayusculas minisculas un caracter y numeros.", 
+                404);
             return View("Register", register);
         }
     }

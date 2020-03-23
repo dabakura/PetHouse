@@ -55,7 +55,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                var id = DB.InsertarMedicamento(entity.Id, entity.Nombre, entity.Descripcion, entity.Tipo).SingleOrDefault().Column1;
+                var id = DB.InsertarMedicamento(entity.Id, entity.Nombre, entity.Descripcion, entity.Tipo, entity.Precio).SingleOrDefault().Column1;
                 return id;
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                DB.ActualizarMedicamento(entity.Id, entity.Nombre, entity.Descripcion, entity.Tipo);
+                DB.ActualizarMedicamento(entity.Id, entity.Nombre, entity.Descripcion, entity.Tipo, entity.Precio);
                 return true;
             }
             catch (Exception ex)

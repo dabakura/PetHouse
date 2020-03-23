@@ -149,6 +149,7 @@ namespace PetHouse.BLL.Mappers
                 cfg.CreateMap<BuscarTratamientoMedicamentoResult, TratamientoMedicamento>();
                 cfg.CreateMap<ConsultarVacunaResult, Vacuna>();
                 cfg.CreateMap<BuscarVacunaResult, Vacuna>();
+                cfg.CreateMap<BuscarPersonaResult, Persona>();
             });
             return config;
         }

@@ -36,6 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -131,6 +137,36 @@
     <Content Include="Views\Home\AnotherLink.cshtml" />
     <Content Include="Views\Error\UnAuthorized.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Empleado\Create.cshtml" />
+    <Content Include="Views\Empleado\Delete.cshtml" />
+    <Content Include="Views\Empleado\Details.cshtml" />
+    <Content Include="Views\Empleado\Edit.cshtml" />
+    <Content Include="Views\Empleado\Index.cshtml" />
+    <Content Include="Views\Institucion\Create.cshtml" />
+    <Content Include="Views\Institucion\Delete.cshtml" />
+    <Content Include="Views\Institucion\Details.cshtml" />
+    <Content Include="Views\Institucion\Edit.cshtml" />
+    <Content Include="Views\Institucion\Index.cshtml" />
+    <Content Include="Views\Medicamento\Create.cshtml" />
+    <Content Include="Views\Medicamento\Delete.cshtml" />
+    <Content Include="Views\Medicamento\Details.cshtml" />
+    <Content Include="Views\Medicamento\Edit.cshtml" />
+    <Content Include="Views\Medicamento\Index.cshtml" />
+    <Content Include="Views\Puesto\Create.cshtml" />
+    <Content Include="Views\Puesto\Delete.cshtml" />
+    <Content Include="Views\Puesto\Details.cshtml" />
+    <Content Include="Views\Puesto\Edit.cshtml" />
+    <Content Include="Views\Puesto\Index.cshtml" />
+    <Content Include="Views\Rol\Create.cshtml" />
+    <Content Include="Views\Rol\Delete.cshtml" />
+    <Content Include="Views\Rol\Details.cshtml" />
+    <Content Include="Views\Rol\Edit.cshtml" />
+    <Content Include="Views\Rol\Index.cshtml" />
+    <Content Include="Views\Vacuna\Create.cshtml" />
+    <Content Include="Views\Vacuna\Delete.cshtml" />
+    <Content Include="Views\Vacuna\Details.cshtml" />
+    <Content Include="Views\Vacuna\Edit.cshtml" />
+    <Content Include="Views\Vacuna\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -141,10 +177,35 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\InstitucionController.cs" />
+    <Compile Include="Controllers\MedicamentoController.cs" />
+    <Compile Include="Controllers\PuestoController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\VacunaController.cs" />
+    <Compile Include="Models\Adopcion.cs" />
+    <Compile Include="Models\Adoptante.cs" />
+    <Compile Include="Models\Bitacora.cs" />
+    <Compile Include="Models\Canton.cs" />
+    <Compile Include="Models\Carnet.cs" />
     <Compile Include="Models\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Models\Distrito.cs" />
+    <Compile Include="Models\Domicilio.cs" />
+    <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Expediente.cs" />
+    <Compile Include="Models\Institucion.cs" />
+    <Compile Include="Models\Mascota.cs" />
+    <Compile Include="Models\Medicamento.cs" />
+    <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\Procedimiento.cs" />
+    <Compile Include="Models\Provincia.cs" />
+    <Compile Include="Models\Puesto.cs" />
     <Compile Include="Models\RegisterUser.cs" />
+    <Compile Include="Models\Rol.cs" />
     <Compile Include="Models\Token.cs" />
+    <Compile Include="Models\Tratamiento.cs" />
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\Vacuna.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
