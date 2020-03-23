@@ -4,11 +4,9 @@
     ViewBag.Title = "Puestos";
 }
 
-<h2>Puestos</h2>
-
-<p>
-    @Html.ActionLink("Crear nuevo Puesto", "Create")
-</p>
+<div class="col-sm-12">
+    @Html.ActionLink("Crear nuevo Puesto", "Create", "Puesto", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px" })
+</div>
 <table class="table">
     <tr>
         <th>
@@ -20,20 +18,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

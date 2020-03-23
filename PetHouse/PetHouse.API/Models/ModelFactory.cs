@@ -35,6 +35,7 @@ namespace PetHouse.API.Models
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public double Precio { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Vacuna/" + Id;
     }
     public class TratamientoMedicamentoModel
@@ -80,6 +81,7 @@ namespace PetHouse.API.Models
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Tipo { get; set; }
+        public double Precio { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Medicamento/" + Id;
     }
     public class MascotaModel

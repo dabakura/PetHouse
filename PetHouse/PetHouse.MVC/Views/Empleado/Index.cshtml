@@ -4,11 +4,9 @@
     ViewBag.Title = "Empleados";
 }
 
-<h2>Empleados</h2>
-
-<p>
-    @Html.ActionLink("Crear nuevo Empleado", "Create")
-</p>
+<div class="col-sm-12">
+    @Html.ActionLink("Crear nuevo Empleado", "Create", "Empleado", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px" })
+</div>
 <table class="table">
     <tr>
         <th>

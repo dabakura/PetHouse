@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace UI.Controllers
 {
+    [CustomAuthorize]
     public class MedicamentoController : BaseController
     {
         // GET: Medicamento
@@ -59,7 +60,7 @@ namespace UI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Nombre,Descripcion,Precio,Tipo")] Medicamento medicamento)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Nombre,Descripcion,Precio,Tipo")] Medicamento medicamento)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +104,7 @@ namespace UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await PutAsync("api/Medicamento", medicamento);
+                var result = await PutAsync("api/Medicamento/"+ medicamento.Id, medicamento);
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
             }

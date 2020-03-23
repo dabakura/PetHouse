@@ -4,11 +4,9 @@
     ViewBag.Title = "Instituciones";
 }
 
-<h2>Instituciones</h2>
-
-<p>
-    @Html.ActionLink("Crear nueva Institución", "Create")
-</p>
+<div class="col-sm-12">
+    @Html.ActionLink("Crear nueva Institución", "Create", "Institucion", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px" })
+</div>
 <table class="table">
     <tr>
         <th>

@@ -1,18 +1,15 @@
 ﻿@model PetHouse.MVC.Models.Rol
 
 @{
-    ViewBag.Title = "Ingresar";
+    ViewBag.Title = "Ingresar Rol";
 }
 
-<h2>Ingresar Rol</h2>
-
+<hr />
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Rol</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })

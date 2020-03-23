@@ -4,13 +4,19 @@
     ViewBag.Title = "Eliminar";
 }
 
-<h2>Eliminar</h2>
 
 <h3>Estas seguro(a) de eliminarlo?</h3>
 <div>
     <h4>Medicamento</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>

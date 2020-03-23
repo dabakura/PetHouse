@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace UI.Controllers
 {
+    [CustomAuthorize]
     public class InstitucionController : BaseController
     {
         // GET: Institucion
@@ -103,7 +104,7 @@ namespace UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await PutAsync("api/Institucion", institucion);
+                var result = await PutAsync("api/Institucion/" + institucion.Id, institucion);
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
             }

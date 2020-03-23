@@ -4,13 +4,14 @@
     ViewBag.Title = "Medicamentos";
 }
 
-<h2>Medicamentos</h2>
-
-<p>
-    @Html.ActionLink("Crear nuevo Medicamento", "Create")
-</p>
+<div class="col-sm-12">
+    @Html.ActionLink("Crear nuevo Medicamento", "Create", "Medicamento", null, new { @class = "btn btn-info  pull-right",style="margin-bottom:15px" })
+</div>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
@@ -29,6 +30,9 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>

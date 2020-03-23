@@ -4,56 +4,55 @@
     ViewBag.Title = "Login";
 }
 
-<div class="container">
-    @if (ViewData["Error"] != null)
-    {
-        <div class="callout callout-danger col-sm-6" style="margin-left: 25%;">
-            <h4>Error!</h4>
 
-            <p>
-                @ViewData["Error"]
-            </p>
+@if (ViewData["Error"] != null)
+{
+    <div class="callout callout-danger col-sm-6" style="margin-left: 25%;">
+        <h4>Error!</h4>
+
+        <p>
+            @ViewData["Error"]
+        </p>
+    </div>
+}
+
+<div class="col-md-6 col-md-offset-3">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Iniciar Sección</h3>
         </div>
-    }
+        <!-- /.box-header -->
+        <!-- form start -->
+        @using (Html.BeginForm("LoginAsync", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="col-md-6 col-md-offset-3">
-        <div class="box box-info">
-            <div class="box-header with-border">
-                <h3 class="box-title">Iniciar Sección</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            @using (Html.BeginForm("LoginAsync", "Account", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="box-body">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.username, new { htmlAttributes = new { placeholder = "Email", @class = "form-control", Required = true } })
-                                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control", Required = true } })
-                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-                            </div>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="box-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.username, new { htmlAttributes = new { placeholder = "Email", @class = "form-control", Required = true } })
+                            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        @Html.ActionLink("Registarce", "Register", null, new { @class = "btn btn-default" })
-                        <button type="submit" class="btn btn-info pull-right">Iniciar</button>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control", Required = true } })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                    <!-- /.box-footer -->
                 </div>
-            }
-        </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    @Html.ActionLink("Registarce", "Register", null, new { @class = "btn btn-default" })
+                    <button type="submit" class="btn btn-info pull-right">Iniciar</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+        }
     </div>
 </div>

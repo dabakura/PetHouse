@@ -9,14 +9,23 @@ namespace PetHouse.MVC.Models
 {
     public class Medicamento
     {
-		[DisplayName("Codigó")]
+		[DisplayName("Codigo")]
+		[MaxLength(100, ErrorMessage = "No debe tener mas de 100 caracteres")]
 		public string Id { get; set; }
+		[Required]
+		[MaxLength(50,ErrorMessage ="No debe tener mas de 50 caracteres")]
 		public string Nombre { get; set; }
 		[DisplayName("Descripción")]
-		[DataType(DataType.Text)]
+		
 		public string Descripcion { get; set; }
+		[Required]
+		[MaxLength(50, ErrorMessage = "No debe tener mas de 50 caracteres")]
 		public string Tipo { get; set; }
-		public decimal Precio { get; set; }
+		[Required]
+		
+		[Range(0.01, 199999.99, ErrorMessage = "La cantidad debe ser expresada en dolares")]
+
+		public double Precio { get; set; }
 		[ScaffoldColumn(false)]
 		public bool? Activo { get; set; }
 	}
