@@ -28,7 +28,6 @@ namespace PetHouse.MVC.App_Start
                 .Include("~/Content/js/plugins/validator/validator.js")
                 .Include("~/Scripts/jquery.validate.js")
                 .Include("~/Scripts/jquery.validate.unobtrusive.js")
-                .Include("~/Scripts/jquery.validate.globalize.js")
                 .Include("~/Content/js/plugins/inputmask/jquery.inputmask.bundle.js")
                 .Include("~/Content/js/adminlte.js")
                 .Include("~/Content/js/init.js"));
