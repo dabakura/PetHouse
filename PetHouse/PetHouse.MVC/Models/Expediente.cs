@@ -8,11 +8,11 @@ namespace PetHouse.MVC.Models
     {
         public string Id { get; set; }
         public string Observaciones { get; set; }
-        public Nullable<int> Edad { get; set; }
-        public Nullable<int> Peso { get; set; }
+        public int? Edad { get; set; }
+        public int? Peso { get; set; }
         public bool Castracion { get; set; }
-        public System.DateTime Fecha_Ingreso { get; set; }
-        public Nullable<System.DateTime> Fecha_Fallecimiento { get; set; }
+        public DateTime Fecha_Ingreso { get; set; }
+        public DateTime? Fecha_Fallecimiento { get; set; }
         [ScaffoldColumn(false)]
         public bool? Activo { get; set; }
     }

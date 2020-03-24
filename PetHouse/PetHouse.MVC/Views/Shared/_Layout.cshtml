@@ -1,7 +1,7 @@
 ﻿@using System.Web.Optimization
 @using WebHelpers.Mvc5.Enum
 <!DOCTYPE html>
-<html>
+<html lang="es-ES">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,5 +47,19 @@
     <script src="@EnumHandler.HandlerUrl"></script>
     @Scripts.Render("~/Bundles/js")
     @RenderSection("ViewSpecificJavascript", required: false)
+    <script type="text/javascript">
+        $.validator.methods.number = function (value, element) {
+            value = floatValue(value);
+            return this.optional(element) || !isNaN(value);
+        }
+        $.validator.methods.range = function (value, element, param) {
+            value = floatValue(value);
+            return this.optional(element) || (value >= param[0] && value <= param[1]);
+        }
+
+        function floatValue(value) {
+            return parseFloat(value.replace(",", "."));
+        }
+    </script>
 </body>
 </html>

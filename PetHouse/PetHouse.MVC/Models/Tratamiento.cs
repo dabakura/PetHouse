@@ -9,6 +9,7 @@ namespace PetHouse.MVC.Models
         public int Id { get; set; }
         public string ExpedienteId { get; set; }
         public int EmpleadoId { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Descripcion { get; set; }
         public System.DateTime Fecha { get; set; }
         [ScaffoldColumn(false)]

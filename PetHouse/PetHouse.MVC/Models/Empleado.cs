@@ -11,7 +11,7 @@ namespace PetHouse.MVC.Models
         public string Nombre { get; set; }
         public string Primer_Apellido { get; set; }
         public string Segundo_Apellido { get; set; }
-        public System.DateTime Fecha_Nacimiento { get; set; }
+        public DateTime Fecha_Nacimiento { get; set; }
         public int Telefono { get; set; }
         public string Correo { get; set; }
         public int DomicilioId { get; set; }

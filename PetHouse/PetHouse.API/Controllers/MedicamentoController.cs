@@ -12,6 +12,7 @@ using System.Web.Http;
 namespace PetHouse.API.Controllers
 {
     [RoutePrefix("api/Medicamento")]
+    [Authorize]
     public class MedicamentoController : ApiController
     {
         public IMedicamentoService MedicamentoServicio { get; }

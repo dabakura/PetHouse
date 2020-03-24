@@ -8,6 +8,7 @@ namespace PetHouse.MVC.Models
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Descripcion { get; set; }
         [ScaffoldColumn(false)]
         public bool? Activo { get; set; }
