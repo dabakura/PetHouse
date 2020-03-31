@@ -88,7 +88,6 @@ namespace UI.Controllers
                 ViewData["Error"] = await ErrorAsync("Institucion", "Edit", "No se ingreso el Id", 400);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            await SetDomicilio();
             var result = await GetAsync("api/Institucion/" + id.Value);
             Institucion institucion = null;
             if (result.IsSuccessStatusCode)
@@ -101,6 +100,7 @@ namespace UI.Controllers
                 ViewData["Error"] = await ErrorAsync("Institucion", "Edit", "Error al consultar api", 404);
                 return HttpNotFound();
             }
+            await SetDomicilio(institucion.Domicilio.ProvinciaId, institucion.Domicilio.CantonId);
             return View(institucion);
         }
 
@@ -113,9 +113,13 @@ namespace UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await PutAsync("api/Institucion/" + institucion.Id, institucion);
-                if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                var resultDomicilio = await PutAsync("api/Domicilio/" + institucion.DireccionId, institucion.Domicilio);
+                if (resultDomicilio.IsSuccessStatusCode)
+                {
+                    var result = await PutAsync("api/Institucion/" + institucion.Id, institucion);
+                    if (result.IsSuccessStatusCode)
+                        return RedirectToAction("Index");
+                }
             }
             await SetDomicilio();
             ViewData["Error"] = await ErrorAsync("Institucion", "Edit", "Error actualizar institucion compruebe los campos", 400);
@@ -209,15 +213,25 @@ namespace UI.Controllers
             return new List<Distrito>();
         }
 
-        private async Task SetDomicilio()
+        private async Task SetDomicilio(int? provincia_id = 0, int? canton_id = 0)
         {
             var Provincias = await DataProvincias();
             var Cantones = new List<Canton>();
             var Distritos = new List<Distrito>();
             if (Provincias.Count > 0)
-                Cantones = await DataCantones(Provincias.ToArray()[0].Id);
+            {
+                if (provincia_id > 0)
+                    Cantones = await DataCantones(provincia_id.Value);
+                else
+                    Cantones = await DataCantones(Provincias.ToArray()[0].Id);
+            }
             if (Cantones.Count > 0)
-                Distritos = await DataDistritos(Cantones.ToArray()[0].Id);
+            {
+                if (canton_id > 0)
+                    Distritos = await DataDistritos(canton_id.Value);
+                else
+                    Distritos = await DataDistritos(Cantones.ToArray()[0].Id);
+            }
             ViewBag.Provincias = new SelectList(Provincias, "Id", "Nombre"); ;
             ViewBag.Cantones = new SelectList(Cantones, "Id", "Nombre"); ;
             ViewBag.Distritos = new SelectList(Distritos, "Id", "Nombre"); ;

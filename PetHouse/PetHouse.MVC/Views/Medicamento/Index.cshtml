@@ -50,13 +50,13 @@
                         @Html.DisplayFor(modelItem => item.Precio)
                     </td>
                     <td style="text-align: center; min-width: 160px;">
-                        <a href="@Url.Action("Edit", "Puesto", new { id = item.Id })" class="btn btn-warning">
+                        <a href="@Url.Action("Edit", "Medicamento", new { id = item.Id })" class="btn btn-warning">
                             <i class="fa fa-edit"></i>
                         </a>|
-                        <a href="@Url.Action("Details", "Puesto", new { id = item.Id })" class="btn btn-info">
+                        <a href="@Url.Action("Details", "Medicamento", new { id = item.Id })" class="btn btn-info">
                             <i class="fa fa-search"></i>
                         </a>|
-                        <a href="@Url.Action("Delete", "Puesto", new { id = item.Id })" class="btn btn-danger">
+                        <a href="@Url.Action("Delete", "Medicamento", new { id = item.Id })" class="btn btn-danger">
                             <i class="fa fa-eraser"></i>
                         </a>
                     </td>
