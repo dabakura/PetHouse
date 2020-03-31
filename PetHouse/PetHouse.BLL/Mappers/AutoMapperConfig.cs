@@ -30,7 +30,7 @@ namespace PetHouse.BLL.Mappers
                         {
                             Id = orig.DistritoId,
                             CantonId = orig.CantonId,
-                            Nombre = orig.CantonName,
+                            Nombre = orig.DistritoName,
                             Canton = new Canton
                             {
                                 Id = orig.CantonId,
@@ -75,7 +75,7 @@ namespace PetHouse.BLL.Mappers
                     {
                         Id = orig.DistritoId,
                         CantonId = orig.CantonId,
-                        Nombre = orig.CantonName,
+                        Nombre = orig.DistritoName,
                         Canton = new Canton
                         {
                             Id = orig.CantonId,
@@ -90,7 +90,7 @@ namespace PetHouse.BLL.Mappers
                     {
                         Id = orig.DistritoId,
                         CantonId = orig.CantonId,
-                        Nombre = orig.CantonName,
+                        Nombre = orig.DistritoName,
                         Canton = new Canton
                         {
                             Id = orig.CantonId,
@@ -114,7 +114,7 @@ namespace PetHouse.BLL.Mappers
                         {
                             Id = orig.DistritoId,
                             CantonId = orig.CantonId,
-                            Nombre = orig.CantonName,
+                            Nombre = orig.DistritoName,
                             Canton = new Canton
                             {
                                 Id = orig.CantonId,

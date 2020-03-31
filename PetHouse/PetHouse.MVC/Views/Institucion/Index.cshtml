@@ -4,64 +4,92 @@
     ViewBag.Title = "Instituciones";
 }
 
+@Html.Partial("Helpers/_ViewError")
+
 <div class="col-sm-12">
     @Html.ActionLink("Crear nueva Institución", "Create", "Institucion", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px" })
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ced_Juridica)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pag_Web)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Domicilio.Direccion)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ced_Juridica)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fax)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pag_Web)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Domicilio.Direccion)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+<div class="box">
+    <div class="box-body">
 
-</table>
+        <table id="listado" class="table table-bordered table-hover dataTable">
+            <thead>
+                <tr role="row">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ced_Juridica)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Telefono)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fax)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pag_Web)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Correo)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Región")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Domicilio.Direccion)
+                    </th>
+                    <th style="text-align: center;">
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ced_Juridica)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fax)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pag_Web)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Correo)
+                        </td>
+                        <td>
+                            @{
+                                var text = item.Domicilio.Distrito.Canton.Provincia.Nombre + " " + item.Domicilio.Distrito.Canton.Nombre + " " + item.Domicilio.Distrito.Nombre;
+                                @Html.DisplayFor(modelItem => text)
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Domicilio.Direccion)
+                        </td>
+                        <td style="text-align: center; min-width: 160px;">
+                            <a href="@Url.Action("Edit", "Puesto", new { id = item.Id })" class="btn btn-warning">
+                                <i class="fa fa-edit"></i>
+                            </a>|
+                            <a href="@Url.Action("Details", "Puesto", new { id = item.Id })" class="btn btn-info">
+                                <i class="fa fa-search"></i>
+                            </a>|
+                            <a href="@Url.Action("Delete", "Puesto", new { id = item.Id })" class="btn btn-danger">
+                                <i class="fa fa-eraser"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -123,6 +123,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\js\plugins\jquery-validate\jquery.validate.min.js" />
+    <Content Include="Content\js\plugins\jquery-validate\jquery.validate.unobtrusive.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -164,7 +166,6 @@
     <Content Include="Views\Medicamento\Delete.cshtml" />
     <Content Include="Views\Medicamento\Details.cshtml" />
     <Content Include="Views\Medicamento\Edit.cshtml" />
-    <Content Include="Views\Medicamento\Index.cshtml" />
     <Content Include="Views\Puesto\Create.cshtml" />
     <Content Include="Views\Puesto\Delete.cshtml" />
     <Content Include="Views\Puesto\Details.cshtml" />
@@ -183,6 +184,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Vacuna\Index.cshtml" />
+    <Content Include="Views\Direccion\Create.cshtml" />
+    <Content Include="Views\Shared\Helpers\_ViewError.cshtml" />
+    <Content Include="Views\Medicamento\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -193,6 +197,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DireccionController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\InstitucionController.cs" />
     <Compile Include="Controllers\MedicamentoController.cs" />
@@ -201,6 +206,7 @@
     <Compile Include="Controllers\VacunaController.cs" />
     <Compile Include="Models\Adopcion.cs" />
     <Compile Include="Models\Adoptante.cs" />
+    <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Canton.cs" />
     <Compile Include="Models\Carnet.cs" />

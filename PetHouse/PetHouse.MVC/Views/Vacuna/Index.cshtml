@@ -4,6 +4,8 @@
     ViewBag.Title = "Vacunas";
 }
 
+@Html.Partial("Helpers/_ViewError")
+
 <div class="col-sm-12" style="z-index: 1;">
     @Html.ActionLink("Crear nueva Vacuna", "Create", "Vacuna", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px;" })
 </div>
@@ -14,13 +16,13 @@
         <table id="listado" class="table table-bordered table-hover dataTable">
             <thead>
                 <tr role="row">
-                    <th >
+                    <th>
                         @Html.DisplayNameFor(model => model.Nombre)
                     </th>
-                    <th  >
+                    <th>
                         @Html.DisplayNameFor(model => model.Descripcion)
                     </th>
-                    <th  >
+                    <th>
                         @Html.DisplayNameFor(model => model.Precio)
                     </th>
                     <th style="text-align: center;">
@@ -41,7 +43,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Precio)
                         </td>
-                        <td style="text-align: center;">
+                        <td style="text-align: center; min-width: 160px;">
                             <a href="@Url.Action("Edit", "Vacuna", new { id = item.Id })" class="btn btn-warning">
                                 <i class="fa fa-edit"></i>
                             </a>|

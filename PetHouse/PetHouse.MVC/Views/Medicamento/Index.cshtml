@@ -4,10 +4,11 @@
     ViewBag.Title = "Medicamentos";
 }
 
-<div class="col-sm-12" style="z-index: 1;">
-    @Html.ActionLink("Crear nuevo Medicamento", "Create", "Medicamento", null, new { @class = "btn btn-info  pull-right",style="margin-bottom:15px" })
-</div>
+@Html.Partial("Helpers/_ViewError")
 
+<div class="col-sm-12">
+    @Html.ActionLink("Crear nuevo Medicamento", "Create", "Medicamento", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px" })
+</div>
 
 <div class="box">
     <div class="box-body">
@@ -15,9 +16,6 @@
         <table id="listado" class="table table-bordered table-hover dataTable">
             <thead>
                 <tr role="row">
-                    <th>
-                        @Html.DisplayNameFor(model => model.Id)
-                    </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Nombre)
                     </th>
@@ -38,34 +36,31 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Descripcion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tipo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Precio)
-                        </td>
-                        <td style="text-align: center;">
-                            <a href="@Url.Action("Edit", "Medicamento", new { id = item.Id })" class="btn btn-warning">
-                                <i class="fa fa-edit"></i>
-                            </a>|
-                            <a href="@Url.Action("Details", "Medicamento", new { id = item.Id })" class="btn btn-info">
-                                <i class="fa fa-search"></i>
-                            </a>|
-                            <a href="@Url.Action("Delete", "Medicamento", new { id = item.Id })" class="btn btn-danger">
-                                <i class="fa fa-eraser"></i>
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)
+                    </td>
+                    <td style="text-align: center; min-width: 160px;">
+                        <a href="@Url.Action("Edit", "Puesto", new { id = item.Id })" class="btn btn-warning">
+                            <i class="fa fa-edit"></i>
+                        </a>|
+                        <a href="@Url.Action("Details", "Puesto", new { id = item.Id })" class="btn btn-info">
+                            <i class="fa fa-search"></i>
+                        </a>|
+                        <a href="@Url.Action("Delete", "Puesto", new { id = item.Id })" class="btn btn-danger">
+                            <i class="fa fa-eraser"></i>
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

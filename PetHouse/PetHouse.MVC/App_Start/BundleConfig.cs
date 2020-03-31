@@ -26,8 +26,8 @@ namespace PetHouse.MVC.App_Start
                 .Include("~/Content/js/plugins/datepicker/bootstrap-datepicker.js")
                 .Include("~/Content/js/plugins/icheck/icheck.js")
                 .Include("~/Content/js/plugins/validator/validator.js")
-                .Include("~/Scripts/jquery.validate.js")
-                .Include("~/Scripts/jquery.validate.unobtrusive.js")
+                .Include("~/Content/js/plugins/jquery-validate/jquery.validate.min.js")
+                .Include("~/Content/js/plugins/jquery-validate/jquery.validate.unobtrusive.min.js")
                 .Include("~/Content/js/plugins/inputmask/jquery.inputmask.bundle.js")
                 .Include("~/Content/js/adminlte.js")
                 .Include("~/Content/js/init.js"));

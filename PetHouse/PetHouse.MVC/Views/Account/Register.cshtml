@@ -5,16 +5,7 @@
 }
 
 
-@if (ViewData["Error"] != null)
-{
-    <div class="callout callout-danger col-sm-6" style="margin-left: 25%;">
-        <h4>Error!</h4>
-
-        <p>
-            @ViewData["Error"]
-        </p>
-    </div>
-}
+@Html.Partial("Helpers/_ViewError")
 
 <div class="col-md-6 col-md-offset-3">
     <div class="box box-success">

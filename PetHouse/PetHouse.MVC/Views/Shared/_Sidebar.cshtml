@@ -1,4 +1,6 @@
 ﻿@using WebHelpers.Mvc5
+@using PetHouse.MVC.Models
+
 <aside class="main-sidebar">
     <section class="sidebar">
         @* BEGIN Search *@
@@ -15,71 +17,77 @@
         @* END Search *@
         @* BEGIN Menu *@
     <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-link"></i> <span>Ingresos</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-link"></i> <span>Ingresos</span></a></li>
-                <li><a href="@Url.Action("Index", "Expediente")"><i class="fa fa-link"></i> <span>Expedientes</span></a></li>
-                <li><a href="@Url.Action("Index", "Mascota")"><i class="fa fa-link"></i> <span>Mascotas</span></a></li>
-            </ul>
-        </li>
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-link"></i> <span>Adopciones</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="@Url.Action("Index", "Adopcion")"><i class="fa fa-link"></i> <span>Adopciones</span></a></li>
-                <li><a href="@Url.Action("Index", "Adoptante")"><i class="fa fa-link"></i> <span>Adoptantes</span></a></li>
-            </ul>
-        </li>
-        <li class="@Url.IsLinkActive("Index", "Tratamiento")">
-            <a href="@Url.Action("Index", "Tratamiento")"><i class="fa fa-link"></i> <span>Tratamientos</span></a>
-        </li>
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-link"></i> <span>Tratamientos</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-link"></i> <span>Ingresos</span></a></li>
-                <li><a href="@Url.Action("Index", "Expediente")"><i class="fa fa-link"></i> <span>Expedientes</span></a></li>
-                <li><a href="@Url.Action("Index", "Mascota")"><i class="fa fa-link"></i> <span>Mascotas</span></a></li>
-            </ul>
-        </li>
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-link"></i> <span>Administración</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="@Url.Action("Index", "Institucion")"><i class="fa fa-link"></i> <span>Institución</span></a></li>
-                <li><a href="@Url.Action("Index", "Empleado")"><i class="fa fa-link"></i> <span>Empleados</span></a></li>
-                <li><a href="@Url.Action("Index", "Medicamento")"><i class="fa fa-link"></i> <span>Medicamentos</span></a></li>
-                <li><a href="@Url.Action("Index", "Vacuna")"><i class="fa fa-link"></i> <span>Vacunas</span></a></li>
-                <li><a href="@Url.Action("Index", "Usuario")"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
-                <li><a href="@Url.Action("Index", "Puesto")"><i class="fa fa-link"></i> <span>Puestos</span></a></li>
-                <li><a href="@Url.Action("Index", "Rol")"><i class="fa fa-link"></i> <span>Roles</span></a></li>
-            </ul>
-        </li>
-        <li class="@Url.IsLinkActive("Index", "Home")">
-            <a href="@Url.Action("Index", "Home")"><i class="fa fa-link"></i> <span>Ingresos</span></a>
-        </li>
-        <li class="@Url.IsLinkActive("Login", "Account")">
-            <a href="@Url.Action("Login", "Account")"><i class="fa fa-link"></i> <span>Login</span></a>
-        </li>
+        <li class="header">PANELES</li>
+        @if (Permisos.HasLogin())
+        {
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Ingresos</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-link"></i> <span>Ingresos</span></a></li>
+                    <li><a href="@Url.Action("Index", "Expediente")"><i class="fa fa-link"></i> <span>Expedientes</span></a></li>
+                    <li><a href="@Url.Action("Index", "Mascota")"><i class="fa fa-link"></i> <span>Mascotas</span></a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Adopciones</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "Adopcion")"><i class="fa fa-link"></i> <span>Adopciones</span></a></li>
+                    <li><a href="@Url.Action("Index", "Adoptante")"><i class="fa fa-link"></i> <span>Adoptantes</span></a></li>
+                </ul>
+            </li>
+            <li class="@Url.IsLinkActive("Index", "Tratamiento")">
+                <a href="@Url.Action("Index", "Tratamiento")"><i class="fa fa-link"></i> <span>Tratamientos</span></a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Tratamientos</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-link"></i> <span>Ingresos</span></a></li>
+                    <li><a href="@Url.Action("Index", "Expediente")"><i class="fa fa-link"></i> <span>Expedientes</span></a></li>
+                    <li><a href="@Url.Action("Index", "Mascota")"><i class="fa fa-link"></i> <span>Mascotas</span></a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Administración</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "Institucion")"><i class="fa fa-link"></i> <span>Institución</span></a></li>
+                    <li><a href="@Url.Action("Index", "Empleado")"><i class="fa fa-link"></i> <span>Empleados</span></a></li>
+                    <li><a href="@Url.Action("Index", "Medicamento")"><i class="fa fa-link"></i> <span>Medicamentos</span></a></li>
+                    <li><a href="@Url.Action("Index", "Vacuna")"><i class="fa fa-link"></i> <span>Vacunas</span></a></li>
+                    <li><a href="@Url.Action("Index", "Usuario")"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
+                    <li><a href="@Url.Action("Index", "Puesto")"><i class="fa fa-link"></i> <span>Puestos</span></a></li>
+                    <li><a href="@Url.Action("Index", "Rol")"><i class="fa fa-link"></i> <span>Roles</span></a></li>
+                </ul>
+            </li>
+            <li class="@Url.IsLinkActive("Logout", "Account")">
+                <a href="@Url.Action("Logout", "Account")"><i class="fa fa-link"></i> <span>Logout</span></a>
+            </li>
+        }
+        else
+        {
+            <li class="@Url.IsLinkActive("Login", "Account")">
+                <a href="@Url.Action("Login", "Account")"><i class="fa fa-link"></i> <span>Login</span></a>
+            </li>
+        }
         <li class="@Url.IsLinkActive("Register", "Account")">
             <a href="@Url.Action("Register", "Account")"><i class="fa fa-link"></i> <span>Registrarce</span></a>
         </li>

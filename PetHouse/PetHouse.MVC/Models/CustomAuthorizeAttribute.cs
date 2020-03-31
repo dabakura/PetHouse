@@ -37,11 +37,11 @@ namespace PetHouse.MVC.Models
                    });
         }
 
-        private bool SessionTokenExist(HttpContextBase httpContex)
+        private bool SessionTokenExist(HttpContextBase httpContext)
         {
-            if (httpContex.Session == null)
+            if (httpContext.Session == null)
                 return false;
-            return (httpContex.Session["Token"] != null);
+            return (httpContext.Session["Token"] != null);
         }
     }
 }
