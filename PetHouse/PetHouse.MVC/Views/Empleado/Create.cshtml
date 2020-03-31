@@ -24,7 +24,12 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Identificacion, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                            <div class="col-sm-12 form-inline" style="padding: 0;">
+                                <div class="col-sm-9" style="padding: 0;">
+                                    @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "form-control", @id = "Identificacion", style = "min-width: 100%;" } })
+                                </div>
+                                <button id="Buscar" class="btn btn-primary col-sm-2" type="button" style="float: right;">Buscar <i class="fa fa-search"></i></button>
+                            </div>
                             @Html.ValidationMessageFor(model => model.Identificacion, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -32,7 +37,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @id = "Nombre" } })
                             @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -40,7 +45,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Primer_Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Primer_Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Primer_Apellido, new { htmlAttributes = new { @class = "form-control", @id = "Primer_Apellido" } })
                             @Html.ValidationMessageFor(model => model.Primer_Apellido, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -48,7 +53,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Segundo_Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Segundo_Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Segundo_Apellido, new { htmlAttributes = new { @class = "form-control", @id = "Segundo_Apellido" } })
                             @Html.ValidationMessageFor(model => model.Segundo_Apellido, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -140,7 +145,11 @@
     </div>
 </div>
 
+@Html.Hidden("UrlPersona", Url.Action("BuscarPersona"), htmlAttributes: new { @id = "UrlPersona" })
+@Html.Hidden("ListDistritos", Url.Action("ListDistritos"), htmlAttributes: new { @id = "ListDistritos" })
+@Html.Hidden("ListCantones", Url.Action("ListCantones"), htmlAttributes: new { @id = "ListCantones" })
 
 @section ViewSpecificJavascript {
     @Scripts.Render("~/Bundles/create_domicilio")
+    @Scripts.Render("~/Bundles/create_persona")
 }

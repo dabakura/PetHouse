@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace UI.Controllers
 {
     [CustomAuthorize]
-    public class EmpleadoController : BaseController
+    public class EmpleadoController : BasePadronController
     {
         // GET: Empleado
         public async Task<ActionResult> Index()
@@ -50,8 +50,9 @@ namespace UI.Controllers
         }
 
         // GET: Empleado/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            await SetData();
             return View();
         }
 
@@ -60,14 +61,21 @@ namespace UI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Identificacion,Nombre,Primer_Apellido,Segundo_Apellido,Fecha_Nacimiento,Telefono,Correo,DomicilioId,PuestoID,InstitucionId,UserId")] Empleado empleado)
+        public async Task<ActionResult> Create([Bind(Include = "Identificacion,Nombre,Primer_Apellido,Segundo_Apellido,Fecha_Nacimiento,Telefono,Correo,Domicilio,DomicilioId,Puesto,PuestoID,Institucion,InstitucionId")] Empleado empleado)
         {
             if (ModelState.IsValid)
             {
-                var result = await PostAsync("api/Empleado", empleado);
-                if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                var resultDomicilio = await PostAsync("api/Domicilio", empleado.Domicilio);
+                if (resultDomicilio.IsSuccessStatusCode)
+                {
+                    string resultdata = resultDomicilio.Content.ReadAsStringAsync().Result;
+                    empleado.Domicilio = JsonConvert.DeserializeObject<Domicilio>(resultdata);
+                    var result = await PostAsync("api/Empleado", empleado);
+                    if (result.IsSuccessStatusCode)
+                        return RedirectToAction("Index");
+                }
             }
+            await SetData();
             ViewData["Error"] = await ErrorAsync("Empleado", "Create", "Error insertar empleado compruebe los campos", 400);
             return View(empleado);
         }
@@ -92,6 +100,7 @@ namespace UI.Controllers
                 ViewData["Error"] = await ErrorAsync("Empleado", "Edit", "Error al consultar api", 404);
                 return HttpNotFound();
             }
+            await SetData(empleado.Domicilio.ProvinciaId, empleado.Domicilio.CantonId);
             return View(empleado);
         }
 
@@ -100,14 +109,19 @@ namespace UI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Identificacion,Nombre,Primer_Apellido,Segundo_Apellido,Fecha_Nacimiento,Telefono,Correo,DomicilioId,PuestoID,InstitucionId,UserId")] Empleado empleado)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Identificacion,Nombre,Primer_Apellido,Segundo_Apellido,Fecha_Nacimiento,Telefono,Correo,Domicilio,DomicilioId,Puesto,PuestoID,Institucion,InstitucionId")] Empleado empleado)
         {
             if (ModelState.IsValid)
             {
-                var result = await PutAsync("api/Empleado/" + empleado.Id, empleado);
-                if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                var resultDomicilio = await PutAsync("api/Domicilio/" + empleado.DomicilioId, empleado.Domicilio);
+                if (resultDomicilio.IsSuccessStatusCode)
+                {
+                    var result = await PutAsync("api/Empleado/" + empleado.Identificacion, empleado);
+                    if (result.IsSuccessStatusCode)
+                        return RedirectToAction("Index");
+                }
             }
+            await SetData();
             ViewData["Error"] = await ErrorAsync("Empleado", "Edit", "Error actualizar empleado compruebe los campos", 400);
             return View(empleado);
         }
@@ -145,6 +159,39 @@ namespace UI.Controllers
                 return RedirectToAction("Index");
             ViewData["Error"] = await ErrorAsync("Empleado", "DeleteConfirmed", "Error eliminar empleado compruebe los campos", 400);
             return HttpNotFound();
+        }
+
+        private async Task<List<Puesto>> DataPuestos()
+        {
+            var result = await GetAsync("api/Puesto");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Puesto>>(resultdata);
+            }
+            return new List<Puesto>();
+        }
+
+        private async Task<List<Institucion>> DataInstituciones()
+        {
+            var result = await GetAsync("api/Institucion");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Institucion>>(resultdata);
+            }
+            return new List<Institucion>();
+        }
+
+        private async Task SetData(int? provincia_id = 0, int? canton_id = 0)
+        {
+            await SetDomicilio(provincia_id, canton_id);
+            var Puestos = new List<Puesto> { new Puesto { Nombre = "--Seleccione Puesto--", Id = 0 } };
+            Puestos.AddRange(await DataPuestos());
+            var Instituciones = new List<Institucion> { new Institucion { Nombre = "--Seleccione Institucion--", Id = 0 } };
+            Instituciones.AddRange(await DataInstituciones());
+            ViewBag.Puestos = new SelectList(Puestos, "Id", "Nombre");
+            ViewBag.Instituciones = new SelectList(Instituciones, "Id", "Nombre"); 
         }
     }
 }

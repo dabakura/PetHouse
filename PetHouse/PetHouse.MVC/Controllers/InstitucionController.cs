@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace UI.Controllers
 {
     [CustomAuthorize]
-    public class InstitucionController : BaseController
+    public class InstitucionController : BasePadronController
     {
         // GET: Institucion
         public async Task<ActionResult> Index()
@@ -159,82 +159,6 @@ namespace UI.Controllers
                 return RedirectToAction("Index");
             ViewData["Error"] = await ErrorAsync("Institucion", "DeleteConfirmed", "Error eliminar institución compruebe los campos", 400);
             return HttpNotFound();
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> ListCantones(int ID_PROVINCIA)
-        {
-            var cantones = await DataCantones(ID_PROVINCIA);
-            var CantonesSelect = new SelectList(cantones, "Id", "Nombre");
-            return Json(CantonesSelect);
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> ListDistritos(int ID_CANTON)
-        {
-            var distritos = await DataDistritos(ID_CANTON);
-            var DistritosSelect = new SelectList(distritos, "Id", "Nombre");
-            return Json(DistritosSelect);
-        }
-
-        private async Task<List<Provincia>> DataProvincias()
-        {
-            var result = await GetAsync("api/Provincia");
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                List<Provincia> provincias = JsonConvert.DeserializeObject<List<Provincia>>(resultdata);
-                return provincias;
-            }
-            return new List<Provincia>();
-        }
-
-        private async Task<List<Canton>> DataCantones(int ID_PROVINCIA)
-        {
-            var result = await GetAsync("api/Canton");
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                List<Canton> Cantones = JsonConvert.DeserializeObject<List<Canton>>(resultdata);
-                return Cantones.FindAll(canton => canton.ProvinciaId == ID_PROVINCIA);
-            }
-            return new List<Canton>();
-        }
-
-        private async Task<List<Distrito>> DataDistritos(int ID_CANTON)
-        {
-            var result = await GetAsync("api/Distrito");
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                List<Distrito> Distritos = JsonConvert.DeserializeObject<List<Distrito>>(resultdata);
-                return Distritos.FindAll(distrito => distrito.CantonId == ID_CANTON);
-            }
-            return new List<Distrito>();
-        }
-
-        private async Task SetDomicilio(int? provincia_id = 0, int? canton_id = 0)
-        {
-            var Provincias = await DataProvincias();
-            var Cantones = new List<Canton>();
-            var Distritos = new List<Distrito>();
-            if (Provincias.Count > 0)
-            {
-                if (provincia_id > 0)
-                    Cantones = await DataCantones(provincia_id.Value);
-                else
-                    Cantones = await DataCantones(Provincias.ToArray()[0].Id);
-            }
-            if (Cantones.Count > 0)
-            {
-                if (canton_id > 0)
-                    Distritos = await DataDistritos(canton_id.Value);
-                else
-                    Distritos = await DataDistritos(Cantones.ToArray()[0].Id);
-            }
-            ViewBag.Provincias = new SelectList(Provincias, "Id", "Nombre"); ;
-            ViewBag.Cantones = new SelectList(Cantones, "Id", "Nombre"); ;
-            ViewBag.Distritos = new SelectList(Distritos, "Id", "Nombre"); ;
         }
     }
 }

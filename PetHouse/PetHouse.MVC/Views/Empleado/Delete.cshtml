@@ -79,7 +79,8 @@
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => (model.Domicilio.Distrito.Canton.Provincia.Nombre + " " + model.Domicilio.Distrito.Canton.Nombre + " " + model.Domicilio.Distrito.Nombre))
+                            @{string text = (Model.Domicilio.Distrito.Canton.Provincia.Nombre + " " + Model.Domicilio.Distrito.Canton.Nombre + " " + Model.Domicilio.Distrito.Nombre); }
+                            @Html.DisplayFor(model => text)
                         </dd>
 
                         <dt>
@@ -91,15 +92,15 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Institucion.Ced_Juridica)
+                            @Html.DisplayNameFor(model => model.Institucion)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Institucion.Ced_Juridica)
+                            @Html.DisplayFor(model => model.Institucion.Nombre)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Puesto.Nombre)
+                            @Html.DisplayNameFor(model => model.Puesto)
                         </dt>
 
                         <dd>

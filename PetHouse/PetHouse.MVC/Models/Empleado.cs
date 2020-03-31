@@ -19,10 +19,14 @@ namespace PetHouse.MVC.Models
         }
 
         public int Id { get; set; }
+        [DisplayName("Identificación")]
         public int Identificacion { get; set; }
         public string Nombre { get; set; }
+        [DisplayName("Primer Apellido")]
         public string Primer_Apellido { get; set; }
+        [DisplayName("Segundo Apellido")]
         public string Segundo_Apellido { get; set; }
+        [DisplayName("Fecha Nacimiento")]
         public DateTime Fecha_Nacimiento { get; set; }
         public int Telefono { get; set; }
         public string Correo { get; set; }

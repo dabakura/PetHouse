@@ -6,7 +6,7 @@
 
 @Html.Partial("Helpers/_ViewError")
 
-<div class="col-sm-12">
+<div class="col-sm-12" style="z-index: 1;">
     @Html.ActionLink("Crear nuevo Empleado", "Create", "Empleado", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px" })
 </div>
 
@@ -37,18 +37,6 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Correo)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Domicilio)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Domicilio.Direccion)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Institucion)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Puesto)
-                    </th>
                     <th style="text-align: center;">
                         Acciones
                     </th>
@@ -78,21 +66,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Correo)
-                    </td>
-                    <td>
-                        @{
-                            var text = item.Domicilio.Distrito.Canton.Provincia.Nombre + " " + item.Domicilio.Distrito.Canton.Nombre + " " + item.Domicilio.Distrito.Nombre;
-                            @Html.DisplayFor(modelItem => text)
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Domicilio.Direccion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Institucion.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Puesto.Nombre)
                     </td>
                     <td style="text-align: center; min-width: 160px;">
                         <a href="@Url.Action("Edit", "Empleado", new { id = item.Identificacion })" class="btn btn-warning">

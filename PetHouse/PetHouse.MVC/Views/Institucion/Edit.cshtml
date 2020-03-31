@@ -119,6 +119,10 @@
     </div>
 </div>
 
+
+@Html.Hidden("ListDistritos", Url.Action("ListDistritos"), htmlAttributes: new { @id = "ListDistritos" })
+@Html.Hidden("ListCantones", Url.Action("ListCantones"), htmlAttributes: new { @id = "ListCantones" })
+
 @section ViewSpecificJavascript {
     @Scripts.Render("~/Bundles/edit_domicilio")
 }

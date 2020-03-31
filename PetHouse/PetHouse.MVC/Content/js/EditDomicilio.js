@@ -1,10 +1,12 @@
-﻿$("#Id_Provincia").change(function () {
+﻿var url_Distritos = $("#ListDistritos").val();
+var url_Cantones = $("#ListCantones").val();
+$("#Id_Provincia").change(function () {
     $("#Id_Canton").empty();
     $("#Id_Distrito").empty();
     $("#Id_Canton").append('<option value="' + 0 + '">' + "--Seleccione canton--" + '</option>');
     $.ajax({
         type: 'POST',
-        url: '@Url.Action("ListCantones")',
+        url: url_Cantones,
         dataType: 'json',
         data: { ID_PROVINCIA: $("#Id_Provincia").val() },
         success: function (Cantones) {
@@ -13,7 +15,7 @@
             });
         },
         error: function (ex) {
-            alert('Problema al cargar los cantones' + ex);
+            alert('Problema al cargar los cantones ' + ex.message);
         }
     });
     $("#Id_Canton").prop("disabled", false);
@@ -24,7 +26,7 @@ $("#Id_Canton").change(function () {
     $("#Id_Distrito").append('<option value="' + 0 + '">' + "--Seleccione distrito--" + '</option>');
     $.ajax({
         type: 'POST',
-        url: '@Url.Action("ListDistritos")',
+        url: url_Distritos,
         dataType: 'json',
         data: { ID_CANTON: $("#Id_Canton").val() },
         success: function (Distritos) {
@@ -33,7 +35,7 @@ $("#Id_Canton").change(function () {
             });
         },
         error: function (ex) {
-            alert('Problema al cargar los distritos' + ex);
+            alert('Problema al cargar los distritos ' + ex.message);
         }
     });
     $("#Id_Distrito").prop("disabled", false);

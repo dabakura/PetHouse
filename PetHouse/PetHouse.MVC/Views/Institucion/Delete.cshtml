@@ -71,7 +71,8 @@
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => (model.Domicilio.Distrito.Canton.Provincia.Nombre + " " + model.Domicilio.Distrito.Canton.Nombre + " " + model.Domicilio.Distrito.Nombre))
+                            @{string text = (Model.Domicilio.Distrito.Canton.Provincia.Nombre + " " + Model.Domicilio.Distrito.Canton.Nombre + " " + Model.Domicilio.Distrito.Nombre); }
+                            @Html.DisplayFor(model => text)
                         </dd>
 
                         <dt>

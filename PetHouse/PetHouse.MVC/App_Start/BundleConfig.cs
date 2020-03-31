@@ -38,6 +38,9 @@ namespace PetHouse.MVC.App_Start
             bundles.Add(new ScriptBundle("~/Bundles/edit_domicilio")
                 .Include("~/Content/js/EditDomicilio.js"));
 
+            bundles.Add(new ScriptBundle("~/Bundles/create_persona")
+                .Include("~/Content/js/CreatePersona.js"));
+
 #if DEBUG
             BundleTable.EnableOptimizations = false;
 #else

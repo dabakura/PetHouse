@@ -134,6 +134,7 @@ namespace PetHouse.API.Models
         public int PuestoID { get; set; }
         public int InstitucionId { get; set; }
         public string UserId { get; set; }
+        public InstitucionModel Institucion { get; set; }
         public DomicilioModel Domicilio { get; set; }
         public PuestoModel Puesto { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Empleado/" + Identificacion;
