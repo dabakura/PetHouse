@@ -123,6 +123,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\js\CreateDomicilio.js" />
+    <Content Include="Content\js\EditDomicilio.js" />
     <Content Include="Content\js\plugins\jquery-validate\jquery.validate.min.js" />
     <Content Include="Content\js\plugins\jquery-validate\jquery.validate.unobtrusive.min.js" />
     <Content Include="Global.asax" />

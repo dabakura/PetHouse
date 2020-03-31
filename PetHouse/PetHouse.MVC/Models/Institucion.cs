@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace PetHouse.MVC.Models
@@ -14,6 +15,7 @@ namespace PetHouse.MVC.Models
         public string Pag_Web { get; set; }
         public string Correo { get; set; }
         public int DireccionId { get; set; }
+        [DisplayName("Región")]
         public Domicilio Domicilio { get; set; }
         [ScaffoldColumn(false)]
         public bool? Activo { get; set; }

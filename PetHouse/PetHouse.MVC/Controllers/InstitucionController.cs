@@ -76,7 +76,7 @@ namespace UI.Controllers
                 }
             }
             await SetDomicilio();
-            ViewData["Error"] = await ErrorAsync("Institucion", "Create", "Error insertar institucion compruebe los campos", 400);
+            ViewData["Error"] = await ErrorAsync("Institucion", "Create", "Error insertar institución compruebe los campos", 400);
             return View(institucion);
         }
 
@@ -122,7 +122,7 @@ namespace UI.Controllers
                 }
             }
             await SetDomicilio();
-            ViewData["Error"] = await ErrorAsync("Institucion", "Edit", "Error actualizar institucion compruebe los campos", 400);
+            ViewData["Error"] = await ErrorAsync("Institucion", "Edit", "Error actualizar institución compruebe los campos", 400);
             return View(institucion);
         }
 
@@ -157,7 +157,7 @@ namespace UI.Controllers
             var result = await DeleteAsync("api/Institucion/" + id);
             if (result.IsSuccessStatusCode)
                 return RedirectToAction("Index");
-            ViewData["Error"] = await ErrorAsync("Institucion", "DeleteConfirmed", "Error eliminar institucion compruebe los campos", 400);
+            ViewData["Error"] = await ErrorAsync("Institucion", "DeleteConfirmed", "Error eliminar institución compruebe los campos", 400);
             return HttpNotFound();
         }
 

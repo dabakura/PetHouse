@@ -124,6 +124,16 @@ namespace PetHouse.BLL.Mappers
                             }
                         }
                     };
+                    dest.Institucion = new Institucion
+                    {
+                        Id = orig.InstitucionId,
+                        Ced_Juridica = orig.Ced_Juridica,
+                        Correo = orig.InstitucionCorreo,
+                        Fax = orig.Fax,
+                        Nombre = orig.InstitucionName,
+                        Pag_Web = orig.Pag_Web,
+                        Telefono = orig.Telefono
+                    };
                 });
                 cfg.CreateMap<ConsultarExpedienteResult, Expediente>();
                 cfg.CreateMap<BuscarExpedienteResult, Expediente>();

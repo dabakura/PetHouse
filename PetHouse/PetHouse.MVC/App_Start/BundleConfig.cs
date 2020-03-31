@@ -32,6 +32,12 @@ namespace PetHouse.MVC.App_Start
                 .Include("~/Content/js/adminlte.js")
                 .Include("~/Content/js/init.js"));
 
+            bundles.Add(new ScriptBundle("~/Bundles/create_domicilio")
+                .Include("~/Content/js/CreateDomicilio.js"));
+
+            bundles.Add(new ScriptBundle("~/Bundles/edit_domicilio")
+                .Include("~/Content/js/EditDomicilio.js"));
+
 #if DEBUG
             BundleTable.EnableOptimizations = false;
 #else

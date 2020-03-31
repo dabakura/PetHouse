@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PetHouse" Class="PetHouseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=PetHouse;User ID=PetHouseAdmin;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="PetHouse.DAL.Properties.Settings" SettingsPropertyName="PetHouseConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=PetHouse;User ID=PetHouseAdmin;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="PetHouse.DAL.Properties.Settings" SettingsPropertyName="PetHouseConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Adopcion" Member="Adopcions">
     <Type Name="Adopcion">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -42,15 +42,15 @@
     <Type Name="AspNetRoles">
       <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Association Name="AspNetRole_AspNetUserRole" Member="AspNetUserRoles" ThisKey="Id" OtherKey="RoleId" Type="AspNetUserRoles" />
+      <Association Name="AspNetRoles_AspNetUserRoles" Member="AspNetUserRoles" ThisKey="Id" OtherKey="RoleId" Type="AspNetUserRoles" />
     </Type>
   </Table>
   <Table Name="dbo.AspNetUserRoles" Member="AspNetUserRoles">
     <Type Name="AspNetUserRoles">
       <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RoleId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="AspNetRole_AspNetUserRole" Member="AspNetRoles" ThisKey="RoleId" OtherKey="Id" Type="AspNetRoles" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="AspNetUser_AspNetUserRole" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="AspNetRoles_AspNetUserRoles" Member="AspNetRoles" ThisKey="RoleId" OtherKey="Id" Type="AspNetRoles" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="AspNetUsers_AspNetUserRoles" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.AspNetUsers" Member="AspNetUsers">
@@ -67,8 +67,8 @@
       <Column Name="LockoutEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="AccessFailedCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Association Name="AspNetUser_AspNetUserRole" Member="AspNetUserRoles" ThisKey="Id" OtherKey="UserId" Type="AspNetUserRoles" />
-      <Association Name="AspNetUser_Empleado" Member="Empleados" ThisKey="Id" OtherKey="UserId" Type="Empleado" />
+      <Association Name="AspNetUsers_AspNetUserRoles" Member="AspNetUserRoles" ThisKey="Id" OtherKey="UserId" Type="AspNetUserRoles" />
+      <Association Name="AspNetUsers_Empleado" Member="Empleados" ThisKey="Id" OtherKey="UserId" Type="Empleado" />
     </Type>
   </Table>
   <Table Name="dbo.Bitacora" Member="Bitacoras">
@@ -144,7 +144,7 @@
       <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Empleado_Procedimiento" Member="Procedimientos" ThisKey="Identificacion" OtherKey="EmpleadoId" Type="Procedimiento" />
       <Association Name="Empleado_Tratamiento" Member="Tratamientos" ThisKey="Identificacion" OtherKey="EmpleadoId" Type="Tratamiento" />
-      <Association Name="AspNetUser_Empleado" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="AspNetUsers_Empleado" Member="AspNetUsers" ThisKey="UserId" OtherKey="Id" Type="AspNetUsers" IsForeignKey="true" DeleteRule="SET NULL" />
       <Association Name="Domicilio_Empleado" Member="Domicilio" ThisKey="DomicilioId" OtherKey="Id" Type="Domicilio" IsForeignKey="true" />
       <Association Name="Institucion_Empleado" Member="Institucion" ThisKey="InstitucionId" OtherKey="Id" Type="Institucion" IsForeignKey="true" />
       <Association Name="Puesto_Empleado" Member="Puesto" ThisKey="PuestoID" OtherKey="Id" Type="Puesto" IsForeignKey="true" />
@@ -467,32 +467,6 @@
       <Column Name="DistritoName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="CantonName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="ProvinciaName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.BuscarEmpleado" Method="BuscarEmpleado">
-    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
-    <ElementType Name="BuscarEmpleadoResult">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Identificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Primer_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Segundo_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="PuestoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DomicilioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="InstitucionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UserId" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="DistritoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CantonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProvinciaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DistritoName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="CantonName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="ProvinciaName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="PuestoName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="PuestoDescripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.BuscarExpediente" Method="BuscarExpediente">
@@ -1053,6 +1027,38 @@
     <Parameter Name="Precio" Parameter="precio" Type="System.Decimal" DbType="Decimal(18,2)" />
     <ElementType Name="InsertarVacunaResult">
       <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarEmpleado" Method="BuscarEmpleado">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarEmpleadoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Identificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Primer_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Segundo_Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PuestoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DomicilioId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstitucionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="DistritoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CantonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinciaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DistritoName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CantonName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinciaName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="PuestoName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PuestoDescripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Ced_Juridica" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="InstitucionCorreo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InstitucionName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Pag_Web" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="InstitucionTelefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>
