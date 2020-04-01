@@ -1,0 +1,36 @@
+﻿@model PetHouse.MVC.Models.EmpleadoUserRolModel
+
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Registrar Roles</h3>
+    </div>
+
+    @using (Html.BeginForm("SetRoles", "", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Empleado.Id)
+        @Html.HiddenFor(model => model.Empleado.Identificacion)
+        @Html.HiddenFor(model => model.Empleado.Correo)
+        @Html.HiddenFor(model => model.Empleado.DomicilioId)
+        @Html.HiddenFor(model => model.Empleado.Domicilio.Id)
+        @Html.HiddenFor(model => model.Empleado.Fecha_Nacimiento)
+        @Html.HiddenFor(model => model.Empleado.Institucion.Id)
+        @Html.HiddenFor(model => model.Empleado.InstitucionId)
+        @Html.HiddenFor(model => model.Empleado.Nombre)
+        @Html.HiddenFor(model => model.Empleado.Primer_Apellido)
+        @Html.HiddenFor(model => model.Empleado.Segundo_Apellido)
+        @Html.HiddenFor(model => model.Empleado.Puesto.Id)
+        @Html.HiddenFor(model => model.Empleado.PuestoID)
+        @Html.HiddenFor(model => model.Empleado.Telefono)
+        <div class="form-horizontal">
+            <h4>EmpleadoUserRolModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

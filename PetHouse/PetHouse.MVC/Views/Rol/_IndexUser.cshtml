@@ -1,0 +1,58 @@
+﻿@model PetHouse.MVC.Models.EmpleadoUserRolModel
+
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Registrar Usuario</h3>
+    </div>
+    @using (Html.BeginForm("CreateUser", "Rol", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Empleado.Id)
+        @Html.HiddenFor(model => model.Empleado.Identificacion)
+        @Html.HiddenFor(model => model.Empleado.Correo)
+        @Html.HiddenFor(model => model.Empleado.DomicilioId)
+        @Html.HiddenFor(model => model.Empleado.Domicilio.Id)
+        @Html.HiddenFor(model => model.Empleado.Fecha_Nacimiento)
+        @Html.HiddenFor(model => model.Empleado.Institucion.Id)
+        @Html.HiddenFor(model => model.Empleado.InstitucionId)
+        @Html.HiddenFor(model => model.Empleado.Nombre)
+        @Html.HiddenFor(model => model.Empleado.Primer_Apellido)
+        @Html.HiddenFor(model => model.Empleado.Segundo_Apellido)
+        @Html.HiddenFor(model => model.Empleado.Puesto.Id)
+        @Html.HiddenFor(model => model.Empleado.PuestoID)
+        @Html.HiddenFor(model => model.Empleado.Telefono)
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="box-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.User.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { placeholder = "Email", @class = "form-control", Required = true } })
+                        @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.User.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.User.Password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control", Required = true } })
+                        @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.User.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.User.ConfirmPassword, new { htmlAttributes = new { placeholder = "Confirmar Password", @class = "form-control", Required = true } })
+                        @Html.ValidationMessageFor(model => model.User.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button type="submit" class="btn btn-success pull-right">Registrar</button>
+            </div>
+            <!-- /.box-footer -->
+        </div>
+    }
+</div>

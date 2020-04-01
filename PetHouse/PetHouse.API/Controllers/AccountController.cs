@@ -353,7 +353,7 @@ namespace PetHouse.API.Controllers
                 return GetErrorResult(result);
             }
 
-            return Ok();
+            return Created(Url.Request.RequestUri, user);
         }
 
         [Authorize(Roles = "Admin")]

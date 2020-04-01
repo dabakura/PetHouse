@@ -178,7 +178,6 @@
     <Content Include="Views\Rol\Delete.cshtml" />
     <Content Include="Views\Rol\Details.cshtml" />
     <Content Include="Views\Rol\Edit.cshtml" />
-    <Content Include="Views\Rol\Index.cshtml" />
     <Content Include="Views\Vacuna\Create.cshtml" />
     <Content Include="Views\Vacuna\Delete.cshtml" />
     <Content Include="Views\Vacuna\Details.cshtml" />
@@ -190,6 +189,10 @@
     <Content Include="Views\Direccion\Create.cshtml" />
     <Content Include="Views\Shared\Helpers\_ViewError.cshtml" />
     <Content Include="Views\Medicamento\Index.cshtml" />
+    <Content Include="Views\Rol\IndexSelect.cshtml" />
+    <Content Include="Views\Rol\_IndexUser.cshtml" />
+    <Content Include="Views\Rol\_IndexRol.cshtml" />
+    <Content Include="Views\Rol\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -209,6 +212,8 @@
     <Compile Include="Controllers\VacunaController.cs" />
     <Compile Include="Models\Adopcion.cs" />
     <Compile Include="Models\Adoptante.cs" />
+    <Compile Include="Models\EmpleadoUserRolModel.cs" />
+    <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Canton.cs" />

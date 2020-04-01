@@ -1,31 +1,118 @@
-﻿@model IEnumerable<PetHouse.MVC.Models.Rol>
+﻿@using PetHouse.MVC.Models;
+@model PetHouse.MVC.Models.EmpleadoUserRolModel
 
 @{
-    ViewBag.Title = "Roles";
+    ViewBag.Title = "Creación de Permisos";
 }
-<div class="col-sm-12">
-    @Html.ActionLink("Crear nuevo Rol", "Create", "Rol", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px" })
+<div class="col-md-12">
+    <div class="col-md-6 col-sm-12">
+        <div class="box box-success" style="min-height: 500px">
+            <div class="box-header with-border">
+                <h3 class="box-title">Empleado Info!</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="box-body">
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Identificacion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Identificacion)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Nombre)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Nombre)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Primer_Apellido)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Primer_Apellido)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Segundo_Apellido)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Segundo_Apellido)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Fecha_Nacimiento)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Fecha_Nacimiento)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Telefono)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Telefono)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Correo)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Correo)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Domicilio)
+                            </dt>
+
+                            <dd>
+                                @{string text = (Model.Empleado.Domicilio.Distrito.Canton.Provincia.Nombre + " " + Model.Empleado.Domicilio.Distrito.Canton.Nombre + " " + Model.Empleado.Domicilio.Distrito.Nombre); }
+                                @Html.DisplayFor(model => text)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Domicilio.Direccion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Domicilio.Direccion)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Institucion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Institucion.Nombre)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Empleado.Puesto)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Empleado.Puesto.Nombre)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        @if (Model.Empleado.UserId != null)
+        {
+            @Html.Partial("_IndexRol", Model)
+        }
+        @Html.Partial("_IndexUser", Model)
+    </div>
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
