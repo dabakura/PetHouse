@@ -15,6 +15,6 @@ namespace PetHouse.MVC.Models
 
         public Empleado Empleado { get; set; }
         public RegisterUser User { get; set; }
-        public int? RolId { get; set; }
+        public string RolId { get; set; }
     }
 }

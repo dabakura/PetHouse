@@ -20,7 +20,6 @@ namespace PetHouse.API.Controllers
         public async Task<IHttpActionResult> GetRole(string Id)
         {
             var role = await RoleManager.FindByIdAsync(Id);
-
             if (role != null)
             {
                 Uri uri = Url.Request.RequestUri;
@@ -31,11 +30,17 @@ namespace PetHouse.API.Controllers
 
         }
 
+        [Route("GetUserRoles/{id:guid}", Name = "GetUserRoles")]
+        public IHttpActionResult GetUserRoles(string Id)
+        {
+            var roles = UserManager.GetRolesAsync(Id);
+            return Ok(roles);
+        }
+
         [Route("", Name = "GetAllRoles")]
         public IHttpActionResult GetAllRoles()
         {
             var roles = RoleManager.Roles;
-
             return Ok(roles);
         }
 

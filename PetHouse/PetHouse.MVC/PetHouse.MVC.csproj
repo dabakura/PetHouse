@@ -232,6 +232,7 @@
     <Compile Include="Models\Puesto.cs" />
     <Compile Include="Models\RegisterUser.cs" />
     <Compile Include="Models\Rol.cs" />
+    <Compile Include="Models\RolManager.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\Tratamiento.cs" />
     <Compile Include="Models\UserLogin.cs" />

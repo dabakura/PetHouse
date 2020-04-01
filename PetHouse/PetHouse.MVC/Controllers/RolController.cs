@@ -28,26 +28,23 @@ namespace UI.Controllers
 
         public async Task<ActionResult> Index(int? id)
         {
-            Empleado empleado = await GetEmpleadoAsync(id);
-            if (empleado == null)
+            var empleado = await GetEmpleadoAsync(id);
+            var roles = await GetRolesAsync();
+
+            if (empleado == null || roles == null)
             {
                 ViewData["Error"] = await ErrorAsync("Rol", "Index", "Error al consultar api", 404);
                 return HttpNotFound();
             }
 
-            var result = await GetAsync("api/Rol");
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                ViewBag.Roles = JsonConvert.DeserializeObject<List<Rol>>(resultdata);
-                var empleadoUserRolModel = new EmpleadoUserRolModel { Empleado = empleado };
-                return View(empleadoUserRolModel);
-            }
+            await SetViewData(empleado, roles);
 
-            ViewData["Error"] = await ErrorAsync("Rol", "Index", "Error al consultar api", 500);
-            return HttpNotFound();
+            var empleadoUserRolModel = new EmpleadoUserRolModel { Empleado = empleado };
+            return View(empleadoUserRolModel);
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateUser([Bind(Include = "Empleado, User")] EmpleadoUserRolModel empleadoUserRolModel)
         {
             string userId = await Register(empleadoUserRolModel.User);
@@ -64,6 +61,8 @@ namespace UI.Controllers
             return HttpNotFound();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetRoles([Bind(Include = "Empleado, RolId")] EmpleadoUserRolModel empleadoUserRolModel)
         {
             Empleado empleado = await GetEmpleadoAsync(5);
@@ -84,92 +83,6 @@ namespace UI.Controllers
 
             ViewData["Error"] = await ErrorAsync("Rol", "Index", "Error al consultar api", 500);
             return HttpNotFound();
-        }
-
-        // GET: Rol/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Rol", "Details", "No se ingreso el Id", 400);
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var result = await GetAsync("api/Rol/" + id.Value);
-            Rol rol = null;
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                rol = JsonConvert.DeserializeObject<Rol>(resultdata);
-            }
-            if (rol == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Rol", "Details", "Error al consultar api", 404);
-                return HttpNotFound();
-            }
-            return View(rol);
-        }
-
-        // GET: Rol/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Rol/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name")] Rol rol)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await PostAsync("api/Rol", rol);
-                if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
-            }
-            ViewData["Error"] = await ErrorAsync("Rol", "Create", "Error insertar rol compruebe los campos", 400);
-            return View(rol);
-        }
-
-        // GET: Rol/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Rol", "Edit", "No se ingreso el Id", 400);
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var result = await GetAsync("api/Rol/" + id.Value);
-            Rol rol = null;
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                rol = JsonConvert.DeserializeObject<Rol>(resultdata);
-            }
-            if (rol == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Rol", "Edit", "Error al consultar api", 404);
-                return HttpNotFound();
-            }
-            return View(rol);
-        }
-
-        // POST: Rol/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] Rol rol)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await PutAsync("api/Rol/" + rol.Id, rol);
-                if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
-            }
-            ViewData["Error"] = await ErrorAsync("Rol", "Edit", "Error actualizar rol compruebe los campos", 400);
-            return View(rol);
         }
 
         // GET: Rol/Delete/5
@@ -205,6 +118,39 @@ namespace UI.Controllers
                 return RedirectToAction("Index");
             ViewData["Error"] = await ErrorAsync("Rol", "DeleteConfirmed", "Error eliminar rol compruebe los campos", 400);
             return HttpNotFound();
+        }
+
+        private async Task SetViewData(Empleado empleado, List<Rol> roles)
+        {
+            ViewBag.RolesAsignados = new List<Rol>();
+            ViewBag.Roles = new SelectList(roles, "Id", "Name");
+
+            if (empleado.UserId != null)
+            {
+                var result = await GetAsync("api/Rol/GetUserRoles/" + empleado.UserId);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultdata = result.Content.ReadAsStringAsync().Result;
+                    var rolesAsignados = JsonConvert.DeserializeObject<List<Rol>>(resultdata);
+                    ViewBag.RolesAsignados = rolesAsignados;
+                    var Roles = new RolManager(roles).SetAsignados(rolesAsignados).SetFilter(rol => !rol.IsAsignado).Roles;
+                    ViewBag.Roles = new SelectList(Roles, "Id", "Name");
+                }
+                else
+                    ViewData["Error"] = await ErrorAsync("Rol", "Index", "Error al consultar api", 404);
+            }
+        }
+
+        private async Task<List<Rol>> GetRolesAsync()
+        {
+            var result = await GetAsync("api/Rol");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                var roles = JsonConvert.DeserializeObject<List<Rol>>(resultdata);
+                return roles;
+            }
+            return null;
         }
 
         private async Task<Empleado> GetEmpleadoAsync(int? id)
