@@ -11,7 +11,8 @@ namespace UI.Controllers
     [CustomAuthorize]
     public class RolController : BaseController
     {
-        // GET: Rol
+        // GET: Rol/IndexSelect
+        [HttpGet]
         public async Task<ActionResult> IndexSelect()
         {
             var result = await GetAsync("api/Empleado");
@@ -26,6 +27,8 @@ namespace UI.Controllers
             return View(new List<Empleado>()); ;
         }
 
+        // GET: Rol/Index/5
+        [HttpGet]
         public async Task<ActionResult> Index(int? id)
         {
             var empleado = await GetEmpleadoAsync(id);
@@ -43,6 +46,7 @@ namespace UI.Controllers
             return View(empleadoUserRolModel);
         }
 
+        // POST: Rol/CreateUser/{EmpleadoUserRolModel}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateUser([Bind(Include = "Empleado, User")] EmpleadoUserRolModel empleadoUserRolModel)
@@ -57,67 +61,34 @@ namespace UI.Controllers
                     return RedirectToAction("Index", new { id = empleado.Identificacion });
             }
 
-            ViewData["Error"] = await ErrorAsync("Rol", "CreateUser", "Error al asignar permisos", 500);
+            ViewData["Error"] = await ErrorAsync("Rol", "CreateUser", "Error al asignar usuario", 500);
             return HttpNotFound();
         }
 
+        // POST: Rol/SetRoles/{EmpleadoUserRolModel}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetRoles([Bind(Include = "Empleado, RolId")] EmpleadoUserRolModel empleadoUserRolModel)
         {
-            Empleado empleado = await GetEmpleadoAsync(5);
-            if (empleado == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Rol", "Index", "Error al consultar api", 404);
-                return HttpNotFound();
-            }
-            ViewBag.Empleado = empleado;
-
-            var result = await GetAsync("api/Rol");
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                ViewBag.Roles = JsonConvert.DeserializeObject<List<Rol>>(resultdata);
-                return View();
-            }
-
-            ViewData["Error"] = await ErrorAsync("Rol", "Index", "Error al consultar api", 500);
-            return HttpNotFound();
+            var userRoles = new UsersInRoleModel(empleadoUserRolModel.RolId);
+            userRoles.EnrolledUsers.Add(empleadoUserRolModel.Empleado.UserId);
+            var result = await PostAsync("api/Rol/ManageUsersInRole", userRoles);
+            if (!result.IsSuccessStatusCode)
+                ViewData["Error"] = await ErrorAsync("Rol", "SetRoles", "Error con tus permisos en la api", 401);
+            return RedirectToAction("Index", new { id = empleadoUserRolModel.Empleado.Identificacion });
         }
 
-        // GET: Rol/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Rol", "Delete", "No se ingreso el Id", 400);
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var result = await GetAsync("api/Rol/" + id.Value);
-            Rol rol = null;
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                rol = JsonConvert.DeserializeObject<Rol>(resultdata);
-            }
-            if (rol == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Rol", "Delete", "Error al consultar api", 404);
-                return HttpNotFound();
-            }
-            return View(rol);
-        }
-
-        // POST: Rol/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Rol/Delete/{EmpleadoUserRolModel}
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> Delete([Bind(Include = "Empleado, RolId")] EmpleadoUserRolModel empleadoUserRolModel)
         {
-            var result = await DeleteAsync("api/Rol/" + id);
-            if (result.IsSuccessStatusCode)
-                return RedirectToAction("Index");
-            ViewData["Error"] = await ErrorAsync("Rol", "DeleteConfirmed", "Error eliminar rol compruebe los campos", 400);
-            return HttpNotFound();
+            var userRoles = new UsersInRoleModel(empleadoUserRolModel.RolId);
+            userRoles.RemovedUsers.Add(empleadoUserRolModel.Empleado.UserId);
+            var result = await PostAsync("api/Rol/ManageUsersInRole", userRoles);
+            if (!result.IsSuccessStatusCode)
+                ViewData["Error"] = await ErrorAsync("Rol", "Delete", "Error con tus permisos en la api", 401);
+            return RedirectToAction("Index", new { id = empleadoUserRolModel.Empleado.Identificacion });
         }
 
         private async Task SetViewData(Empleado empleado, List<Rol> roles)

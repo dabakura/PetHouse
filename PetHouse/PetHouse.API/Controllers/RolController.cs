@@ -31,16 +31,17 @@ namespace PetHouse.API.Controllers
         }
 
         [Route("GetUserRoles/{id:guid}", Name = "GetUserRoles")]
-        public IHttpActionResult GetUserRoles(string Id)
+        public async Task<IHttpActionResult> GetUserRolesAsync(string Id)
         {
-            var roles = UserManager.GetRolesAsync(Id);
+            var rolesNames = await UserManager.GetRolesAsync(Id);
+            var roles = RoleManager.Roles.Where(rol => rolesNames.Contains(rol.Name)).Select(rol => new { rol.Id, rol.Name }).ToList();
             return Ok(roles);
         }
 
         [Route("", Name = "GetAllRoles")]
         public IHttpActionResult GetAllRoles()
         {
-            var roles = RoleManager.Roles;
+            var roles = RoleManager.Roles.Select(rol => new { rol.Id, rol.Name} ).ToList();
             return Ok(roles);
         }
 
@@ -90,7 +91,8 @@ namespace PetHouse.API.Controllers
         }
 
         [Route("ManageUsersInRole")]
-        public async Task<IHttpActionResult> ManageUsersInRole(UsersInRoleModel model)
+        [HttpPost]
+        public async Task<IHttpActionResult> ManageUsersInRole([FromBody] UsersInRoleModel model)
         {
             var role = await RoleManager.FindByIdAsync(model.Id);
 
