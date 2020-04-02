@@ -228,6 +228,8 @@
     <Content Include="Views\Tratamiento\Details.cshtml" />
     <Content Include="Views\Tratamiento\Edit.cshtml" />
     <Content Include="Views\Tratamiento\Index.cshtml" />
+    <Content Include="Views\Shared\Expediente\_Index.cshtml" />
+    <Content Include="Views\Shared\Mascota\_Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

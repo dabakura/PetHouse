@@ -1,0 +1,70 @@
+﻿@model IEnumerable<PetHouse.MVC.Models.Expediente>
+
+<div class="box">
+    <div class="box-body">
+
+        <table id="listado" class="table table-bordered table-hover dataTable">
+            <thead>
+                <tr role="row">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Observaciones)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Edad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Peso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Castracion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha_Ingreso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha_Fallecimiento)
+                    </th>
+                    <th style="text-align: center;">
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observaciones)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Edad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Peso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Castracion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha_Ingreso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha_Fallecimiento)
+                        </td>
+                        <td style="text-align: center; min-width: 160px;">
+                            <a href="@Url.Action("Edit", "Expediente", new { id = item.Id })" class="btn btn-warning">
+                                <i class="fa fa-edit"></i>
+                            </a>|
+                            <a href="@Url.Action("Details", "Expediente", new { id = item.Id })" class="btn btn-info">
+                                <i class="fa fa-search"></i>
+                            </a>|
+                            <a href="@Url.Action("Delete", "Expediente", new { id = item.Id })" class="btn btn-danger">
+                                <i class="fa fa-eraser"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

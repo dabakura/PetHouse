@@ -1,3 +1,13 @@
-﻿@{
+﻿@using PetHouse.MVC.Models
+@{
     ViewBag.Title = "PetHouse";
 }
+
+@Html.Partial("Helpers/_ViewError")
+
+<div class="col-sm-12" style="z-index: 1;">
+    @Html.ActionLink("Nuevo Ingreso", "Create", "Expediente", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px;" })
+</div>
+
+@Html.Partial("Expediente/_Index", (List<Expediente>)ViewBag.Expedientes)
+@Html.Partial("Mascota/_Index", (List<Mascota>)ViewBag.Mascotas)

@@ -15,6 +15,7 @@ namespace PetHouse.MVC.Controllers
     [CustomAuthorize]
     public class ExpedienteController : BaseController
     {
+
         //private PetHouseEntities db = new PetHouseEntities();
 
         //// GET: Expediente
@@ -121,27 +122,24 @@ namespace PetHouse.MVC.Controllers
         // GET: Expediente
         public async Task<ActionResult> Index()
         {
-            var result = await GetAsync("api/Expediente");
-            if (result.IsSuccessStatusCode)
+            var expedientes = await GetExpedientesync();
+            if (expedientes == null)
             {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                List<Expediente> expedientes = JsonConvert.DeserializeObject<List<Expediente>>(resultdata);
-                return View(expedientes);
+                ViewData["Error"] = await ErrorAsync("Expediente", "Index", "Error al consultar api", 500);
+                return HttpNotFound();
             }
-
-            ViewData["Error"] = await ErrorAsync("Expediente", "Index", "Error al consultar api", 500);
-            return HttpNotFound();
+            return View(expedientes);
         }
 
         // GET: Expediente/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 ViewData["Error"] = await ErrorAsync("Expediente", "Details", "No se ingreso el Id", 400);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var result = await GetAsync("api/Expediente/" + id.Value);
+            var result = await GetAsync("api/Expediente/" + id);
             Expediente expediente = null;
             if (result.IsSuccessStatusCode)
             {
@@ -180,14 +178,14 @@ namespace PetHouse.MVC.Controllers
         }
 
         // GET: Expediente/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 ViewData["Error"] = await ErrorAsync("Expediente", "Edit", "No se ingreso el Id", 400);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var result = await GetAsync("api/Expediente/" + id.Value);
+            var result = await GetAsync("api/Expediente/" + id);
             Expediente expediente = null;
             if (result.IsSuccessStatusCode)
             {
@@ -220,14 +218,14 @@ namespace PetHouse.MVC.Controllers
         }
 
         // GET: Expediente/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 ViewData["Error"] = await ErrorAsync("Expediente", "Delete", "No se ingreso el Id", 400);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var result = await GetAsync("api/Expediente/" + id.Value);
+            var result = await GetAsync("api/Expediente/" + id);
             Expediente expediente = null;
             if (result.IsSuccessStatusCode)
             {
@@ -245,13 +243,24 @@ namespace PetHouse.MVC.Controllers
         // POST: Expediente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
             var result = await DeleteAsync("api/Expediente/" + id);
             if (result.IsSuccessStatusCode)
                 return RedirectToAction("Index");
             ViewData["Error"] = await ErrorAsync("Expediente", "DeleteConfirmed", "Error eliminar expediente compruebe los campos", 400);
             return HttpNotFound();
+        }
+
+        private async Task<List<Expediente>> GetExpedientesync()
+        {
+            var result = await GetAsync("api/Expediente");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Expediente>>(resultdata);
+            }
+            return null;
         }
     }
 }

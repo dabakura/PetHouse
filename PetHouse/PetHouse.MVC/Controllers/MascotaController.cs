@@ -15,6 +15,7 @@ namespace PetHouse.MVC.Controllers
     [CustomAuthorize]
     public class MascotaController : BaseController
     {
+
         //private PetHouseEntities db = new PetHouseEntities();
 
         //// GET: Mascota
@@ -130,16 +131,13 @@ namespace PetHouse.MVC.Controllers
         // GET: Mascota
         public async Task<ActionResult> Index()
         {
-            var result = await GetAsync("api/Mascota");
-            if (result.IsSuccessStatusCode)
+            var mascotas = await GetMascotasync();
+            if (mascotas == null)
             {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                List<Mascota> mascotas = JsonConvert.DeserializeObject<List<Mascota>>(resultdata);
-                return View(mascotas);
+                ViewData["Error"] = await ErrorAsync("Mascota", "Index", "Error al consultar api", 500);
+                return HttpNotFound();
             }
-
-            ViewData["Error"] = await ErrorAsync("Mascota", "Index", "Error al consultar api", 500);
-            return HttpNotFound();
+            return View(mascotas);
         }
 
         // GET: Mascota/Details/5
@@ -261,6 +259,17 @@ namespace PetHouse.MVC.Controllers
                 return RedirectToAction("Index");
             ViewData["Error"] = await ErrorAsync("Mascota", "DeleteConfirmed", "Error eliminar mascota compruebe los campos", 400);
             return HttpNotFound();
+        }
+
+        private async Task<List<Mascota>> GetMascotasync()
+        {
+            var result = await GetAsync("api/Mascota");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Mascota>>(resultdata);
+            }
+            return null;
         }
     }
 }

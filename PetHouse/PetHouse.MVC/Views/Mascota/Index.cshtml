@@ -1,75 +1,13 @@
 ﻿@model IEnumerable<PetHouse.MVC.Models.Mascota>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Mascotas";
 }
 
-<h2>Index</h2>
+@Html.Partial("Helpers/_ViewError")
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Raza)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Activo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adopcion.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Expediente.Observaciones)
-        </th>
-        <th></th>
-    </tr>
+<div class="col-sm-12" style="z-index: 1;">
+    @Html.ActionLink("Crear nueva Mascota", "Create", "Mascota", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px;" })
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Raza)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_Nacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adopcion.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Expediente.Observaciones)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Identificacion }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Identificacion }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Identificacion })
-        </td>
-    </tr>
-}
-
-</table>
+@Html.Partial("Mascota/_Index", Model)
