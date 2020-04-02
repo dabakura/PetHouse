@@ -193,6 +193,41 @@
     <Content Include="Views\Rol\_IndexUser.cshtml" />
     <Content Include="Views\Rol\_IndexRol.cshtml" />
     <Content Include="Views\Rol\Index.cshtml" />
+    <Content Include="Views\Adopcion\Create.cshtml" />
+    <Content Include="Views\Adopcion\Delete.cshtml" />
+    <Content Include="Views\Adopcion\Details.cshtml" />
+    <Content Include="Views\Adopcion\Edit.cshtml" />
+    <Content Include="Views\Adopcion\Index.cshtml" />
+    <Content Include="Views\Adoptante\Create.cshtml" />
+    <Content Include="Views\Adoptante\Delete.cshtml" />
+    <Content Include="Views\Adoptante\Details.cshtml" />
+    <Content Include="Views\Adoptante\Edit.cshtml" />
+    <Content Include="Views\Adoptante\Index.cshtml" />
+    <Content Include="Views\Carnet\Create.cshtml" />
+    <Content Include="Views\Carnet\Delete.cshtml" />
+    <Content Include="Views\Carnet\Details.cshtml" />
+    <Content Include="Views\Carnet\Edit.cshtml" />
+    <Content Include="Views\Carnet\Index.cshtml" />
+    <Content Include="Views\Expediente\Create.cshtml" />
+    <Content Include="Views\Expediente\Delete.cshtml" />
+    <Content Include="Views\Expediente\Details.cshtml" />
+    <Content Include="Views\Expediente\Edit.cshtml" />
+    <Content Include="Views\Expediente\Index.cshtml" />
+    <Content Include="Views\Mascota\Create.cshtml" />
+    <Content Include="Views\Mascota\Delete.cshtml" />
+    <Content Include="Views\Mascota\Details.cshtml" />
+    <Content Include="Views\Mascota\Edit.cshtml" />
+    <Content Include="Views\Mascota\Index.cshtml" />
+    <Content Include="Views\Procedimiento\Create.cshtml" />
+    <Content Include="Views\Procedimiento\Delete.cshtml" />
+    <Content Include="Views\Procedimiento\Details.cshtml" />
+    <Content Include="Views\Procedimiento\Edit.cshtml" />
+    <Content Include="Views\Procedimiento\Index.cshtml" />
+    <Content Include="Views\Tratamiento\Create.cshtml" />
+    <Content Include="Views\Tratamiento\Delete.cshtml" />
+    <Content Include="Views\Tratamiento\Details.cshtml" />
+    <Content Include="Views\Tratamiento\Edit.cshtml" />
+    <Content Include="Views\Tratamiento\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -202,13 +237,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdopcionController.cs" />
+    <Compile Include="Controllers\AdoptanteController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BasePadronController.cs" />
+    <Compile Include="Controllers\CarnetController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\InstitucionController.cs" />
+    <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\MedicamentoController.cs" />
+    <Compile Include="Controllers\ProcedimientoController.cs" />
     <Compile Include="Controllers\PuestoController.cs" />
     <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\TratamientoeController.cs" />
     <Compile Include="Controllers\VacunaController.cs" />
     <Compile Include="Models\Adopcion.cs" />
     <Compile Include="Models\Adoptante.cs" />

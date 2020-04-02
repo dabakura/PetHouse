@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PetHouse.MVC.Models.Expediente>
+
+
+@{
+    ViewBag.Title = "Expedientes";
+}
+
+@Html.Partial("Helpers/_ViewError")
+
+<div class="col-sm-12" style="z-index: 1;">
+    @Html.ActionLink("Crear nueva Vacuna", "Create", "Vacuna", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px;" })
+</div>
+
+<div class="box">
+    <div class="box-body">
+
+        <table id="listado" class="table table-bordered table-hover dataTable">
+            <thead>
+                <tr role="row">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Observaciones)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Edad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Peso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Castracion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha_Ingreso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha_Fallecimiento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Activo)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observaciones)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Edad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Peso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Castracion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha_Ingreso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha_Fallecimiento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Activo)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+        </table>
