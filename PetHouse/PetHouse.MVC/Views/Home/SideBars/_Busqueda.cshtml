@@ -5,13 +5,17 @@
             <img alt="PetHouse" src="~/Content/img/pethouse-logo.jpg" height="100" />
         </div>
     </div>
+    @Html.Hidden("Busqueda_Uri", Url.Action("Buscar"), htmlAttributes: new { @id = "Busqueda_Uri" })
     <div class="box-body" style="height: 500px; overflow-y: scroll">
         <div class="col-md-12 text-center form-horizontal">
             <div class="form-group">
                 <div class="col-md-8">
-                    @Html.Editor("Id", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Editor("Id", new { htmlAttributes = new { @class = "form-control", id = "Id" } })
                 </div>
-                <button class="btn btn-success col-md-4">Buscar</button>
+                <button class="btn btn-success col-md-4" id="Buscar">Buscar</button>
+            </div>
+            <div id="Cuerpo" class="text-center">
+
             </div>
         </div>
     </div>

@@ -27,6 +27,8 @@ namespace PetHouse.MVC.Models
         [DisplayName("Segundo Apellido")]
         public string Segundo_Apellido { get; set; }
         [DisplayName("Fecha Nacimiento")]
+        [DataType(dataType: DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime Fecha_Nacimiento { get; set; }
         public int Telefono { get; set; }
         public string Correo { get; set; }

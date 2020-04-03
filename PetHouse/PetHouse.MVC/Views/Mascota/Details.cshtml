@@ -1,82 +1,131 @@
 ﻿@model PetHouse.MVC.Models.Mascota
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
 }
 
-<h2>Details</h2>
+@Html.Partial("Helpers/_ViewError")
 
-<div>
-    <h4>Mascota</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+<div class="col-md-8 col-md-offset-2">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3>Mascota</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="form-horizontal">
+            <div class="box-body">
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Identificacion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Identificacion)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Tipo)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ExpedienteId)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Tipo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.ExpedienteId)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Genero)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Genero)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Nombre)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Raza)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Tipo)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Raza)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Tipo)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Genero)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fecha_Nacimiento)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Genero)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Raza)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Activo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Raza)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Adopcion.Id)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Adopcion.Id)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha_Nacimiento)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Expediente.Observaciones)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Expediente.Edad)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Expediente.Observaciones)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Expediente.Edad)
+                        </dd>
 
-    </dl>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Expediente.Castracion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Expediente.Castracion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Expediente.Peso)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Expediente.Peso)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Expediente.Fecha_Ingreso)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Expediente.Fecha_Ingreso)
+                        </dd>
+
+                        @if (Model.AdopcionId.HasValue)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Adopcion.AdoptanteId)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Adopcion.AdoptanteId)
+                            </dd>
+                        }
+                    </dl>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="form-actions no-color">
+                    @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Identificacion }, new { @class = "btn btn-default pull-right" })
+                </div>
+            </div>
+            <!-- /.box-footer -->
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Identificacion }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

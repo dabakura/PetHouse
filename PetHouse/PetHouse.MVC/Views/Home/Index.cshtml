@@ -1,4 +1,5 @@
 ﻿@using PetHouse.MVC.Models
+@using System.Web.Optimization
 @{
     ViewBag.Title = "";
 }
@@ -33,3 +34,8 @@
 <div class="col-md-3">
     @Html.Partial("SideBars/_Busqueda")
 </div>
+
+
+@section ViewSpecificJavascript {
+    @Scripts.Render("~/Bundles/buscar_mascota")
+}

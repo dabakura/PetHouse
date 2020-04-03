@@ -144,7 +144,12 @@ namespace PetHouse.BLL.Mappers
                     dest.Domicilio = new DomicilioRepositorio().Get(orig.DireccionId.ToString())
                 );
                 cfg.CreateMap<ConsultarMascotaResult, Mascota>();
-                cfg.CreateMap<BuscarMascotaResult, Mascota>();
+                cfg.CreateMap<BuscarMascotaResult, Mascota>().AfterMap((orig, dest) => {
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                    if (orig.AdopcionId.HasValue)
+                        dest.Adopcion = new AdopcionRepositorio().Get(orig.AdopcionId.ToString());
+                }
+                );
                 cfg.CreateMap<ConsultarMedicamentoResult, Medicamento>();
                 cfg.CreateMap<BuscarMedicamentoResult, Medicamento>();
                 cfg.CreateMap<ConsultarProcedimientoResult, Procedimiento>();

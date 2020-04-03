@@ -174,7 +174,7 @@ namespace PetHouse.MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Identificacion,Nombre,Tipo,Genero,Raza,Fecha_Nacimiento,AdopcionId,ExpedienteId")] Mascota mascota)
+        public async Task<ActionResult> Create([Bind(Include = "Identificacion,Nombre,Tipo,Genero,Raza,Fecha_Nacimiento,AdopcionId,ExpedienteId,Adopcion,Expediente")] Mascota mascota)
         {
             if (ModelState.IsValid)
             {
@@ -214,7 +214,7 @@ namespace PetHouse.MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Identificacion,Nombre,Tipo,Genero,Raza,Fecha_Nacimiento,AdopcionId,ExpedienteId")] Mascota mascota)
+        public async Task<ActionResult> Edit([Bind(Include = "Identificacion,Nombre,Tipo,Genero,Raza,Fecha_Nacimiento,AdopcionId,ExpedienteId,Adopcion,Expediente")] Mascota mascota)
         {
             if (ModelState.IsValid)
             {

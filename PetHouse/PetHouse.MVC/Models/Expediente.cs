@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,12 @@ namespace PetHouse.MVC.Models
         [DisplayName("Castración")]
         public bool Castracion { get; set; }
         [DisplayName("Fecha_Ingreso")]
+        [DataType(dataType: DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime Fecha_Ingreso { get; set; }
         [DisplayName("Fecha Fallecimiento")]
+        [DataType(dataType: DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime? Fecha_Fallecimiento { get; set; }
         [ScaffoldColumn(false)]
         public bool? Activo { get; set; }

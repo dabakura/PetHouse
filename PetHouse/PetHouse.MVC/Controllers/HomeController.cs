@@ -23,6 +23,15 @@ namespace PetHouse.MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<JsonResult> Buscar(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return Json(null, JsonRequestBehavior.AllowGet);
+            var mascota = await GetMascotasync(id);
+            return Json(mascota, JsonRequestBehavior.AllowGet);
+        }
+
         private async Task SetViewData()
         {
             ViewBag.Mascotas = await GetMascotasync();
@@ -54,6 +63,29 @@ namespace PetHouse.MVC.Controllers
             {
                 var resultdata = result.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<List<Mascota>>(resultdata);
+            }
+            return null;
+        }
+
+        private async Task<Mascota> GetMascotasync(string id)
+        {
+            var mascotas = await GetMascotasync();
+            if (mascotas != null)
+            {
+                var mascota = mascotas.Find(masc => masc.Identificacion.Equals(id));
+                if (mascota == null)
+                    mascota = mascotas.Find(masc => masc.ExpedienteId.Equals(id));
+                if (mascota != null)
+                {
+                    var result = await GetAsync("api/Mascota/" + mascota.Identificacion);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var resultdata = result.Content.ReadAsStringAsync().Result;
+                        var settings = new JsonSerializerSettings() { DateFormatString = "MM-dd-yyyy" };
+                        mascota = JsonConvert.DeserializeObject<Mascota>(resultdata, settings);
+                    }
+                }
+                return mascota;
             }
             return null;
         }
