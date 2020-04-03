@@ -10,4 +10,8 @@
     @Html.ActionLink("Crear nuevo Expediente", "Create", "Expediente", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px;" })
 </div>
 
-@Html.Partial("Expediente/_Index", Model)
+<div class="box">
+    <div class="box-body">
+        @Html.Partial("Expediente/_Index", Model)
+    </div>
+</div>

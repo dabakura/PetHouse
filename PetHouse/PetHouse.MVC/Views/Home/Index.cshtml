@@ -1,13 +1,35 @@
 ﻿@using PetHouse.MVC.Models
 @{
-    ViewBag.Title = "PetHouse";
+    ViewBag.Title = "";
 }
 
 @Html.Partial("Helpers/_ViewError")
 
-<div class="col-sm-12" style="z-index: 1;">
-    @Html.ActionLink("Nuevo Ingreso", "Create", "Expediente", null, new { @class = "btn btn-info  pull-right", style = "margin-bottom:15px;" })
+<div class="col-md-9">
+    @Html.Partial("SideBars/_Ingreso")
+
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title" style="font-family: 'Roboto', sans-serif; color: #6F84FF;">Lista de Expedientes</h3>
+            </div>
+            <div class="box-body">
+                @Html.Partial("Expediente/_Index", (List<Expediente>)ViewBag.Expedientes)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title" style="font-family: 'Roboto', sans-serif; color: #6F84FF;">Lista de Mascotas</h3>
+            </div>
+            <div class="box-body">
+                @Html.Partial("Mascota/_Index", (List<Mascota>)ViewBag.Mascotas)
+            </div>
+        </div>
+    </div>
 </div>
 
-@Html.Partial("Expediente/_Index", (List<Expediente>)ViewBag.Expedientes)
-@Html.Partial("Mascota/_Index", (List<Mascota>)ViewBag.Mascotas)
+<div class="col-md-3">
+    @Html.Partial("SideBars/_Busqueda")
+</div>

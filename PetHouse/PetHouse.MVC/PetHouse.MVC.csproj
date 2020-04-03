@@ -123,6 +123,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\admin.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\pethouse-logo.jpg" />
     <Content Include="Content\js\CreateDomicilio.js" />
     <Content Include="Content\js\CreatePersona.js" />
     <Content Include="Content\js\EditDomicilio.js" />
@@ -230,6 +233,8 @@
     <Content Include="Views\Tratamiento\Index.cshtml" />
     <Content Include="Views\Shared\Expediente\_Index.cshtml" />
     <Content Include="Views\Shared\Mascota\_Index.cshtml" />
+    <Content Include="Views\Home\SideBars\_Ingreso.cshtml" />
+    <Content Include="Views\Home\SideBars\_Busqueda.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
