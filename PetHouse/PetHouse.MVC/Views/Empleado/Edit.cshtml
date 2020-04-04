@@ -57,7 +57,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Fecha_Nacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Fecha_Nacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextBoxFor(model => model.Fecha_Nacimiento, "{0:MM/dd/yyyy}", new { @class = "form-control", id = "Fecha_Nacimiento" })
                             @Html.ValidationMessageFor(model => model.Fecha_Nacimiento, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -147,4 +147,10 @@
 
 @section ViewSpecificJavascript {
     @Scripts.Render("~/Bundles/edit_domicilio")
+    <script type="text/javascript">
+        $("#Fecha_Nacimiento").datepicker({
+            viewMode: 'years',
+            format: 'mm/dd/yyyy'
+        });
+    </script>
 }

@@ -16,11 +16,11 @@ namespace PetHouse.MVC.Models
         public bool Castracion { get; set; }
         [DisplayName("Fecha_Ingreso")]
         [DataType(dataType: DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM'/'dd'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Fecha_Ingreso { get; set; }
         [DisplayName("Fecha Fallecimiento")]
         [DataType(dataType: DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM'/'dd'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Fecha_Fallecimiento { get; set; }
         [ScaffoldColumn(false)]
         public bool? Activo { get; set; }
