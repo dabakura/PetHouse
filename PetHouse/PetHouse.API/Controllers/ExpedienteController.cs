@@ -99,5 +99,22 @@ namespace PetHouse.API.Controllers
                 return BadRequest();
             }
         }
+
+        // DELETE: api/Expediente/DelPermanent/5
+        [Route("DelPermanent/{id}")]
+        [HttpDelete]
+        public IHttpActionResult DelPermanent(string id)
+        {
+            try
+            {
+                ExpedienteServicio.DeletePermanent(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error<ExpedienteController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
+                return BadRequest();
+            }
+        }
     }
 }

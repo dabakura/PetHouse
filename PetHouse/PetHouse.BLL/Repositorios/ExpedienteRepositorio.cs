@@ -11,6 +11,19 @@ namespace PetHouse.BLL.Repositorios
 {
     public class ExpedienteRepositorio : DBContext, IExpedienteService
     {
+        public bool DeletePermanent(string id)
+        {
+            try
+            {
+                DB.EliminarExpedientePermanent(id);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool Delete(string id)
         {
             try

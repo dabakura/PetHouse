@@ -18,7 +18,7 @@ namespace PetHouse.MVC.Models
             if (HasLogin())
                 return ((Token)HttpContext.Current.Session["Token"]).userName;
             else
-                return "Inicia Sección";
+                return "Inicia Sesión";
         }
     }
 }

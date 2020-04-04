@@ -52,7 +52,6 @@
                         @Html.LabelFor(model => model.Fecha_Ingreso, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.TextBoxFor(model => model.Fecha_Ingreso, "{0:MM/dd/yyyy}", new { @class = "form-control", id = "Fecha_Ingreso" })
-                            @*@Html.EditorFor(model => model.Fecha_Ingreso, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.Fecha_Ingreso, "", new { @class = "text-danger" })
                         </div>
                     </div>

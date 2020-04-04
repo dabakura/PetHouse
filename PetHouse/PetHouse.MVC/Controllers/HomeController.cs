@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PetHouse.MVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -17,10 +18,32 @@ namespace PetHouse.MVC.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        public ActionResult AnotherLink()
+        public ActionResult Ingreso()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Ingreso([Bind(Include = "Expediente, Mascota")] ExpedienteMascotaModel expedienteMascota)
+        {
+            if (ModelStateValidation(expedienteMascota))
+            {
+                if (await CreateExpedientesync(expedienteMascota.Expediente))
+                {
+                    if (await CreateMascotasync(expedienteMascota.Mascota))
+                        return RedirectToAction("Index");
+                    else
+                        await DeleteAsync("api/Expediente/DelPermanent/" + expedienteMascota.Expediente.Id);
+                }
+            }
+            ViewData["Error"] = await ErrorAsync("Home", "Ingreso", "Error insertar expediente o Macota compruebe los campos", 400);
+            return View(expedienteMascota);
+        }
+
+        private bool ModelStateValidation(ExpedienteMascotaModel expedienteMascota)
+        {
+            return true;
         }
 
         [HttpGet]
@@ -43,6 +66,18 @@ namespace PetHouse.MVC.Controllers
                 ViewBag.Mascotas = new List<Mascota>();
                 ViewBag.Expedientes = new List<Expediente>();
             }
+        }
+
+        private async Task<bool> CreateExpedientesync(Expediente expediente)
+        {
+            var result = await PostAsync("api/Expediente", expediente);
+            return result.IsSuccessStatusCode;
+        }
+
+        private async Task<bool> CreateMascotasync(Mascota mascota)
+        {
+            var result = await PostAsync("api/Mascota", mascota);
+            return result.IsSuccessStatusCode;
         }
 
         private async Task<List<Expediente>> GetExpedientesync()

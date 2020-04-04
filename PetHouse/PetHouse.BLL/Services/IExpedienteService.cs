@@ -14,5 +14,6 @@ namespace PetHouse.BLL.Services
         string Insert(Expediente entity);
         bool Update(Expediente entity);
         bool Delete(string id);
+        bool DeletePermanent(string id);
     }
 }

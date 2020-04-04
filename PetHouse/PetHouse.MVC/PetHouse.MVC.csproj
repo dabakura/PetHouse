@@ -212,12 +212,10 @@
     <Content Include="Views\Carnet\Details.cshtml" />
     <Content Include="Views\Carnet\Edit.cshtml" />
     <Content Include="Views\Carnet\Index.cshtml" />
-    <Content Include="Views\Expediente\Create.cshtml" />
     <Content Include="Views\Expediente\Delete.cshtml" />
     <Content Include="Views\Expediente\Details.cshtml" />
     <Content Include="Views\Expediente\Edit.cshtml" />
     <Content Include="Views\Expediente\Index.cshtml" />
-    <Content Include="Views\Mascota\Create.cshtml" />
     <Content Include="Views\Mascota\Delete.cshtml" />
     <Content Include="Views\Mascota\Details.cshtml" />
     <Content Include="Views\Mascota\Edit.cshtml" />
@@ -237,6 +235,9 @@
     <Content Include="Views\Home\SideBars\_Ingreso.cshtml" />
     <Content Include="Views\Home\SideBars\_Busqueda.cshtml" />
     <Content Include="Views\Shared\Mascota\_Detalle.cshtml" />
+    <Content Include="Views\Home\Ingreso.cshtml" />
+    <Content Include="Views\Shared\Mascota\_Create.cshtml" />
+    <Content Include="Views\Shared\Expediente\_Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -264,6 +265,7 @@
     <Compile Include="Models\Adopcion.cs" />
     <Compile Include="Models\Adoptante.cs" />
     <Compile Include="Models\EmpleadoUserRolModel.cs" />
+    <Compile Include="Models\ExpedienteMascotaModel.cs" />
     <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\Bitacora.cs" />

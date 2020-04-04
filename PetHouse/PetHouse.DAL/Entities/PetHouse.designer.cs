@@ -922,6 +922,13 @@ namespace PetHouse.DAL.Entities
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
 			return ((ISingleResult<BuscarEmpleadoResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarExpedientePermanent")]
+		public int EliminarExpedientePermanent([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="VarChar(100)")] string id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Adopcion")]

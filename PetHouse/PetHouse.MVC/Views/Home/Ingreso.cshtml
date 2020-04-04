@@ -1,0 +1,45 @@
+﻿@model PetHouse.MVC.Models.ExpedienteMascotaModel
+
+
+@{
+    ViewBag.Title = "Ingresos";
+}
+
+@Html.Partial("Helpers/_ViewError")
+
+<div class="col-md-8 col-md-offset-2">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title" id="Title">Complete la Información</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.Partial("Expediente/_Create", Model)
+
+            @Html.Partial("Mascota/_Create", Model)
+        }
+    </div>
+</div>
+
+@section ViewSpecificJavascript {
+    <script type="text/javascript">
+        $("#Title").text("Complete la Información del Expediente");
+        $("#MascotaPanel").hide();
+        $("#ExpedientePanel").show();
+        $("#atras").click(function () {
+            $("#Title").text("Complete la Información del Expediente");
+            $("#MascotaPanel").hide();
+            $("#ExpedientePanel").show();
+        });
+        $("#siguiente").click(function () {
+            $("#Title").text("Complete la Información de la Mascota");
+            $("#MascotaPanel").show();
+            $("#ExpedientePanel").hide();
+        });
+    </script>
+}
