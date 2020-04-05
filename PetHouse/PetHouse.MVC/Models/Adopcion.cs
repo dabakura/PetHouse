@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,5 +14,10 @@ namespace PetHouse.MVC.Models
         public Adoptante Adoptante { get; set; }
         public Institucion Institucion { get; set; }
         public Mascota Mascota { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }

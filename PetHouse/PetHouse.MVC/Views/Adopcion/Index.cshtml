@@ -20,13 +20,19 @@
                     <thead>
                         <tr role="row">
                             <th>
-                                @Html.DisplayNameFor(model => model.Institucion.Nombre)
+                                @Html.DisplayNameFor(model => model.Institucion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Adoptante)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Adoptante.Nombre)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Institucion.Ced_Juridica)
+                                @Html.DisplayNameFor(model => model.Mascota)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Mascota.ExpedienteId)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Fecha_Adopcion)
@@ -40,14 +46,33 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td style="text-align: center; min-width: 160px;">
-                                    <a href="@Url.Action("Edit", "Vacuna", new { id = item.Id })" class="btn btn-warning">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Institucion.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Adoptante.Identificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Adoptante.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mascota.Identificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mascota.ExpedienteId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha_Adopcion)
+                                </td>
+                                <td style="text-align: center; min-width: 110px;">
+                                    <a href="@Url.Action("Edit", "Adopcion", new { id = item.Id })" class="btn btn-warning">
                                         <i class="fa fa-edit"></i>
                                     </a>|
-                                    <a href="@Url.Action("Details", "Vacuna", new { id = item.Id })" class="btn btn-info">
+
+                                    <button type="button" class="btn btn-info" onclick="CargarInfo(@item.ToString());">
                                         <i class="fa fa-search"></i>
-                                    </a>|
-                                    <a href="@Url.Action("Delete", "Vacuna", new { id = item.Id })" class="btn btn-danger">
+                                    </button>|
+                                    <a href="@Url.Action("Delete", "Adopcion", new { id = item.Id })" class="btn btn-danger">
                                         <i class="fa fa-eraser"></i>
                                     </a>
                                 </td>
@@ -61,63 +86,24 @@
 </div>
 
 <div class="col-md-3">
-    @*@Html.Partial("SideBars/_Busqueda")
-        @Html.Partial("SideBars/_Busqueda")*@
+    <div class="col-md-12">
+        @Html.Partial("Partials/_ViewAdoptante")
+    </div>
+    <div class="col-md-12">
+        @Html.Partial("Partials/_ViewMascota")
+    </div>
 </div>
 
 
-
 @section ViewSpecificJavascript {
-    @*@Scripts.Render("~/Bundles/buscar_mascota")*@
+    <script type="text/javascript">
+        $("#CuerpoAdoptante").html(`<h4>Seleccione una Adopción</h4>`);
+        $("#CuerpoMascota").html(`<h4>Seleccione una Adopción</h4>`);
+        function CargarInfo(adopcion) {
+            $("#CuerpoAdoptante").empty();
+            $("#CuerpoMascota").empty();
+            $("#CuerpoAdoptante").html(`<h4>${adopcion.Adoptante.Nombre}</h4>`);
+            $("#CuerpoMascota").html(`<h4>${adopcion.Mascota.Nombre}</h4>`);
+        }
+    </script>
 }
-
-
-
-
-
-
-
-
-
-
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Adopcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adoptante.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Institucion.Ced_Juridica)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_Adopcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adoptante.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Institucion.Ced_Juridica)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>

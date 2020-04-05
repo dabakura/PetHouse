@@ -238,7 +238,9 @@
     <Content Include="Views\Shared\Mascota\_Create.cshtml" />
     <Content Include="Views\Shared\Expediente\_Create.cshtml" />
     <Content Include="Views\Shared\Adoptante\_Index.cshtml" />
-    <Content Include="Views\Adopcion\Parcials\_Create.cshtml" />
+    <Content Include="Views\Adopcion\Partials\_Create.cshtml" />
+    <Content Include="Views\Adopcion\Partials\_ViewMascota.cshtml" />
+    <Content Include="Views\Adopcion\Partials\_ViewAdoptante.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
