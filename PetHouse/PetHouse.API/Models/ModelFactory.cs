@@ -115,8 +115,8 @@ namespace PetHouse.API.Models
     {
         public string Id { get; set; }
         public string Observaciones { get; set; }
-        public int? Peso { get; set; }
-        public int? Edad { get; set; }
+        public decimal? Peso { get; set; }
+        public decimal? Edad { get; set; }
         public bool Castracion { get; set; }
         public DateTime Fecha_Ingreso { get; set; }
         public DateTime? Fecha_Fallecimiento { get; set; }

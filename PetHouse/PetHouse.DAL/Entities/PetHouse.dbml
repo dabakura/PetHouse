@@ -150,22 +150,6 @@
       <Association Name="Puesto_Empleado" Member="Puesto" ThisKey="PuestoID" OtherKey="Id" Type="Puesto" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Expediente" Member="Expedientes">
-    <Type Name="Expediente">
-      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Edad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Peso" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Expediente_Carnet" Member="Carnets" ThisKey="Id" OtherKey="ExpedienteId" Type="Carnet" />
-      <Association Name="Expediente_Mascota" Member="Mascotas" ThisKey="Id" OtherKey="ExpedienteId" Type="Mascota" />
-      <Association Name="Expediente_Procedimiento" Member="Procedimientos" ThisKey="Id" OtherKey="ExpedienteId" Type="Procedimiento" />
-      <Association Name="Expediente_Tratamiento" Member="Tratamientos" ThisKey="Id" OtherKey="ExpedienteId" Type="Tratamiento" />
-    </Type>
-  </Table>
   <Table Name="dbo.Institucion" Member="Institucions">
     <Type Name="Institucion">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -258,6 +242,22 @@
       <Association Name="Tratamiento_TratamientoMedicamento" Member="Tratamiento" ThisKey="TratamientoId" OtherKey="Id" Type="Tratamiento" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Expediente" Member="Expedientes">
+    <Type Name="Expediente">
+      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Edad" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="Peso" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Expediente_Carnet" Member="Carnets" ThisKey="Id" OtherKey="ExpedienteId" Type="Carnet" />
+      <Association Name="Expediente_Mascota" Member="Mascotas" ThisKey="Id" OtherKey="ExpedienteId" Type="Mascota" />
+      <Association Name="Expediente_Procedimiento" Member="Procedimientos" ThisKey="Id" OtherKey="ExpedienteId" Type="Procedimiento" />
+      <Association Name="Expediente_Tratamiento" Member="Tratamientos" ThisKey="Id" OtherKey="ExpedienteId" Type="Tratamiento" />
+    </Type>
+  </Table>
   <Function Name="dbo.ActualizarAdopcion" Method="ActualizarAdopcion">
     <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
     <Parameter Name="InstituionId" Parameter="instituionId" Type="System.Int32" DbType="Int" />
@@ -316,16 +316,6 @@
     <Parameter Name="PuestoID" Parameter="puestoID" Type="System.Int32" DbType="Int" />
     <Parameter Name="InstitucionId" Parameter="institucionId" Type="System.Int32" DbType="Int" />
     <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="NVarChar(128)" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.ActualizarExpediente" Method="ActualizarExpediente">
-    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="Text" />
-    <Parameter Name="Edad" Parameter="edad" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Peso" Parameter="peso" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Castracion" Parameter="castracion" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="Fecha_Ingreso" Parameter="fecha_Ingreso" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="Fecha_Fallecimiento" Parameter="fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ActualizarInstitucion" Method="ActualizarInstitucion">
@@ -467,19 +457,6 @@
       <Column Name="DistritoName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="CantonName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="ProvinciaName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.BuscarExpediente" Method="BuscarExpediente">
-    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
-    <ElementType Name="BuscarExpedienteResult">
-      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Edad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Peso" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.BuscarInstitucion" Method="BuscarInstitucion">
@@ -673,17 +650,6 @@
       <Column Name="UserId" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.ConsultarExpediente" Method="ConsultarExpediente">
-    <ElementType Name="ConsultarExpedienteResult">
-      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Edad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Peso" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.ConsultarInstitucion" Method="ConsultarInstitucion">
     <ElementType Name="ConsultarInstitucionResult">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -802,10 +768,6 @@
   </Function>
   <Function Name="dbo.EliminarEmpleado" Method="EliminarEmpleado">
     <Parameter Name="Identificacion" Parameter="identificacion" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.EliminarExpediente" Method="EliminarExpediente">
-    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.EliminarInstitucion" Method="EliminarInstitucion">
@@ -932,18 +894,6 @@
       <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.InsertarExpediente" Method="InsertarExpediente">
-    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="Text" />
-    <Parameter Name="Edad" Parameter="edad" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Peso" Parameter="peso" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Castracion" Parameter="castracion" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="Fecha_Ingreso" Parameter="fecha_Ingreso" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="Fecha_Fallecimiento" Parameter="fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" />
-    <ElementType Name="InsertarExpedienteResult">
-      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.InsertarInstitucion" Method="InsertarInstitucion">
     <Parameter Name="Ced_Juridica" Parameter="ced_Juridica" Type="System.String" DbType="VarChar(25)" />
     <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
@@ -1061,8 +1011,58 @@
       <Column Name="InstitucionTelefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.BuscarExpediente" Method="BuscarExpediente">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="BuscarExpedienteResult">
+      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Edad" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="Peso" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarExpediente" Method="ConsultarExpediente">
+    <ElementType Name="ConsultarExpedienteResult">
+      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Edad" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="Peso" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Column Name="Castracion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Ingreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EliminarExpediente" Method="EliminarExpediente">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
   <Function Name="dbo.EliminarExpedientePermanent" Method="EliminarExpedientePermanent">
     <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarExpediente" Method="ActualizarExpediente">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="Text" />
+    <Parameter Name="Edad" Parameter="edad" Type="System.Decimal" DbType="Decimal(5,2)" />
+    <Parameter Name="Peso" Parameter="peso" Type="System.Decimal" DbType="Decimal(8,2)" />
+    <Parameter Name="Castracion" Parameter="castracion" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Fecha_Ingreso" Parameter="fecha_Ingreso" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Fecha_Fallecimiento" Parameter="fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertarExpediente" Method="InsertarExpediente">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="Text" />
+    <Parameter Name="Edad" Parameter="edad" Type="System.Decimal" DbType="Decimal(5,2)" />
+    <Parameter Name="Peso" Parameter="peso" Type="System.Decimal" DbType="Decimal(8,2)" />
+    <Parameter Name="Castracion" Parameter="castracion" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Fecha_Ingreso" Parameter="fecha_Ingreso" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Fecha_Fallecimiento" Parameter="fecha_Fallecimiento" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="InsertarExpedienteResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

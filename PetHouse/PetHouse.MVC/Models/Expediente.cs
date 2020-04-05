@@ -11,8 +11,12 @@ namespace PetHouse.MVC.Models
         public string Id { get; set; }
         [DataType(dataType: DataType.MultilineText)]
         public string Observaciones { get; set; }
-        public int? Edad { get; set; }
-        public int? Peso { get; set; }
+        [RegularExpression(@"^\d+\.?\d{0,2}$", ErrorMessage = "Formato permitido es #.##")]
+        [Range(0, 199.99, ErrorMessage = "El {0} debe estar entre {1} y {2}")]
+        public decimal? Edad { get; set; }
+        [RegularExpression(@"^\d+\.?\d{0,2}$", ErrorMessage = "Formato permitido es #.##")]
+        [Range(0, 199999.99, ErrorMessage = "El {0} debe estar entre {1} y {2}")]
+        public decimal? Peso { get; set; }
         [DisplayName("Castración")]
         public bool Castracion { get; set; }
         [DisplayName("Fecha Ingreso")]
