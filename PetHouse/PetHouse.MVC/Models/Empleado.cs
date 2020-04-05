@@ -36,8 +36,6 @@ namespace PetHouse.MVC.Models
         public int PuestoID { get => _puestoID; set => Puesto.Id = _puestoID = value; }
         public int InstitucionId { get => _institucionId; set => Institucion.Id = _institucionId = value; }
         public string UserId { get; set; }
-        [ScaffoldColumn(false)]
-        public bool? Activo { get; set; }
         [DisplayName("Región")]
         public Domicilio Domicilio { get; set; }
         [DisplayName("Institución")]

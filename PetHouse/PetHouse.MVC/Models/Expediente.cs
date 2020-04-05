@@ -23,7 +23,5 @@ namespace PetHouse.MVC.Models
         [DataType(dataType: DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM'/'dd'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Fecha_Fallecimiento { get; set; }
-        [ScaffoldColumn(false)]
-        public bool? Activo { get; set; }
     }
 }

@@ -18,8 +18,6 @@ namespace PetHouse.MVC.Models
         public int DistritoId { get => _DistritoId; set => Distrito.Id = _DistritoId = value; }
         [DisplayName("Dirección")]
         public string Direccion { get; set; }
-        [ScaffoldColumn(false)]
-        public bool? Activo { get; set; }
         public Distrito Distrito { get; set; }
     }
 }

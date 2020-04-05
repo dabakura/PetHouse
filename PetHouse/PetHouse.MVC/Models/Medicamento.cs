@@ -26,7 +26,5 @@ namespace PetHouse.MVC.Models
 		[RegularExpression(@"^\d+\.?\d{0,2}$", ErrorMessage = "Formato permitido es #.##")]
 		[Range(0, 199999.99, ErrorMessage = "El {0} debe estar entre {1} y {2}")]
 		public decimal Precio { get; set; }
-		[ScaffoldColumn(false)]
-		public bool? Activo { get; set; }
 	}
 }

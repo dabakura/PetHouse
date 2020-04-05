@@ -9,9 +9,6 @@ namespace PetHouse.MVC.Models
         public string ExpedienteId { get; set; }
         public int VacunaId { get; set; }
         public DateTime Fecha_Vacunacion { get; set; }
-        [ScaffoldColumn(false)]
-        public bool? Activo { get; set; }
-        
         public Vacuna Vacuna { get; set; }
     }
 }

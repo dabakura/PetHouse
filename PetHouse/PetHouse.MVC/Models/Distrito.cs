@@ -8,7 +8,6 @@ namespace PetHouse.MVC.Models
         public int Id { get; set; }
         public int CantonId { get; set; }
         public string Nombre { get; set; }
-    
         public Canton Canton { get; set; }
     }
 }

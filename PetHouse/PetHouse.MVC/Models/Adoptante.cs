@@ -23,8 +23,6 @@ namespace PetHouse.MVC.Models
         public string Correo { get; set; }
         [DisplayName("Id Domicilio")]
         public int DomicilioId { get; set; }
-        [ScaffoldColumn(false)]
-        public bool? Activo { get; set; }
         [DisplayName("Región")]
         public Domicilio Domicilio { get; set; }
         [DisplayName("Mascotas")]

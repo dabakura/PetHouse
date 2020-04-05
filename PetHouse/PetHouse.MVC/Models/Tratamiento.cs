@@ -11,8 +11,6 @@ namespace PetHouse.MVC.Models
         public int EmpleadoId { get; set; }
         [DataType(DataType.MultilineText)]
         public string Descripcion { get; set; }
-        public System.DateTime Fecha { get; set; }
-        [ScaffoldColumn(false)]
-        public bool? Activo { get; set; }
+        public DateTime Fecha { get; set; }
     }
 }

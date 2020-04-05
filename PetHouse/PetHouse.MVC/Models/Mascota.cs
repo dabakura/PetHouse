@@ -44,8 +44,6 @@ namespace PetHouse.MVC.Models
         }
         [DisplayName("Id Expediente")]
         public string ExpedienteId { get => expedienteId; set => Expediente.Id = expedienteId = value; }
-        [ScaffoldColumn(false)]
-        public bool? Activo { get; set; }
         public Adopcion Adopcion { get; set; }
         public Expediente Expediente { get; set; }
     }
