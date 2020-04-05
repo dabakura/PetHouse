@@ -93,10 +93,10 @@
                         @Html.DisplayFor(modelItem => item.Domicilio.Direccion)
                     </td>
                     <td style="text-align: center; min-width: 110px;">
-                        <a href="@Url.Action("Edit", "Adoptante", new { id = item.Id })" class="btn btn-warning">
+                        <a href="@Url.Action("Edit", "Adoptante", new { id = item.Identificacion })" class="btn btn-warning">
                             <i class="fa fa-edit"></i>
                         </a>|
-                        <a href="@Url.Action("Details", "Adoptante", new { id = item.Id })" class="btn btn-info">
+                        <a href="@Url.Action("Details", "Adoptante", new { id = item.Identificacion })" class="btn btn-info">
                             <i class="fa fa-search"></i>
                         </a>
                     </td>

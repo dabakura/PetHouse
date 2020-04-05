@@ -1,90 +1,109 @@
 ﻿@model PetHouse.MVC.Models.Adoptante
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
 }
 
-<h2>Details</h2>
+@Html.Partial("Helpers/_ViewError")
 
-<div>
-    <h4>Adoptante</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
+<div class="col-md-8 col-md-offset-2">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3>Adoptante</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="form-horizontal">
+            <div class="box-body">
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Identificacion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Identificacion)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Nombre)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Primer_Apellido)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Primer_Apellido)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Primer_Apellido)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Primer_Apellido)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Segundo_Apellido)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Segundo_Apellido)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Segundo_Apellido)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Segundo_Apellido)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fecha_Nacimiento)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha_Nacimiento)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Telefono)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Telefono)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Correo)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Correo)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Correo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Correo)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Mascotas)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Activo)
-        </dd>
+                        <dd>
+                            @{
+                                Model.Mascotas.ToList().ForEach(mascota => mascota.Nombre = mascota.Identificacion + " " + mascota.Nombre);
+                                var mascotas = new SelectList(Model.Mascotas, "Identificacion", "Nombre");
+                                @Html.DropDownListFor(model => model.Mascotas, mascotas)
+                            }
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Domicilio.Direccion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Domicilio.Direccion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Domicilio.Direccion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Domicilio.Direccion)
+                        </dd>
 
-    </dl>
+                    </dl>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="form-actions no-color">
+                    @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Identificacion }, new { @class = "btn btn-default pull-right" })
+                </div>
+            </div>
+            <!-- /.box-footer -->
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Identificacion }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
