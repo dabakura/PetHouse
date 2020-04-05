@@ -9,11 +9,9 @@ namespace PetHouse.MVC.Models
     public class Mascota
     {
         private string expedienteId;
-        private int? adopcionId;
 
         public Mascota()
         {
-            Adopcion = new Adopcion();
             Expediente = new Expediente();
         }
 
@@ -27,24 +25,8 @@ namespace PetHouse.MVC.Models
         [DataType(dataType: DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM'/'dd'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Fecha_Nacimiento { get; set; }
-        [DisplayName("Id Adopción")]
-        public int? AdopcionId { 
-            get => adopcionId; 
-            set {
-                if (value.HasValue)
-                {
-                    adopcionId = value;
-                    Adopcion.Id = value.Value;
-                } else
-                {
-                    Adopcion = null;
-                    adopcionId = value;
-                }
-            } 
-        }
         [DisplayName("Id Expediente")]
         public string ExpedienteId { get => expedienteId; set => Expediente.Id = expedienteId = value; }
-        public Adopcion Adopcion { get; set; }
         public Expediente Expediente { get; set; }
     }
 }

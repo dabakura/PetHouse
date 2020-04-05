@@ -55,8 +55,8 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                var ids = (from adopcion in DB.ConsultarAdopcion() where adopcion.AdoptanteId == id select adopcion.Id).ToList();
-                var MascotasResult = (from mascota in DB.ConsultarMascota() where mascota.AdopcionId.HasValue && ids.Contains(mascota.AdopcionId.Value) select mascota).ToList();
+                var ids = (from adopcion in DB.ConsultarAdopcion() where adopcion.AdoptanteId == id select adopcion.MascotaId).ToList();
+                var MascotasResult = (from mascota in DB.ConsultarMascota() where ids.Contains(mascota.Identificacion) select mascota).ToList();
                 var Mascotas = mapper.Map<IEnumerable<ConsultarMascotaResult>, IEnumerable<Mascota>>(MascotasResult);
                 return Mascotas;
             }
@@ -70,7 +70,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                var id = DB.InsertarMascota(entity.Identificacion, entity.Nombre, entity.Tipo,entity.Genero, entity.Raza, entity.Fecha_Nacimiento, entity.AdopcionId, entity.ExpedienteId).SingleOrDefault().Column1;
+                var id = DB.InsertarMascota(entity.Identificacion, entity.Nombre, entity.Tipo,entity.Genero, entity.Raza, entity.Fecha_Nacimiento, entity.ExpedienteId).SingleOrDefault().Column1;
                 return id;
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                DB.ActualizarMascota(entity.Identificacion, entity.Nombre, entity.Tipo, entity.Genero, entity.Raza, entity.Fecha_Nacimiento, entity.AdopcionId, entity.ExpedienteId);
+                DB.ActualizarMascota(entity.Identificacion, entity.Nombre, entity.Tipo, entity.Genero, entity.Raza, entity.Fecha_Nacimiento, entity.ExpedienteId);
                 return true;
             }
             catch (Exception ex)

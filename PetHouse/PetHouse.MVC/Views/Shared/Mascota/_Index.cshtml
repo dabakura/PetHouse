@@ -25,9 +25,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdopcionId)
-            </th>
             <th style="text-align: center;">
                 Acciones
             </th>
@@ -57,12 +54,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Fecha_Nacimiento)
-                </td>
-                <td>
-                    @if (item.AdopcionId.HasValue)
-                    {
-                        @Html.DisplayFor(modelItem => item.AdopcionId)
-                    }
                 </td>
                 <td style="text-align: center; min-width: 160px;">
                     <a href="@Url.Action("Edit", "Mascota", new { id = item.Identificacion })" class="btn btn-warning">

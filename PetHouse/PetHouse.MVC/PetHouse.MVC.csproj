@@ -234,10 +234,11 @@
     <Content Include="Views\Shared\Mascota\_Index.cshtml" />
     <Content Include="Views\Home\SideBars\_Ingreso.cshtml" />
     <Content Include="Views\Home\SideBars\_Busqueda.cshtml" />
-    <Content Include="Views\Shared\Mascota\_Detalle.cshtml" />
     <Content Include="Views\Home\Ingreso.cshtml" />
     <Content Include="Views\Shared\Mascota\_Create.cshtml" />
     <Content Include="Views\Shared\Expediente\_Create.cshtml" />
+    <Content Include="Views\Shared\Adoptante\_Index.cshtml" />
+    <Content Include="Views\Adopcion\Parcials\_Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

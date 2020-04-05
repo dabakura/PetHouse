@@ -30,9 +30,6 @@ namespace PetHouse.DAL.Entities
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAdopcion(Adopcion instance);
-    partial void UpdateAdopcion(Adopcion instance);
-    partial void DeleteAdopcion(Adopcion instance);
     partial void InsertVacuna(Vacuna instance);
     partial void UpdateVacuna(Vacuna instance);
     partial void DeleteVacuna(Vacuna instance);
@@ -69,9 +66,6 @@ namespace PetHouse.DAL.Entities
     partial void InsertInstitucion(Institucion instance);
     partial void UpdateInstitucion(Institucion instance);
     partial void DeleteInstitucion(Institucion instance);
-    partial void InsertMascota(Mascota instance);
-    partial void UpdateMascota(Mascota instance);
-    partial void DeleteMascota(Mascota instance);
     partial void InsertMedicamento(Medicamento instance);
     partial void UpdateMedicamento(Medicamento instance);
     partial void DeleteMedicamento(Medicamento instance);
@@ -93,6 +87,12 @@ namespace PetHouse.DAL.Entities
     partial void InsertExpediente(Expediente instance);
     partial void UpdateExpediente(Expediente instance);
     partial void DeleteExpediente(Expediente instance);
+    partial void InsertMascota(Mascota instance);
+    partial void UpdateMascota(Mascota instance);
+    partial void DeleteMascota(Mascota instance);
+    partial void InsertAdopcion(Adopcion instance);
+    partial void UpdateAdopcion(Adopcion instance);
+    partial void DeleteAdopcion(Adopcion instance);
     #endregion
 		
 		public PetHouseDataContext() : 
@@ -123,14 +123,6 @@ namespace PetHouse.DAL.Entities
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Adopcion> Adopcions
-		{
-			get
-			{
-				return this.GetTable<Adopcion>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Vacuna> Vacunas
@@ -229,14 +221,6 @@ namespace PetHouse.DAL.Entities
 			}
 		}
 		
-		public System.Data.Linq.Table<Mascota> Mascotas
-		{
-			get
-			{
-				return this.GetTable<Mascota>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Medicamento> Medicamentos
 		{
 			get
@@ -293,11 +277,20 @@ namespace PetHouse.DAL.Entities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarAdopcion")]
-		public int ActualizarAdopcion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstituionId", DbType="Int")] System.Nullable<int> instituionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdoptanteId", DbType="Int")] System.Nullable<int> adoptanteId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Adopcion", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Adopcion)
+		public System.Data.Linq.Table<Mascota> Mascotas
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, instituionId, adoptanteId, fecha_Adopcion);
-			return ((int)(result.ReturnValue));
+			get
+			{
+				return this.GetTable<Mascota>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Adopcion> Adopcions
+		{
+			get
+			{
+				return this.GetTable<Adopcion>();
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.RegistrarBitacora")]
@@ -346,13 +339,6 @@ namespace PetHouse.DAL.Entities
 		public int ActualizarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ced_Juridica", DbType="VarChar(25)")] string ced_Juridica, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="Int")] System.Nullable<int> telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fax", DbType="VarChar(50)")] string fax, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pag_Web", DbType="VarChar(100)")] string pag_Web, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DireccionId", DbType="Int")] System.Nullable<int> direccionId)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, ced_Juridica, nombre, telefono, fax, pag_Web, correo, direccionId);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarMascota")]
-		public int ActualizarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Genero", DbType="VarChar(50)")] string genero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdopcionId", DbType="Int")] System.Nullable<int> adopcionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, tipo, genero, raza, fecha_Nacimiento, adopcionId, expedienteId);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -405,13 +391,6 @@ namespace PetHouse.DAL.Entities
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarAdopcion")]
-		public ISingleResult<BuscarAdopcionResult> BuscarAdopcion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((ISingleResult<BuscarAdopcionResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarAdoptante")]
 		public ISingleResult<BuscarAdoptanteResult> BuscarAdoptante([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion)
 		{
@@ -452,13 +431,6 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
 			return ((ISingleResult<BuscarInstitucionResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarMascota")]
-		public ISingleResult<BuscarMascotaResult> BuscarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
-			return ((ISingleResult<BuscarMascotaResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarMedicamento")]
@@ -524,13 +496,6 @@ namespace PetHouse.DAL.Entities
 			return ((ISingleResult<BuscarVacunaResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarAdopcion")]
-		public ISingleResult<ConsultarAdopcionResult> ConsultarAdopcion()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarAdopcionResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarAdoptante")]
 		public ISingleResult<ConsultarAdoptanteResult> ConsultarAdoptante()
 		{
@@ -578,13 +543,6 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ConsultarInstitucionResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarMascota")]
-		public ISingleResult<ConsultarMascotaResult> ConsultarMascota()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarMascotaResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarMedicamento")]
@@ -650,13 +608,6 @@ namespace PetHouse.DAL.Entities
 			return ((ISingleResult<ConsultarVacunaResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarAdopcion")]
-		public int EliminarAdopcion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarAdoptante")]
 		public int EliminarAdoptante([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion)
 		{
@@ -689,13 +640,6 @@ namespace PetHouse.DAL.Entities
 		public int EliminarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarMascota")]
-		public int EliminarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -762,13 +706,6 @@ namespace PetHouse.DAL.Entities
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarAdopcion")]
-		public ISingleResult<InsertarAdopcionResult> InsertarAdopcion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstituionId", DbType="Int")] System.Nullable<int> instituionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdoptanteId", DbType="Int")] System.Nullable<int> adoptanteId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Adopcion", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Adopcion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituionId, adoptanteId, fecha_Adopcion);
-			return ((ISingleResult<InsertarAdopcionResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarAdoptante")]
 		public ISingleResult<InsertarAdoptanteResult> InsertarAdoptante([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="Int")] System.Nullable<int> identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Primer_Apellido", DbType="VarChar(50)")] string primer_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Segundo_Apellido", DbType="VarChar(50)")] string segundo_Apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="Int")] System.Nullable<int> telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomicilioId", DbType="Int")] System.Nullable<int> domicilioId)
 		{
@@ -816,13 +753,6 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ced_Juridica, nombre, telefono, fax, pag_Web, correo, direccionId);
 			return ((ISingleResult<InsertarInstitucionResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarMascota")]
-		public ISingleResult<InsertarMascotaResult> InsertarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Genero", DbType="VarChar(50)")] string genero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdopcionId", DbType="Int")] System.Nullable<int> adopcionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, tipo, genero, raza, fecha_Nacimiento, adopcionId, expedienteId);
-			return ((ISingleResult<InsertarMascotaResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarMedicamento")]
@@ -929,273 +859,75 @@ namespace PetHouse.DAL.Entities
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, observaciones, edad, peso, castracion, fecha_Ingreso, fecha_Fallecimiento);
 			return ((ISingleResult<InsertarExpedienteResult>)(result.ReturnValue));
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Adopcion")]
-	public partial class Adopcion : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _InstituionId;
-		
-		private int _AdoptanteId;
-		
-		private System.DateTime _Fecha_Adopcion;
-		
-		private System.Nullable<bool> _Activo;
-		
-		private EntitySet<Mascota> _Mascotas;
-		
-		private EntityRef<Adoptante> _Adoptante;
-		
-		private EntityRef<Institucion> _Institucion;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnInstituionIdChanging(int value);
-    partial void OnInstituionIdChanged();
-    partial void OnAdoptanteIdChanging(int value);
-    partial void OnAdoptanteIdChanged();
-    partial void OnFecha_AdopcionChanging(System.DateTime value);
-    partial void OnFecha_AdopcionChanged();
-    partial void OnActivoChanging(System.Nullable<bool> value);
-    partial void OnActivoChanged();
-    #endregion
-		
-		public Adopcion()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarMascota")]
+		public int ActualizarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Genero", DbType="VarChar(50)")] string genero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
 		{
-			this._Mascotas = new EntitySet<Mascota>(new Action<Mascota>(this.attach_Mascotas), new Action<Mascota>(this.detach_Mascotas));
-			this._Adoptante = default(EntityRef<Adoptante>);
-			this._Institucion = default(EntityRef<Institucion>);
-			OnCreated();
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, tipo, genero, raza, fecha_Nacimiento, expedienteId);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarMascota")]
+		public ISingleResult<BuscarMascotaResult> BuscarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion)
 		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
+			return ((ISingleResult<BuscarMascotaResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituionId", DbType="Int NOT NULL")]
-		public int InstituionId
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarMascota")]
+		public ISingleResult<ConsultarMascotaResult> ConsultarMascota()
 		{
-			get
-			{
-				return this._InstituionId;
-			}
-			set
-			{
-				if ((this._InstituionId != value))
-				{
-					if (this._Institucion.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnInstituionIdChanging(value);
-					this.SendPropertyChanging();
-					this._InstituionId = value;
-					this.SendPropertyChanged("InstituionId");
-					this.OnInstituionIdChanged();
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarMascotaResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdoptanteId", DbType="Int NOT NULL")]
-		public int AdoptanteId
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarMascota")]
+		public int EliminarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion)
 		{
-			get
-			{
-				return this._AdoptanteId;
-			}
-			set
-			{
-				if ((this._AdoptanteId != value))
-				{
-					if (this._Adoptante.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAdoptanteIdChanging(value);
-					this.SendPropertyChanging();
-					this._AdoptanteId = value;
-					this.SendPropertyChanged("AdoptanteId");
-					this.OnAdoptanteIdChanged();
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Adopcion", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Adopcion
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarMascota")]
+		public ISingleResult<InsertarMascotaResult> InsertarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(100)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Genero", DbType="VarChar(50)")] string genero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Nacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Nacimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
 		{
-			get
-			{
-				return this._Fecha_Adopcion;
-			}
-			set
-			{
-				if ((this._Fecha_Adopcion != value))
-				{
-					this.OnFecha_AdopcionChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha_Adopcion = value;
-					this.SendPropertyChanged("Fecha_Adopcion");
-					this.OnFecha_AdopcionChanged();
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombre, tipo, genero, raza, fecha_Nacimiento, expedienteId);
+			return ((ISingleResult<InsertarMascotaResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
-		public System.Nullable<bool> Activo
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarAdopcion")]
+		public int ActualizarAdopcion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstitucionId", DbType="Int")] System.Nullable<int> institucionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdoptanteId", DbType="Int")] System.Nullable<int> adoptanteId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MascotaId", DbType="VarChar(100)")] string mascotaId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Adopcion", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Adopcion)
 		{
-			get
-			{
-				return this._Activo;
-			}
-			set
-			{
-				if ((this._Activo != value))
-				{
-					this.OnActivoChanging(value);
-					this.SendPropertyChanging();
-					this._Activo = value;
-					this.SendPropertyChanged("Activo");
-					this.OnActivoChanged();
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, institucionId, adoptanteId, mascotaId, fecha_Adopcion);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adopcion_Mascota", Storage="_Mascotas", ThisKey="Id", OtherKey="AdopcionId")]
-		public EntitySet<Mascota> Mascotas
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarAdopcion")]
+		public ISingleResult<BuscarAdopcionResult> BuscarAdopcion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
 		{
-			get
-			{
-				return this._Mascotas;
-			}
-			set
-			{
-				this._Mascotas.Assign(value);
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<BuscarAdopcionResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adoptante_Adopcion", Storage="_Adoptante", ThisKey="AdoptanteId", OtherKey="Identificacion", IsForeignKey=true)]
-		public Adoptante Adoptante
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarAdopcion")]
+		public ISingleResult<ConsultarAdopcionResult> ConsultarAdopcion()
 		{
-			get
-			{
-				return this._Adoptante.Entity;
-			}
-			set
-			{
-				Adoptante previousValue = this._Adoptante.Entity;
-				if (((previousValue != value) 
-							|| (this._Adoptante.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Adoptante.Entity = null;
-						previousValue.Adopcions.Remove(this);
-					}
-					this._Adoptante.Entity = value;
-					if ((value != null))
-					{
-						value.Adopcions.Add(this);
-						this._AdoptanteId = value.Identificacion;
-					}
-					else
-					{
-						this._AdoptanteId = default(int);
-					}
-					this.SendPropertyChanged("Adoptante");
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarAdopcionResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institucion_Adopcion", Storage="_Institucion", ThisKey="InstituionId", OtherKey="Id", IsForeignKey=true)]
-		public Institucion Institucion
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarAdopcion")]
+		public int EliminarAdopcion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
 		{
-			get
-			{
-				return this._Institucion.Entity;
-			}
-			set
-			{
-				Institucion previousValue = this._Institucion.Entity;
-				if (((previousValue != value) 
-							|| (this._Institucion.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Institucion.Entity = null;
-						previousValue.Adopcions.Remove(this);
-					}
-					this._Institucion.Entity = value;
-					if ((value != null))
-					{
-						value.Adopcions.Add(this);
-						this._InstituionId = value.Id;
-					}
-					else
-					{
-						this._InstituionId = default(int);
-					}
-					this.SendPropertyChanged("Institucion");
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarAdopcion")]
+		public ISingleResult<InsertarAdopcionResult> InsertarAdopcion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstitucionId", DbType="Int")] System.Nullable<int> institucionId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AdoptanteId", DbType="Int")] System.Nullable<int> adoptanteId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MascotaId", DbType="VarChar(100)")] string mascotaId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Adopcion", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Adopcion)
 		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Mascotas(Mascota entity)
-		{
-			this.SendPropertyChanging();
-			entity.Adopcion = this;
-		}
-		
-		private void detach_Mascotas(Mascota entity)
-		{
-			this.SendPropertyChanging();
-			entity.Adopcion = null;
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), institucionId, adoptanteId, mascotaId, fecha_Adopcion);
+			return ((ISingleResult<InsertarAdopcionResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -4187,9 +3919,9 @@ namespace PetHouse.DAL.Entities
 		
 		private System.Nullable<bool> _Activo;
 		
-		private EntitySet<Adopcion> _Adopcions;
-		
 		private EntitySet<Empleado> _Empleados;
+		
+		private EntitySet<Adopcion> _Adopcions;
 		
 		private EntityRef<Domicilio> _Domicilio;
 		
@@ -4219,8 +3951,8 @@ namespace PetHouse.DAL.Entities
 		
 		public Institucion()
 		{
-			this._Adopcions = new EntitySet<Adopcion>(new Action<Adopcion>(this.attach_Adopcions), new Action<Adopcion>(this.detach_Adopcions));
 			this._Empleados = new EntitySet<Empleado>(new Action<Empleado>(this.attach_Empleados), new Action<Empleado>(this.detach_Empleados));
+			this._Adopcions = new EntitySet<Adopcion>(new Action<Adopcion>(this.attach_Adopcions), new Action<Adopcion>(this.detach_Adopcions));
 			this._Domicilio = default(EntityRef<Domicilio>);
 			OnCreated();
 		}
@@ -4409,19 +4141,6 @@ namespace PetHouse.DAL.Entities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institucion_Adopcion", Storage="_Adopcions", ThisKey="Id", OtherKey="InstituionId")]
-		public EntitySet<Adopcion> Adopcions
-		{
-			get
-			{
-				return this._Adopcions;
-			}
-			set
-			{
-				this._Adopcions.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institucion_Empleado", Storage="_Empleados", ThisKey="Id", OtherKey="InstitucionId")]
 		public EntitySet<Empleado> Empleados
 		{
@@ -4432,6 +4151,19 @@ namespace PetHouse.DAL.Entities
 			set
 			{
 				this._Empleados.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institucion_Adopcion", Storage="_Adopcions", ThisKey="Id", OtherKey="InstitucionId")]
+		public EntitySet<Adopcion> Adopcions
+		{
+			get
+			{
+				return this._Adopcions;
+			}
+			set
+			{
+				this._Adopcions.Assign(value);
 			}
 		}
 		
@@ -4489,18 +4221,6 @@ namespace PetHouse.DAL.Entities
 			}
 		}
 		
-		private void attach_Adopcions(Adopcion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Institucion = this;
-		}
-		
-		private void detach_Adopcions(Adopcion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Institucion = null;
-		}
-		
 		private void attach_Empleados(Empleado entity)
 		{
 			this.SendPropertyChanging();
@@ -4512,341 +4232,17 @@ namespace PetHouse.DAL.Entities
 			this.SendPropertyChanging();
 			entity.Institucion = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Mascota")]
-	public partial class Mascota : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Tipo;
-		
-		private string _Genero;
-		
-		private string _Raza;
-		
-		private System.Nullable<System.DateTime> _Fecha_Nacimiento;
-		
-		private System.Nullable<int> _AdopcionId;
-		
-		private string _ExpedienteId;
-		
-		private System.Nullable<bool> _Activo;
-		
-		private EntityRef<Adopcion> _Adopcion;
-		
-		private EntityRef<Expediente> _Expediente;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdentificacionChanging(string value);
-    partial void OnIdentificacionChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnTipoChanging(string value);
-    partial void OnTipoChanged();
-    partial void OnGeneroChanging(string value);
-    partial void OnGeneroChanged();
-    partial void OnRazaChanging(string value);
-    partial void OnRazaChanged();
-    partial void OnFecha_NacimientoChanging(System.Nullable<System.DateTime> value);
-    partial void OnFecha_NacimientoChanged();
-    partial void OnAdopcionIdChanging(System.Nullable<int> value);
-    partial void OnAdopcionIdChanged();
-    partial void OnExpedienteIdChanging(string value);
-    partial void OnExpedienteIdChanged();
-    partial void OnActivoChanging(System.Nullable<bool> value);
-    partial void OnActivoChanged();
-    #endregion
-		
-		public Mascota()
+		private void attach_Adopcions(Adopcion entity)
 		{
-			this._Adopcion = default(EntityRef<Adopcion>);
-			this._Expediente = default(EntityRef<Expediente>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Institucion = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Identificacion
+		private void detach_Adopcions(Adopcion entity)
 		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this.OnIdentificacionChanging(value);
-					this.SendPropertyChanging();
-					this._Identificacion = value;
-					this.SendPropertyChanged("Identificacion");
-					this.OnIdentificacionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Tipo
-		{
-			get
-			{
-				return this._Tipo;
-			}
-			set
-			{
-				if ((this._Tipo != value))
-				{
-					this.OnTipoChanging(value);
-					this.SendPropertyChanging();
-					this._Tipo = value;
-					this.SendPropertyChanged("Tipo");
-					this.OnTipoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genero", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Genero
-		{
-			get
-			{
-				return this._Genero;
-			}
-			set
-			{
-				if ((this._Genero != value))
-				{
-					this.OnGeneroChanging(value);
-					this.SendPropertyChanging();
-					this._Genero = value;
-					this.SendPropertyChanged("Genero");
-					this.OnGeneroChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Raza", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Raza
-		{
-			get
-			{
-				return this._Raza;
-			}
-			set
-			{
-				if ((this._Raza != value))
-				{
-					this.OnRazaChanging(value);
-					this.SendPropertyChanging();
-					this._Raza = value;
-					this.SendPropertyChanged("Raza");
-					this.OnRazaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Nacimiento
-		{
-			get
-			{
-				return this._Fecha_Nacimiento;
-			}
-			set
-			{
-				if ((this._Fecha_Nacimiento != value))
-				{
-					this.OnFecha_NacimientoChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha_Nacimiento = value;
-					this.SendPropertyChanged("Fecha_Nacimiento");
-					this.OnFecha_NacimientoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdopcionId", DbType="Int")]
-		public System.Nullable<int> AdopcionId
-		{
-			get
-			{
-				return this._AdopcionId;
-			}
-			set
-			{
-				if ((this._AdopcionId != value))
-				{
-					if (this._Adopcion.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAdopcionIdChanging(value);
-					this.SendPropertyChanging();
-					this._AdopcionId = value;
-					this.SendPropertyChanged("AdopcionId");
-					this.OnAdopcionIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100)")]
-		public string ExpedienteId
-		{
-			get
-			{
-				return this._ExpedienteId;
-			}
-			set
-			{
-				if ((this._ExpedienteId != value))
-				{
-					if (this._Expediente.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnExpedienteIdChanging(value);
-					this.SendPropertyChanging();
-					this._ExpedienteId = value;
-					this.SendPropertyChanged("ExpedienteId");
-					this.OnExpedienteIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
-		public System.Nullable<bool> Activo
-		{
-			get
-			{
-				return this._Activo;
-			}
-			set
-			{
-				if ((this._Activo != value))
-				{
-					this.OnActivoChanging(value);
-					this.SendPropertyChanging();
-					this._Activo = value;
-					this.SendPropertyChanged("Activo");
-					this.OnActivoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adopcion_Mascota", Storage="_Adopcion", ThisKey="AdopcionId", OtherKey="Id", IsForeignKey=true)]
-		public Adopcion Adopcion
-		{
-			get
-			{
-				return this._Adopcion.Entity;
-			}
-			set
-			{
-				Adopcion previousValue = this._Adopcion.Entity;
-				if (((previousValue != value) 
-							|| (this._Adopcion.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Adopcion.Entity = null;
-						previousValue.Mascotas.Remove(this);
-					}
-					this._Adopcion.Entity = value;
-					if ((value != null))
-					{
-						value.Mascotas.Add(this);
-						this._AdopcionId = value.Id;
-					}
-					else
-					{
-						this._AdopcionId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Adopcion");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Expediente_Mascota", Storage="_Expediente", ThisKey="ExpedienteId", OtherKey="Id", IsForeignKey=true)]
-		public Expediente Expediente
-		{
-			get
-			{
-				return this._Expediente.Entity;
-			}
-			set
-			{
-				Expediente previousValue = this._Expediente.Entity;
-				if (((previousValue != value) 
-							|| (this._Expediente.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Expediente.Entity = null;
-						previousValue.Mascotas.Remove(this);
-					}
-					this._Expediente.Entity = value;
-					if ((value != null))
-					{
-						value.Mascotas.Add(this);
-						this._ExpedienteId = value.Id;
-					}
-					else
-					{
-						this._ExpedienteId = default(string);
-					}
-					this.SendPropertyChanged("Expediente");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Institucion = null;
 		}
 	}
 	
@@ -6112,11 +5508,11 @@ namespace PetHouse.DAL.Entities
 		
 		private EntitySet<Carnet> _Carnets;
 		
-		private EntitySet<Mascota> _Mascotas;
-		
 		private EntitySet<Procedimiento> _Procedimientos;
 		
 		private EntitySet<Tratamiento> _Tratamientos;
+		
+		private EntitySet<Mascota> _Mascotas;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -6143,9 +5539,9 @@ namespace PetHouse.DAL.Entities
 		public Expediente()
 		{
 			this._Carnets = new EntitySet<Carnet>(new Action<Carnet>(this.attach_Carnets), new Action<Carnet>(this.detach_Carnets));
-			this._Mascotas = new EntitySet<Mascota>(new Action<Mascota>(this.attach_Mascotas), new Action<Mascota>(this.detach_Mascotas));
 			this._Procedimientos = new EntitySet<Procedimiento>(new Action<Procedimiento>(this.attach_Procedimientos), new Action<Procedimiento>(this.detach_Procedimientos));
 			this._Tratamientos = new EntitySet<Tratamiento>(new Action<Tratamiento>(this.attach_Tratamientos), new Action<Tratamiento>(this.detach_Tratamientos));
+			this._Mascotas = new EntitySet<Mascota>(new Action<Mascota>(this.attach_Mascotas), new Action<Mascota>(this.detach_Mascotas));
 			OnCreated();
 		}
 		
@@ -6322,19 +5718,6 @@ namespace PetHouse.DAL.Entities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Expediente_Mascota", Storage="_Mascotas", ThisKey="Id", OtherKey="ExpedienteId")]
-		public EntitySet<Mascota> Mascotas
-		{
-			get
-			{
-				return this._Mascotas;
-			}
-			set
-			{
-				this._Mascotas.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Expediente_Procedimiento", Storage="_Procedimientos", ThisKey="Id", OtherKey="ExpedienteId")]
 		public EntitySet<Procedimiento> Procedimientos
 		{
@@ -6358,6 +5741,19 @@ namespace PetHouse.DAL.Entities
 			set
 			{
 				this._Tratamientos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Expediente_Mascota", Storage="_Mascotas", ThisKey="Id", OtherKey="ExpedienteId")]
+		public EntitySet<Mascota> Mascotas
+		{
+			get
+			{
+				return this._Mascotas;
+			}
+			set
+			{
+				this._Mascotas.Assign(value);
 			}
 		}
 		
@@ -6393,18 +5789,6 @@ namespace PetHouse.DAL.Entities
 			entity.Expediente = null;
 		}
 		
-		private void attach_Mascotas(Mascota entity)
-		{
-			this.SendPropertyChanging();
-			entity.Expediente = this;
-		}
-		
-		private void detach_Mascotas(Mascota entity)
-		{
-			this.SendPropertyChanging();
-			entity.Expediente = null;
-		}
-		
 		private void attach_Procedimientos(Procedimiento entity)
 		{
 			this.SendPropertyChanging();
@@ -6428,85 +5812,215 @@ namespace PetHouse.DAL.Entities
 			this.SendPropertyChanging();
 			entity.Expediente = null;
 		}
+		
+		private void attach_Mascotas(Mascota entity)
+		{
+			this.SendPropertyChanging();
+			entity.Expediente = this;
+		}
+		
+		private void detach_Mascotas(Mascota entity)
+		{
+			this.SendPropertyChanging();
+			entity.Expediente = null;
+		}
 	}
 	
-	public partial class BuscarAdopcionResult
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Mascota")]
+	public partial class Mascota : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
-		private int _Id;
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _InstituionId;
+		private string _Identificacion;
 		
-		private int _AdoptanteId;
+		private string _Nombre;
 		
-		private System.DateTime _Fecha_Adopcion;
+		private string _Tipo;
+		
+		private string _Genero;
+		
+		private string _Raza;
+		
+		private System.Nullable<System.DateTime> _Fecha_Nacimiento;
+		
+		private string _ExpedienteId;
 		
 		private System.Nullable<bool> _Activo;
 		
-		public BuscarAdopcionResult()
+		private EntitySet<Adopcion> _Adopcions;
+		
+		private EntityRef<Expediente> _Expediente;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdentificacionChanging(string value);
+    partial void OnIdentificacionChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnTipoChanging(string value);
+    partial void OnTipoChanged();
+    partial void OnGeneroChanging(string value);
+    partial void OnGeneroChanged();
+    partial void OnRazaChanging(string value);
+    partial void OnRazaChanged();
+    partial void OnFecha_NacimientoChanging(System.Nullable<System.DateTime> value);
+    partial void OnFecha_NacimientoChanged();
+    partial void OnExpedienteIdChanging(string value);
+    partial void OnExpedienteIdChanged();
+    partial void OnActivoChanging(System.Nullable<bool> value);
+    partial void OnActivoChanged();
+    #endregion
+		
+		public Mascota()
 		{
+			this._Adopcions = new EntitySet<Adopcion>(new Action<Adopcion>(this.attach_Adopcions), new Action<Adopcion>(this.detach_Adopcions));
+			this._Expediente = default(EntityRef<Expediente>);
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Identificacion
 		{
 			get
 			{
-				return this._Id;
+				return this._Identificacion;
 			}
 			set
 			{
-				if ((this._Id != value))
+				if ((this._Identificacion != value))
 				{
-					this._Id = value;
+					this.OnIdentificacionChanging(value);
+					this.SendPropertyChanging();
+					this._Identificacion = value;
+					this.SendPropertyChanged("Identificacion");
+					this.OnIdentificacionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituionId", DbType="Int NOT NULL")]
-		public int InstituionId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
+		public string Nombre
 		{
 			get
 			{
-				return this._InstituionId;
+				return this._Nombre;
 			}
 			set
 			{
-				if ((this._InstituionId != value))
+				if ((this._Nombre != value))
 				{
-					this._InstituionId = value;
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdoptanteId", DbType="Int NOT NULL")]
-		public int AdoptanteId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Tipo
 		{
 			get
 			{
-				return this._AdoptanteId;
+				return this._Tipo;
 			}
 			set
 			{
-				if ((this._AdoptanteId != value))
+				if ((this._Tipo != value))
 				{
-					this._AdoptanteId = value;
+					this.OnTipoChanging(value);
+					this.SendPropertyChanging();
+					this._Tipo = value;
+					this.SendPropertyChanged("Tipo");
+					this.OnTipoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Adopcion", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Adopcion
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genero", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Genero
 		{
 			get
 			{
-				return this._Fecha_Adopcion;
+				return this._Genero;
 			}
 			set
 			{
-				if ((this._Fecha_Adopcion != value))
+				if ((this._Genero != value))
 				{
-					this._Fecha_Adopcion = value;
+					this.OnGeneroChanging(value);
+					this.SendPropertyChanging();
+					this._Genero = value;
+					this.SendPropertyChanged("Genero");
+					this.OnGeneroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Raza", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Raza
+		{
+			get
+			{
+				return this._Raza;
+			}
+			set
+			{
+				if ((this._Raza != value))
+				{
+					this.OnRazaChanging(value);
+					this.SendPropertyChanging();
+					this._Raza = value;
+					this.SendPropertyChanged("Raza");
+					this.OnRazaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Nacimiento
+		{
+			get
+			{
+				return this._Fecha_Nacimiento;
+			}
+			set
+			{
+				if ((this._Fecha_Nacimiento != value))
+				{
+					this.OnFecha_NacimientoChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Nacimiento = value;
+					this.SendPropertyChanged("Fecha_Nacimiento");
+					this.OnFecha_NacimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100)")]
+		public string ExpedienteId
+		{
+			get
+			{
+				return this._ExpedienteId;
+			}
+			set
+			{
+				if ((this._ExpedienteId != value))
+				{
+					if (this._Expediente.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnExpedienteIdChanging(value);
+					this.SendPropertyChanging();
+					this._ExpedienteId = value;
+					this.SendPropertyChanged("ExpedienteId");
+					this.OnExpedienteIdChanged();
 				}
 			}
 		}
@@ -6522,8 +6036,396 @@ namespace PetHouse.DAL.Entities
 			{
 				if ((this._Activo != value))
 				{
+					this.OnActivoChanging(value);
+					this.SendPropertyChanging();
 					this._Activo = value;
+					this.SendPropertyChanged("Activo");
+					this.OnActivoChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Mascota_Adopcion", Storage="_Adopcions", ThisKey="Identificacion", OtherKey="MascotaId")]
+		public EntitySet<Adopcion> Adopcions
+		{
+			get
+			{
+				return this._Adopcions;
+			}
+			set
+			{
+				this._Adopcions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Expediente_Mascota", Storage="_Expediente", ThisKey="ExpedienteId", OtherKey="Id", IsForeignKey=true)]
+		public Expediente Expediente
+		{
+			get
+			{
+				return this._Expediente.Entity;
+			}
+			set
+			{
+				Expediente previousValue = this._Expediente.Entity;
+				if (((previousValue != value) 
+							|| (this._Expediente.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Expediente.Entity = null;
+						previousValue.Mascotas.Remove(this);
+					}
+					this._Expediente.Entity = value;
+					if ((value != null))
+					{
+						value.Mascotas.Add(this);
+						this._ExpedienteId = value.Id;
+					}
+					else
+					{
+						this._ExpedienteId = default(string);
+					}
+					this.SendPropertyChanged("Expediente");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Adopcions(Adopcion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Mascota = this;
+		}
+		
+		private void detach_Adopcions(Adopcion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Mascota = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Adopcion")]
+	public partial class Adopcion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _InstitucionId;
+		
+		private int _AdoptanteId;
+		
+		private string _MascotaId;
+		
+		private System.DateTime _Fecha_Adopcion;
+		
+		private System.Nullable<bool> _Activo;
+		
+		private EntityRef<Adoptante> _Adoptante;
+		
+		private EntityRef<Institucion> _Institucion;
+		
+		private EntityRef<Mascota> _Mascota;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnInstitucionIdChanging(int value);
+    partial void OnInstitucionIdChanged();
+    partial void OnAdoptanteIdChanging(int value);
+    partial void OnAdoptanteIdChanged();
+    partial void OnMascotaIdChanging(string value);
+    partial void OnMascotaIdChanged();
+    partial void OnFecha_AdopcionChanging(System.DateTime value);
+    partial void OnFecha_AdopcionChanged();
+    partial void OnActivoChanging(System.Nullable<bool> value);
+    partial void OnActivoChanged();
+    #endregion
+		
+		public Adopcion()
+		{
+			this._Adoptante = default(EntityRef<Adoptante>);
+			this._Institucion = default(EntityRef<Institucion>);
+			this._Mascota = default(EntityRef<Mascota>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstitucionId", DbType="Int NOT NULL")]
+		public int InstitucionId
+		{
+			get
+			{
+				return this._InstitucionId;
+			}
+			set
+			{
+				if ((this._InstitucionId != value))
+				{
+					if (this._Institucion.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInstitucionIdChanging(value);
+					this.SendPropertyChanging();
+					this._InstitucionId = value;
+					this.SendPropertyChanged("InstitucionId");
+					this.OnInstitucionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdoptanteId", DbType="Int NOT NULL")]
+		public int AdoptanteId
+		{
+			get
+			{
+				return this._AdoptanteId;
+			}
+			set
+			{
+				if ((this._AdoptanteId != value))
+				{
+					if (this._Adoptante.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAdoptanteIdChanging(value);
+					this.SendPropertyChanging();
+					this._AdoptanteId = value;
+					this.SendPropertyChanged("AdoptanteId");
+					this.OnAdoptanteIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MascotaId", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string MascotaId
+		{
+			get
+			{
+				return this._MascotaId;
+			}
+			set
+			{
+				if ((this._MascotaId != value))
+				{
+					if (this._Mascota.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMascotaIdChanging(value);
+					this.SendPropertyChanging();
+					this._MascotaId = value;
+					this.SendPropertyChanged("MascotaId");
+					this.OnMascotaIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Adopcion", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Adopcion
+		{
+			get
+			{
+				return this._Fecha_Adopcion;
+			}
+			set
+			{
+				if ((this._Fecha_Adopcion != value))
+				{
+					this.OnFecha_AdopcionChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Adopcion = value;
+					this.SendPropertyChanged("Fecha_Adopcion");
+					this.OnFecha_AdopcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
+		public System.Nullable<bool> Activo
+		{
+			get
+			{
+				return this._Activo;
+			}
+			set
+			{
+				if ((this._Activo != value))
+				{
+					this.OnActivoChanging(value);
+					this.SendPropertyChanging();
+					this._Activo = value;
+					this.SendPropertyChanged("Activo");
+					this.OnActivoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adoptante_Adopcion", Storage="_Adoptante", ThisKey="AdoptanteId", OtherKey="Identificacion", IsForeignKey=true)]
+		public Adoptante Adoptante
+		{
+			get
+			{
+				return this._Adoptante.Entity;
+			}
+			set
+			{
+				Adoptante previousValue = this._Adoptante.Entity;
+				if (((previousValue != value) 
+							|| (this._Adoptante.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Adoptante.Entity = null;
+						previousValue.Adopcions.Remove(this);
+					}
+					this._Adoptante.Entity = value;
+					if ((value != null))
+					{
+						value.Adopcions.Add(this);
+						this._AdoptanteId = value.Identificacion;
+					}
+					else
+					{
+						this._AdoptanteId = default(int);
+					}
+					this.SendPropertyChanged("Adoptante");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institucion_Adopcion", Storage="_Institucion", ThisKey="InstitucionId", OtherKey="Id", IsForeignKey=true)]
+		public Institucion Institucion
+		{
+			get
+			{
+				return this._Institucion.Entity;
+			}
+			set
+			{
+				Institucion previousValue = this._Institucion.Entity;
+				if (((previousValue != value) 
+							|| (this._Institucion.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Institucion.Entity = null;
+						previousValue.Adopcions.Remove(this);
+					}
+					this._Institucion.Entity = value;
+					if ((value != null))
+					{
+						value.Adopcions.Add(this);
+						this._InstitucionId = value.Id;
+					}
+					else
+					{
+						this._InstitucionId = default(int);
+					}
+					this.SendPropertyChanged("Institucion");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Mascota_Adopcion", Storage="_Mascota", ThisKey="MascotaId", OtherKey="Identificacion", IsForeignKey=true)]
+		public Mascota Mascota
+		{
+			get
+			{
+				return this._Mascota.Entity;
+			}
+			set
+			{
+				Mascota previousValue = this._Mascota.Entity;
+				if (((previousValue != value) 
+							|| (this._Mascota.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Mascota.Entity = null;
+						previousValue.Adopcions.Remove(this);
+					}
+					this._Mascota.Entity = value;
+					if ((value != null))
+					{
+						value.Adopcions.Add(this);
+						this._MascotaId = value.Identificacion;
+					}
+					else
+					{
+						this._MascotaId = default(string);
+					}
+					this.SendPropertyChanged("Mascota");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -7404,176 +7306,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class BuscarMascotaResult
-	{
-		
-		private string _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Tipo;
-		
-		private string _Genero;
-		
-		private string _Raza;
-		
-		private System.Nullable<System.DateTime> _Fecha_Nacimiento;
-		
-		private System.Nullable<int> _AdopcionId;
-		
-		private string _ExpedienteId;
-		
-		private System.Nullable<bool> _Activo;
-		
-		public BuscarMascotaResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Identificacion
-		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this._Identificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Tipo
-		{
-			get
-			{
-				return this._Tipo;
-			}
-			set
-			{
-				if ((this._Tipo != value))
-				{
-					this._Tipo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genero", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Genero
-		{
-			get
-			{
-				return this._Genero;
-			}
-			set
-			{
-				if ((this._Genero != value))
-				{
-					this._Genero = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Raza", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Raza
-		{
-			get
-			{
-				return this._Raza;
-			}
-			set
-			{
-				if ((this._Raza != value))
-				{
-					this._Raza = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Nacimiento
-		{
-			get
-			{
-				return this._Fecha_Nacimiento;
-			}
-			set
-			{
-				if ((this._Fecha_Nacimiento != value))
-				{
-					this._Fecha_Nacimiento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdopcionId", DbType="Int")]
-		public System.Nullable<int> AdopcionId
-		{
-			get
-			{
-				return this._AdopcionId;
-			}
-			set
-			{
-				if ((this._AdopcionId != value))
-				{
-					this._AdopcionId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100)")]
-		public string ExpedienteId
-		{
-			get
-			{
-				return this._ExpedienteId;
-			}
-			set
-			{
-				if ((this._ExpedienteId != value))
-				{
-					this._ExpedienteId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
-		public System.Nullable<bool> Activo
-		{
-			get
-			{
-				return this._Activo;
-			}
-			set
-			{
-				if ((this._Activo != value))
-				{
-					this._Activo = value;
-				}
-			}
-		}
-	}
-	
 	public partial class BuscarMedicamentoResult
 	{
 		
@@ -8433,86 +8165,6 @@ namespace PetHouse.DAL.Entities
 				if ((this._Activo != value))
 				{
 					this._Activo = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ConsultarAdopcionResult
-	{
-		
-		private int _Id;
-		
-		private int _InstituionId;
-		
-		private int _AdoptanteId;
-		
-		private System.DateTime _Fecha_Adopcion;
-		
-		public ConsultarAdopcionResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituionId", DbType="Int NOT NULL")]
-		public int InstituionId
-		{
-			get
-			{
-				return this._InstituionId;
-			}
-			set
-			{
-				if ((this._InstituionId != value))
-				{
-					this._InstituionId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdoptanteId", DbType="Int NOT NULL")]
-		public int AdoptanteId
-		{
-			get
-			{
-				return this._AdoptanteId;
-			}
-			set
-			{
-				if ((this._AdoptanteId != value))
-				{
-					this._AdoptanteId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Adopcion", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Adopcion
-		{
-			get
-			{
-				return this._Fecha_Adopcion;
-			}
-			set
-			{
-				if ((this._Fecha_Adopcion != value))
-				{
-					this._Fecha_Adopcion = value;
 				}
 			}
 		}
@@ -9474,158 +9126,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class ConsultarMascotaResult
-	{
-		
-		private string _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Tipo;
-		
-		private string _Genero;
-		
-		private string _Raza;
-		
-		private System.Nullable<System.DateTime> _Fecha_Nacimiento;
-		
-		private System.Nullable<int> _AdopcionId;
-		
-		private string _ExpedienteId;
-		
-		public ConsultarMascotaResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Identificacion
-		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this._Identificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Tipo
-		{
-			get
-			{
-				return this._Tipo;
-			}
-			set
-			{
-				if ((this._Tipo != value))
-				{
-					this._Tipo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genero", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Genero
-		{
-			get
-			{
-				return this._Genero;
-			}
-			set
-			{
-				if ((this._Genero != value))
-				{
-					this._Genero = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Raza", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Raza
-		{
-			get
-			{
-				return this._Raza;
-			}
-			set
-			{
-				if ((this._Raza != value))
-				{
-					this._Raza = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Nacimiento
-		{
-			get
-			{
-				return this._Fecha_Nacimiento;
-			}
-			set
-			{
-				if ((this._Fecha_Nacimiento != value))
-				{
-					this._Fecha_Nacimiento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdopcionId", DbType="Int")]
-		public System.Nullable<int> AdopcionId
-		{
-			get
-			{
-				return this._AdopcionId;
-			}
-			set
-			{
-				if ((this._AdopcionId != value))
-				{
-					this._AdopcionId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100)")]
-		public string ExpedienteId
-		{
-			get
-			{
-				return this._ExpedienteId;
-			}
-			set
-			{
-				if ((this._ExpedienteId != value))
-				{
-					this._ExpedienteId = value;
-				}
-			}
-		}
-	}
-	
 	public partial class ConsultarMedicamentoResult
 	{
 		
@@ -10418,32 +9918,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class InsertarAdopcionResult
-	{
-		
-		private System.Nullable<int> _Column1;
-		
-		public InsertarAdopcionResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
-		public System.Nullable<int> Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class InsertarAdoptanteResult
 	{
 		
@@ -10585,32 +10059,6 @@ namespace PetHouse.DAL.Entities
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
 		public System.Nullable<int> Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
-	public partial class InsertarMascotaResult
-	{
-		
-		private string _Column1;
-		
-		public InsertarMascotaResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="VarChar(100)")]
-		public string Column1
 		{
 			get
 			{
@@ -11599,6 +11047,594 @@ namespace PetHouse.DAL.Entities
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="VarChar(100)")]
 		public string Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarMascotaResult
+	{
+		
+		private string _Identificacion;
+		
+		private string _Nombre;
+		
+		private string _Tipo;
+		
+		private string _Genero;
+		
+		private string _Raza;
+		
+		private System.Nullable<System.DateTime> _Fecha_Nacimiento;
+		
+		private string _ExpedienteId;
+		
+		private System.Nullable<bool> _Activo;
+		
+		public BuscarMascotaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this._Tipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genero", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Genero
+		{
+			get
+			{
+				return this._Genero;
+			}
+			set
+			{
+				if ((this._Genero != value))
+				{
+					this._Genero = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Raza", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Raza
+		{
+			get
+			{
+				return this._Raza;
+			}
+			set
+			{
+				if ((this._Raza != value))
+				{
+					this._Raza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Nacimiento
+		{
+			get
+			{
+				return this._Fecha_Nacimiento;
+			}
+			set
+			{
+				if ((this._Fecha_Nacimiento != value))
+				{
+					this._Fecha_Nacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100)")]
+		public string ExpedienteId
+		{
+			get
+			{
+				return this._ExpedienteId;
+			}
+			set
+			{
+				if ((this._ExpedienteId != value))
+				{
+					this._ExpedienteId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
+		public System.Nullable<bool> Activo
+		{
+			get
+			{
+				return this._Activo;
+			}
+			set
+			{
+				if ((this._Activo != value))
+				{
+					this._Activo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarMascotaResult
+	{
+		
+		private string _Identificacion;
+		
+		private string _Nombre;
+		
+		private string _Tipo;
+		
+		private string _Genero;
+		
+		private string _Raza;
+		
+		private System.Nullable<System.DateTime> _Fecha_Nacimiento;
+		
+		private string _ExpedienteId;
+		
+		private System.Nullable<bool> _Activo;
+		
+		public ConsultarMascotaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this._Tipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genero", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Genero
+		{
+			get
+			{
+				return this._Genero;
+			}
+			set
+			{
+				if ((this._Genero != value))
+				{
+					this._Genero = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Raza", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Raza
+		{
+			get
+			{
+				return this._Raza;
+			}
+			set
+			{
+				if ((this._Raza != value))
+				{
+					this._Raza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Nacimiento", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Nacimiento
+		{
+			get
+			{
+				return this._Fecha_Nacimiento;
+			}
+			set
+			{
+				if ((this._Fecha_Nacimiento != value))
+				{
+					this._Fecha_Nacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100)")]
+		public string ExpedienteId
+		{
+			get
+			{
+				return this._ExpedienteId;
+			}
+			set
+			{
+				if ((this._ExpedienteId != value))
+				{
+					this._ExpedienteId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
+		public System.Nullable<bool> Activo
+		{
+			get
+			{
+				return this._Activo;
+			}
+			set
+			{
+				if ((this._Activo != value))
+				{
+					this._Activo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarMascotaResult
+	{
+		
+		private string _Column1;
+		
+		public InsertarMascotaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="VarChar(100)")]
+		public string Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarAdopcionResult
+	{
+		
+		private int _Id;
+		
+		private int _InstitucionId;
+		
+		private int _AdoptanteId;
+		
+		private string _MascotaId;
+		
+		private System.DateTime _Fecha_Adopcion;
+		
+		private System.Nullable<bool> _Activo;
+		
+		public BuscarAdopcionResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstitucionId", DbType="Int NOT NULL")]
+		public int InstitucionId
+		{
+			get
+			{
+				return this._InstitucionId;
+			}
+			set
+			{
+				if ((this._InstitucionId != value))
+				{
+					this._InstitucionId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdoptanteId", DbType="Int NOT NULL")]
+		public int AdoptanteId
+		{
+			get
+			{
+				return this._AdoptanteId;
+			}
+			set
+			{
+				if ((this._AdoptanteId != value))
+				{
+					this._AdoptanteId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MascotaId", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string MascotaId
+		{
+			get
+			{
+				return this._MascotaId;
+			}
+			set
+			{
+				if ((this._MascotaId != value))
+				{
+					this._MascotaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Adopcion", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Adopcion
+		{
+			get
+			{
+				return this._Fecha_Adopcion;
+			}
+			set
+			{
+				if ((this._Fecha_Adopcion != value))
+				{
+					this._Fecha_Adopcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
+		public System.Nullable<bool> Activo
+		{
+			get
+			{
+				return this._Activo;
+			}
+			set
+			{
+				if ((this._Activo != value))
+				{
+					this._Activo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarAdopcionResult
+	{
+		
+		private int _Id;
+		
+		private int _InstitucionId;
+		
+		private int _AdoptanteId;
+		
+		private string _MascotaId;
+		
+		private System.DateTime _Fecha_Adopcion;
+		
+		private System.Nullable<bool> _Activo;
+		
+		public ConsultarAdopcionResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstitucionId", DbType="Int NOT NULL")]
+		public int InstitucionId
+		{
+			get
+			{
+				return this._InstitucionId;
+			}
+			set
+			{
+				if ((this._InstitucionId != value))
+				{
+					this._InstitucionId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdoptanteId", DbType="Int NOT NULL")]
+		public int AdoptanteId
+		{
+			get
+			{
+				return this._AdoptanteId;
+			}
+			set
+			{
+				if ((this._AdoptanteId != value))
+				{
+					this._AdoptanteId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MascotaId", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string MascotaId
+		{
+			get
+			{
+				return this._MascotaId;
+			}
+			set
+			{
+				if ((this._MascotaId != value))
+				{
+					this._MascotaId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Adopcion", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Adopcion
+		{
+			get
+			{
+				return this._Fecha_Adopcion;
+			}
+			set
+			{
+				if ((this._Fecha_Adopcion != value))
+				{
+					this._Fecha_Adopcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
+		public System.Nullable<bool> Activo
+		{
+			get
+			{
+				return this._Activo;
+			}
+			set
+			{
+				if ((this._Activo != value))
+				{
+					this._Activo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarAdopcionResult
+	{
+		
+		private System.Nullable<int> _Column1;
+		
+		public InsertarAdopcionResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
+		public System.Nullable<int> Column1
 		{
 			get
 			{

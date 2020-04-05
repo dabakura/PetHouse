@@ -12,7 +12,7 @@ namespace PetHouse.MVC.Models
         public ExpedienteMascotaModel()
         {
             expediente = new Expediente();
-            Mascota = new Mascota { AdopcionId = null, Adopcion = null, Expediente = expediente };
+            Mascota = new Mascota { Expediente = expediente };
         }
         public Expediente Expediente { get => expediente; set { expediente = value; Mascota.ExpedienteId = expediente.Id; } }
         public Mascota Mascota { get; set; }

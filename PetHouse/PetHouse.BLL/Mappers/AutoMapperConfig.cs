@@ -15,8 +15,16 @@ namespace PetHouse.BLL.Mappers
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<ConsultarAdopcionResult, Adopcion>();
-                cfg.CreateMap<BuscarAdopcionResult, Adopcion>();
+                cfg.CreateMap<ConsultarAdopcionResult, Adopcion>().AfterMap((orig, dest) => {
+                    dest.Institucion = new InstitucionRepositorio().Get(orig.InstitucionId.ToString());
+                    dest.Adoptante = new AdoptanteRepositorio().Get(orig.AdoptanteId.ToString());
+                    dest.Mascota = new MascotaRepositorio().Get(orig.MascotaId);
+                });
+                cfg.CreateMap<BuscarAdopcionResult, Adopcion>().AfterMap((orig, dest) => {
+                    dest.Institucion = new InstitucionRepositorio().Get(orig.InstitucionId.ToString());
+                    dest.Adoptante = new AdoptanteRepositorio().Get(orig.AdoptanteId.ToString());
+                    dest.Mascota = new MascotaRepositorio().Get(orig.MascotaId);
+                });
                 cfg.CreateMap<ConsultarAdoptanteResult, Adoptante>().AfterMap((orig, dest) =>
                     dest.Domicilio = new DomicilioRepositorio().Get(orig.DomicilioId.ToString())
                 );
@@ -146,11 +154,8 @@ namespace PetHouse.BLL.Mappers
                     dest.Domicilio = new DomicilioRepositorio().Get(orig.DireccionId.ToString())
                 );
                 cfg.CreateMap<ConsultarMascotaResult, Mascota>();
-                cfg.CreateMap<BuscarMascotaResult, Mascota>().AfterMap((orig, dest) => {
-                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
-                    if (orig.AdopcionId.HasValue)
-                        dest.Adopcion = new AdopcionRepositorio().Get(orig.AdopcionId.ToString());
-                }
+                cfg.CreateMap<BuscarMascotaResult, Mascota>().AfterMap((orig, dest) => 
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId)
                 );
                 cfg.CreateMap<ConsultarMedicamentoResult, Medicamento>();
                 cfg.CreateMap<BuscarMedicamentoResult, Medicamento>();

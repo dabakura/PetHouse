@@ -104,17 +104,6 @@
                         <dd>
                             @Html.DisplayFor(model => model.Expediente.Fecha_Ingreso)
                         </dd>
-
-                        @if (Model.AdopcionId.HasValue)
-                        {
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Adopcion.AdoptanteId)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Adopcion.AdoptanteId)
-                            </dd>
-                        }
                     </dl>
                 </div>
             </div>

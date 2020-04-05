@@ -55,7 +55,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                var id = DB.InsertarAdopcion(entity.InstituionId, entity.AdoptanteId, entity.Fecha_Adopcion).SingleOrDefault().Column1;
+                var id = DB.InsertarAdopcion(entity.InstitucionId, entity.AdoptanteId, entity.MascotaId, entity.Fecha_Adopcion).SingleOrDefault().Column1;
                 return id.Value;
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                DB.ActualizarAdopcion(entity.Id, entity.InstituionId, entity.AdoptanteId, entity.Fecha_Adopcion);
+                DB.ActualizarAdopcion(entity.Id, entity.InstitucionId, entity.AdoptanteId, entity.MascotaId, entity.Fecha_Adopcion);
                 return true;
             }
             catch (Exception ex)
