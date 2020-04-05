@@ -96,14 +96,5 @@
 
 
 @section ViewSpecificJavascript {
-    <script type="text/javascript">
-        $("#CuerpoAdoptante").html(`<h4>Seleccione una Adopción</h4>`);
-        $("#CuerpoMascota").html(`<h4>Seleccione una Adopción</h4>`);
-        function CargarInfo(adopcion) {
-            $("#CuerpoAdoptante").empty();
-            $("#CuerpoMascota").empty();
-            $("#CuerpoAdoptante").html(`<h4>${adopcion.Adoptante.Nombre}</h4>`);
-            $("#CuerpoMascota").html(`<h4>${adopcion.Mascota.Nombre}</h4>`);
-        }
-    </script>
+    @Scripts.Render("~/Bundles/detalle_adopcion")
 }

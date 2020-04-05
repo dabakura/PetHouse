@@ -129,9 +129,12 @@
     <Content Include="Content\js\BuscarMascota.js" />
     <Content Include="Content\js\CreateDomicilio.js" />
     <Content Include="Content\js\CreatePersona.js" />
+    <Content Include="Content\js\DetalleAdopcion.js" />
     <Content Include="Content\js\EditDomicilio.js" />
     <Content Include="Content\js\plugins\jquery-validate\jquery.validate.min.js" />
     <Content Include="Content\js\plugins\jquery-validate\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\js\ShowAdoptante.js" />
+    <Content Include="Content\js\ShowMascota.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

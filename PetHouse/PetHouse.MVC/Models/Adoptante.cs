@@ -19,6 +19,7 @@ namespace PetHouse.MVC.Models
         [DataType(dataType: DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM'/'dd'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Fecha_Nacimiento { get; set; }
+        [DisplayName("Teléfono")]
         public int Telefono { get; set; }
         public string Correo { get; set; }
         [DisplayName("Id Domicilio")]

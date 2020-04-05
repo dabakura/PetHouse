@@ -116,7 +116,7 @@ namespace PetHouse.MVC.Controllers
                     if (result.IsSuccessStatusCode)
                     {
                         var resultdata = result.Content.ReadAsStringAsync().Result;
-                        var settings = new JsonSerializerSettings() { DateFormatString = "MM-dd-yyyy" };
+                        var settings = new JsonSerializerSettings() { DateFormatString = "MM/dd/yyyy" };
                         mascota = JsonConvert.DeserializeObject<Mascota>(resultdata, settings);
                     }
                 }
