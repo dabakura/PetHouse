@@ -219,6 +219,7 @@ namespace PetHouse.API.Models
         public string Correo { get; set; }
         public int DomicilioId { get; set; }
         public DomicilioModel Domicilio { get; set; }
+        public IEnumerable<Mascota> Mascotas { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Adoptante/" + Id;
     }
 

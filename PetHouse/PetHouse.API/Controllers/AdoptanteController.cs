@@ -15,10 +15,12 @@ namespace PetHouse.API.Controllers
     public class AdoptanteController : ApiController
     {
         public IAdoptanteService AdoptanteServicio { get; }
+        public IMascotaService MascotaServicio { get; }
 
         public AdoptanteController()
         {
             AdoptanteServicio = new AdoptanteRepositorio();
+            MascotaServicio = new MascotaRepositorio();
         }
 
         // GET: api/Adoptante
@@ -28,7 +30,12 @@ namespace PetHouse.API.Controllers
             {
                 var adoptantes = AdoptanteServicio.GetAll();
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create<AdoptanteModel, Adoptante>(adoptantes, uri));
+                var adoptantesModel = ModelFactory.Create<AdoptanteModel, Adoptante>(adoptantes, uri);
+                foreach (var adoptante in adoptantesModel)
+                {
+                    adoptante.Mascotas = MascotaServicio.GetAllByAdoptanteId(adoptante.Identificacion);
+                }
+                return Ok(adoptantesModel);
             }
             catch (Exception ex)
             {
@@ -44,7 +51,10 @@ namespace PetHouse.API.Controllers
             {
                 var adoptante = AdoptanteServicio.Get(id);
                 Uri uri = Url.Request.RequestUri;
-                return Ok(ModelFactory.Create<AdoptanteModel, Adoptante>(adoptante, uri));
+                var adoptantesModel = ModelFactory.Create<AdoptanteModel, Adoptante>(adoptante, uri);
+                if (adoptantesModel != null)
+                    adoptantesModel.Mascotas = MascotaServicio.GetAllByAdoptanteId(adoptante.Identificacion);
+                return Ok(adoptantesModel);
             }
             catch (Exception ex)
             {

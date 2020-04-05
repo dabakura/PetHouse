@@ -53,6 +53,24 @@ namespace PetHouse.API.Controllers
             }
         }
 
+        //// DELETE: api/Expediente/DelPermanent/5
+        //[Route("AllByAdoptanteId/{id}")]
+        //[HttpGet]
+        //public IHttpActionResult AllByAdoptanteId(int id)
+        //{
+        //    try
+        //    {
+        //        var mascotas = MascotaServicio.GetAllByAdoptanteId(id);
+        //        Uri uri = Url.Request.RequestUri;
+        //        return Ok(ModelFactory.Create<MascotaModel, Mascota>(mascotas, uri));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error<MascotaController>("Delete Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
+        //        return BadRequest();
+        //    }
+        //}
+
         // POST: api/Mascota
         public IHttpActionResult Post([FromBody]Mascota mascota)
         {

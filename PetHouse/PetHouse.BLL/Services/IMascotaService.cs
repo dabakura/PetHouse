@@ -10,6 +10,7 @@ namespace PetHouse.BLL.Services
     public interface IMascotaService
     {
         IEnumerable<Mascota> GetAll();
+        IEnumerable<Mascota> GetAllByAdoptanteId(int id);
         Mascota Get(string id);
         string Insert(Mascota entity);
         bool Update(Mascota entity);

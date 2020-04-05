@@ -51,6 +51,21 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
+        public IEnumerable<Mascota> GetAllByAdoptanteId(int id)
+        {
+            try
+            {
+                var ids = (from adopcion in DB.ConsultarAdopcion() where adopcion.AdoptanteId == id select adopcion.Id).ToList();
+                var MascotasResult = (from mascota in DB.ConsultarMascota() where mascota.AdopcionId.HasValue && ids.Contains(mascota.AdopcionId.Value) select mascota).ToList();
+                var Mascotas = mapper.Map<IEnumerable<ConsultarMascotaResult>, IEnumerable<Mascota>>(MascotasResult);
+                return Mascotas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public string Insert(Mascota entity)
         {
             try

@@ -17,7 +17,9 @@ namespace PetHouse.BLL.Mappers
             {
                 cfg.CreateMap<ConsultarAdopcionResult, Adopcion>();
                 cfg.CreateMap<BuscarAdopcionResult, Adopcion>();
-                cfg.CreateMap<ConsultarAdoptanteResult, Adoptante>();
+                cfg.CreateMap<ConsultarAdoptanteResult, Adoptante>().AfterMap((orig, dest) =>
+                    dest.Domicilio = new DomicilioRepositorio().Get(orig.DomicilioId.ToString())
+                );
                 cfg.CreateMap<BuscarAdoptanteResult, Adoptante>().AfterMap((orig, dest) =>
                     dest.Domicilio = new Domicilio
                     {
