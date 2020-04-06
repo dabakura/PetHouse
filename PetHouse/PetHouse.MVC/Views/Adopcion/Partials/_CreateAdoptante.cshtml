@@ -1,0 +1,109 @@
+﻿@model PetHouse.MVC.Models.Adopcion
+
+
+<div class="form-horizontal" id="AdoptantePanel">
+    <div class="box-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adoptante.Identificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-sm-12 form-inline" style="padding: 0;">
+                    <div class="col-sm-9" style="padding: 0;">
+                        @Html.EditorFor(model => model.Adoptante.Identificacion, new { htmlAttributes = new { @class = "form-control", @id = "Identificacion", style = "min-width: 100%;" } })
+                    </div>
+                    <button id="Buscar" class="btn btn-primary col-sm-2" type="button" style="float: right;">Buscar <i class="fa fa-search"></i></button>
+                </div>
+                @Html.ValidationMessageFor(model => model.Adoptante.Identificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adoptante.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adoptante.Nombre, new { htmlAttributes = new { @class = "form-control", @id = "Nombre" } })
+                @Html.ValidationMessageFor(model => model.Adoptante.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adoptante.Primer_Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adoptante.Primer_Apellido, new { htmlAttributes = new { @class = "form-control", @id = "Primer_Apellido" } })
+                @Html.ValidationMessageFor(model => model.Adoptante.Primer_Apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adoptante.Segundo_Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adoptante.Segundo_Apellido, new { htmlAttributes = new { @class = "form-control", @id = "Segundo_Apellido" } })
+                @Html.ValidationMessageFor(model => model.Adoptante.Segundo_Apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adoptante.Fecha_Nacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adoptante.Fecha_Nacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adoptante.Fecha_Nacimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adoptante.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adoptante.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adoptante.Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adoptante.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adoptante.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adoptante.Correo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Provincia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Adoptante.Domicilio.ProvinciaId, (SelectList)ViewBag.Provincias, htmlAttributes: new
+                {
+                    @class = "form-control",
+                    @id = "Id_Provincia"
+                })
+                @Html.ValidationMessageFor(model => model.Adoptante.Domicilio.ProvinciaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Canton", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Adoptante.Domicilio.CantonId, (SelectList)ViewBag.Cantones, htmlAttributes: new { @class = "form-control", @id = "Id_Canton", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.Adoptante.Domicilio.CantonId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Adoptante.Domicilio.DistritoId, (SelectList)ViewBag.Distritos, htmlAttributes: new { @class = "form-control", @id = "Id_Distrito", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.Adoptante.Domicilio.DistritoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adoptante.Domicilio.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adoptante.Domicilio.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adoptante.Domicilio.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+        <button class="btn btn-primary  pull-right" id="siguiente" type="button">Siguiente</button>
+    </div>
+    <!-- /.box-footer -->
+</div>

@@ -56,6 +56,8 @@ namespace PetHouse.BLL.Repositorios
             try
             {
                 var ids = (from adopcion in DB.ConsultarAdopcion() where adopcion.AdoptanteId == id select adopcion.MascotaId).ToList();
+                if (ids.Count() < 1)
+                    return new List<Mascota>();
                 var MascotasResult = (from mascota in DB.ConsultarMascota() where ids.Contains(mascota.Identificacion) select mascota).ToList();
                 var Mascotas = mapper.Map<IEnumerable<ConsultarMascotaResult>, IEnumerable<Mascota>>(MascotasResult);
                 return Mascotas;

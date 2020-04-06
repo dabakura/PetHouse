@@ -13,133 +13,13 @@ using PetHouse.MVC.Models;
 namespace PetHouse.MVC.Controllers
 {
     [CustomAuthorize]
-    public class AdopcionController : BaseController
+    public class AdopcionController : BasePadronController
     {
-        //private PetHouseEntities db = new PetHouseEntities();
-
-        //// GET: Adopcion
-        //public async Task<ActionResult> Index()
-        //{
-        //    var adopcion = db.Adopcion.Include(a => a.Adoptante).Include(a => a.Institucion);
-        //    return View(adopcion.ToList());
-        //}
-
-        //// GET: Adopcion/Details/5
-        //public async Task<ActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Adopcion adopcion = db.Adopcion.Find(id);
-        //    if (adopcion == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(adopcion);
-        //}
-
-        //// GET: Adopcion/Create
-        //public async Task<ActionResult> Create()
-        //{
-        //    ViewBag.AdoptanteId = new SelectList(db.Adoptante, "Identificacion", "Nombre");
-        //    ViewBag.InstituionId = new SelectList(db.Institucion, "Id", "Ced_Juridica");
-        //    return View();
-        //}
-
-        //// POST: Adopcion/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,InstituionId,AdoptanteId,Fecha_Adopcion,Activo")] Adopcion adopcion)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Adopcion.Add(adopcion);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.AdoptanteId = new SelectList(db.Adoptante, "Identificacion", "Nombre", adopcion.AdoptanteId);
-        //    ViewBag.InstituionId = new SelectList(db.Institucion, "Id", "Ced_Juridica", adopcion.InstituionId);
-        //    return View(adopcion);
-        //}
-
-        //// GET: Adopcion/Edit/5
-        //public async Task<ActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Adopcion adopcion = db.Adopcion.Find(id);
-        //    if (adopcion == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.AdoptanteId = new SelectList(db.Adoptante, "Identificacion", "Nombre", adopcion.AdoptanteId);
-        //    ViewBag.InstituionId = new SelectList(db.Institucion, "Id", "Ced_Juridica", adopcion.InstituionId);
-        //    return View(adopcion);
-        //}
-
-        //// POST: Adopcion/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include = "Id,InstituionId,AdoptanteId,Fecha_Adopcion,Activo")] Adopcion adopcion)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(adopcion).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.AdoptanteId = new SelectList(db.Adoptante, "Identificacion", "Nombre", adopcion.AdoptanteId);
-        //    ViewBag.InstituionId = new SelectList(db.Institucion, "Id", "Ced_Juridica", adopcion.InstituionId);
-        //    return View(adopcion);
-        //}
-
-        //// GET: Adopcion/Delete/5
-        //public async Task<ActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Adopcion adopcion = db.Adopcion.Find(id);
-        //    if (adopcion == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(adopcion);
-        //}
-
-        //// POST: Adopcion/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(int id)
-        //{
-        //    Adopcion adopcion = db.Adopcion.Find(id);
-        //    db.Adopcion.Remove(adopcion);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
         // GET: Adopcion
         public async Task<ActionResult> Index()
         {
-            var result = await GetAsync("api/Adopcion");
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                List<Adopcion> adopciones = JsonConvert.DeserializeObject<List<Adopcion>>(resultdata);
-                return View(adopciones);
-            }
-
-            ViewData["Error"] = await ErrorAsync("Adopcion", "Index", "Error al consultar api", 500);
-            return HttpNotFound();
+            List<Adopcion> adopciones = await GetAdopcionesAsync("Index");
+            return View(adopciones);
         }
 
         // GET: Adopcion/Details/5
@@ -166,8 +46,11 @@ namespace PetHouse.MVC.Controllers
         }
 
         // GET: Adopcion/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            await SetDomicilio();
+            await SetInstitucionesData();
+            await SetMascotaData();
             return View();
         }
 
@@ -176,14 +59,20 @@ namespace PetHouse.MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,InstitucionId,AdoptanteId,MascotaId,Fecha_Adopcion,Institucion,Adoptante,Mascota")] Adopcion adopcion)
+        public async Task<ActionResult> Create([Bind(Include = "InstitucionId,AdoptanteId,MascotaId,Fecha_Adopcion,Institucion,Adoptante,Mascota")] Adopcion adopcion)
         {
             if (ModelState.IsValid)
             {
-                var result = await PostAsync("api/Adopcion", adopcion);
-                if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                if (await RegistarAdoptante(adopcion.Adoptante))
+                {
+                    var result = await PostAsync("api/Adopcion", adopcion);
+                    if (result.IsSuccessStatusCode)
+                        return RedirectToAction("Index");
+                }
             }
+            await SetDomicilio();
+            await SetInstitucionesData();
+            await SetMascotaData();
             ViewData["Error"] = await ErrorAsync("Adopcion", "Create", "Error insertar adopción compruebe los campos", 400);
             return View(adopcion);
         }
@@ -208,6 +97,9 @@ namespace PetHouse.MVC.Controllers
                 ViewData["Error"] = await ErrorAsync("Adopcion", "Edit", "Error al consultar api", 404);
                 return HttpNotFound();
             }
+            await SetInstitucionesData();
+            await SetInstitucionesData();
+            await SetMascotaData();
             return View(adopcion);
         }
 
@@ -261,6 +153,72 @@ namespace PetHouse.MVC.Controllers
                 return RedirectToAction("Index");
             ViewData["Error"] = await ErrorAsync("Adopcion", "DeleteConfirmed", "Error eliminar adopción compruebe los campos", 400);
             return HttpNotFound();
+        }
+
+        private async Task<bool> RegistarAdoptante(Adoptante adoptante)
+        {
+            if (await ValidarAdoptante(adoptante.Identificacion))
+            {
+                var resultDomicilio = await PostAsync("api/Domicilio", adoptante.Domicilio);
+                if (resultDomicilio.IsSuccessStatusCode)
+                {
+                    string resultdata = resultDomicilio.Content.ReadAsStringAsync().Result;
+                    adoptante.Domicilio = JsonConvert.DeserializeObject<Domicilio>(resultdata);
+                    var result = await PostAsync("api/Adoptante", adoptante);
+                    return result.IsSuccessStatusCode;
+                }
+                return false;
+            }
+            return true;
+        }
+
+        private async Task<bool> ValidarAdoptante(int identificacion)
+        {
+            var result = await GetAsync("api/Adoptante/" + identificacion);
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                return resultdata == "null";
+            }
+            return true;
+        }
+
+        private async Task SetInstitucionesData()
+        {
+            var result = await GetAsync("api/Institucion");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                var Instituciones = JsonConvert.DeserializeObject<List<Institucion>>(resultdata);
+                ViewBag.Instituciones = new SelectList(Instituciones, "Id", "Nombre");
+            }
+        }
+
+        private async Task SetMascotaData()
+        {
+            var adopciones = await GetAdopcionesAsync("Create");
+            var mascotasAdoptadasIds = adopciones.Select(adopcion => adopcion.MascotaId).ToList();
+            var result = await GetAsync("api/Mascota");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                var Mascotas = JsonConvert.DeserializeObject<List<Mascota>>(resultdata);
+                Mascotas = Mascotas.FindAll(mascota => !mascotasAdoptadasIds.Contains(mascota.Identificacion));
+                Mascotas.ForEach(mascota => mascota.Nombre = mascota.Identificacion + " - " + mascota.Nombre);
+                ViewBag.Mascotas = new SelectList(Mascotas, "Identificacion", "Nombre");
+            }
+        }
+
+        private async Task<List<Adopcion>> GetAdopcionesAsync(string action)
+        {
+            var result = await GetAsync("api/Adopcion");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Adopcion>>(resultdata);
+            }
+            ViewData["Error"] = await ErrorAsync("Adopcion", action + " - GetAdopcionesAsync", "Error al consultar api", 500);
+            return new List<Adopcion>();
         }
     }
 }

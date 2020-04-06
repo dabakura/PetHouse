@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\admin.png" />
+    <Content Include="Content\img\adoptante.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\pethouse-logo.jpg" />
     <Content Include="Content\js\BuscarMascota.js" />
@@ -202,11 +203,8 @@
     <Content Include="Views\Rol\Index.cshtml" />
     <Content Include="Views\Adopcion\Create.cshtml" />
     <Content Include="Views\Adopcion\Delete.cshtml" />
-    <Content Include="Views\Adopcion\Details.cshtml" />
     <Content Include="Views\Adopcion\Edit.cshtml" />
     <Content Include="Views\Adopcion\Index.cshtml" />
-    <Content Include="Views\Adoptante\Create.cshtml" />
-    <Content Include="Views\Adoptante\Delete.cshtml" />
     <Content Include="Views\Adoptante\Details.cshtml" />
     <Content Include="Views\Adoptante\Edit.cshtml" />
     <Content Include="Views\Adoptante\Index.cshtml" />
@@ -240,10 +238,11 @@
     <Content Include="Views\Home\Ingreso.cshtml" />
     <Content Include="Views\Shared\Mascota\_Create.cshtml" />
     <Content Include="Views\Shared\Expediente\_Create.cshtml" />
-    <Content Include="Views\Shared\Adoptante\_Index.cshtml" />
     <Content Include="Views\Adopcion\Partials\_Create.cshtml" />
     <Content Include="Views\Adopcion\Partials\_ViewMascota.cshtml" />
     <Content Include="Views\Adopcion\Partials\_ViewAdoptante.cshtml" />
+    <Content Include="Views\Adopcion\Partials\_CreateAdoptante.cshtml" />
+    <Content Include="Views\Adopcion\Partials\_CreateAdopcion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

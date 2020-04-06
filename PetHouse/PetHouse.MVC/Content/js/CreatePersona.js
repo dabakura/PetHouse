@@ -17,17 +17,19 @@ $("#Buscar").click(function () {
         dataType: 'json',
         data: { ID_CEDULA: $("#Identificacion").val() },
         success: function (persona) {
-            $("#Nombre").val(persona.Nombre);
-            $("#Primer_Apellido").val(persona.Primer_Apellido);
-            $("#Segundo_Apellido").val(persona.Segundo_Apellido);
-            $("#Id_Provincia").val(persona.ProvinciaId);
-            llenarCantones(persona.ProvinciaId, persona.CantonId);
-            //$("#Id_Canton").text(persona.Canton_Nombre);
-            llenarDistritos(persona.CantonId, persona.DistritoId)
-            //$("#Id_Distrito").text(persona.Distrito_Nombre);
+            if (persona) {
+                $("#Nombre").val(persona.Nombre);
+                $("#Primer_Apellido").val(persona.Primer_Apellido);
+                $("#Segundo_Apellido").val(persona.Segundo_Apellido);
+                $("#Id_Provincia").val(persona.ProvinciaId);
+                llenarCantones(persona.ProvinciaId, persona.CantonId);
+                llenarDistritos(persona.CantonId, persona.DistritoId);
+            } else {
+                alert('Problema al cargar la Persona verifique la identificación');
+            }
         },
         error: function (ex) {
-            alert('Problema al cargar la Persona ' + ex.message);
+            alert('Problema al cargar la Persona verifique la identificación');
         }
     });
 });

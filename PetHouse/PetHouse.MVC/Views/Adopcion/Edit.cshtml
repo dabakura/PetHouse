@@ -1,53 +1,65 @@
 ﻿@model PetHouse.MVC.Models.Adopcion
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
 }
 
-<h2>Edit</h2>
+@Html.Partial("Helpers/_ViewError")
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Adopcion</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InstituionId, "InstituionId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("InstituionId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.InstituionId, "", new { @class = "text-danger" })
-            </div>
+<div class="col-md-8 col-md-offset-2">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Adopción</h3>
         </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AdoptanteId, "AdoptanteId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("AdoptanteId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AdoptanteId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Adoptante.Id)
+                    @Html.HiddenFor(model => model.Adoptante.Identificacion)
+                    @Html.HiddenFor(model => model.AdoptanteId)
+                    @Html.HiddenFor(model => model.Mascota.Identificacion)
+                    @Html.HiddenFor(model => model.MascotaId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fecha_Adopcion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha_Adopcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha_Adopcion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.InstitucionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("InstitucionId", (SelectList)ViewBag.Instituciones, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.InstitucionId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Fecha_Adopcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Fecha_Adopcion, "{0:MM/dd/yyyy}", new { @class = "form-control", id = "Fecha_Adopcion" })
+                            @Html.ValidationMessageFor(model => model.Fecha_Adopcion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-default" })
+                    <input type="submit" value="Modificar" class="btn btn-success pull-right" />
+                </div>
+                <!-- /.box-footer -->
             </div>
-        </div>
+        }
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@section ViewSpecificJavascript {
+    <script type="text/javascript">
+        $("#Fecha_Adopcion").datepicker({
+            viewMode: 'years',
+            format: 'mm/dd/yyyy'
+        });
+    </script>
+}
