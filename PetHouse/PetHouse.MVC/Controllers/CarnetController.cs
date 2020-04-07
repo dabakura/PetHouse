@@ -15,154 +15,20 @@ namespace PetHouse.MVC.Controllers
     [CustomAuthorize]
     public class CarnetController : BaseController
     {
-        //private PetHouseEntities db = new PetHouseEntities();
-
-        //// GET: Carnet
-        //public async Task<ActionResult> Index()
-        //{
-        //    var carnet = db.Carnet.Include(c => c.Expediente).Include(c => c.Carnet);
-        //    return View(carnet.ToList());
-        //}
-
-        //// GET: Carnet/Details/5
-        //public async Task<ActionResult> Details(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Carnet carnet = db.Carnet.Find(id);
-        //    if (carnet == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(carnet);
-        //}
-
-        //// GET: Carnet/Create
-        //public async Task<ActionResult> Create()
-        //{
-        //    ViewBag.ExpedienteId = new SelectList(db.Expediente, "Id", "Observaciones");
-        //    ViewBag.CarnetId = new SelectList(db.Carnet, "Id", "Nombre");
-        //    return View();
-        //}
-
-        //// POST: Carnet/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "ExpedienteId,CarnetId,Fecha_Vacunacion,Activo")] Carnet carnet)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Carnet.Add(carnet);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.ExpedienteId = new SelectList(db.Expediente, "Id", "Observaciones", carnet.ExpedienteId);
-        //    ViewBag.CarnetId = new SelectList(db.Carnet, "Id", "Nombre", carnet.CarnetId);
-        //    return View(carnet);
-        //}
-
-        //// GET: Carnet/Edit/5
-        //public async Task<ActionResult> Edit(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Carnet carnet = db.Carnet.Find(id);
-        //    if (carnet == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.ExpedienteId = new SelectList(db.Expediente, "Id", "Observaciones", carnet.ExpedienteId);
-        //    ViewBag.CarnetId = new SelectList(db.Carnet, "Id", "Nombre", carnet.CarnetId);
-        //    return View(carnet);
-        //}
-
-        //// POST: Carnet/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include = "ExpedienteId,CarnetId,Fecha_Vacunacion,Activo")] Carnet carnet)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(carnet).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.ExpedienteId = new SelectList(db.Expediente, "Id", "Observaciones", carnet.ExpedienteId);
-        //    ViewBag.CarnetId = new SelectList(db.Carnet, "Id", "Nombre", carnet.CarnetId);
-        //    return View(carnet);
-        //}
-
-        //// GET: Carnet/Delete/5
-        //public async Task<ActionResult> Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Carnet carnet = db.Carnet.Find(id);
-        //    if (carnet == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(carnet);
-        //}
-
-        //// POST: Carnet/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(string id)
-        //{
-        //    Carnet carnet = db.Carnet.Find(id);
-        //    db.Carnet.Remove(carnet);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-        // GET: Carnet
-        public async Task<ActionResult> Index()
+        // HttpPost: Carnet/Index/5
+        [HttpPost]
+        public async Task<JsonResult> Index(string id)
         {
-            var result = await GetAsync("api/Carnet");
+            var result = await GetAsync("api/Carnet/" + id);
             if (result.IsSuccessStatusCode)
             {
                 var resultdata = result.Content.ReadAsStringAsync().Result;
                 List<Carnet> carnets = JsonConvert.DeserializeObject<List<Carnet>>(resultdata);
-                return View(carnets);
+                return Json(carnets);
             }
 
-            ViewData["Error"] = await ErrorAsync("Carnet", "Index", "Error al consultar api", 500);
-            return HttpNotFound();
-        }
-
-        // GET: Carnet/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Carnet", "Details", "No se ingreso el Id", 400);
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var result = await GetAsync("api/Carnet/" + id.Value);
-            Carnet carnet = null;
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                carnet = JsonConvert.DeserializeObject<Carnet>(resultdata);
-            }
-            if (carnet == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Carnet", "Details", "Error al consultar api", 404);
-                return HttpNotFound();
-            }
-            return View(carnet);
+            var Error = await ErrorAsync("Vacuna", "Create", "Error al cargar las vacunas", 500);
+            return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
         }
 
         // POST: Vacuna/Create
@@ -191,102 +57,15 @@ namespace PetHouse.MVC.Controllers
                 modelstage.Remove(keys[i]);
         }
 
-        //// GET: Carnet/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //// POST: Carnet/Create
-        //// Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        //// más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "ExpedienteId,VacunaId,Fecha_Vacunacion")] Carnet carnet)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var result = await PostAsync("api/Carnet", carnet);
-        //        if (result.IsSuccessStatusCode)
-        //            return RedirectToAction("Index");
-        //    }
-        //    ViewData["Error"] = await ErrorAsync("Carnet", "Create", "Error insertar carnet compruebe los campos", 400);
-        //    return View(carnet);
-        //}
-
-        // GET: Carnet/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Carnet", "Edit", "No se ingreso el Id", 400);
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var result = await GetAsync("api/Carnet/" + id.Value);
-            Carnet carnet = null;
-            if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                carnet = JsonConvert.DeserializeObject<Carnet>(resultdata);
-            }
-            if (carnet == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Carnet", "Edit", "Error al consultar api", 404);
-                return HttpNotFound();
-            }
-            return View(carnet);
-        }
-
-        // POST: Carnet/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Vacuna/Delete
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ExpedienteId,VacunaId,Fecha_Vacunacion")] Carnet carnet)
+        public async Task<JsonResult> Delete([Bind(Include = "ExpedienteId,VacunaId")] Carnet carnet)
         {
-            if (ModelState.IsValid)
-            {
-                var result = await PutAsync("api/Carnet/" + carnet.VacunaId, carnet);
-                if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
-            }
-            ViewData["Error"] = await ErrorAsync("Carnet", "Edit", "Error actualizar carnet compruebe los campos", 400);
-            return View(carnet);
-        }
-
-        // GET: Carnet/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Carnet", "Delete", "No se ingreso el Id", 400);
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var result = await GetAsync("api/Carnet/" + id.Value);
-            Carnet carnet = null;
+            var result = await DeleteAsync("api/Carnet?idExpediente=" + carnet.ExpedienteId + "&idVacuna=" + carnet.VacunaId);
             if (result.IsSuccessStatusCode)
-            {
-                var resultdata = result.Content.ReadAsStringAsync().Result;
-                carnet = JsonConvert.DeserializeObject<Carnet>(resultdata);
-            }
-            if (carnet == null)
-            {
-                ViewData["Error"] = await ErrorAsync("Carnet", "Delete", "Error al consultar api", 404);
-                return HttpNotFound();
-            }
-            return View(carnet);
-        }
-
-        // POST: Carnet/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            var result = await DeleteAsync("api/Carnet/" + id);
-            if (result.IsSuccessStatusCode)
-                return RedirectToAction("Index");
-            ViewData["Error"] = await ErrorAsync("Carnet", "DeleteConfirmed", "Error eliminar carnet compruebe los campos", 400);
-            return HttpNotFound();
+                return Json(carnet);
+            var Error = await ErrorAsync("Vacuna", "Create", "Error eliminar vacuna compruebe los campos", 400);
+            return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
         }
     }
 }

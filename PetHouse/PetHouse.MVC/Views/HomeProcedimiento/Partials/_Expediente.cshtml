@@ -1,0 +1,77 @@
+﻿@model IEnumerable<PetHouse.MVC.Models.Expediente>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title" style="font-family: 'Roboto', sans-serif; color: #6F84FF;">Seleccionar Expediente</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" style="">
+        <table id="listado" class="table table-bordered table-hover dataTable">
+            <thead>
+                <tr role="row">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Edad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Peso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Castracion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha_Ingreso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha_Fallecimiento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Observaciones)
+                    </th>
+                    <th style="text-align: center;">
+                        Seleccionar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Edad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Peso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Castracion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha_Ingreso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha_Fallecimiento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observaciones)
+                        </td>
+                        <td style="text-align: center; min-width: 30px;">
+                            <button type="button" class="btn btn-success" onclick="SelectedExpediente('@item.Id')"><i class="fa fa-search"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>

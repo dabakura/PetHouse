@@ -127,6 +127,7 @@
     <Content Include="Content\img\adoptante.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\pethouse-logo.jpg" />
+    <Content Include="Content\js\ActionsCarnet.js" />
     <Content Include="Content\js\BuscarMascota.js" />
     <Content Include="Content\js\CreateCarnet.js" />
     <Content Include="Content\js\CreateDomicilio.js" />
@@ -248,6 +249,8 @@
     <Content Include="Views\HomeProcedimiento\Partials\_Procedimiento.cshtml" />
     <Content Include="Views\HomeProcedimiento\PanelProcedimiento.cshtml" />
     <Content Include="Views\HomeProcedimiento\Partials\_CreateCarnet.cshtml" />
+    <Content Include="Views\HomeProcedimiento\Partials\_ShowCarnet.cshtml" />
+    <Content Include="Views\HomeProcedimiento\Partials\_Expediente.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

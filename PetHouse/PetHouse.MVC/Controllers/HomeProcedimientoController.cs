@@ -16,7 +16,12 @@ namespace PetHouse.MVC.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            return View();
+            var expedientes = await GetExpedientesAsync();
+            if (expedientes == null) {
+                ViewData["Error"] = await ErrorAsync("HomeTratamiento", "Index", "Error al consultar api", 500);
+                return HttpNotFound();
+            }
+            return View(expedientes);
         }
 
         [HttpPost]
@@ -30,7 +35,7 @@ namespace PetHouse.MVC.Controllers
                 var panelProcedimiento = new PanelProcedimientoViewModel(expediente);
                 return View(panelProcedimiento);
             }
-            ViewData["Error"] = await ErrorAsync("HomeTratamiento", "Index", "Expediente Invalido", 400);
+            ViewData["Error"] = await ErrorAsync("HomeTratamiento", "PanelProcedimiento", "Expediente Invalido", 400);
             return View("Index");
         }
 
@@ -46,6 +51,17 @@ namespace PetHouse.MVC.Controllers
                 return null;
             panelProcedimientoInfoModel.Carnets = carnets;
             return panelProcedimientoInfoModel;
+        }
+        private async Task<List<Expediente>> GetExpedientesAsync()
+        {
+            var result = await GetAsync("api/Expediente");
+            List<Expediente> expedientes = null;
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                expedientes = JsonConvert.DeserializeObject<List<Expediente>>(resultdata);
+            }
+            return expedientes;
         }
 
         private async Task<Expediente> GetExpedienteAsync(string expedienteId)

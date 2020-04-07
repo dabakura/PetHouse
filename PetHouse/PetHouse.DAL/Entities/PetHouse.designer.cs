@@ -615,13 +615,6 @@ namespace PetHouse.DAL.Entities
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCarnet")]
-		public int EliminarCarnet([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarDomicilio")]
 		public int EliminarDomicilio([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
 		{
@@ -718,13 +711,6 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), provinciaId, nombre);
 			return ((ISingleResult<InsertarCantonResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarCarnet")]
-		public int InsertarCarnet([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="VacunaId", DbType="Int")] System.Nullable<int> vacunaId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Vacunacion", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Vacunacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId, vacunaId, fecha_Vacunacion);
-			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarDistrito")]
@@ -928,6 +914,20 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), institucionId, adoptanteId, mascotaId, fecha_Adopcion);
 			return ((ISingleResult<InsertarAdopcionResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCarnet")]
+		public int EliminarCarnet([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarCarnet")]
+		public int InsertarCarnet([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="VacunaId", DbType="Int")] System.Nullable<int> vacunaId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha_Vacunacion", DbType="DateTime")] System.Nullable<System.DateTime> fecha_Vacunacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId, vacunaId, fecha_Vacunacion);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

@@ -1,43 +1,41 @@
 ﻿@using System.Web.Optimization
-@model IEnumerable<PetHouse.MVC.Models.Adopcion>
+@using PetHouse.MVC.Models
+@model IEnumerable<PetHouse.MVC.Models.Expediente>
 @{
     ViewBag.Title = "Tratamientos";
 }
 
 @Html.Partial("Helpers/_ViewError")
 
-<div class="col-md-9">
+<div class="col-md-8">
     @Html.Partial("Partials/_Procedimiento")
 
     <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title" style="font-family: 'Roboto', sans-serif; color: #6F84FF;">Lista de Adopciones</h3>
-            </div>
-            <div class="box-body">
-                <table id="listado" class="table table-bordered table-hover dataTable">
-                    <thead>
-                        
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        @Html.Partial("Partials/_Expediente",Model)
     </div>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-4">
     <div class="col-md-12">
-        @*@Html.Partial("Partials/_ViewAdoptante")*@
+        @Html.Partial("Partials/_ShowCarnet")
     </div>
     <div class="col-md-12">
         @*@Html.Partial("Partials/_ViewMascota")*@
     </div>
 </div>
 
+@Html.Hidden("url_BusquedaCarnets", Url.Action("Index", "Carnet"), htmlAttributes: new { @id = "url_BusquedaCarnets" })
+@Html.Hidden("url_EliminaCarnet", Url.Action("Delete", "Carnet"), htmlAttributes: new { @id = "url_EliminaCarnet" })
 
 @section ViewSpecificJavascript {
+    <script>
+        var url_BusquedaCarnets = $("#url_BusquedaCarnets").val();
+        var url_EliminaCarnet = $("#url_EliminaCarnet").val();
+        function SelectedExpediente(ExpedienteId) {
+            $("#ExpedienteIdSelected").val(ExpedienteId);
+            ObtenerCarnets(ExpedienteId);
+        }
+    </script>
+    @Scripts.Render("~/Bundles/procedimientos")
     @*@Scripts.Render("~/Bundles/detalle_adopcion")*@
 }

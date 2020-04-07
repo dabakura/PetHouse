@@ -70,11 +70,11 @@ namespace PetHouse.API.Controllers
         }
 		
 		// DELETE: api/Carnet/5
-        public IHttpActionResult Delete(string id)
+        public IHttpActionResult Delete(string idExpediente, int idVacuna)
         {
             try
             {
-                CarnetServicio.Delete(id);
+                CarnetServicio.DeleteVacuna(idExpediente,idVacuna);
                 return Ok();
             }
             catch (Exception ex)
