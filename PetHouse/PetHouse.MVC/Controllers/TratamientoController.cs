@@ -127,20 +127,20 @@ namespace PetHouse.MVC.Controllers
         //    return RedirectToAction("Index");
         //}
 
-        //// GET: Tratamiento
-        //public async Task<ActionResult> Index()
-        //{
-        //    var result = await GetAsync("api/Tratamiento");
-        //    if (result.IsSuccessStatusCode)
-        //    {
-        //        var resultdata = result.Content.ReadAsStringAsync().Result;
-        //        List<Tratamiento> tratamientos = JsonConvert.DeserializeObject<List<Tratamiento>>(resultdata);
-        //        return View(tratamientos);
-        //    }
+        // POST: Tratamiento
+        public async Task<ActionResult> Index()
+        {
+            var result = await GetAsync("api/Tratamiento");
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                List<Tratamiento> tratamientos = JsonConvert.DeserializeObject<List<Tratamiento>>(resultdata);
+                return View(tratamientos);
+            }
 
-        //    ViewData["Error"] = await ErrorAsync("Tratamiento", "Index", "Error al consultar api", 500);
-        //    return HttpNotFound();
-        //}
+            ViewData["Error"] = await ErrorAsync("Tratamiento", "Index", "Error al consultar api", 500);
+            return HttpNotFound();
+        }
 
         // GET: Tratamiento/Details/5
         public async Task<ActionResult> Details(int? id)

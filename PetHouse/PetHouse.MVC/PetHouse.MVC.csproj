@@ -128,6 +128,7 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\pethouse-logo.jpg" />
     <Content Include="Content\js\BuscarMascota.js" />
+    <Content Include="Content\js\CreateCarnet.js" />
     <Content Include="Content\js\CreateDomicilio.js" />
     <Content Include="Content\js\CreatePersona.js" />
     <Content Include="Content\js\DetalleAdopcion.js" />
@@ -243,6 +244,10 @@
     <Content Include="Views\Adopcion\Partials\_ViewAdoptante.cshtml" />
     <Content Include="Views\Adopcion\Partials\_CreateAdoptante.cshtml" />
     <Content Include="Views\Adopcion\Partials\_CreateAdopcion.cshtml" />
+    <Content Include="Views\HomeProcedimiento\Index.cshtml" />
+    <Content Include="Views\HomeProcedimiento\Partials\_Procedimiento.cshtml" />
+    <Content Include="Views\HomeProcedimiento\PanelProcedimiento.cshtml" />
+    <Content Include="Views\HomeProcedimiento\Partials\_CreateCarnet.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -259,19 +264,23 @@
     <Compile Include="Controllers\CarnetController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\ExpedienteController.cs" />
+    <Compile Include="Controllers\HomeProcedimientoController.cs" />
     <Compile Include="Controllers\InstitucionController.cs" />
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\MedicamentoController.cs" />
     <Compile Include="Controllers\ProcedimientoController.cs" />
     <Compile Include="Controllers\PuestoController.cs" />
     <Compile Include="Controllers\RolController.cs" />
-    <Compile Include="Controllers\TratamientoeController.cs" />
+    <Compile Include="Controllers\TratamientoController.cs" />
     <Compile Include="Controllers\VacunaController.cs" />
     <Compile Include="Models\Adopcion.cs" />
     <Compile Include="Models\Adoptante.cs" />
     <Compile Include="Models\EmpleadoUserRolModel.cs" />
     <Compile Include="Models\ExpedienteMascotaModel.cs" />
     <Compile Include="Models\IdentityUser.cs" />
+    <Compile Include="Models\JsonHttpStatusResult.cs" />
+    <Compile Include="Models\PanelProcedimientoViewModel.cs" />
+    <Compile Include="Models\PanelProcedimientoInfoModel.cs" />
     <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Canton.cs" />

@@ -12,5 +12,6 @@ namespace PetHouse.MVC.Models
         public string Nombre_Procedimiento { get; set; }
         [DataType(DataType.MultilineText)]
         public string Descripcion { get; set; }
+        public Expediente Expediente { get; set; }
     }
 }

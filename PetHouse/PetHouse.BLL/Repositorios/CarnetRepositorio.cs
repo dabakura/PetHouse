@@ -65,12 +65,13 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public bool Insert(Carnet entity)
+        public Carnet Insert(Carnet entity)
         {
             try
             {
                 DB.InsertarCarnet(entity.ExpedienteId, entity.VacunaId, entity.Fecha_Vacunacion);
-                return true;
+                var Carnet = mapper.Map<Carnet, Carnet>(entity);
+                return Carnet;
             }
             catch (Exception ex)
             {

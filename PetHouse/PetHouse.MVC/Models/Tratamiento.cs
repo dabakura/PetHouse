@@ -12,5 +12,6 @@ namespace PetHouse.MVC.Models
         [DataType(DataType.MultilineText)]
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
+        public Expediente Expediente { get; set; }
     }
 }

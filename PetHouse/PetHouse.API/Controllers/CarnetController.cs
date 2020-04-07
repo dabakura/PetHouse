@@ -58,7 +58,7 @@ namespace PetHouse.API.Controllers
         {
             try
             {
-                CarnetServicio.Insert(carnet);
+                carnet = CarnetServicio.Insert(carnet);
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + carnet.ExpedienteId);
                 return Created(uri, ModelFactory.Create<CarnetModel, Carnet>(carnet, uri));
             }

@@ -13,8 +13,10 @@ namespace PetHouse.MVC.App_Start
                 .Include("~/Content/css/bootstrap-datepicker3.min.css")
                 .Include("~/Content/css/font-awesome.min.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/icheck/blue.min.css", new CssRewriteUrlTransformAbsolute())
+                .Include("~/Content/css/icheck/green.min.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/AdminLTE.css", new CssRewriteUrlTransformAbsolute())
-                .Include("~/Content/css/skins/skin-blue.css"));
+                .Include("~/Content/css/skins/skin-blue.css")
+                .Include("~/Content/css/skins/skin-green.css"));
 
             bundles.Add(new ScriptBundle("~/Bundles/js")
                 .Include("~/Content/js/plugins/jquery/jquery-3.3.1.js")
@@ -40,6 +42,9 @@ namespace PetHouse.MVC.App_Start
 
             bundles.Add(new ScriptBundle("~/Bundles/create_persona")
                 .Include("~/Content/js/CreatePersona.js"));
+
+            bundles.Add(new ScriptBundle("~/Bundles/create_carnet")
+                .Include("~/Content/js/CreateCarnet.js"));
 
             bundles.Add(new ScriptBundle("~/Bundles/buscar_mascota")
                 .Include("~/Content/js/ShowMascota.js")

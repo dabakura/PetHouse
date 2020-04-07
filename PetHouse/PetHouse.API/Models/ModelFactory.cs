@@ -163,6 +163,8 @@ namespace PetHouse.API.Models
         public string ExpedienteId { get; set; }
         public int VacunaId { get; set; }
         public DateTime Fecha_Vacunacion { get; set; }
+        public VacunaModel Vacuna { get; set; }
+        public ExpedienteModel Expediente { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Carnet/" + ExpedienteId;
     }
     public class CantonModel

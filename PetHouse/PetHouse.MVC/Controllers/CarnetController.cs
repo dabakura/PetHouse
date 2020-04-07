@@ -165,28 +165,54 @@ namespace PetHouse.MVC.Controllers
             return View(carnet);
         }
 
-        // GET: Carnet/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Carnet/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Vacuna/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ExpedienteId,VacunaId,Fecha_Vacunacion")] Carnet carnet)
+        public async Task<JsonResult> Create([Bind(Include = "ExpedienteId,VacunaId,Fecha_Vacunacion,Expediente,Vacuna")] Carnet carnet)
         {
+            ModelCustom(ModelState);
             if (ModelState.IsValid)
             {
                 var result = await PostAsync("api/Carnet", carnet);
                 if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                {
+                    var resultdata = result.Content.ReadAsStringAsync().Result;
+                    carnet = JsonConvert.DeserializeObject<Carnet>(resultdata);
+                    return Json(carnet);
+                }
             }
-            ViewData["Error"] = await ErrorAsync("Carnet", "Create", "Error insertar carnet compruebe los campos", 400);
-            return View(carnet);
+            var Error = await ErrorAsync("Vacuna", "Create", "Error insertar vacuna compruebe los campos", 400);
+            return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
         }
+
+        private void ModelCustom(ModelStateDictionary modelstage)
+        {
+            var keys = modelstage.Keys.ToArray();
+            for (int i = 3; i < keys.Length; i++)
+                modelstage.Remove(keys[i]);
+        }
+
+        //// GET: Carnet/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: Carnet/Create
+        //// Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        //// más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Create([Bind(Include = "ExpedienteId,VacunaId,Fecha_Vacunacion")] Carnet carnet)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var result = await PostAsync("api/Carnet", carnet);
+        //        if (result.IsSuccessStatusCode)
+        //            return RedirectToAction("Index");
+        //    }
+        //    ViewData["Error"] = await ErrorAsync("Carnet", "Create", "Error insertar carnet compruebe los campos", 400);
+        //    return View(carnet);
+        //}
 
         // GET: Carnet/Edit/5
         public async Task<ActionResult> Edit(int? id)

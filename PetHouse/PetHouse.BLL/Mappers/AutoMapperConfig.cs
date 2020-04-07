@@ -60,8 +60,18 @@ namespace PetHouse.BLL.Mappers
                 cfg.CreateMap<BuscarCantonResult, Canton>().AfterMap((orig, dest) =>
                     dest.Provincia = new Provincia { Id = orig.ProvinciaId, Nombre = orig.ProvinciaName }
                 );
-                cfg.CreateMap<ConsultarCarnetResult, Carnet>();
-                cfg.CreateMap<BuscarCarnetResult, Carnet>();
+                cfg.CreateMap<ConsultarCarnetResult, Carnet>().AfterMap((orig, dest) => {
+                    dest.Vacuna = new VacunaRepositorio().Get(orig.VacunaId.ToString());
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                });
+                cfg.CreateMap<BuscarCarnetResult, Carnet>().AfterMap((orig, dest) => {
+                    dest.Vacuna = new VacunaRepositorio().Get(orig.VacunaId.ToString());
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                });
+                cfg.CreateMap<Carnet, Carnet>().AfterMap((orig, dest) => {
+                    dest.Vacuna = new VacunaRepositorio().Get(orig.VacunaId.ToString());
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                });
                 cfg.CreateMap<ConsultarDistritoResult, Distrito>().AfterMap((orig, dest) =>
                     dest.Canton = new Canton
                     {
