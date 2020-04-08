@@ -15,137 +15,26 @@ namespace PetHouse.MVC.Controllers
     [CustomAuthorize]
     public class ProcedimientoController : BaseController
     {
-        //private PetHouseEntities db = new PetHouseEntities();
-
-        //// GET: Procedimiento
-        //public async Task<ActionResult> Index()
-        //{
-        //    var procedimiento = db.Procedimiento.Include(p => p.Empleado).Include(p => p.Expediente);
-        //    return View(procedimiento.ToList());
-        //}
-
-        //// GET: Procedimiento/Details/5
-        //public async Task<ActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Procedimiento procedimiento = db.Procedimiento.Find(id);
-        //    if (procedimiento == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(procedimiento);
-        //}
-
-        //// GET: Procedimiento/Create
-        //public async Task<ActionResult> Create()
-        //{
-        //    ViewBag.EmpleadoId = new SelectList(db.Empleado, "Identificacion", "Nombre");
-        //    ViewBag.ExpedienteId = new SelectList(db.Expediente, "Id", "Observaciones");
-        //    return View();
-        //}
-
-        //// POST: Procedimiento/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,ExpedienteId,EmpleadoId,Nombre_Procedimiento,Descripcion,Activo")] Procedimiento procedimiento)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Procedimiento.Add(procedimiento);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.EmpleadoId = new SelectList(db.Empleado, "Identificacion", "Nombre", procedimiento.EmpleadoId);
-        //    ViewBag.ExpedienteId = new SelectList(db.Expediente, "Id", "Observaciones", procedimiento.ExpedienteId);
-        //    return View(procedimiento);
-        //}
-
-        //// GET: Procedimiento/Edit/5
-        //public async Task<ActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Procedimiento procedimiento = db.Procedimiento.Find(id);
-        //    if (procedimiento == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.EmpleadoId = new SelectList(db.Empleado, "Identificacion", "Nombre", procedimiento.EmpleadoId);
-        //    ViewBag.ExpedienteId = new SelectList(db.Expediente, "Id", "Observaciones", procedimiento.ExpedienteId);
-        //    return View(procedimiento);
-        //}
-
-        //// POST: Procedimiento/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include = "Id,ExpedienteId,EmpleadoId,Nombre_Procedimiento,Descripcion,Activo")] Procedimiento procedimiento)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(procedimiento).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.EmpleadoId = new SelectList(db.Empleado, "Identificacion", "Nombre", procedimiento.EmpleadoId);
-        //    ViewBag.ExpedienteId = new SelectList(db.Expediente, "Id", "Observaciones", procedimiento.ExpedienteId);
-        //    return View(procedimiento);
-        //}
-
-        //// GET: Procedimiento/Delete/5
-        //public async Task<ActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Procedimiento procedimiento = db.Procedimiento.Find(id);
-        //    if (procedimiento == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(procedimiento);
-        //}
-
-        //// POST: Procedimiento/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(int id)
-        //{
-        //    Procedimiento procedimiento = db.Procedimiento.Find(id);
-        //    db.Procedimiento.Remove(procedimiento);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-        // GET: Procedimiento
-        public async Task<ActionResult> Index()
+        // POST: Procedimiento/{id}
+        [HttpPost]
+        public async Task<JsonResult> Index(string id)
         {
-            var result = await GetAsync("api/Procedimiento");
+            var result = await GetAsync("api/Procedimiento/ByExpediente/" + id);
             if (result.IsSuccessStatusCode)
             {
                 var resultdata = result.Content.ReadAsStringAsync().Result;
                 List<Procedimiento> procedimientos = JsonConvert.DeserializeObject<List<Procedimiento>>(resultdata);
-                return View(procedimientos);
+                return Json(procedimientos);
             }
 
-            ViewData["Error"] = await ErrorAsync("Procedimiento", "Index", "Error al consultar api", 500);
-            return HttpNotFound();
+            var Error = await ErrorAsync("Procedimiento", "Index", "Error al cargar los Procedimientos", 500);
+            return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
         }
 
         // GET: Procedimiento/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 ViewData["Error"] = await ErrorAsync("Procedimiento", "Details", "No se ingreso el Id", 400);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -165,33 +54,37 @@ namespace PetHouse.MVC.Controllers
             return View(procedimiento);
         }
 
-        // GET: Procedimiento/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Procedimiento/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ExpedienteId,EmpleadoId,Nombre_Procedimiento,Descripcion")] Procedimiento procedimiento)
+        public async Task<JsonResult> Create([Bind(Include = "Id,ExpedienteId,EmpleadoId,Nombre_Procedimiento,Descripcion,Empleado,Expediente")] Procedimiento procedimiento)
         {
+            ModelCustom(ModelState);
             if (ModelState.IsValid)
             {
                 var result = await PostAsync("api/Procedimiento", procedimiento);
                 if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                {
+                    var resultdata = result.Content.ReadAsStringAsync().Result;
+                    procedimiento = JsonConvert.DeserializeObject<Procedimiento>(resultdata);
+                    return Json(procedimiento);
+                }
             }
-            ViewData["Error"] = await ErrorAsync("Procedimiento", "Create", "Error insertar procedimiento compruebe los campos", 400);
-            return View(procedimiento);
+            var Error = await ErrorAsync("Procedimiento", "Create", "Error insertar el procedimiento compruebe los campos", 400);
+            return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
+        }
+
+
+        private void ModelCustom(ModelStateDictionary modelstage)
+        {
+            var keys = modelstage.Keys.ToArray();
+            for (int i = 5; i < keys.Length; i++)
+                modelstage.Remove(keys[i]);
         }
 
         // GET: Procedimiento/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 ViewData["Error"] = await ErrorAsync("Procedimiento", "Edit", "No se ingreso el Id", 400);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -216,13 +109,14 @@ namespace PetHouse.MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ExpedienteId,EmpleadoId,Nombre_Procedimiento,Descripcion")] Procedimiento procedimiento)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,ExpedienteId,EmpleadoId,Nombre_Procedimiento,Descripcion,Empleado,Expediente")] Procedimiento procedimiento)
         {
+            ModelCustom(ModelState);
             if (ModelState.IsValid)
             {
                 var result = await PutAsync("api/Procedimiento/" + procedimiento.Id, procedimiento);
                 if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "HomeProcedimiento");
             }
             ViewData["Error"] = await ErrorAsync("Procedimiento", "Edit", "Error actualizar procedimiento compruebe los campos", 400);
             return View(procedimiento);
@@ -231,7 +125,7 @@ namespace PetHouse.MVC.Controllers
         // GET: Procedimiento/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 ViewData["Error"] = await ErrorAsync("Procedimiento", "Delete", "No se ingreso el Id", 400);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -258,7 +152,7 @@ namespace PetHouse.MVC.Controllers
         {
             var result = await DeleteAsync("api/Procedimiento/" + id);
             if (result.IsSuccessStatusCode)
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","HomeProcedimiento");
             ViewData["Error"] = await ErrorAsync("Procedimiento", "DeleteConfirmed", "Error eliminar procedimiento compruebe los campos", 400);
             return HttpNotFound();
         }

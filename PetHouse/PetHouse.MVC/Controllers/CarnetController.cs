@@ -27,7 +27,7 @@ namespace PetHouse.MVC.Controllers
                 return Json(carnets);
             }
 
-            var Error = await ErrorAsync("Vacuna", "Create", "Error al cargar las vacunas", 500);
+            var Error = await ErrorAsync("Carnet", "Index", "Error al cargar las vacunas", 500);
             return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
         }
 
@@ -46,7 +46,7 @@ namespace PetHouse.MVC.Controllers
                     return Json(carnet);
                 }
             }
-            var Error = await ErrorAsync("Vacuna", "Create", "Error insertar vacuna compruebe los campos", 400);
+            var Error = await ErrorAsync("Carnet", "Create", "Error insertar vacuna compruebe los campos", 400);
             return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
         }
 
@@ -64,7 +64,7 @@ namespace PetHouse.MVC.Controllers
             var result = await DeleteAsync("api/Carnet?idExpediente=" + carnet.ExpedienteId + "&idVacuna=" + carnet.VacunaId);
             if (result.IsSuccessStatusCode)
                 return Json(carnet);
-            var Error = await ErrorAsync("Vacuna", "Create", "Error eliminar vacuna compruebe los campos", 400);
+            var Error = await ErrorAsync("Carnet", "Delete", "Error eliminar vacuna compruebe los campos", 400);
             return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
         }
     }

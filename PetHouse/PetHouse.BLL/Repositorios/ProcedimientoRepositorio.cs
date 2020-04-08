@@ -51,12 +51,28 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public int Insert(Procedimiento entity)
+        public IEnumerable<Procedimiento> GetAllByIdExpediente(string id)
+        {
+            try
+            {
+                var ProcedimientosResult = DB.ConsultarProcedimientoById(id).ToList();
+                var Procedimientos = mapper.Map<IEnumerable<ConsultarProcedimientoByIdResult>, IEnumerable<Procedimiento>>(ProcedimientosResult);
+                return Procedimientos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Procedimiento Insert(Procedimiento entity)
         {
             try
             {
                 var id = DB.InsertarProcedimiento(entity.ExpedienteId, entity.EmpleadoId, entity.Nombre_Procedimiento, entity.Descripcion).SingleOrDefault().Column1;
-                return id.Value;
+                var ProcedimientoResult = DB.BuscarProcedimiento(Convert.ToInt32(id)).SingleOrDefault();
+                var Procedimiento = mapper.Map<BuscarProcedimientoResult, Procedimiento>(ProcedimientoResult);
+                return Procedimiento;
             }
             catch (Exception ex)
             {

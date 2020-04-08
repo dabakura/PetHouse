@@ -37,6 +37,24 @@ namespace PetHouse.API.Controllers
             }
         }
 
+        // GET: api/Procedimiento/ByExpediente/{id}
+        [Route("ByExpediente/{id}")]
+        [HttpGet]
+        public IHttpActionResult ByExpediente(string id)
+        {
+            try
+            {
+                var procedimientos = ProcedimientoServicio.GetAllByIdExpediente(id);
+                Uri uri = Url.Request.RequestUri;
+                return Ok(ModelFactory.Create<ProcedimientoModel, Procedimiento>(procedimientos, uri));
+            }
+            catch (Exception ex)
+            {
+                Log.Error<ProcedimientoController>("GET Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
+                return NotFound();
+            }
+        }
+
         // GET: api/Procedimiento/5
         public IHttpActionResult Get(string id)
         {
@@ -58,7 +76,7 @@ namespace PetHouse.API.Controllers
         {
             try
             {
-                procedimiento.Id = ProcedimientoServicio.Insert(procedimiento);
+                procedimiento = ProcedimientoServicio.Insert(procedimiento);
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + procedimiento.Id);
                 return Created(uri, ModelFactory.Create<ProcedimientoModel, Procedimiento>(procedimiento, uri));
             }

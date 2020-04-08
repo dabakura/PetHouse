@@ -1,0 +1,38 @@
+﻿@model PetHouse.MVC.Models.PanelProcedimientoViewModel
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Procedimientos</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body" style="">
+            <div class="row form-inline">
+                <div class="form-group col-md-12">
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.Procedimiento.EmpleadoId, (SelectList)ViewBag.Empleados, htmlAttributes: new { @class = "form-control", @id = "EmpleadoId_Procedimiento", style = "width: 100%;" })
+                    </div>
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Procedimiento.Nombre_Procedimiento, new { htmlAttributes = new { @class = "form-control", @id = "Nombre_Procedimiento", Placeholder = "Nombre Procedimiento", style = "width: 100%;" } })
+                    </div>
+                    @Html.HiddenFor(model => model.Procedimiento.ExpedienteId, htmlAttributes: new { @id = "ExpedienteId_Procedimiento" })
+                    <button type="button" class="btn btn-success pull-right" id="CreateProcedimiento" style="margin-right: 12px;"><i class="fa fa-plus"></i></button>
+                </div>
+                <div class="form-group col-md-12" style="margin-top: 20px;">
+                    @Html.LabelFor(model => model.Procedimiento.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Procedimiento.Descripcion, new { htmlAttributes = new { @class = "form-control col-md-12", @id = "Descripcion_Procedimiento", style = "width: 100%;" } })
+                    </div>
+                </div>
+            </div>
+            <hr style="margin-top: 9px; margin-bottom: 0px;" />
+            <ul class="products-list product-list-in-box" id="lista_Procedimientos">
+            </ul>
+        </div>
+        <!-- /.box-body -->
+    </div>

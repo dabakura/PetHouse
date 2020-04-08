@@ -7,7 +7,7 @@ namespace PetHouse.MVC.Models
 {
     public class PanelProcedimientoInfoModel
     {
-        public Expediente Expediente { get; set; }
-        public List<Carnet> Carnets { get; set; }
+        //public Expediente Expediente { get; set; }
+        //public List<Carnet> Carnets { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace PetHouse.MVC.Controllers
             var expediente = await GetExpedienteAsync(ExpedienteId);
             if (expediente != null)
             {
-                await setDataAsync(ExpedienteId);
+                await SetDataAsync(ExpedienteId);
                 var panelProcedimiento = new PanelProcedimientoViewModel(expediente);
                 return View(panelProcedimiento);
             }
@@ -39,19 +39,19 @@ namespace PetHouse.MVC.Controllers
             return View("Index");
         }
 
-        private async Task<PanelProcedimientoInfoModel> GetDataAsync(string ExpedienteId)
-        {
-            var panelProcedimientoInfoModel = new PanelProcedimientoInfoModel();
-            var expediente = await GetExpedienteAsync(ExpedienteId);
-            if (expediente == null)
-                return null;
-            panelProcedimientoInfoModel.Expediente = expediente;
-            var carnets = await GetCarnetsAsync(ExpedienteId);
-            if (carnets == null)
-                return null;
-            panelProcedimientoInfoModel.Carnets = carnets;
-            return panelProcedimientoInfoModel;
-        }
+        //private async Task<PanelProcedimientoInfoModel> GetDataAsync(string ExpedienteId)
+        //{
+        //    var panelProcedimientoInfoModel = new PanelProcedimientoInfoModel();
+        //    var expediente = await GetExpedienteAsync(ExpedienteId);
+        //    if (expediente == null)
+        //        return null;
+        //    panelProcedimientoInfoModel.Expediente = expediente;
+        //    var carnets = await GetCarnetsAsync(ExpedienteId);
+        //    if (carnets == null)
+        //        return null;
+        //    panelProcedimientoInfoModel.Carnets = carnets;
+        //    return panelProcedimientoInfoModel;
+        //}
         private async Task<List<Expediente>> GetExpedientesAsync()
         {
             var result = await GetAsync("api/Expediente");
@@ -62,6 +62,19 @@ namespace PetHouse.MVC.Controllers
                 expedientes = JsonConvert.DeserializeObject<List<Expediente>>(resultdata);
             }
             return expedientes;
+        }
+
+        private async Task<List<Empleado>> GetEmpleadosAsync()
+        {
+            var result = await GetAsync("api/Empleado");
+            List<Empleado> empleados = null;
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                empleados = JsonConvert.DeserializeObject<List<Empleado>>(resultdata);
+                empleados.ForEach(empleado => empleado.Nombre = empleado.Identificacion + " " + empleado.Nombre + " "+ empleado.Primer_Apellido + " "+ empleado.Segundo_Apellido);
+            }
+            return empleados;
         }
 
         private async Task<Expediente> GetExpedienteAsync(string expedienteId)
@@ -75,10 +88,13 @@ namespace PetHouse.MVC.Controllers
             }
             return expediente;
         }
-        private async Task setDataAsync(string expedienteId)
+        private async Task SetDataAsync(string expedienteId)
         {
             List<Vacuna> vacunas = null;
             var carnets = await GetCarnetsAsync(expedienteId);
+            var empleados = await GetEmpleadosAsync();
+            if (empleados == null)
+                empleados = new List<Empleado>();
             if (carnets != null)
                 vacunas = await GetVacunasNoAdministradasAsync(carnets);
             else
@@ -87,6 +103,7 @@ namespace PetHouse.MVC.Controllers
                 vacunas = new List<Vacuna>();
             ViewBag.VacunasNoAdministradas = new SelectList(vacunas, "Id", "Nombre");
             ViewBag.Carnets = carnets;
+            ViewBag.Empleados = new SelectList(empleados, "Identificacion", "Nombre"); ;
         }
 
         private async Task<List<Carnet>> GetCarnetsAsync(string expedienteId)

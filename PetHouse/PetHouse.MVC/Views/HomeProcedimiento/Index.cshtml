@@ -11,7 +11,10 @@
     @Html.Partial("Partials/_Procedimiento")
 
     <div class="col-md-12">
-        @Html.Partial("Partials/_Expediente",Model)
+        @Html.Partial("Partials/_Expediente")
+    </div>
+    <div class="col-md-12">
+        @Html.Partial("Partials/_ShowProcedimiento")
     </div>
 </div>
 
@@ -26,16 +29,26 @@
 
 @Html.Hidden("url_BusquedaCarnets", Url.Action("Index", "Carnet"), htmlAttributes: new { @id = "url_BusquedaCarnets" })
 @Html.Hidden("url_EliminaCarnet", Url.Action("Delete", "Carnet"), htmlAttributes: new { @id = "url_EliminaCarnet" })
+@Html.Hidden("url_BusquedaProcedimientos", Url.Action("Index", "Procedimiento"), htmlAttributes: new { @id = "url_BusquedaProcedimientos" })
+@Html.Hidden("url_EditProcedimientos", Url.Action("Edit", "Procedimiento"), htmlAttributes: new { @id = "url_EditProcedimientos" })
+@Html.Hidden("url_DetailsProcedimientos", Url.Action("Details", "Procedimiento"), htmlAttributes: new { @id = "url_DetailsProcedimientos" })
+@Html.Hidden("url_DeleteProcedimientos", Url.Action("Delete", "Procedimiento"), htmlAttributes: new { @id = "url_DeleteProcedimientos" })
 
 @section ViewSpecificJavascript {
     <script>
         var url_BusquedaCarnets = $("#url_BusquedaCarnets").val();
         var url_EliminaCarnet = $("#url_EliminaCarnet").val();
+        var url_BusquedaProcedimientos = $("#url_BusquedaProcedimientos").val();
+        var url_EditProcedimientos = $("#url_EditProcedimientos").val();
+        var url_DetailsProcedimientos = $("#url_DetailsProcedimientos").val();
+        var url_DeleteProcedimientos = $("#url_DeleteProcedimientos").val();
+        $("#table_procedimientos").hide();
         function SelectedExpediente(ExpedienteId) {
             $("#ExpedienteIdSelected").val(ExpedienteId);
+            $("#table_procedimientos").show();
             ObtenerCarnets(ExpedienteId);
+            ObtenerProcedimientos(ExpedienteId);
         }
     </script>
     @Scripts.Render("~/Bundles/procedimientos")
-    @*@Scripts.Render("~/Bundles/detalle_adopcion")*@
 }

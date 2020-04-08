@@ -73,6 +73,9 @@ namespace PetHouse.API.Models
         public int EmpleadoId { get; set; }
         public string Nombre_Procedimiento { get; set; }
         public string Descripcion { get; set; }
+
+        public ExpedienteModel Expediente { get; set; }
+        public EmpleadoModel Empleado { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Procedimiento/" + Id;
     }
     public class MedicamentoModel

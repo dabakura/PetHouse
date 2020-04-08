@@ -7,7 +7,13 @@ using System.Threading.Tasks;
 
 namespace PetHouse.BLL.Services
 {
-    public interface IProcedimientoService : ICrud<Procedimiento>
+    public interface IProcedimientoService
     {
+        IEnumerable<Procedimiento> GetAll();
+        Procedimiento Get(string id);
+        Procedimiento Insert(Procedimiento entity);
+        bool Update(Procedimiento entity);
+        bool Delete(string id);
+        IEnumerable<Procedimiento> GetAllByIdExpediente(string id);
     }
 }

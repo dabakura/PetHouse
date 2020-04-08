@@ -929,6 +929,13 @@ namespace PetHouse.DAL.Entities
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId, vacunaId, fecha_Vacunacion);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarProcedimientoById")]
+		public ISingleResult<ConsultarProcedimientoByIdResult> ConsultarProcedimientoById([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="VarChar(100)")] string id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<ConsultarProcedimientoByIdResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vacuna")]
@@ -11645,6 +11652,122 @@ namespace PetHouse.DAL.Entities
 				if ((this._Column1 != value))
 				{
 					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarProcedimientoByIdResult
+	{
+		
+		private int _Id;
+		
+		private string _ExpedienteId;
+		
+		private int _EmpleadoId;
+		
+		private string _Nombre_Procedimiento;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<bool> _Activo;
+		
+		public ConsultarProcedimientoByIdResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ExpedienteId
+		{
+			get
+			{
+				return this._ExpedienteId;
+			}
+			set
+			{
+				if ((this._ExpedienteId != value))
+				{
+					this._ExpedienteId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpleadoId", DbType="Int NOT NULL")]
+		public int EmpleadoId
+		{
+			get
+			{
+				return this._EmpleadoId;
+			}
+			set
+			{
+				if ((this._EmpleadoId != value))
+				{
+					this._EmpleadoId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre_Procedimiento", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre_Procedimiento
+		{
+			get
+			{
+				return this._Nombre_Procedimiento;
+			}
+			set
+			{
+				if ((this._Nombre_Procedimiento != value))
+				{
+					this._Nombre_Procedimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Bit")]
+		public System.Nullable<bool> Activo
+		{
+			get
+			{
+				return this._Activo;
+			}
+			set
+			{
+				if ((this._Activo != value))
+				{
+					this._Activo = value;
 				}
 			}
 		}

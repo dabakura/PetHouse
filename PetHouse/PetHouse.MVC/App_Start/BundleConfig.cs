@@ -43,8 +43,9 @@ namespace PetHouse.MVC.App_Start
             bundles.Add(new ScriptBundle("~/Bundles/create_persona")
                 .Include("~/Content/js/CreatePersona.js"));
 
-            bundles.Add(new ScriptBundle("~/Bundles/create_carnet")
-                .Include("~/Content/js/CreateCarnet.js"));
+            bundles.Add(new ScriptBundle("~/Bundles/create_todo")
+                .Include("~/Content/js/CreateCarnet.js")
+                .Include("~/Content/js/CreateProcedimiento.js"));
 
             bundles.Add(new ScriptBundle("~/Bundles/buscar_mascota")
                 .Include("~/Content/js/ShowMascota.js")
@@ -56,7 +57,8 @@ namespace PetHouse.MVC.App_Start
                 .Include("~/Content/js/DetalleAdopcion.js"));
 
             bundles.Add(new ScriptBundle("~/Bundles/procedimientos")
-                .Include("~/Content/js/ActionsCarnet.js"));
+                .Include("~/Content/js/ActionsCarnet.js")
+                .Include("~/Content/js/ActionsProcedimiento.js"));
 #if DEBUG
             BundleTable.EnableOptimizations = false;
 #else

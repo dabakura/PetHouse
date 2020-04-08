@@ -1067,4 +1067,15 @@
     <Parameter Name="Fecha_Vacunacion" Parameter="fecha_Vacunacion" Type="System.DateTime" DbType="DateTime" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.ConsultarProcedimientoById" Method="ConsultarProcedimientoById">
+    <Parameter Name="Id" Parameter="id" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="ConsultarProcedimientoByIdResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpedienteId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpleadoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre_Procedimiento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

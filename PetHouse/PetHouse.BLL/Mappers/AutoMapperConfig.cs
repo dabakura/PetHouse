@@ -169,8 +169,18 @@ namespace PetHouse.BLL.Mappers
                 );
                 cfg.CreateMap<ConsultarMedicamentoResult, Medicamento>();
                 cfg.CreateMap<BuscarMedicamentoResult, Medicamento>();
-                cfg.CreateMap<ConsultarProcedimientoResult, Procedimiento>();
-                cfg.CreateMap<BuscarProcedimientoResult, Procedimiento>();
+                cfg.CreateMap<ConsultarProcedimientoResult, Procedimiento>().AfterMap((orig, dest) => {
+                    dest.Empleado = new EmpleadoRepositorio().Get(orig.EmpleadoId.ToString());
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                });
+                cfg.CreateMap<BuscarProcedimientoResult, Procedimiento>().AfterMap((orig, dest) => {
+                    dest.Empleado = new EmpleadoRepositorio().Get(orig.EmpleadoId.ToString());
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                });
+                cfg.CreateMap<ConsultarProcedimientoByIdResult, Procedimiento>().AfterMap((orig, dest) => {
+                    dest.Empleado = new EmpleadoRepositorio().Get(orig.EmpleadoId.ToString());
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                });
                 cfg.CreateMap<ConsultarProvinciaResult, Provincia>();
                 cfg.CreateMap<BuscarProvinciaResult, Provincia>();
                 cfg.CreateMap<ConsultarPuestoResult, Puesto>();
