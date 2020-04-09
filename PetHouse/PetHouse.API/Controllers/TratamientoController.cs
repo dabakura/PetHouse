@@ -61,26 +61,39 @@ namespace PetHouse.API.Controllers
         {
             try
             {
-                var tratamiento = ModelFactory.Create<Tratamiento, TratamientoModel>(tratamientoModel);
-                tratamiento.Id = TratamientoServicio.Insert(tratamiento);
+                var tratamiento = GetTratamiento(tratamientoModel);
+                tratamientoModel.Id = tratamiento.Id = TratamientoServicio.Insert(tratamiento);
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + tratamiento.Id);
-                tratamientoModel.Medicamentos.ForEach( medicamento => {
+                tratamientoModel.Medicamentos.ForEach( medicamentomodel => {
                     var tratamedica = new TratamientoMedicamento
                     {
-                        MedicamentoId = medicamento.Id,
-                        Medicamento = medicamento,
+                        MedicamentoId = medicamentomodel.Id,
+                        Medicamento = new Medicamento { Id = medicamentomodel.Id },
                         TratamientoId = tratamiento.Id,
                         Tratamiento = tratamiento
                     };
                     TratamientoMedicamentoServicio.Insert(tratamedica);
                 });
-                return Created(uri, ModelFactory.Create<TratamientoModel, Tratamiento>(tratamiento, uri));
+                return Created(uri, tratamientoModel);
             }
             catch (Exception ex)
             {
                 Log.Error<TratamientoController>("Post Se ha producido un error en el llamado de la URI= " + Url.Request.RequestUri, ex);
                 return BadRequest();
             }
+        }
+
+        private Tratamiento GetTratamiento(TratamientoModel tratamientoModel)
+        {
+            return new Tratamiento { 
+                Descripcion = tratamientoModel.Descripcion,
+                Empleado = new Empleado { Identificacion = tratamientoModel.EmpleadoId },
+                EmpleadoId = tratamientoModel.EmpleadoId,
+                Expediente = new Expediente { Id = tratamientoModel.ExpedienteId },
+                ExpedienteId = tratamientoModel.ExpedienteId,
+                Fecha = tratamientoModel.Fecha,
+                Id = 0
+            };
         }
 
         // PUT: api/Tratamiento/5

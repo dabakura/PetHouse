@@ -5,7 +5,7 @@
     <div class="box-header with-border">
         <h3 class="box-title" style="padding-top: 8px;">Tratamiento</h3>
         <div class="pull-right" style="display: flex;">
-            <button type="button" class="btn btn-success" id="CreateProcedimiento" style="display: inline-block"><i class="fa fa-plus"></i></button>
+            <button type="button" class="btn btn-success" id="CreateTratamiento" style="display: inline-block"><i class="fa fa-plus"></i></button>
             <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse">
                     <i class="fa fa-minus"></i>
@@ -19,11 +19,8 @@
             <div class="col-md-9">
                 <div class="col-md-8">
                     <div class="form-group col-md-12">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 @Html.DropDownListFor(model => model.Tratamiento.EmpleadoId, (SelectList)ViewBag.Empleados, htmlAttributes: new { @class = "form-control", @id = "EmpleadoId_Tratamiento", style = "width: 100%;" })
-                            </div>
-                            <div class="col-md-6">
-                                @Html.EditorFor(model => model.Procedimiento.Nombre_Procedimiento, new { htmlAttributes = new { @class = "form-control", @id = "Nombre_Tratamiento", Placeholder = "Nombre Tratamiento", style = "width: 100%;" } })
                             </div>
                             @Html.HiddenFor(model => model.Tratamiento.ExpedienteId, htmlAttributes: new { @id = "ExpedienteId_Tratamiento" })
                     </div>

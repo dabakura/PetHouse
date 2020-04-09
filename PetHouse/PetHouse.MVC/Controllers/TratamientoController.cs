@@ -165,28 +165,53 @@ namespace PetHouse.MVC.Controllers
             return View(tratamiento);
         }
 
-        // GET: Tratamiento/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Tratamiento/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ExpedienteId,EmpleadoId,Descripcion,Fecha")] Tratamiento tratamiento)
+        public async Task<JsonResult> Create([Bind(Include = "Id,ExpedienteId,EmpleadoId,Descripcion,Empleado,Expediente,Medicamentos")] Tratamiento tratamiento)
         {
+            ModelCustom(ModelState);
             if (ModelState.IsValid)
             {
                 var result = await PostAsync("api/Tratamiento", tratamiento);
                 if (result.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                {
+                    var resultdata = result.Content.ReadAsStringAsync().Result;
+                    tratamiento = JsonConvert.DeserializeObject<Tratamiento>(resultdata);
+                    return Json(tratamiento);
+                }
             }
-            ViewData["Error"] = await ErrorAsync("Tratamiento", "Create", "Error insertar tratamiento compruebe los campos", 400);
-            return View(tratamiento);
+            var Error = await ErrorAsync("Tratamiento", "Create", "Error insertar el tratamiento compruebe los campos", 400);
+            return new JsonHttpStatusResult(new { Error }, HttpStatusCode.BadRequest);
         }
+
+        private void ModelCustom(ModelStateDictionary modelstage)
+        {
+            var keys = modelstage.Keys.ToArray();
+            for (int i = 4; i < keys.Length; i++)
+                modelstage.Remove(keys[i]);
+        }
+        //// GET: Tratamiento/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: Tratamiento/Create
+        //// Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        //// más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Create([Bind(Include = "Id,ExpedienteId,EmpleadoId,Descripcion,Fecha")] Tratamiento tratamiento)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var result = await PostAsync("api/Tratamiento", tratamiento);
+        //        if (result.IsSuccessStatusCode)
+        //            return RedirectToAction("Index");
+        //    }
+        //    ViewData["Error"] = await ErrorAsync("Tratamiento", "Create", "Error insertar tratamiento compruebe los campos", 400);
+        //    return View(tratamiento);
+        //}
 
         // GET: Tratamiento/Edit/5
         public async Task<ActionResult> Edit(int? id)

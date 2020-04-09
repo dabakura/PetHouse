@@ -47,8 +47,8 @@ namespace PetHouse.API.Models
     {
         public int TratamientoId { get; set; }
         public string MedicamentoId { get; set; }
-        public Tratamiento Tratamiento { get; set; }
-        public Medicamento Medicamento { get; set; }
+        public TratamientoModel Tratamiento { get; set; }
+        public MedicamentoModel Medicamento { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/TratamientoMedicamento/" + TratamientoId;
     }
     public class TratamientoModel
@@ -58,6 +58,7 @@ namespace PetHouse.API.Models
         public TratamientoModel()
         {
             tratamientoMedicamentos = new List<TratamientoMedicamentoModel>();
+            Medicamentos = new List<MedicamentoModel>();
         }
 
         public int Id { get; set; }
@@ -66,16 +67,16 @@ namespace PetHouse.API.Models
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
 
-        public Expediente Expediente { get; set; }
-        public Empleado Empleado { get; set; }
+        public ExpedienteModel Expediente { get; set; }
+        public EmpleadoModel Empleado { get; set; }
         public List<TratamientoMedicamentoModel> TratamientoMedicamentos { 
             get => tratamientoMedicamentos; 
             set { 
                 tratamientoMedicamentos = value; 
-                Medicamentos = tratamientoMedicamentos.Select(TraMedicamento => TraMedicamento.Medicamento).ToList(); 
+                Medicamentos = value.Select(TraMedicamento => TraMedicamento.Medicamento).ToList(); 
             } 
         }
-        public List<Medicamento> Medicamentos { get; set; }
+        public List<MedicamentoModel> Medicamentos { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Tratamiento/" + Id;
     }
     public class PuestoModel

@@ -21,6 +21,7 @@
 
 @Html.Hidden("CreateVacuna_Uri", Url.Action("Create", "Carnet"), htmlAttributes: new { @id = "CreateVacuna_Uri" })
 @Html.Hidden("CreateProcedimiento_Uri", Url.Action("Create", "Procedimiento"), htmlAttributes: new { @id = "CreateProcedimiento_Uri" })
+@Html.Hidden("CreateTratamiento_Uri", Url.Action("Create", "Tratamiento"), htmlAttributes: new { @id = "CreateTratamiento_Uri" })
 
 @section ViewSpecificJavascript {
     @Scripts.Render("~/Bundles/create_todo")
