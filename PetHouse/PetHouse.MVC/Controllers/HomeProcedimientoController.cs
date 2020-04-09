@@ -38,20 +38,6 @@ namespace PetHouse.MVC.Controllers
             ViewData["Error"] = await ErrorAsync("HomeTratamiento", "PanelProcedimiento", "Expediente Invalido", 400);
             return View("Index");
         }
-
-        //private async Task<PanelProcedimientoInfoModel> GetDataAsync(string ExpedienteId)
-        //{
-        //    var panelProcedimientoInfoModel = new PanelProcedimientoInfoModel();
-        //    var expediente = await GetExpedienteAsync(ExpedienteId);
-        //    if (expediente == null)
-        //        return null;
-        //    panelProcedimientoInfoModel.Expediente = expediente;
-        //    var carnets = await GetCarnetsAsync(ExpedienteId);
-        //    if (carnets == null)
-        //        return null;
-        //    panelProcedimientoInfoModel.Carnets = carnets;
-        //    return panelProcedimientoInfoModel;
-        //}
         private async Task<List<Expediente>> GetExpedientesAsync()
         {
             var result = await GetAsync("api/Expediente");

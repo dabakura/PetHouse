@@ -12,7 +12,8 @@ using System.Web.Http;
 namespace PetHouse.API.Controllers
 {
     [RoutePrefix("api/Tratamiento")]
-    public class TratamientoController : ApiController
+    [Authorize]
+    public class TratamientoController : BaseApiController
     {
         public ITratamientoService TratamientoServicio { get; }
         public ITratamientoMedicamentoService TratamientoMedicamentoServicio { get; }
@@ -25,6 +26,7 @@ namespace PetHouse.API.Controllers
 
         // GET: api/Tratamiento/5
         [HttpGet]
+        [Route("GetAll/{idExpediente}")]
         public IHttpActionResult GetAll(string idExpediente)
         {
             try

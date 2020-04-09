@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace PetHouse.API.Controllers
 {
     [RoutePrefix("api/Provincia")]
-    public class ProvinciaController : ApiController
+    public class ProvinciaController : BaseApiController
     {
         public IProvinciaService ProvinciaServicio { get; }
 

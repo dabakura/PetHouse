@@ -201,11 +201,11 @@ namespace PetHouse.BLL.Mappers
                     dest.TratamientoMedicamentos = Tratamientosmadicamentos;
                 });
                 cfg.CreateMap<ConsultarTratamientoMedicamentoResult, TratamientoMedicamento>().AfterMap((orig, dest) => {
-                    dest.Tratamiento = new TratamientoRepositorio().Get(orig.TratamientoId.ToString());
+                    dest.Tratamiento = new Tratamiento { Id = orig.TratamientoId };
                     dest.Medicamento = new MedicamentoRepositorio().Get(orig.MedicamentoId);
                 });
                 cfg.CreateMap<BuscarTratamientoMedicamentoResult, TratamientoMedicamento>().AfterMap((orig, dest) => {
-                    dest.Tratamiento = new TratamientoRepositorio().Get(orig.TratamientoId.ToString());
+                    dest.Tratamiento = new Tratamiento { Id = orig.TratamientoId };
                     dest.Medicamento = new MedicamentoRepositorio().Get(orig.MedicamentoId);
                 });
                 cfg.CreateMap<ConsultarVacunaResult, Vacuna>();

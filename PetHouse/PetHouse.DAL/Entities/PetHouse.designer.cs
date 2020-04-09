@@ -580,13 +580,6 @@ namespace PetHouse.DAL.Entities
 			return ((ISingleResult<ConsultarRolResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarTratamiento")]
-		public ISingleResult<ConsultarTratamientoResult> ConsultarTratamiento()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarTratamientoResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarTratamientoMedicamento")]
 		public ISingleResult<ConsultarTratamientoMedicamentoResult> ConsultarTratamientoMedicamento()
 		{
@@ -935,6 +928,13 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
 			return ((ISingleResult<ConsultarProcedimientoByIdResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarTratamiento")]
+		public ISingleResult<ConsultarTratamientoResult> ConsultarTratamiento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExpedienteId", DbType="VarChar(100)")] string expedienteId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId);
+			return ((ISingleResult<ConsultarTratamientoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -9479,104 +9479,6 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
-	public partial class ConsultarTratamientoResult
-	{
-		
-		private int _Id;
-		
-		private string _ExpedienteId;
-		
-		private int _EmpleadoId;
-		
-		private string _Descripcion;
-		
-		private System.DateTime _Fecha;
-		
-		public ConsultarTratamientoResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string ExpedienteId
-		{
-			get
-			{
-				return this._ExpedienteId;
-			}
-			set
-			{
-				if ((this._ExpedienteId != value))
-				{
-					this._ExpedienteId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpleadoId", DbType="Int NOT NULL")]
-		public int EmpleadoId
-		{
-			get
-			{
-				return this._EmpleadoId;
-			}
-			set
-			{
-				if ((this._EmpleadoId != value))
-				{
-					this._EmpleadoId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Descripcion
-		{
-			get
-			{
-				return this._Descripcion;
-			}
-			set
-			{
-				if ((this._Descripcion != value))
-				{
-					this._Descripcion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha
-		{
-			get
-			{
-				return this._Fecha;
-			}
-			set
-			{
-				if ((this._Fecha != value))
-				{
-					this._Fecha = value;
-				}
-			}
-		}
-	}
-	
 	public partial class ConsultarTratamientoMedicamentoResult
 	{
 		
@@ -11768,6 +11670,104 @@ namespace PetHouse.DAL.Entities
 				if ((this._Activo != value))
 				{
 					this._Activo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarTratamientoResult
+	{
+		
+		private int _Id;
+		
+		private string _ExpedienteId;
+		
+		private int _EmpleadoId;
+		
+		private string _Descripcion;
+		
+		private System.DateTime _Fecha;
+		
+		public ConsultarTratamientoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpedienteId", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ExpedienteId
+		{
+			get
+			{
+				return this._ExpedienteId;
+			}
+			set
+			{
+				if ((this._ExpedienteId != value))
+				{
+					this._ExpedienteId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpleadoId", DbType="Int NOT NULL")]
+		public int EmpleadoId
+		{
+			get
+			{
+				return this._EmpleadoId;
+			}
+			set
+			{
+				if ((this._EmpleadoId != value))
+				{
+					this._EmpleadoId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
 				}
 			}
 		}

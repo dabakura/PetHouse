@@ -1,58 +1,87 @@
 ﻿@model PetHouse.MVC.Models.Tratamiento
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
 }
 
-<h2>Details</h2>
+@Html.Partial("Helpers/_ViewError")
 
-<div>
-    <h4>Tratamiento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+<div class="col-md-8 col-md-offset-2">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3>Tratamiento</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="form-horizontal">
+            <div class="box-body">
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Expediente)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.ExpedienteId)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Activo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Empleado.Nombre)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Empleado)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Empleado.Nombre)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.EmpleadoId)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Expediente.Observaciones)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Empleado.Nombre)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Expediente.Observaciones)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Empleado.Nombre)
+                        </dd>
 
-    </dl>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Empleado.Primer_Apellido)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Empleado.Primer_Apellido)
+                        </dd>
+
+                        <dd>
+                            @{
+                                var medicamentos = new SelectList(Model.Medicamentos, "Id", "Nombre");
+                                @Html.DropDownListFor(model => model.Medicamentos, medicamentos)
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="form-actions no-color">
+                    @Html.ActionLink("Volver a la lista", "Index", "HomeProcedimiento", null, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-default pull-right" })
+                </div>
+            </div>
+            <!-- /.box-footer -->
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

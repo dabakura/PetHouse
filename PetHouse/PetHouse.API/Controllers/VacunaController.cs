@@ -13,7 +13,7 @@ namespace PetHouse.API.Controllers
 {
     [RoutePrefix("api/Vacuna")]
     [Authorize]
-    public class VacunaController : ApiController
+    public class VacunaController : BaseApiController
     {
         public IVacunaService VacunaServicio { get; }
 

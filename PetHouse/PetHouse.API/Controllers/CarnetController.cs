@@ -12,7 +12,8 @@ using System.Web.Http;
 namespace PetHouse.API.Controllers
 {
     [RoutePrefix("api/Carnet")]
-    public class CarnetController : ApiController
+    [Authorize]
+    public class CarnetController : BaseApiController
     {
         public ICarnetService CarnetServicio { get; }
 

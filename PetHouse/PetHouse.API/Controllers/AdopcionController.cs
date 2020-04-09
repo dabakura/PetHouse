@@ -12,6 +12,7 @@ using System.Web.Http;
 
 namespace PetHouse.API.Controllers
 {
+    [Authorize]
     public class AdopcionController : BaseApiController
     {
         public IAdopcionService AdopcionServicio { get; }

@@ -16,14 +16,17 @@
     <div class="col-md-12">
         @Html.Partial("Partials/_ShowProcedimiento")
     </div>
+    <div class="col-md-12">
+        @Html.Partial("Partials/_ShowTratamiento")
+    </div>
 </div>
 
 <div class="col-md-4">
     <div class="col-md-12">
-        @Html.Partial("Partials/_ShowCarnet")
+        @Html.Partial("Partials/_ShowMascota")
     </div>
     <div class="col-md-12">
-        @*@Html.Partial("Partials/_ViewMascota")*@
+        @Html.Partial("Partials/_ShowCarnet")
     </div>
 </div>
 
@@ -33,22 +36,12 @@
 @Html.Hidden("url_EditProcedimientos", Url.Action("Edit", "Procedimiento"), htmlAttributes: new { @id = "url_EditProcedimientos" })
 @Html.Hidden("url_DetailsProcedimientos", Url.Action("Details", "Procedimiento"), htmlAttributes: new { @id = "url_DetailsProcedimientos" })
 @Html.Hidden("url_DeleteProcedimientos", Url.Action("Delete", "Procedimiento"), htmlAttributes: new { @id = "url_DeleteProcedimientos" })
+@Html.Hidden("url_BusquedaTratamientos", Url.Action("Index", "Tratamiento"), htmlAttributes: new { @id = "url_BusquedaTratamientos" })
+@Html.Hidden("url_EditTratamientos", Url.Action("Edit", "Tratamiento"), htmlAttributes: new { @id = "url_EditTratamientos" })
+@Html.Hidden("url_DetailsTratamientos", Url.Action("Details", "Tratamiento"), htmlAttributes: new { @id = "url_DetailsTratamientos" })
+@Html.Hidden("url_DeleteTratamientos", Url.Action("Delete", "Tratamiento"), htmlAttributes: new { @id = "url_DeleteTratamientos" })
+@Html.Hidden("url_BusquedaMascota", Url.Action("Buscar", "Home"), htmlAttributes: new { @id = "url_BusquedaMascota" })
 
 @section ViewSpecificJavascript {
-    <script>
-        var url_BusquedaCarnets = $("#url_BusquedaCarnets").val();
-        var url_EliminaCarnet = $("#url_EliminaCarnet").val();
-        var url_BusquedaProcedimientos = $("#url_BusquedaProcedimientos").val();
-        var url_EditProcedimientos = $("#url_EditProcedimientos").val();
-        var url_DetailsProcedimientos = $("#url_DetailsProcedimientos").val();
-        var url_DeleteProcedimientos = $("#url_DeleteProcedimientos").val();
-        $("#table_procedimientos").hide();
-        function SelectedExpediente(ExpedienteId) {
-            $("#ExpedienteIdSelected").val(ExpedienteId);
-            $("#table_procedimientos").show();
-            ObtenerCarnets(ExpedienteId);
-            ObtenerProcedimientos(ExpedienteId);
-        }
-    </script>
     @Scripts.Render("~/Bundles/procedimientos")
 }

@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace PetHouse.API.Controllers
 {
     [RoutePrefix("api/Bitacora")]
-    public class BitacoraController : ApiController
+    public class BitacoraController : BaseApiController
     {
         public IBitacoraService BitacoraServicio { get; }
 

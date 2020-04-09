@@ -128,7 +128,10 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\pethouse-logo.jpg" />
     <Content Include="Content\js\ActionsCarnet.js" />
+    <Content Include="Content\js\ActionsTratamiento.js" />
     <Content Include="Content\js\ActionsProcedimiento.js" />
+    <Content Include="Content\js\ActiosMedicas.js" />
+    <Content Include="Content\js\ObtenerMascota.js" />
     <Content Include="Content\js\BuscarMascota.js" />
     <Content Include="Content\js\CreateCarnet.js" />
     <Content Include="Content\js\CreateDomicilio.js" />
@@ -224,11 +227,9 @@
     <Content Include="Views\Procedimiento\Delete.cshtml" />
     <Content Include="Views\Procedimiento\Details.cshtml" />
     <Content Include="Views\Procedimiento\Edit.cshtml" />
-    <Content Include="Views\Tratamiento\Create.cshtml" />
     <Content Include="Views\Tratamiento\Delete.cshtml" />
     <Content Include="Views\Tratamiento\Details.cshtml" />
     <Content Include="Views\Tratamiento\Edit.cshtml" />
-    <Content Include="Views\Tratamiento\Index.cshtml" />
     <Content Include="Views\Shared\Expediente\_Index.cshtml" />
     <Content Include="Views\Shared\Mascota\_Index.cshtml" />
     <Content Include="Views\Home\SideBars\_Ingreso.cshtml" />
@@ -250,6 +251,8 @@
     <Content Include="Views\HomeProcedimiento\Partials\_CreateProcedimiento.cshtml" />
     <Content Include="Views\HomeProcedimiento\Partials\_ShowProcedimiento.cshtml" />
     <Content Include="Views\HomeProcedimiento\Partials\_CreateTratamiento.cshtml" />
+    <Content Include="Views\HomeProcedimiento\Partials\_ShowTratamiento.cshtml" />
+    <Content Include="Views\HomeProcedimiento\Partials\_ShowMascota.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -282,7 +285,6 @@
     <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Models\JsonHttpStatusResult.cs" />
     <Compile Include="Models\PanelProcedimientoViewModel.cs" />
-    <Compile Include="Models\PanelProcedimientoInfoModel.cs" />
     <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Canton.cs" />

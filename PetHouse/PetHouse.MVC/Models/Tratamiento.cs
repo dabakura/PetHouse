@@ -7,7 +7,6 @@ namespace PetHouse.MVC.Models
 {
     public class Tratamiento
     {
-        private DateTime fecha;
         private string expedienteId;
         private int empleadoId;
 
@@ -27,7 +26,9 @@ namespace PetHouse.MVC.Models
         [DisplayName("Descripción")]
         [DataType(DataType.MultilineText)]
         public string Descripcion { get; set; }
-        public DateTime Fecha { get => fecha; set => fecha = value; }
+        [DataType(dataType: DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM'/'dd'/'yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Fecha { get; set; }
         public Expediente Expediente { get; set; }
         public Empleado Empleado { get; set; }
         public List<Medicamento> Medicamentos { get; set; }

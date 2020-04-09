@@ -12,7 +12,8 @@ using System.Web.Http;
 namespace PetHouse.API.Controllers
 {
     [RoutePrefix("api/Empleado")]
-    public class EmpleadoController : ApiController
+    [Authorize]
+    public class EmpleadoController : BaseApiController
     {
         public IEmpleadoService EmpleadoServicio { get; }
 

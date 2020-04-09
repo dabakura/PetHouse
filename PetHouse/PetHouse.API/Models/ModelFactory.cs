@@ -45,9 +45,11 @@ namespace PetHouse.API.Models
     }
     public class TratamientoMedicamentoModel
     {
+        private TratamientoModel tratamiento;
+
         public int TratamientoId { get; set; }
         public string MedicamentoId { get; set; }
-        public TratamientoModel Tratamiento { get; set; }
+        public TratamientoModel Tratamiento { get => tratamiento; set => tratamiento = new TratamientoModel { Id = value.Id }; }
         public MedicamentoModel Medicamento { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/TratamientoMedicamento/" + TratamientoId;
     }
