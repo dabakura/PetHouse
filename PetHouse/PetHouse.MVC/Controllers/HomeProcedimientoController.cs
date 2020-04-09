@@ -77,6 +77,18 @@ namespace PetHouse.MVC.Controllers
             return empleados;
         }
 
+        private async Task<List<Medicamento>> GetMedicamentosAsync()
+        {
+            var result = await GetAsync("api/Medicamento");
+            List<Medicamento> medicamento = null;
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result;
+                medicamento = JsonConvert.DeserializeObject<List<Medicamento>>(resultdata);
+            }
+            return medicamento;
+        }
+
         private async Task<Expediente> GetExpedienteAsync(string expedienteId)
         {
             var result = await GetAsync("api/Expediente/" + expedienteId);
@@ -93,8 +105,11 @@ namespace PetHouse.MVC.Controllers
             List<Vacuna> vacunas = null;
             var carnets = await GetCarnetsAsync(expedienteId);
             var empleados = await GetEmpleadosAsync();
+            var medicamentos = await GetMedicamentosAsync();
             if (empleados == null)
                 empleados = new List<Empleado>();
+            if (medicamentos == null)
+                medicamentos = new List<Medicamento>();
             if (carnets != null)
                 vacunas = await GetVacunasNoAdministradasAsync(carnets);
             else
@@ -104,6 +119,7 @@ namespace PetHouse.MVC.Controllers
             ViewBag.VacunasNoAdministradas = new SelectList(vacunas, "Id", "Nombre");
             ViewBag.Carnets = carnets;
             ViewBag.Empleados = new SelectList(empleados, "Identificacion", "Nombre"); ;
+            ViewBag.Medicamentos = medicamentos;
         }
 
         private async Task<List<Carnet>> GetCarnetsAsync(string expedienteId)

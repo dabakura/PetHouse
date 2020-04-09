@@ -45,7 +45,8 @@ namespace PetHouse.MVC.App_Start
 
             bundles.Add(new ScriptBundle("~/Bundles/create_todo")
                 .Include("~/Content/js/CreateCarnet.js")
-                .Include("~/Content/js/CreateProcedimiento.js"));
+                .Include("~/Content/js/CreateProcedimiento.js")
+                .Include("~/Content/js/CreateTratamiento.js"));
 
             bundles.Add(new ScriptBundle("~/Bundles/buscar_mascota")
                 .Include("~/Content/js/ShowMascota.js")

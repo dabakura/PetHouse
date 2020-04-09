@@ -10,7 +10,7 @@ namespace PetHouse.BLL.Services
     public interface ITratamientoMedicamentoService
     {
         IEnumerable<TratamientoMedicamento> GetAll();
-        TratamientoMedicamento Get(string id);
+        IEnumerable<TratamientoMedicamento> Get(string id);
         bool Insert(TratamientoMedicamento entity);
 
         bool Delete(int idTratamiento, string idMedicamento);

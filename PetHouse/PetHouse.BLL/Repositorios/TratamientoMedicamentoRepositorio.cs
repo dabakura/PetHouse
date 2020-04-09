@@ -24,12 +24,12 @@ namespace PetHouse.BLL.Repositorios
             }
         }
 
-        public TratamientoMedicamento Get(string id)
+        public IEnumerable<TratamientoMedicamento> Get(string id)
         {
             try
             {
-                var TratamientoMedicamentoResult = DB.BuscarTratamientoMedicamento(Convert.ToInt32(id)).SingleOrDefault();
-                return mapper.Map<TratamientoMedicamento>(TratamientoMedicamentoResult);
+                var TratamientoMedicamentosResult = DB.BuscarTratamientoMedicamento(Convert.ToInt32(id)).ToList();
+                return mapper.Map<IEnumerable<BuscarTratamientoMedicamentoResult>, IEnumerable<TratamientoMedicamento>>(TratamientoMedicamentosResult);
             }
             catch (Exception ex)
             {

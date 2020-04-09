@@ -20,7 +20,7 @@
             <button type="button" class="btn btn-success" id="CreateVacuna"><i class="fa fa-plus"></i></button>
         </div>
         <hr style="margin-top: 9px; margin-bottom: 0px;" />
-        <ul class="products-list product-list-in-box" id="lista_vacunas">
+        <ul class="products-list product-list-in-box" id="lista_vacunas"  style="height:210px; overflow-y:scroll;">
             @foreach (var item in (List<Carnet>)ViewBag.Carnets)
             {
                 <li class="item">

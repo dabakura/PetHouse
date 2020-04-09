@@ -1,0 +1,76 @@
+﻿@using PetHouse.MVC.Models
+@model PetHouse.MVC.Models.PanelProcedimientoViewModel
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title" style="padding-top: 8px;">Tratamiento</h3>
+        <div class="pull-right" style="display: flex;">
+            <button type="button" class="btn btn-success" id="CreateProcedimiento" style="display: inline-block"><i class="fa fa-plus"></i></button>
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" style="">
+        <div class="row form-inline">
+            <div class="col-md-9">
+                <div class="col-md-8">
+                    <div class="form-group col-md-12">
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.Tratamiento.EmpleadoId, (SelectList)ViewBag.Empleados, htmlAttributes: new { @class = "form-control", @id = "EmpleadoId_Tratamiento", style = "width: 100%;" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Procedimiento.Nombre_Procedimiento, new { htmlAttributes = new { @class = "form-control", @id = "Nombre_Tratamiento", Placeholder = "Nombre Tratamiento", style = "width: 100%;" } })
+                            </div>
+                            @Html.HiddenFor(model => model.Tratamiento.ExpedienteId, htmlAttributes: new { @id = "ExpedienteId_Tratamiento" })
+                    </div>
+                    <div class="col-md-12">
+                        <div style="margin-top: 20px;">
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Tratamiento.Descripcion, new { htmlAttributes = new { @class = "form-control col-md-12", @id = "Descripcion_Tratamiento", Placeholder = "Descripción", style = "width: 100%; min-height:185px;" } })
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Agregar Medicamentos</h3>
+                    </div>
+                    <div class="box-body">
+                        <ul class="col-md-12 products-list product-list-in-box" id="divtratamiento" ondrop="dropInsert(event)" ondragover="allowDrop(event)" style="height:186px; overflow-y:scroll; border-color: #d2d6de; border-style: dashed;"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Lista de Medicamentos</h3>
+                </div>
+                <div class="box-body">
+                    <ul class="col-md-12 products-list product-list-in-box" id="divmedicamentos" ondrop="dropDelete(event)" ondragover="allowDrop(event)" style="height:186px; overflow-y:scroll; border-color: #d2d6de; border-style: double;">
+                    @foreach (var item in (List<Medicamento>)ViewBag.Medicamentos)
+                    {
+                        <li class="item" draggable="true" ondragstart="drag(event)" id="@item.Id" data-info='@item.ToString()'>
+                            <div class="product-info" style="margin-left: 0px;" draggable="false">
+                                <a href="#" class="product-title" draggable="false">
+                                    @item.Nombre
+                                    <span class="label label-warning pull-right" draggable="false">$@item.Precio</span>
+                                </a>
+                                <span class="product-description" draggable="false">
+                                    @item.Descripcion
+                                </span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-top: 9px; margin-bottom: 0px;" />
+        <ul class="products-list product-list-in-box" id="lista_Tratamientos">
+        </ul>
+    </div>
+    <!-- /.box-body -->
+</div>

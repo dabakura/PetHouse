@@ -23,6 +23,11 @@ namespace PetHouse.API.Models
             return mapper.Map<S>(model);
         }
 
+        public static S Create<S, O>(O model)
+        {
+            return mapper.Map<S>(model);
+        }
+
         public static IEnumerable<S> Create<S, O>(IEnumerable<O> models, Uri uri)
         {
             Uri = uri;
@@ -42,15 +47,35 @@ namespace PetHouse.API.Models
     {
         public int TratamientoId { get; set; }
         public string MedicamentoId { get; set; }
+        public Tratamiento Tratamiento { get; set; }
+        public Medicamento Medicamento { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/TratamientoMedicamento/" + TratamientoId;
     }
     public class TratamientoModel
     {
+        private List<TratamientoMedicamentoModel> tratamientoMedicamentos;
+
+        public TratamientoModel()
+        {
+            tratamientoMedicamentos = new List<TratamientoMedicamentoModel>();
+        }
+
         public int Id { get; set; }
         public string ExpedienteId { get; set; }
         public int EmpleadoId { get; set; }
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
+
+        public Expediente Expediente { get; set; }
+        public Empleado Empleado { get; set; }
+        public List<TratamientoMedicamentoModel> TratamientoMedicamentos { 
+            get => tratamientoMedicamentos; 
+            set { 
+                tratamientoMedicamentos = value; 
+                Medicamentos = tratamientoMedicamentos.Select(TraMedicamento => TraMedicamento.Medicamento).ToList(); 
+            } 
+        }
+        public List<Medicamento> Medicamentos { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Tratamiento/" + Id;
     }
     public class PuestoModel

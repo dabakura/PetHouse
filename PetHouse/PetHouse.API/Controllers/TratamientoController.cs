@@ -15,10 +15,12 @@ namespace PetHouse.API.Controllers
     public class TratamientoController : ApiController
     {
         public ITratamientoService TratamientoServicio { get; }
+        public ITratamientoMedicamentoService TratamientoMedicamentoServicio { get; }
 
         public TratamientoController()
         {
             TratamientoServicio = new TratamientoRepositorio();
+            TratamientoMedicamentoServicio = new TratamientoMedicamentoRepositorio();
         }
 
         // GET: api/Tratamiento/5
@@ -55,12 +57,23 @@ namespace PetHouse.API.Controllers
         }
 
         // POST: api/Tratamiento
-        public IHttpActionResult Post([FromBody]Tratamiento tratamiento)
+        public IHttpActionResult Post([FromBody]TratamientoModel tratamientoModel)
         {
             try
             {
+                var tratamiento = ModelFactory.Create<Tratamiento, TratamientoModel>(tratamientoModel);
                 tratamiento.Id = TratamientoServicio.Insert(tratamiento);
                 Uri uri = new Uri(Url.Request.RequestUri + "/" + tratamiento.Id);
+                tratamientoModel.Medicamentos.ForEach( medicamento => {
+                    var tratamedica = new TratamientoMedicamento
+                    {
+                        MedicamentoId = medicamento.Id,
+                        Medicamento = medicamento,
+                        TratamientoId = tratamiento.Id,
+                        Tratamiento = tratamiento
+                    };
+                    TratamientoMedicamentoServicio.Insert(tratamedica);
+                });
                 return Created(uri, ModelFactory.Create<TratamientoModel, Tratamiento>(tratamiento, uri));
             }
             catch (Exception ex)

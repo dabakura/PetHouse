@@ -3,6 +3,7 @@ using PetHouse.BLL.Repositorios;
 using PetHouse.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -185,10 +186,28 @@ namespace PetHouse.BLL.Mappers
                 cfg.CreateMap<BuscarProvinciaResult, Provincia>();
                 cfg.CreateMap<ConsultarPuestoResult, Puesto>();
                 cfg.CreateMap<BuscarPuestoResult, Puesto>();
-                cfg.CreateMap<ConsultarTratamientoResult, Tratamiento>();
-                cfg.CreateMap<BuscarTratamientoResult, Tratamiento>();
-                cfg.CreateMap<ConsultarTratamientoMedicamentoResult, TratamientoMedicamento>();
-                cfg.CreateMap<BuscarTratamientoMedicamentoResult, TratamientoMedicamento>();
+                cfg.CreateMap<ConsultarTratamientoResult, Tratamiento>().AfterMap((orig, dest) => {
+                    dest.Empleado = new EmpleadoRepositorio().Get(orig.EmpleadoId.ToString());
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                    var Tratamientosmadicamentos = new EntitySet<TratamientoMedicamento>();
+                    Tratamientosmadicamentos.AddRange(new TratamientoMedicamentoRepositorio().Get(orig.Id.ToString()));
+                    dest.TratamientoMedicamentos = Tratamientosmadicamentos;
+                });
+                cfg.CreateMap<BuscarTratamientoResult, Tratamiento>().AfterMap((orig, dest) => {
+                    dest.Empleado = new EmpleadoRepositorio().Get(orig.EmpleadoId.ToString());
+                    dest.Expediente = new ExpedienteRepositorio().Get(orig.ExpedienteId);
+                    var Tratamientosmadicamentos = new EntitySet<TratamientoMedicamento>();
+                    Tratamientosmadicamentos.AddRange(new TratamientoMedicamentoRepositorio().Get(orig.Id.ToString()));
+                    dest.TratamientoMedicamentos = Tratamientosmadicamentos;
+                });
+                cfg.CreateMap<ConsultarTratamientoMedicamentoResult, TratamientoMedicamento>().AfterMap((orig, dest) => {
+                    dest.Tratamiento = new TratamientoRepositorio().Get(orig.TratamientoId.ToString());
+                    dest.Medicamento = new MedicamentoRepositorio().Get(orig.MedicamentoId);
+                });
+                cfg.CreateMap<BuscarTratamientoMedicamentoResult, TratamientoMedicamento>().AfterMap((orig, dest) => {
+                    dest.Tratamiento = new TratamientoRepositorio().Get(orig.TratamientoId.ToString());
+                    dest.Medicamento = new MedicamentoRepositorio().Get(orig.MedicamentoId);
+                });
                 cfg.CreateMap<ConsultarVacunaResult, Vacuna>();
                 cfg.CreateMap<BuscarVacunaResult, Vacuna>();
                 cfg.CreateMap<BuscarPersonaResult, Persona>();
