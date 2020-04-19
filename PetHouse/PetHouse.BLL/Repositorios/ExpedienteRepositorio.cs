@@ -56,7 +56,7 @@ namespace PetHouse.BLL.Repositorios
             {
                 var ExpedientesResult = DB.ConsultarExpediente().ToList();
                 var Expedientes = mapper.Map<IEnumerable<ConsultarExpedienteResult>, IEnumerable<Expediente>>(ExpedientesResult);
-                return Expedientes;
+                return Expedientes.Where(a => a.Activo.Value).ToList();
             }
             catch (Exception ex)
             {

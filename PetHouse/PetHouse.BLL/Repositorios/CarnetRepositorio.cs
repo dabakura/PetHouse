@@ -57,7 +57,7 @@ namespace PetHouse.BLL.Repositorios
             {
                 var CarnetsResult = DB.ConsultarCarnet().ToList();
                 var Carnets = mapper.Map<IEnumerable<ConsultarCarnetResult>, IEnumerable<Carnet>>(CarnetsResult);
-                return Carnets;
+                return Carnets.Where(a => a.Activo.Value).ToList();
             }
             catch (Exception ex)
             {

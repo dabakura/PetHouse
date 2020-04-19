@@ -43,7 +43,7 @@ namespace PetHouse.BLL.Repositorios
             {
                 var PuestosResult = DB.ConsultarPuesto().ToList();
                 var Puestos = mapper.Map<IEnumerable<ConsultarPuestoResult>, IEnumerable<Puesto>>(PuestosResult);
-                return Puestos;
+                return Puestos.Where(a => a.Activo.Value).ToList();
             }
             catch (Exception ex)
             {

@@ -55,6 +55,16 @@
                         <dd>
                             @Html.DisplayFor(model => model.Precio)
                         </dd>
+
+                        <dt>
+                            @Html.DisplayName("Precio en Colones")
+                        </dt>
+                        @{
+                            string colones = (Convert.ToDouble(Model.Precio) * ((double)ViewBag.TipoCambio)).ToString("N2");
+                        }
+                        <dd>
+                            @Html.DisplayFor(model => colones)
+                        </dd>
                     </dl>
                 </div>
             </div>

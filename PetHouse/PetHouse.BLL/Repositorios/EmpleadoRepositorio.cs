@@ -43,7 +43,7 @@ namespace PetHouse.BLL.Repositorios
             {
                 var EmpleadosResult = DB.ConsultarEmpleado().ToList();
                 var Empleados = mapper.Map<IEnumerable<ConsultarEmpleadoResult>, IEnumerable<Empleado>>(EmpleadosResult);
-                return Empleados;
+                return Empleados.Where(a => a.Activo.Value).ToList();
             }
             catch (Exception ex)
             {

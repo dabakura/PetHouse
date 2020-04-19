@@ -82,18 +82,27 @@ namespace PetHouse.API.Controllers
             {
                 dataPadron.Lineas.ForEach(linea => {
                     if (token.IsCancellationRequested) return;
-                    dataPadron.PFila += 1;
-                    //Partimos la linea con el caracter "," indicado
-                    dataPadron.Campos = linea.Split(",".ToCharArray());
-                    int idprovincia = Convert.ToInt32(dataPadron.Campos[1].Trim().Substring(0, 1));
-                    int idcanton = Convert.ToInt32(dataPadron.Campos[1].Trim().Substring(0, 3));
-                    int iddistrito = Convert.ToInt32(dataPadron.Campos[1].Trim());
-                    if (idprovincia > 0 && idprovincia < 8)
-                        PadronServicio.InsertPersona(Convert.ToInt32(dataPadron.Campos[0].Trim()), 
-                            dataPadron.Campos[5].Trim(), dataPadron.Campos[6].Trim(), 
-                            dataPadron.Campos[7].Trim(), Convert.ToInt32(dataPadron.Campos[2].Trim()), 
-                            idprovincia, idcanton, iddistrito);
-                    ActualizarProcesoPersonas(dataPadron);
+                    bool error = false;
+                    try
+                    {
+                        dataPadron.PFila += 1;
+                        //Partimos la linea con el caracter "," indicado
+                        dataPadron.Campos = linea.Split(",".ToCharArray());
+                        int idprovincia = Convert.ToInt32(dataPadron.Campos[1].Trim().Substring(0, 1));
+                        int idcanton = Convert.ToInt32(dataPadron.Campos[1].Trim().Substring(0, 3));
+                        int iddistrito = Convert.ToInt32(dataPadron.Campos[1].Trim());
+                        if (idprovincia > 0 && idprovincia < 8)
+                            PadronServicio.InsertPersona(Convert.ToInt32(dataPadron.Campos[0].Trim()),
+                                dataPadron.Campos[5].Trim(), dataPadron.Campos[6].Trim(),
+                                dataPadron.Campos[7].Trim(), Convert.ToInt32(dataPadron.Campos[2].Trim()),
+                                idprovincia, idcanton, iddistrito);
+                    }
+                    catch 
+                    {
+                        error = true;
+                    }
+                    if (!error)
+                        ActualizarProcesoPersonas(dataPadron);
                 });
                 IndicatorState.IndicatorPersonas = new Indicator();
                 return Task.CompletedTask;

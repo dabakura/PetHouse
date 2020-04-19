@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PetHouse.MVC.Controllers;
 using PetHouse.MVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -46,6 +47,7 @@ namespace UI.Controllers
                 ViewData["Error"] = await ErrorAsync("Vacuna", "Details", "Error al consultar api", 404);
                 return HttpNotFound();
             }
+            await LLenarIndicador();
             return View(vacuna);
         }
 
@@ -145,6 +147,19 @@ namespace UI.Controllers
                 return RedirectToAction("Index");
             ViewData["Error"] = await ErrorAsync("Vacuna", "DeleteConfirmed", "Error eliminar vacuna compruebe los campos", 400);
             return HttpNotFound();
+        }
+
+        private async Task LLenarIndicador()
+        {
+            var FechaInicio = DateTime.Now.ToString("dd/MM/yyyy");
+            var FechaFin = DateTime.Now.ToString("dd/MM/yyyy");
+            var result = await PostAsync("api/Consulta/TipoCambio", new { Indicador = 318, FechaInicio, FechaFin });
+            if (result.IsSuccessStatusCode)
+            {
+                var resultdata = result.Content.ReadAsStringAsync().Result.Replace("\"", "");
+                ViewBag.TipoCambio = double.Parse(resultdata);
+            } else
+                ViewBag.TipoCambio = 0.0;
         }
     }
 }

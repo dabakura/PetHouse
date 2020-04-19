@@ -43,7 +43,7 @@ namespace PetHouse.BLL.Repositorios
             {
                 var ProcedimientosResult = DB.ConsultarProcedimiento().ToList();
                 var Procedimientos = mapper.Map<IEnumerable<ConsultarProcedimientoResult>, IEnumerable<Procedimiento>>(ProcedimientosResult);
-                return Procedimientos;
+                return Procedimientos.Where(a => a.Activo.Value).ToList();
             }
             catch (Exception ex)
             {

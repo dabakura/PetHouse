@@ -41,7 +41,7 @@ namespace PetHouse.BLL.Repositorios
         {
             try
             {
-                var TratamientosResult = DB.ConsultarTratamiento(idExpediente).ToList();
+                var TratamientosResult = DB.ConsultarTratamiento(idExpediente).Where(a => a.Activo).ToList();
                 var Tratamientos = mapper.Map<IEnumerable<ConsultarTratamientoResult>, IEnumerable<Tratamiento>>(TratamientosResult);
                 return Tratamientos;
             }
