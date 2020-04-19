@@ -34,6 +34,17 @@ namespace PetHouse.MVC.App_Start
                 .Include("~/Content/js/adminlte.js")
                 .Include("~/Content/js/init.js"));
 
+            bundles.Add(new StyleBundle("~/Bundles/calendarcss")
+                .Include("~/Content/calendar/fullcalendar.min.css"));
+
+            bundles.Add(new ScriptBundle("~/Bundles/calendarjs")
+                //.Include("~/Content/calendar/google-calendar.min.js")
+                .Include("~/Content/calendar/jquery-ui.min.js")
+                .Include("~/Content/calendar/moment.min.js")
+                .Include("~/Content/calendar/locales/es.js")
+                .Include("~/Content/calendar/gcal.min.js")
+                .Include("~/Content/calendar/fullcalendar.min.js"));
+
             bundles.Add(new ScriptBundle("~/Bundles/create_domicilio")
                 .Include("~/Content/js/CreateDomicilio.js"));
 

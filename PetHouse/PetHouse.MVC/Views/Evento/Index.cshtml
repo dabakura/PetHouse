@@ -1,0 +1,379 @@
+﻿@using System.Web.Optimization
+@using PetHouse.MVC.Models
+@section ViewSpecificCss {
+    @Styles.Render("~/Bundles/calendarcss")
+}
+
+<h2>Eventos</h2>
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Tipos de Eventos</h4>
+                </div>
+                <div class="box-body">
+                    <!-- the events -->
+                    <div id="external-events">
+                        <div class="external-event bg-green">Nutrición</div>
+                        <div class="external-event bg-yellow">Visita</div>
+                        <div class="external-event bg-aqua">Médica</div>
+                        <div class="external-event bg-light-blue">Psicológica</div>
+                        <div class="external-event bg-red">Deportiva</div>
+                        <div class="checkbox">
+                            <label for="drop-remove">
+                                <input type="checkbox" id="drop-remove">
+                                Remover Eventos
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Crear Eventos</h3>
+                </div>
+                <div class="box-body">
+                    <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                        <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                        <ul class="fc-color-picker" id="color-chooser">
+                            <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
+                            <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- /btn-group -->
+                    <div class="input-group">
+                        <input id="new-event" type="text" class="form-control" placeholder="Nombre Eventos">
+                        <div class="input-group-btn">
+                            <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Agregar</button>
+                        </div>
+                        <!-- /btn-group -->
+                    </div>
+                    <!-- /input-group -->
+                </div>
+            </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="box box-primary">
+                <div class="box-body no-padding">
+                    <!-- Modal-->
+                    <div class="modal fade" id="mi_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Agregar Descripción</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row" style="padding:15px">
+                                        <input type="text" name="description" class="col-md-12 form-control" id="description"/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="ModalDescription();">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- THE CALENDAR -->
+                    <div id="calendar"></div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+@section ViewSpecificJavascript {
+    @Scripts.Render("~/Bundles/calendarjs")
+    <script type="text/javascript">
+        /*Inicializa Variables
+          -----------------------------------------------------------------*/
+        const ThemeSystem = 'bootstrap3';
+        const MonthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const MonthNamesShort = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+        const DayNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const DayNamesShort = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+        const Header = {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        };
+        const ButtonText = {
+            today: 'Hoy',
+            month: 'Mes',
+            week: 'Semana',
+            day: 'Día'
+        };
+        var EventoNuevo = {
+            id: 0,
+            title: "",
+            description: "",
+            extendedProps: {
+                description: ""
+            },
+            start: null,
+            end: null,
+            color: "",
+            allDay: false
+        };
+        var objetoEliminar = null;
+        var idsRemove = [];
+        $("#principal_title").hide();
+    </script>
+
+    <script type="text/javascript">
+        /*Carga Informacion
+          -----------------------------------------------------------------*/
+        var eventosString = "@((string)ViewBag.Eventos)";
+        var initialEvents = JSON.parse(
+            eventosString.replace(/&quot;/g, '"')
+                .replace(/&#225;/g, "á")
+                .replace(/&#233;/g, "é")
+                .replace(/&#237;/g, "í")
+                .replace(/&#243;/g, "ó")
+                .replace(/&#250;/g, "ú")
+        );
+        function CargarEventos(start, end, timezone, callback) {
+            var events = [];
+            initialEvents.forEach(event => events.push({
+                id: event.Id,
+                title: event.Titulo,
+                description: event.Descripcion,
+                extendedProps: {
+                    description: event.Descripcion
+                },
+                start: moment(event.Inicio),
+                end: event.Fin != null ? moment(event.Fin) : null,
+                color: event.ColorFondo,
+                allDay: false
+            }));
+            callback(events);
+        }
+    </script>
+    
+    <script type="text/javascript">
+        function Drop(date, allDay) { // esta función se llama cuando se cae algo
+            //recuperar el objeto de evento almacenado del elemento descartado
+            objetoEliminar = $(this);
+            var originalEventObject = $(this).data('eventObject');
+
+            EventoNuevo = $.extend({}, EventoNuevo);
+            var sdate = $.fullCalendar.moment(date.format());  // Create a clone of the dropped date.
+            sdate.stripTime();        // The time should already be stripped but lets do a sanity check.
+            sdate.time('08:00:00');   // Set a default start time.
+
+            var edate = $.fullCalendar.moment(date.format());  // Create a clone.
+            edate.stripTime();        // Sanity check.
+            edate.time('12:00:00');   // Set a default end time.
+
+            EventoNuevo.title = originalEventObject.title;
+            EventoNuevo.start = sdate;
+            EventoNuevo.end = edate;
+            EventoNuevo.backgroundColor = $(this).css('background-color');
+            EventoNuevo.borderColor = $(this).css('border-color');
+            EventoNuevo.color = $(this).css('color');
+            $("#mi_modal").modal();
+        }
+
+        function ModalDescription() {
+            EventoNuevo.description = $('#description').val();
+            EventoNuevo.extendedProps.description = EventoNuevo.description;
+            let data = {
+                Titulo: EventoNuevo.title,
+                Descripcion: EventoNuevo.description,
+                Inicio: EventoNuevo.start.format(),
+                Fin: EventoNuevo.end.format(),
+                ColorFondo: EventoNuevo.backgroundColor
+            };
+            $.post("/Evento/Create", data)
+                .done(RegistarEvento)
+                .fail(function (error) { alert(error.Error); })
+        }
+
+        function RegistarEvento(event) {
+            EventoNuevo.id = event.Id;
+            $('#calendar').fullCalendar('renderEvent', EventoNuevo, true)
+
+            // ¿está marcada la casilla de verificación "eliminar después de soltar"?
+            if ($('#drop-remove').is(':checked')) {
+                // si es así, elimine el elemento de la lista "Eventos arrastrables"
+                $(objetoEliminar).remove();
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function EvenClick(calEvent, jsEvent, view) {
+            if (jsEvent.originalEvent.shiftKey) {
+                var r = confirm("Delete " + calEvent.title);
+                if (r === true) {
+                    var sdsf = $('#calendar');
+                    view._props.initialEvents.pop();
+                    $('#calendar').fullCalendar('removeEvents', event._id);
+                    $('#calendar').fullCalendar('removeEvents', calEvent._id);
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function EventDrop(event, delta, revertFunc, jsEvent, ui, view) {
+            let data = {
+                Id: event.id,
+                Titulo: event.title,
+                Descripcion: event.description,
+                Inicio: event.start.format(),
+                Fin: event.end.format(),
+                ColorFondo: event.color
+            };
+            $.post("/Evento/Edit", data)
+                .done(function (res) { console.log("modificado"); })
+                .fail(function (error) { alert(error.Error); })
+        }
+    </script>
+    <script type="text/javascript">
+        function EventResize(event, delta, revertFunc, jsEvent, ui, view) {
+            alert("EventResize");
+        }
+    </script>
+
+    <script>
+        function EventRender(eventObj, $el) {
+            if (idsRemove.includes(eventObj._id))
+                $el.hide();
+            $el.popover({
+                title: eventObj.title,
+                content: eventObj.description,
+                trigger: 'hover',
+                placement: 'top',
+                container: 'body'
+            });
+            $el.append("<span class='closeon'>X Eliminar</span>");
+            $el.find(".closeon").click(function () {
+                idsRemove.push(eventObj._id);
+                $.post("/Evento/Delete", { id: eventObj.id }).fail(function (error) {
+                    idsRemove = idsRemove.filter(word => word != eventObj.id);
+                    $el.show();
+                    alert(error.Error);
+                });
+                $el.hide();
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        /* inicializa el calendario
+             -----------------------------------------------------------------*/
+        function InicializaCalendario() {
+            $('#calendar').fullCalendar({
+                //Crea los datos en español para el manejo del calendario
+                themeSystem: ThemeSystem,
+                monthNames: MonthNames,
+                monthNamesShort: MonthNamesShort,
+                dayNames: DayNames,
+                dayNamesShort: DayNamesShort,
+                header: Header,
+                buttonText: ButtonText,
+                //Consulta los Eventos
+                events: CargarEventos,
+                eventRender: EventRender,
+                editable: true,
+                droppable: true, // ¡Esto permite que las cosas se dejen caer en el calendario!
+                nowIndicator: true,
+                drop: Drop,
+                eventDrop: EventDrop,
+                eventResize: EventResize
+            });
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function showModal(title, body, isEventdetail) {
+                $("#MyPopup .modal-title").html(title);
+            }
+            /*inicializar los eventos externos
+         -----------------------------------------------------------------*/
+            function init_events(ele) {
+                ele.each(function () {
+
+                    //crear un objeto de evento (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                    //no necesita tener un comienzo o un final
+                    var eventObject = {
+                        title: $.trim($(this).text()) // use the element's text as the event title
+                    }
+
+                    //Fecha para los eventos del calendario (datos ficticios)
+                    $(this).data('eventObject', eventObject);
+
+                    // hacer que el evento sea arrastrable usando jQuery UI
+                    $(this).draggable({
+                        zIndex: 1070,
+                        revert: true, //hará que el evento regrese a su
+                        revertDuration: 0  //  posición original después del arrastre
+                    });
+
+                });
+            }
+
+            init_events($('#external-events div.external-event'));
+
+            InicializaCalendario();
+            /* AGREGAR EVENTOS */
+            var currColor = '#3c8dbc'; //Rojo por defecto
+            //Botón selector de color
+            var colorChooser = $('#color-chooser-btn');
+            $('#color-chooser > li > a').click(function (e) {
+                e.preventDefault();
+                //Guardar color
+                currColor = $(this).css('color');
+                //Añadir efecto de color al botón
+                $('#add-new-event').css({ 'background-color': currColor, 'border-color': currColor });
+            });
+            $('#add-new-event').click(function (e) {
+                e.preventDefault();
+                //Obtenga valor y asegúrese de que no sea nula
+                var val = $('#new-event').val();
+                if (val.length == 0) {
+                    return
+                }
+
+                //Crea eventos
+                var event = $('<div />')
+                event.css({
+                    'background-color': currColor,
+                    'border-color': currColor,
+                    'color': '#fff'
+                }).addClass('external-event');
+                event.html(val);
+                $('#external-events').prepend(event);
+
+                //Agregar funcionalidad arrastrable
+                init_events(event);
+
+                //Eliminar evento de entrada de texto
+                $('#new-event').val('');
+            });
+        });
+    </script>
+}
+

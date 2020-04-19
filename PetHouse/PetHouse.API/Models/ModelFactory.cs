@@ -284,4 +284,23 @@ namespace PetHouse.API.Models
         public string Distrito_Nombre { get; set; }
         public string Href => ModelFactory.Uri.Authority + "/api/Persona/" + Cedula;
     }
+
+    public class EventoModel
+    {
+        public int Id { get; set; }
+
+        public string Titulo { get; set; }
+
+        public string Descripcion { get; set; }
+
+        public DateTime Inicio { get; set; }
+
+        public DateTime Fin { get; set; }
+
+        public string ColorFondo { get; set; }
+
+        public bool Estado { get; set; }
+
+        public string Href => ModelFactory.Uri.Authority + "/api/Evento/" + Id;
+    }
 }

@@ -41,6 +41,7 @@ namespace PetHouse.API.App_Start
                 cfg.CreateMap<TratamientoMedicamentoModel, TratamientoMedicamento>();
                 cfg.CreateMap<Vacuna, VacunaModel>();
                 cfg.CreateMap<Persona, PersonaModel>();
+                cfg.CreateMap<Evento, EventoModel>();
             });
             return config;
         }

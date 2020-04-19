@@ -93,6 +93,9 @@ namespace PetHouse.DAL.Entities
     partial void InsertAdopcion(Adopcion instance);
     partial void UpdateAdopcion(Adopcion instance);
     partial void DeleteAdopcion(Adopcion instance);
+    partial void InsertEvento(Evento instance);
+    partial void UpdateEvento(Evento instance);
+    partial void DeleteEvento(Evento instance);
     #endregion
 		
 		public PetHouseDataContext() : 
@@ -290,6 +293,14 @@ namespace PetHouse.DAL.Entities
 			get
 			{
 				return this.GetTable<Adopcion>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Evento> Eventos
+		{
+			get
+			{
+				return this.GetTable<Evento>();
 			}
 		}
 		
@@ -935,6 +946,41 @@ namespace PetHouse.DAL.Entities
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), expedienteId);
 			return ((ISingleResult<ConsultarTratamientoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarEvento")]
+		public int ActualizarEvento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Titulo", DbType="VarChar(100)")] string titulo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(200)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Inicio", DbType="DateTime")] System.Nullable<System.DateTime> inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fin", DbType="DateTime")] System.Nullable<System.DateTime> fin, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ColorFondo", DbType="VarChar(200)")] string colorFondo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, titulo, descripcion, inicio, fin, colorFondo);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarEvento")]
+		public ISingleResult<BuscarEventoResult> BuscarEvento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<BuscarEventoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarEvento")]
+		public ISingleResult<ConsultarEventoResult> ConsultarEvento()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarEventoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarEvento")]
+		public int EliminarEvento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarEvento")]
+		public ISingleResult<InsertarEventoResult> InsertarEvento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Titulo", DbType="VarChar(100)")] string titulo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(200)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Inicio", DbType="DateTime")] System.Nullable<System.DateTime> inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fin", DbType="DateTime")] System.Nullable<System.DateTime> fin, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ColorFondo", DbType="VarChar(200)")] string colorFondo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), titulo, descripcion, inicio, fin, colorFondo);
+			return ((ISingleResult<InsertarEventoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -6437,6 +6483,212 @@ namespace PetHouse.DAL.Entities
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Evento")]
+	public partial class Evento : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Titulo;
+		
+		private string _Descripcion;
+		
+		private System.DateTime _Inicio;
+		
+		private System.Nullable<System.DateTime> _Fin;
+		
+		private string _ColorFondo;
+		
+		private bool _Estado;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTituloChanging(string value);
+    partial void OnTituloChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    partial void OnInicioChanging(System.DateTime value);
+    partial void OnInicioChanged();
+    partial void OnFinChanging(System.Nullable<System.DateTime> value);
+    partial void OnFinChanged();
+    partial void OnColorFondoChanging(string value);
+    partial void OnColorFondoChanged();
+    partial void OnEstadoChanging(bool value);
+    partial void OnEstadoChanged();
+    #endregion
+		
+		public Evento()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Titulo", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Titulo
+		{
+			get
+			{
+				return this._Titulo;
+			}
+			set
+			{
+				if ((this._Titulo != value))
+				{
+					this.OnTituloChanging(value);
+					this.SendPropertyChanging();
+					this._Titulo = value;
+					this.SendPropertyChanged("Titulo");
+					this.OnTituloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(200)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicio", DbType="DateTime NOT NULL")]
+		public System.DateTime Inicio
+		{
+			get
+			{
+				return this._Inicio;
+			}
+			set
+			{
+				if ((this._Inicio != value))
+				{
+					this.OnInicioChanging(value);
+					this.SendPropertyChanging();
+					this._Inicio = value;
+					this.SendPropertyChanged("Inicio");
+					this.OnInicioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fin", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fin
+		{
+			get
+			{
+				return this._Fin;
+			}
+			set
+			{
+				if ((this._Fin != value))
+				{
+					this.OnFinChanging(value);
+					this.SendPropertyChanging();
+					this._Fin = value;
+					this.SendPropertyChanged("Fin");
+					this.OnFinChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorFondo", DbType="VarChar(50)")]
+		public string ColorFondo
+		{
+			get
+			{
+				return this._ColorFondo;
+			}
+			set
+			{
+				if ((this._ColorFondo != value))
+				{
+					this.OnColorFondoChanging(value);
+					this.SendPropertyChanging();
+					this._ColorFondo = value;
+					this.SendPropertyChanged("ColorFondo");
+					this.OnColorFondoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this.OnEstadoChanging(value);
+					this.SendPropertyChanging();
+					this._Estado = value;
+					this.SendPropertyChanged("Estado");
+					this.OnEstadoChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	public partial class BuscarAdoptanteResult
 	{
 		
@@ -11768,6 +12020,408 @@ namespace PetHouse.DAL.Entities
 				if ((this._Fecha != value))
 				{
 					this._Fecha = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarEventoResult
+	{
+		
+		private int _Id;
+		
+		private string _Titulo;
+		
+		private string _Descripcion;
+		
+		private System.DateTime _Inicio;
+		
+		private System.Nullable<System.DateTime> _Fin;
+		
+		private string _ColorFondo;
+		
+		private bool _Estado;
+		
+		public BuscarEventoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Titulo", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Titulo
+		{
+			get
+			{
+				return this._Titulo;
+			}
+			set
+			{
+				if ((this._Titulo != value))
+				{
+					this._Titulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(200)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicio", DbType="DateTime NOT NULL")]
+		public System.DateTime Inicio
+		{
+			get
+			{
+				return this._Inicio;
+			}
+			set
+			{
+				if ((this._Inicio != value))
+				{
+					this._Inicio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fin", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fin
+		{
+			get
+			{
+				return this._Fin;
+			}
+			set
+			{
+				if ((this._Fin != value))
+				{
+					this._Fin = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorFondo", DbType="VarChar(50)")]
+		public string ColorFondo
+		{
+			get
+			{
+				return this._ColorFondo;
+			}
+			set
+			{
+				if ((this._ColorFondo != value))
+				{
+					this._ColorFondo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarEventoResult
+	{
+		
+		private int _Id;
+		
+		private string _Titulo;
+		
+		private string _Descripcion;
+		
+		private System.DateTime _Inicio;
+		
+		private System.Nullable<System.DateTime> _Fin;
+		
+		private string _ColorFondo;
+		
+		private bool _Estado;
+		
+		public ConsultarEventoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Titulo", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Titulo
+		{
+			get
+			{
+				return this._Titulo;
+			}
+			set
+			{
+				if ((this._Titulo != value))
+				{
+					this._Titulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(200)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicio", DbType="DateTime NOT NULL")]
+		public System.DateTime Inicio
+		{
+			get
+			{
+				return this._Inicio;
+			}
+			set
+			{
+				if ((this._Inicio != value))
+				{
+					this._Inicio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fin", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fin
+		{
+			get
+			{
+				return this._Fin;
+			}
+			set
+			{
+				if ((this._Fin != value))
+				{
+					this._Fin = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorFondo", DbType="VarChar(50)")]
+		public string ColorFondo
+		{
+			get
+			{
+				return this._ColorFondo;
+			}
+			set
+			{
+				if ((this._ColorFondo != value))
+				{
+					this._ColorFondo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarEventoResult
+	{
+		
+		private int _Id;
+		
+		private string _Titulo;
+		
+		private string _Descripcion;
+		
+		private System.DateTime _Inicio;
+		
+		private System.Nullable<System.DateTime> _Fin;
+		
+		private string _ColorFondo;
+		
+		private bool _Estado;
+		
+		public InsertarEventoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Titulo", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Titulo
+		{
+			get
+			{
+				return this._Titulo;
+			}
+			set
+			{
+				if ((this._Titulo != value))
+				{
+					this._Titulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(200)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicio", DbType="DateTime NOT NULL")]
+		public System.DateTime Inicio
+		{
+			get
+			{
+				return this._Inicio;
+			}
+			set
+			{
+				if ((this._Inicio != value))
+				{
+					this._Inicio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fin", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fin
+		{
+			get
+			{
+				return this._Fin;
+			}
+			set
+			{
+				if ((this._Fin != value))
+				{
+					this._Fin = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorFondo", DbType="VarChar(50)")]
+		public string ColorFondo
+		{
+			get
+			{
+				return this._ColorFondo;
+			}
+			set
+			{
+				if ((this._ColorFondo != value))
+				{
+					this._ColorFondo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
 				}
 			}
 		}

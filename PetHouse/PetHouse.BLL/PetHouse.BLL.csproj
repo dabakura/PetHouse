@@ -51,6 +51,7 @@
     <Compile Include="Repositorios\AdopcionRepositorio.cs" />
     <Compile Include="Repositorios\AdoptanteRepositorio.cs" />
     <Compile Include="Repositorios\AspNetUsersRepositorio.cs" />
+    <Compile Include="Repositorios\EventoRepositorio.cs" />
     <Compile Include="Repositorios\PadronRepositorio.cs" />
     <Compile Include="Repositorios\CantonRepositorio.cs" />
     <Compile Include="Repositorios\CarnetRepositorio.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Services\IDistritoService.cs" />
     <Compile Include="Services\IDomicilioService.cs" />
     <Compile Include="Services\IEmpleadoService.cs" />
+    <Compile Include="Services\IEventoService.cs" />
     <Compile Include="Services\IExpedienteService.cs" />
     <Compile Include="Services\IMascotaService.cs" />
     <Compile Include="Services\IMedicamentoService.cs" />

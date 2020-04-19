@@ -52,6 +52,9 @@
                         <li><a href="@Url.Action("IndexSelect", "Rol")"><i class="fa fa-link"></i> <span>Roles</span></a></li>
                     </ul>
                 </li>
+                <li class="@Url.IsLinkActive("Index", "Evento")">
+                    <a href="@Url.Action("Index", "Evento")"><i class="fa fa-link"></i> <span>Eventos</span></a>
+                </li>
                 <li class="@Url.IsLinkActive("Logout", "Account")">
                     <a href="@Url.Action("Logout", "Account")"><i class="fa fa-link"></i> <span>Logout</span></a>
                 </li>

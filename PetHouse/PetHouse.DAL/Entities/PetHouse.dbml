@@ -258,6 +258,17 @@
       <Association Name="Mascota_Adopcion" Member="Mascota" ThisKey="MascotaId" OtherKey="Identificacion" Type="Mascota" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Evento" Member="Eventos">
+    <Type Name="Evento">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Inicio" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Fin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ColorFondo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.RegistrarBitacora" Method="RegistrarBitacora">
     <Parameter Name="Controlador" Parameter="controlador" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Metodo" Parameter="metodo" Type="System.String" DbType="VarChar(50)" />
@@ -1077,6 +1088,58 @@
       <Column Name="EmpleadoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ActualizarEvento" Method="ActualizarEvento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Titulo" Parameter="titulo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Inicio" Parameter="inicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Fin" Parameter="fin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ColorFondo" Parameter="colorFondo" Type="System.String" DbType="VarChar(200)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BuscarEvento" Method="BuscarEvento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarEventoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Inicio" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Fin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ColorFondo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ConsultarEvento" Method="ConsultarEvento">
+    <ElementType Name="ConsultarEventoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Inicio" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Fin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ColorFondo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EliminarEvento" Method="EliminarEvento">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertarEvento" Method="InsertarEvento">
+    <Parameter Name="Titulo" Parameter="titulo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Inicio" Parameter="inicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Fin" Parameter="fin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ColorFondo" Parameter="colorFondo" Type="System.String" DbType="VarChar(200)" />
+    <ElementType Name="InsertarEventoResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Inicio" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Fin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ColorFondo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

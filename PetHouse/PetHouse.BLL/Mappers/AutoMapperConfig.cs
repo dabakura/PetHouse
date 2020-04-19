@@ -211,6 +211,8 @@ namespace PetHouse.BLL.Mappers
                 cfg.CreateMap<ConsultarVacunaResult, Vacuna>();
                 cfg.CreateMap<BuscarVacunaResult, Vacuna>();
                 cfg.CreateMap<BuscarPersonaResult, Persona>();
+                cfg.CreateMap<ConsultarEventoResult, Evento>();
+                cfg.CreateMap<BuscarEventoResult, Evento>();
             });
             return config;
         }

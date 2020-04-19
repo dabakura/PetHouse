@@ -11,7 +11,7 @@
         {
             @ViewBag.Title@: -
         }
-        AdminLTE
+        PetHouse
     </title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -21,6 +21,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @RenderSection("ViewSpecificCss", required: false)
 </head>
 <body class="hold-transition skin-green sidebar-mini">
     <div class="wrapper">
@@ -29,7 +30,7 @@
 
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>
+                <h1 id="principal_title">
                     @ViewBag.Title
                     <small>@ViewBag.Description</small>
                 </h1>

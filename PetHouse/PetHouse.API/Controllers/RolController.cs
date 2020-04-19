@@ -46,6 +46,7 @@ namespace PetHouse.API.Controllers
         }
 
         [Route("create")]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> Create(CreateRoleBindingModel model)
         {
             if (!ModelState.IsValid)

@@ -258,6 +258,7 @@
     <Compile Include="Controllers\CantonController.cs" />
     <Compile Include="Controllers\CarnetController.cs" />
     <Compile Include="Controllers\DistritoController.cs" />
+    <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\DomicilioController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\ExpedienteController.cs" />
