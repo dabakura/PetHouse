@@ -16,10 +16,15 @@ namespace PetHouse.MVC.Models
         }
 
         [DisplayName("Identificación")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "No debe estar entre {2} a {1} caracteres")]
         public string Identificacion { get; set; }
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "No debe estar entre {2} a {1} caracteres")]
         public string Nombre { get; set; }
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "No debe estar entre {2} a {1} caracteres")]
         public string Tipo { get; set; }
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "No debe estar entre {2} a {1} caracteres")]
         public string Genero { get; set; }
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "No debe estar entre {2} a {1} caracteres")]
         public string Raza { get; set; }
         [DisplayName("Fecha Nacimiento")]
         [DataType(dataType: DataType.Date)]

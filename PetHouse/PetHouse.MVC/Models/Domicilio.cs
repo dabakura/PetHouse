@@ -17,6 +17,7 @@ namespace PetHouse.MVC.Models
         public int CantonId { get; set; }
         public int DistritoId { get => _DistritoId; set => Distrito.Id = _DistritoId = value; }
         [DisplayName("Dirección")]
+        [StringLength(200, MinimumLength = 3, ErrorMessage = "No debe estar entre {2} a {1} caracteres")]
         public string Direccion { get; set; }
         public Distrito Distrito { get; set; }
     }

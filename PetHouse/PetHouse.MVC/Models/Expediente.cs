@@ -8,13 +8,14 @@ namespace PetHouse.MVC.Models
 {
     public class Expediente
     {
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "No debe estar entre {2} a {1} caracteres")]
         public string Id { get; set; }
         [DataType(dataType: DataType.MultilineText)]
         public string Observaciones { get; set; }
-        [RegularExpression(@"^\d+\.?\d{0,2}$", ErrorMessage = "Formato permitido es #.##")]
+        [RegularExpression(@"^\d+\,?\d{0,2}$", ErrorMessage = "Formato permitido es #,##")]
         [Range(0, 199.99, ErrorMessage = "El {0} debe estar entre {1} y {2}")]
         public decimal? Edad { get; set; }
-        [RegularExpression(@"^\d+\.?\d{0,2}$", ErrorMessage = "Formato permitido es #.##")]
+        [RegularExpression(@"^\d+\,?\d{0,2}$", ErrorMessage = "Formato permitido es #,##")]
         [Range(0, 199999.99, ErrorMessage = "El {0} debe estar entre {1} y {2}")]
         public decimal? Peso { get; set; }
         [DisplayName("Castración")]

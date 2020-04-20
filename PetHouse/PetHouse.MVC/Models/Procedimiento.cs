@@ -22,6 +22,7 @@ namespace PetHouse.MVC.Models
         [DisplayName("Id Empleado")]
         public int EmpleadoId { get => empleadoId; set => Empleado.Identificacion = empleadoId = value; }
         [DisplayName("Procedimiento")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "No debe estar entre {2} a {1} caracteres")]
         public string Nombre_Procedimiento { get; set; }
         [DisplayName("Descripción")]
         [DataType(DataType.MultilineText)]

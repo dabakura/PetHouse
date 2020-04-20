@@ -31,7 +31,7 @@ namespace PetHouse.API.Controllers
             }
             catch 
             {
-                throw;
+                return NotFound();
             }
         }
     }
